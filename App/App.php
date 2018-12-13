@@ -18,9 +18,9 @@ class App
         /*
          * Constantes do sistema
          */
-        define('APP_HOST'       , $_SERVER['HTTP_HOST'] . "/SistemaSFB");
+        define('APP_HOST'       , $_SERVER['HTTP_HOST'] . "/AgenciaRoad/SistemaSFB/");
         define('PATH'           , realpath('./'));
-        define('TITLE'          , "Sistema Sindicato dos Frentistas de Bauru");
+        define('TITLE'          , "Sistema SFB | Agência Road Tech");
         define('DB_HOST'        , "localhost");
         define('DB_USER'        , "root");
         define('DB_PASSWORD'    , "");
