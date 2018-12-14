@@ -21,10 +21,10 @@ class App
         define('APP_HOST'       , $_SERVER['HTTP_HOST'] . "/AgenciaRoad/SistemaSFB/");
         define('PATH'           , realpath('./'));
         define('TITLE'          , "Sistema SFB | Agência Road Tech");
-        define('DB_HOST'        , "localhost");
-        define('DB_USER'        , "root");
-        define('DB_PASSWORD'    , "");
-        define('DB_NAME'        , "rd_SFB");
+        define('DB_HOST'        , "sql136.main-hosting.eu");
+        define('DB_USER'        , "u204053349_des");
+        define('DB_PASSWORD'    , "acesso?roadtech");
+        define('DB_NAME'        , "u204053349_des");
         define('DB_DRIVER'      , "mysql");
 
         $this->url();
