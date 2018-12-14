@@ -30,6 +30,7 @@ abstract class BaseDAO
             /*
                 INSERT INTO usuario (nome,email) VALUES (:nome,:email);
             */
+            var_dump($values);
             $stmt = $this->conexao->prepare("INSERT INTO $table ($colunas) VALUES ($parametros)");
             $stmt->execute($values);
 

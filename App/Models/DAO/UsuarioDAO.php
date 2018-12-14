@@ -11,7 +11,7 @@ class UsuarioDAO extends BaseDAO
         try {
 
             $query = $this->select(
-                "SELECT * FROM sfb_usuarios WHERE CPF_Usuaurio = '$cpf' "
+                "SELECT * FROM sfm_usuarios WHERE CPF_Usuario = '$cpf' "
             );
 
             return $query->fetch();
@@ -27,15 +27,19 @@ class UsuarioDAO extends BaseDAO
             $cpf       = $registro->getCpf();
             $usuario   = $registro->getUsuario(); 
             $senha     = $registro->getSenha();
+            $tpusuario = $registro->getTpUsuario();
+            
+           // printf ($nome.' - '.$cpf.' - '.$usuario.' - '.$senha.' - '.$tpusuario);    
 
             return $this->insert(
-                'sfb_usuarios',
-                ":NM_Pessoa,:CPF_Usuario,:NM_Usuario,:Senha_Usuario",
+                'sfm_usuarios',
+                ":NM_Pessoa,:CPF_Usuario,:NM_Usuario,:Senha_Usuario, :TP_Usuario",
                 [
                     ':NM_Pessoa'=>$nome,
                     ':CPF_Usuario'=>$cpf,
                     ':NM_Usuario'=>$usuario,
-                    ':Senha_Usuario'=>$senha
+                    ':Senha_Usuario'=>$senha,
+                    ':TP_Usuario'=>$tpusuario
                 ]
             );
 

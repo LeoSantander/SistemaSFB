@@ -26,6 +26,13 @@
                     <label for="senha">Senha</label>
                     <input type="password" class="form-control" name="senha" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('senha'); ?>" required>
                 </div>
+                <div class="form-group">
+                    <label for="tpusuario">Tipo Usuario</label>
+                    <select name= "tpusuario" value="<?php echo $Sessao::retornaValorFormulario('tpusuario'); ?>">
+                        <option class="form-control" name="tpusuario" value="Administrador">Administrador</option>
+                        <option class="form-control" name="tpusuario" value="Padrao">Padrão</option>
+                    </select required> 
+                </div>
 
                 <button type="submit" class="btn btn-success btn-sm">Salvar</button>
             </form>

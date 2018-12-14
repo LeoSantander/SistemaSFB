@@ -18,20 +18,24 @@ class UsuarioController extends Controller
 
     public function salvar()
     {
-        $Usuario = new Usuario();
-        $Usuario->setNome($_POST['nome']);
-        $Usuario->setEmail($_POST['email']);
+        $registro = new Usuario();
+        $registro->setNome($_POST['nome']);
+        $registro->setCpf($_POST['cpf']);
+        $registro->setUsuario($_POST['usuario']);
+        $registro->setSenha($_POST['senha']);
+        $registro->setTpUsuario($_POST['tpusuario']);
+
 
         Sessao::gravaFormulario($_POST);
 
         $usuarioDAO = new UsuarioDAO();
 
-        if($usuarioDAO->verificaEmail($_POST['email'])){
-            Sessao::gravaMensagem("Email existente");
+        if($usuarioDAO->verificaCPF($_POST['cpf'])){
+            Sessao::gravaMensagem("CPF ja foi Cadastrado");
             $this->redirect('/usuario/cadastro');
         }
 
-        if($usuarioDAO->salvar($Usuario)){
+        if($usuarioDAO->salvar($registro)){
             $this->redirect('/usuario/sucesso');
         }else{
             Sessao::gravaMensagem("Erro ao gravar");

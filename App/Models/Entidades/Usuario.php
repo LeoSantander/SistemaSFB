@@ -9,6 +9,7 @@ class Usuario
     private $cpf;
     private $usuario;
     private $senha;
+    private $tpusuario;
 
     public function getId()
     {
@@ -57,5 +58,15 @@ class Usuario
     public function setSenha($senha)
     {
         $this->senha = $senha;
+    }
+
+    public function getTpUsuario()
+    {
+        return $this->tpusuario;
+    }
+
+    public function setTpUsuario($tpusuario)
+    {
+        $this->tpusuario = $tpusuario;
     }
 }
