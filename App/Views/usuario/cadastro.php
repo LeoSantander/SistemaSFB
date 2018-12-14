@@ -18,11 +18,6 @@
                     <input type="cpf" class="form-control" name="cpf" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" class="form-control" name="email" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('email'); ?>" required>
-                </div>
-
-                <div class="form-group">
                     <label for="usuario">Usuário</label>
                     <input type="usuario" class="form-control" name="usuario" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('usuario'); ?>" required>
                 </div>
