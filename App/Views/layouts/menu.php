@@ -14,6 +14,9 @@
                 <li <?php if($viewVar['nameController'] == "HomeController") { ?> class="active" <?php } ?>>
                     <a href="http://<?php echo APP_HOST; ?>" >Inicio</a>
                 </li>
+                <li <?php if($viewVar['nameController'] == "UsuarioController") { ?> class="active" <?php } ?>>
+                    <a href="http://<?php echo APP_HOST; ?>/usuario/cadastro" >Usuário</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav">
                 <li <?php if($viewVar['nameController'] == "") { ?> class="active" <?php } ?>>
