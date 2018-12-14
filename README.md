@@ -1,2 +1,2 @@
 # SistemaSFB
-	Repositório do SistemaSFB
+	Repositório do SistemaSFB.
