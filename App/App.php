@@ -18,9 +18,9 @@ class App
         /*
          * Constantes do sistema
          */
-        define('APP_HOST'       , $_SERVER['HTTP_HOST'] . "/AgenciaRoad/SistemaSFM/");
+        define('APP_HOST'       , $_SERVER['HTTP_HOST'] . "/AgenciaRoad/SistemaSFB/");
         define('PATH'           , realpath('./'));
-        define('TITLE'          , "Sistema SFM | Agência Road Tech");
+        define('TITLE'          , "Sistema SFB | Agência Road Tech");
         define('DB_HOST'        , "sql136.main-hosting.eu");
         define('DB_USER'        , "u204053349_des");
         define('DB_PASSWORD'    , "acesso?roadtech");
