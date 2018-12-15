@@ -14,6 +14,7 @@ class UsuarioController extends Controller
 
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
+        Sessao::limpaSucesso();
     }
 
     public function salvar()
@@ -36,7 +37,10 @@ class UsuarioController extends Controller
         }
 
         if($usuarioDAO->salvar($registro)){
-            $this->redirect('/usuario/sucesso');
+            Sessao::limpaFormulario();
+            Sessao::gravaSucesso("Usuário Cadastrado com Sucesso");
+            $this->redirect('/usuario/cadastro');            
+            //$this->redirect('/usuario/sucesso');
         }else{
             Sessao::gravaMensagem("Erro ao gravar");
         }

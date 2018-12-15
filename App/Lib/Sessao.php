@@ -7,6 +7,14 @@ class Sessao
     public static function gravaMensagem($mensagem){
         $_SESSION['mensagem'] = $mensagem;
     }
+    
+    public static function gravaSucesso($sucesso){
+        $_SESSION['sucesso'] = $sucesso;
+    }
+    
+    public static function limpaSucesso(){
+        unset($_SESSION['sucesso']);
+    }
 
     public static function limpaMensagem(){
         unset($_SESSION['mensagem']);
@@ -14,6 +22,10 @@ class Sessao
 
     public static function retornaMensagem(){
         return ($_SESSION['mensagem']) ? $_SESSION['mensagem'] : "";
+    }
+    
+    public static function retornaSucesso(){
+        return ($_SESSION['sucesso']) ? $_SESSION['sucesso'] : "";
     }
 
     public static function gravaFormulario($form){
