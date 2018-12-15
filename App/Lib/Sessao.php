@@ -43,4 +43,13 @@ class Sessao
     public static function existeFormulario(){
         return (isset($_SESSION['form'])) ? $_SESSION['form'] : "";
     }
+
+    public static function gravaQtdUsuarios($qtdUsuarios){
+        $_SESSION['qtdUsuarios'] = $qtdUsuarios;
+    }
+
+    public static function retornaqtdUsuarios(){
+        return ($_SESSION['qtdUsuarios']) ? $_SESSION['qtdUsuarios'] : "";
+    }
+
 }

@@ -20,6 +20,18 @@ class UsuarioDAO extends BaseDAO
             throw new \Exception("Erro no acesso aos dados.", 500);
         }
     }
+    public function ContaUsuarios()
+    {
+        try {
+            $query = $this->select(
+                "SELECT * FROM sfm_usuarios"
+            );
+            return $query->rowCount();
+            
+        }catch (Exception $e){
+            throw new \Exception("Erro no acesso aos dados.", 500);
+        }
+    }
 
     public  function salvar(Usuario $registro) {
         try {

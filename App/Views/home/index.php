@@ -9,7 +9,7 @@
             </tr>
             <tr>
                 <td align ='center'><h3>0</h3> Associados Ativos</td>
-                <td align ='center'><h3>0</h3> Usuarios Ativos</td>
+                <td align ='center'><h3><?php echo $Sessao::retornaqtdUsuarios()?></h3> Usuarios Cadastrados</td>
             </tr>
             </table>
     </div>
