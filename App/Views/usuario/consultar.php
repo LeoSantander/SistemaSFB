@@ -27,23 +27,33 @@
         <div class="alert alert-info" role="alert">Nenhum Usuário encontrado!</div>
     <?php 
         }
-    ?>
+    ?>    
+    <?php if($Sessao::retornaMensagem()){ ?>
+                <div class="alert alert-warning" role="alert"><?php echo $Sessao::retornaMensagem(); ?></div>
+    <?php } ?>
+    
+    <?php if($Sessao::retornaSucesso()){ ?>
+                <div class="alert alert-success" role="alert"><?php echo $Sessao::retornaSucesso(); ?></div>
+     <?php } ?>
+
     <div class="table table-responsive">
     <table class="table table-bordered table-hover">
         <tr class = 'active'>
-            <td align='center'><h4>Nome    </h4></td>
-            <td align='center'><h4>CPF     </h4></td>
+            <td align='center'><h4>Nome</h4></td>
+            <td align='center'><h4>Usuário</h4></td>
+            <td align='center'><h4>CPF</h4></td>
             <td align='center'><h4>Tipo de Usuário</h4></td>
-            <td align='center'><h4>Ações   </h4></td>
+            <td align='center'><h4>Ações</h4></td>
         </tr>   
         <?php foreach($viewVar['listarUsuarios'] as $usuarios){?>
 		    <tr>
-			    <td><?php echo $usuarios->NM_Pessoa;?></td>
+                <td><?php echo $usuarios->NM_Pessoa;?></td>
+                <td><?php echo $usuarios->NM_Usuario;?></td>
 			    <td><?php echo $usuarios->CPF_Usuario;?></td>
 			    <td><?php echo $usuarios->TP_Usuario;?></td>
 			    <td align="center">
 				    <a href='http://<?php echo APP_HOST;?>/usuario/alterar/<?php echo $usuarios->ID_Usuario?>' class="btn btn-info btn sm">Editar</a>
-				    <a href='http://<?php echo APP_HOST;?>/usuario/excluir/<?php echo $usuarios->ID_Usuario?>' class="btn btn-danger btn sm">Excluir</a>
+				    <a href='http://<?php echo APP_HOST;?>/usuario/exclusao/<?php echo $usuarios->ID_Usuario?>' class="btn btn-danger btn sm">Excluir</a>
 		        </td>
 	        </tr>	
 	    <?php }?>

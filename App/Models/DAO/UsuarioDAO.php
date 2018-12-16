@@ -37,16 +37,50 @@ class UsuarioDAO extends BaseDAO
     {
         if (isset($nm)){
             $query = $this->select(
-                "SELECT ID_Usuario, NM_Pessoa, CPF_Usuario, TP_Usuario  FROM sfm_usuarios WHERE NM_Pessoa LIKE '%".$nm."%'"
+                "SELECT ID_Usuario, NM_Pessoa, NM_Usuario, CPF_Usuario, TP_Usuario  FROM sfm_usuarios WHERE NM_Pessoa LIKE '%".$nm."%'"
             );
             return $query->fetchObject(Usuario::class);
         }else{
             $query = $this->select(
-                "SELECT ID_Usuario, NM_Pessoa, CPF_Usuario, TP_Usuario  FROM sfm_usuarios"
+                "SELECT ID_Usuario, NM_Pessoa, NM_Usuario, CPF_Usuario, TP_Usuario  FROM sfm_usuarios"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Usuario::class);
         }
         return false;
+    }
+
+    public function pegarUsuario($id)
+    {
+        $query = $this->select(
+            "SELECT * FROM sfm_usuarios WHERE ID_Usuario = $id"
+        );
+            return $query->fetchObject(Usuario::class);
+    }
+
+    public function atualizar(Usuario $registro)
+    {
+        try {
+        $id        = $registro->getId();    
+        $nome      = $registro->getNome();
+        $usuario   = $registro->getUsuario(); 
+        $senha     = $registro->getSenha();
+        $tpusuario = $registro->getTpUsuario();
+
+        return $this->update(
+            'sfm_usuarios',
+                "NM_Pessoa = :NM_Pessoa,NM_Usuario = :NM_Usuario,Senha_Usuario = :Senha_Usuario,TP_Usuario = :TP_Usuario",  
+                [
+                    ':ID_Usuario'=>$id,
+                    ':NM_Pessoa'=>$nome,
+                    ':NM_Usuario'=>$usuario,
+                    ':Senha_Usuario'=>$senha,
+                    ':TP_Usuario'=>$tpusuario
+                ],
+                "ID_Usuario = :ID_Usuario"  
+        );
+        }catch (\Exception $e){
+            throw new \Exception("Erro na gravação de dados.", 500);
+        }
     }
 
     public  function salvar(Usuario $registro) {
@@ -73,6 +107,18 @@ class UsuarioDAO extends BaseDAO
 
         }catch (\Exception $e){
             throw new \Exception("Erro na gravação de dados.", 500);
+        }
+    }
+    public function excluir(Usuario $registro)
+    {
+        try {
+            $id = $registro->getId();
+ 
+            return $this->delete('sfm_usuarios',"ID_Usuario = $id");
+ 
+        }catch (Exception $e){
+ 
+            throw new \Exception("Erro ao deletar", 500);
         }
     }
 }
