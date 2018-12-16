@@ -42,7 +42,7 @@ class UsuarioDAO extends BaseDAO
             return $query->fetchObject(Usuario::class);
         }else{
             $query = $this->select(
-                "SELECT ID_Usuario, NM_Pessoa, NM_Usuario, CPF_Usuario, TP_Usuario  FROM sfm_usuarios"
+                "SELECT ID_Usuario, NM_Pessoa, NM_Usuario, CPF_Usuario, TP_Usuario  FROM sfm_usuarios ORDER BY NM_Pessoa"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Usuario::class);
         }
