@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav">
         <li <?php if($viewVar['nameController'] == "HomeController") { ?> class="active" <?php } ?>>
             <a href="http://<?php echo APP_HOST; ?>">Inicio <span class="sr-only">(current)</span></a></li>
-        <li <?php if($viewVar['nameController'] == "HomeController") { ?> class="active" <?php } ?> class="dropdown">
+        <li <?php if($viewVar['nameController'] == "UsuarioController") { ?> class="active" <?php } ?> class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuários<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="http://<?php echo APP_HOST; ?>/usuario/cadastro">Adicionar Novo Usuário</a></li>
