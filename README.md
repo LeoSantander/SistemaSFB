@@ -1,2 +1,2 @@
 # SistemaSFM
-	Repositório do SistemaSFM.
+	Repositório do SistemaSFM
