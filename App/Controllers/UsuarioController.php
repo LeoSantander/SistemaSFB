@@ -17,6 +17,20 @@ class UsuarioController extends Controller
         Sessao::limpaSucesso();
     }
 
+    public function consultar($params)
+    {
+        $nm = $params;
+
+        $usuarioDAO = new UsuarioDAO();      
+       
+        self::setViewParam('listarUsuarios', $usuarioDAO->listarUsuarios($nm));
+
+        $this->render('/usuario/consultar');
+        Sessao::limpaFormulario();
+        Sessao::limpaMensagem();
+        Sessao::limpaSucesso();
+    }
+
     public function salvar()
     {
         $registro = new Usuario();

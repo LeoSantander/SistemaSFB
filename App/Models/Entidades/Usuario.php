@@ -2,6 +2,8 @@
 
 namespace App\Models\Entidades;
 
+use DateTime;
+
 class Usuario
 {
     private $id;
@@ -10,6 +12,7 @@ class Usuario
     private $usuario;
     private $senha;
     private $tpusuario;
+    private $dtCadastro;
 
     public function getId()
     {
@@ -68,5 +71,15 @@ class Usuario
     public function setTpUsuario($tpusuario)
     {
         $this->tpusuario = $tpusuario;
+    }
+
+    public function getDtCadastro()
+    {
+        return new DateTime ($this->dtCadastro);
+    }
+
+    public function setDtCadastro($dtCadastro)
+    {
+        $this->dtCadastro = $dtCadastro;
     }
 }

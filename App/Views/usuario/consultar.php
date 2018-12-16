@@ -1,0 +1,51 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <div class="container">
+	    <div class="row">
+            <div class="col-md-6">
+    		    <h3>Usuários Cadastrados</h3>
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input type="text" class="form-control input-lg" placeholder="Buscar" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+	    </div>
+    </div>  
+    <hr>
+    
+    <?php 
+        if(!count($viewVar['listarUsuarios'])){
+    ?>    
+        <div class="alert alert-info" role="alert">Nenhum Usuário encontrado!</div>
+    <?php 
+        }
+    ?>
+    <div class="table table-responsive">
+    <table class="table table-bordered table-hover">
+        <tr class = 'active'>
+            <td align='center'><h4>Nome    </h4></td>
+            <td align='center'><h4>CPF     </h4></td>
+            <td align='center'><h4>Tipo de Usuário</h4></td>
+            <td align='center'><h4>Ações   </h4></td>
+        </tr>   
+        <?php foreach($viewVar['listarUsuarios'] as $usuarios){?>
+		    <tr>
+			    <td><?php echo $usuarios->NM_Pessoa;?></td>
+			    <td><?php echo $usuarios->CPF_Usuario;?></td>
+			    <td><?php echo $usuarios->TP_Usuario;?></td>
+			    <td align="center">
+				    <a href='http://<?php echo APP_HOST;?>/usuario/alterar/<?php echo $usuarios->ID_Usuario?>' class="btn btn-info btn sm">Editar</a>
+				    <a href='http://<?php echo APP_HOST;?>/usuario/excluir/<?php echo $usuarios->ID_Usuario?>' class="btn btn-danger btn sm">Excluir</a>
+		        </td>
+	        </tr>	
+	    <?php }?>
+    </table>
+    </div>

@@ -33,6 +33,22 @@ class UsuarioDAO extends BaseDAO
         }
     }
 
+    public function listarUsuarios($nm = '')
+    {
+        if (isset($nm)){
+            $query = $this->select(
+                "SELECT ID_Usuario, NM_Pessoa, CPF_Usuario, TP_Usuario  FROM sfm_usuarios WHERE NM_Pessoa LIKE '%".$nm."%'"
+            );
+            return $query->fetchObject(Usuario::class);
+        }else{
+            $query = $this->select(
+                "SELECT ID_Usuario, NM_Pessoa, CPF_Usuario, TP_Usuario  FROM sfm_usuarios"
+            );
+            return $query->fetchAll(\PDO::FETCH_CLASS, Usuario::class);
+        }
+        return false;
+    }
+
     public  function salvar(Usuario $registro) {
         try {
             $nome      = $registro->getNome();
