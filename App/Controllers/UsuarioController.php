@@ -17,9 +17,9 @@ class UsuarioController extends Controller
         Sessao::limpaSucesso();
     }
 
-    public function consultar($params)
+    public function consultar()
     {
-        $nm = $params;
+        $nm = $_POST['buscar'];
 
         $usuarioDAO = new UsuarioDAO();      
        

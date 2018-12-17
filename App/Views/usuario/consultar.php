@@ -2,20 +2,22 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-    <div class="container">
+<div class="container">
 	    <div class="row">
             <div class="col-md-6">
     		    <h3>Usuários Cadastrados</h3>
+                <form action="http://<?php echo APP_HOST; ?>/usuario/consultar/" method="post" id="form_cadastro">
                 <div id="custom-search-input">
                     <div class="input-group col-md-12">
-                        <input type="text" class="form-control input-lg" placeholder="Buscar" />
+                        <input type="text" name="buscar" value="<?php echo $Sessao::retornaValorFormulario('buscar'); ?>" class="form-control input-lg" placeholder="Buscar" />
                         <span class="input-group-btn">
-                            <button class="btn btn-info btn-lg" type="button">
+                            <button id="enviar" onclick ="http://<?php echo APP_HOST; ?>/usuario/consultar/" class="btn btn-info btn-lg" type="submit">
                                 <i class="glyphicon glyphicon-search"></i>
                             </button>
                         </span>
                     </div>
                 </div>
+                </form>
             </div>
 	    </div>
     </div>  
@@ -58,4 +60,6 @@
 	        </tr>	
 	    <?php }?>
     </table>
+    
+    <a href='http://<?php echo APP_HOST; ?>/usuario/consultar/' class="btn btn-info btn sm">Listar Tudo</a>
     </div>

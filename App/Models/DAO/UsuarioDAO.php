@@ -39,7 +39,7 @@ class UsuarioDAO extends BaseDAO
             $query = $this->select(
                 "SELECT ID_Usuario, NM_Pessoa, NM_Usuario, CPF_Usuario, TP_Usuario  FROM sfm_usuarios WHERE NM_Pessoa LIKE '%".$nm."%'"
             );
-            return $query->fetchObject(Usuario::class);
+            return $query->fetchAll(\PDO::FETCH_CLASS, Usuario::class);
         }else{
             $query = $this->select(
                 "SELECT ID_Usuario, NM_Pessoa, NM_Usuario, CPF_Usuario, TP_Usuario  FROM sfm_usuarios ORDER BY NM_Pessoa"
