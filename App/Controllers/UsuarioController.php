@@ -109,8 +109,14 @@ class UsuarioController extends Controller
 
         $usuarioDAO = new UsuarioDAO();
 
-        if($usuarioDAO->verificaCPF($_POST['cpf'])){
-            Sessao::gravaMensagem("CPF ja foi Cadastrado");
+        if(($usuarioDAO->verificaCPF($_POST['cpf'])) and ($usuarioDAO->verificaUsuario($_POST['usuario']))){
+            Sessao::gravaMensagem("Usuário e CPF já Cadastrados");
+            $this->redirect('/usuario/cadastro');
+        } else if ($usuarioDAO->verificaCPF($_POST['cpf'])){
+            Sessao::gravaMensagem("CPF já associado a um usuário");
+            $this->redirect('/usuario/cadastro');
+        }else if ($usuarioDAO->verificaUsuario($_POST['usuario'])){
+            Sessao::gravaMensagem("Usuário já associado a um CPF");
             $this->redirect('/usuario/cadastro');
         }
 

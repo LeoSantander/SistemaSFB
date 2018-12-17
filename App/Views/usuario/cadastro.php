@@ -6,6 +6,7 @@
 
             <?php if($Sessao::retornaMensagem()){ ?>
                 <div class="alert alert-warning" role="alert"><?php echo $Sessao::retornaMensagem(); ?></div>
+
             <?php } ?>
             <?php if($Sessao::retornaSucesso()){ ?>
                 <div class="alert alert-success" role="alert"><?php echo $Sessao::retornaSucesso(); ?></div>
@@ -18,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF:</label>
-                    <input type="cpf" maxlength="11" class="form-control" placeholder="Somente Números" name="cpf" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required>
+                    <input type="cpf" id="cpf" maxlength="11" class="form-control" placeholder="Somente Números" name="cpf" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="usuario">Usuário</label>
