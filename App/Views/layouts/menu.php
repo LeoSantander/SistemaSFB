@@ -8,14 +8,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://<?php echo APP_HOST; ?>">Sistema SFM</a>
+      <a class="navbar-brand" href="http://<?php echo APP_HOST; ?>/home">Sistema SFM</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li <?php if($viewVar['nameController'] == "HomeController") { ?> class="active" <?php } ?>>
-            <a href="http://<?php echo APP_HOST; ?>">Inicio <span class="sr-only">(current)</span></a></li>
+            <a href="http://<?php echo APP_HOST; ?>/home">Inicio <span class="sr-only">(current)</span></a></li>
         <li <?php if($viewVar['nameController'] == "UsuarioController") { ?> class="active" <?php } ?> class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuários<span class="caret"></span></a>
           <ul class="dropdown-menu">
