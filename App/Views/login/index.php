@@ -26,7 +26,7 @@
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-user"></span>
                         </div>
-                        <input type="text" name="usuario" class="form-control" placeholder="Digite seu Usuário">
+                        <input type="text" name="usuario" class="form-control" placeholder="Digite seu Usuário" required>
                     </div>
                 </div>
  
@@ -36,7 +36,7 @@
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-lock"></span>
                         </div>
-                        <input type="password" name="senha" class="form-control" placeholder="Digite sua senha">
+                        <input type="password" name="senha" class="form-control" placeholder="Digite sua senha" required>
                     </div>
                 </div>
  
