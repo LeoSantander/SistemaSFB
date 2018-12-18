@@ -1,3 +1,9 @@
+<?php
+    if(!($Sessao::retornaUsuario())){
+        $Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+        $this->redirect('login/');
+    }
+?>
 <script>
 function mostraSenha(){
     document.getElementById("password").type = "text";

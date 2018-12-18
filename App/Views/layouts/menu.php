@@ -25,7 +25,10 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">(X) Sair </a></li>
+        <li><a href="#"><?php echo $Sessao::retornaUsuario()?></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://<?php echo APP_HOST; ?>/login/">Sair</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

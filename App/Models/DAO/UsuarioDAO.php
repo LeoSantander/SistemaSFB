@@ -20,6 +20,20 @@ class UsuarioDAO extends BaseDAO
             throw new \Exception("Erro no acesso aos dados.", 500);
         }
     }
+    
+    public function verificaLogin($usuario, $senha)
+    {
+        try {
+            $query = $this->select(
+                "SELECT * FROM sfm_usuarios WHERE NM_Usuario = '$usuario' AND Senha_Usuario = '$senha'"
+            );
+
+            return $query->fetchAll(\PDO::FETCH_CLASS, Usuario::class);
+
+        }catch (Exception $e){
+            throw new \Exception("Erro no acesso aos dados.", 500);
+        }
+    }
 
     public function verificaUsuario($usuario)
     {
@@ -69,6 +83,14 @@ class UsuarioDAO extends BaseDAO
     {
         $query = $this->select(
             "SELECT * FROM sfm_usuarios WHERE ID_Usuario = $id"
+        );
+            return $query->fetchObject(Usuario::class);
+    }
+
+    public function pegarTPUsuario($usuario, $senha)
+    {
+        $query = $this->select(
+            "SELECT * FROM sfm_usuarios WHERE NM_Usuario = $usuario AND Senha_Usuario = $senha"
         );
             return $query->fetchObject(Usuario::class);
     }

@@ -12,7 +12,7 @@ class HomeController extends Controller
         $usuarioDAO = new UsuarioDAO();
         $qtdUsuarios= $usuarioDAO->ContaUsuarios();
         Sessao::gravaQtdUsuarios($qtdUsuarios); 
-            
+    
         $this->render('home/index');
     }
 }

@@ -1,3 +1,9 @@
+<?php
+    if(!($Sessao::retornaUsuario())){
+        $Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+        $this->redirect('login/');
+    }
+?>
 <div class="container">
     <div class="row">
         <div class="col-md-3"></div>

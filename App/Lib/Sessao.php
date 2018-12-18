@@ -52,4 +52,28 @@ class Sessao
         return ($_SESSION['qtdUsuarios']) ? $_SESSION['qtdUsuarios'] : "";
     }
 
+    public static function gravaUsuario($usuario){
+        $_SESSION['usuario'] = $usuario;
+    }
+    
+    public static function retornaUsuario(){
+        return ($_SESSION['usuario']) ? $_SESSION['usuario'] : "";
+    }
+   
+    public static function limpaUsuario(){
+        unset($_SESSION['usuario']);
+    }
+
+    public static function gravaTPUsuario($TPUsuario){
+        $_SESSION['TPUsuario'] = $TPUsuario;
+    }
+    
+    public static function retornaTPUsuario(){
+        return ($_SESSION['TPUsuario']) ? $_SESSION['TPUsuario'] : "";
+    }
+   
+    public static function limpaTPUsuario(){
+        unset($_SESSION['TPUsuario']);
+    }
+
 }

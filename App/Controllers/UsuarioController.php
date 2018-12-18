@@ -86,7 +86,6 @@ class UsuarioController extends Controller
         Sessao::gravaFormulario($_POST);
         
         $usuarioDAO = new UsuarioDAO();
-        var_dump($registro);
         $usuarioDAO->atualizar($registro);
         
         Sessao::limpaFormulario();
@@ -133,6 +132,24 @@ class UsuarioController extends Controller
     public function index()
     {
         $this->redirect('/usuario/cadastro');
+    }
+
+    public function logar(){
+        $registro = new Usuario();
+        $registro->setNome($_POST['usuario']);
+        $registro->setSenha($_POST['senha']);
+
+        $usuarioDAO = new UsuarioDAO();
+       
+        if ($usuarioDAO->verificaLogin($_POST['usuario'],$_POST['senha'])){ 
+       
+            Sessao::gravaUsuario($_POST['usuario']);
+            $this->redirect('/home');
+            
+        }else{
+            Sessao::gravaMensagem("Usuário ou Senha incorretos!");
+            $this->redirect('/login'); 
+        }
     }
 
 }
