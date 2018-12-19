@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Lib\Sessao;
 use App\Models\DAO\EstadoDAO;
 use App\Models\Entidades\Estado;
+use App\Models\Validacao\EstadoValidador;
 
 class EstadoController extends Controller
 {
@@ -14,10 +15,11 @@ class EstadoController extends Controller
         //renderiza a view cadastro
         $this->render('/estado/cadastro');
 
-        //ao abrir a view, limpa dados de formulario, mensagem e mensagem de sucesso.
+        //ao abrir a view, limpa dados de formulario, mensagem, mensagem de sucesso e erros.
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
         Sessao::limpaSucesso();
+        Sessao::limpaErro();
     }
 
     //action salvar(incluir no bd)
@@ -28,8 +30,18 @@ class EstadoController extends Controller
         $registro->setNome($_POST['nome']);
         $registro->setSigla($_POST['sigla']);
 
-        //grava formulário, caso ocorra alguma excessão
+        //grava formulário, caso ocorra alguma exceção
         Sessao::gravaFormulario($_POST);
+
+        //instanciando o validador
+        $estadoValidador = new EstadoValidador();
+        $resultadoValidacao = $estadoValidador->validar($registro);//validando dados do registro(estado)
+
+        //verificando se existe uma lista de erros 
+        if($resultadoValidacao->getErros()){
+            Sessao::gravaErro($resultadoValidacao->getErros());//gravando os erros através do metodo gravaErro, da Sessao
+            $this->redirect('/estado/cadastro');//recarrega a página cadastro de estados, já renderizada
+        }
 
         //instanciando nova DAO
         $estadoDAO = new EstadoDAO();
@@ -57,6 +69,7 @@ class EstadoController extends Controller
         if($estadoDAO->salvar($registro))//o retorno de salvar será true ou false
         {
             Sessao::limpaFormulario();//limpa os dados do form
+            Sessao::limpaErro();
             Sessao::gravaSucesso("Estado Cadastrado com Sucesso!");//grava mensagem de sucesso a ser exibida ao usuário na view
 
             $this->redirect('/estado/cadastro');//recarrega a pagina de cadastro

@@ -76,4 +76,17 @@ class Sessao
         unset($_SESSION['TPUsuario']);
     }
 
+    
+    public static function gravaErro($erros){
+        $_SESSION['erro'] = $erros;
+    }
+
+    public static function retornaErro(){
+       return (isset($_SESSION['erro'])) ? $_SESSION['erro'] : false;
+    }
+
+    public static function limpaErro(){
+        unset($_SESSION['erro']);
+    }
+
 }
