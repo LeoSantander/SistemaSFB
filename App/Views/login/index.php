@@ -1,4 +1,7 @@
-<?php $Sessao::limpaUsuario()?>
+<?php $Sessao::limpaUsuario();
+      $Sessao::limpaTPUsuario();
+      $Sessao::limpaidUsuario();
+?>
 <head>
     <meta charset="UTF-8">
     <title>Login</title>

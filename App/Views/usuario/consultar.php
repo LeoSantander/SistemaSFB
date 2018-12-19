@@ -2,6 +2,8 @@
     if(!($Sessao::retornaUsuario())){
         $Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
         $this->redirect('login/');
+    } else if (!($Sessao::retornaTPUsuario() == 'Administrador')){
+        $this->redirect('home/');
     }
 ?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">

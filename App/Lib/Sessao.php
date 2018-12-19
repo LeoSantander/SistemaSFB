@@ -52,10 +52,11 @@ class Sessao
         return ($_SESSION['qtdUsuarios']) ? $_SESSION['qtdUsuarios'] : "";
     }
 
+    //Grava Usuário na Sessão
     public static function gravaUsuario($usuario){
         $_SESSION['usuario'] = $usuario;
     }
-    
+
     public static function retornaUsuario(){
         return ($_SESSION['usuario']) ? $_SESSION['usuario'] : "";
     }
@@ -64,6 +65,20 @@ class Sessao
         unset($_SESSION['usuario']);
     }
 
+    //Grava Senha na Sessão
+    public static function gravaSenha($senha){
+        $_SESSION['senha'] = $senha;
+    }
+
+    public static function retornaSenha(){
+        return ($_SESSION['senha']) ? $_SESSION['senha'] : "";
+    }
+   
+    public static function limpaSenha(){
+        unset($_SESSION['senha']);
+    }
+    
+    //TP Usuario
     public static function gravaTPUsuario($TPUsuario){
         $_SESSION['TPUsuario'] = $TPUsuario;
     }
@@ -76,7 +91,19 @@ class Sessao
         unset($_SESSION['TPUsuario']);
     }
 
-    
+     //Grava ID Usuario na Sessão
+     public static function gravaidUsuario($idUsuario){
+        $_SESSION['idUsuario'] = $idUsuario;
+    }
+
+    public static function retornaidUsuario(){
+        return ($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : "";
+    }
+   
+    public static function limpaidUsuario(){
+        unset($_SESSION['idUsuario']);
+    }
+    //Validação de erros nos campos 
     public static function gravaErro($erros){
         $_SESSION['erro'] = $erros;
     }

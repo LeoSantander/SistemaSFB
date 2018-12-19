@@ -1,7 +1,11 @@
 <?php
+    //Se não existe Usuário na Sessão, redireciona para Login
     if(!($Sessao::retornaUsuario())){
         $Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
         $this->redirect('login/');
+        //Senão se Usuário da Sessão não é Administrador, Retorna para Home!
+    } else if (!($Sessao::retornaTPUsuario() == 'Administrador')){
+        $this->redirect('home/');
     }
 ?>
 <div class="container">
@@ -20,12 +24,12 @@
 
             <form action="http://<?php echo APP_HOST; ?>/usuario/salvar" method="post" id="form_cadastro">
                 <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control"  name="nome" placeholder="Nome Completo" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>" required>
+                    <label for="nome">Nome</label>s
+                    <input type="text" class="form-control"  name="nome" placeholder="Nome Completo" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>" required >
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF:</label>
-                    <input type="cpf" id="cpf" maxlength="11" class="form-control" placeholder="Somente Números" name="cpf" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required>
+                    <input type="cpf" id="cpf" maxlength="11" onblur="validaCPF(this.value)" class="form-control" placeholder="Somente Números" name="cpf" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="usuario">Usuário</label>
@@ -44,7 +48,7 @@
                     </select required> 
                 </div>
 
-                <button type="submit" class="btn btn-success btn-sm">Salvar</button>
+                <button type="submit" class="btn btn-success btn-sm" onclick="VerificaCPF();">Salvar</button>
                 <a href="http://<?php echo APP_HOST; ?>/home/" class="btn btn-info btn-sm">Cancelar</a>
             </form>
         </div>

@@ -102,7 +102,8 @@ class UsuarioController extends Controller
         $registro->setUsuario($_POST['usuario']);
         $registro->setSenha($_POST['senha']);
         $registro->setTpUsuario($_POST['tpusuario']);
-
+        //ID_Usuario ja esta na Sessão
+        $registro->setidUsuarioInclusao(Sessao::retornaidUsuario());
 
         Sessao::gravaFormulario($_POST);
 
@@ -142,8 +143,10 @@ class UsuarioController extends Controller
         $usuarioDAO = new UsuarioDAO();
        
         if ($usuarioDAO->verificaLogin($_POST['usuario'],$_POST['senha'])){ 
-       
+            
             Sessao::gravaUsuario($_POST['usuario']);
+            Sessao::gravaSenha($_POST['senha']);
+            
             $this->redirect('/home');
             
         }else{

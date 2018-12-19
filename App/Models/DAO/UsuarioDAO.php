@@ -90,9 +90,9 @@ class UsuarioDAO extends BaseDAO
     public function pegarTPUsuario($usuario, $senha)
     {
         $query = $this->select(
-            "SELECT * FROM sfm_usuarios WHERE NM_Usuario = $usuario AND Senha_Usuario = $senha"
+            "SELECT ID_Usuario, NM_Pessoa, TP_Usuario FROM sfm_usuarios WHERE NM_Usuario = '$usuario' AND Senha_Usuario = '$senha'"
         );
-            return $query->fetchObject(Usuario::class);
+            return $query->fetchAll(\PDO::FETCH_CLASS, Usuario::class);                
     }
 
     public function atualizar(Usuario $registro)
@@ -128,18 +128,20 @@ class UsuarioDAO extends BaseDAO
             $usuario   = $registro->getUsuario(); 
             $senha     = $registro->getSenha();
             $tpusuario = $registro->getTpUsuario();
+            $idUsuarioInclusao = $registro->getidUsuarioInclusao();
             
            // printf ($nome.' - '.$cpf.' - '.$usuario.' - '.$senha.' - '.$tpusuario);    
 
             return $this->insert(
                 'sfm_usuarios',
-                ":NM_Pessoa,:CPF_Usuario,:NM_Usuario,:Senha_Usuario, :TP_Usuario",
+                ":NM_Pessoa,:CPF_Usuario,:NM_Usuario,:Senha_Usuario, :TP_Usuario, :ID_Usuario_Inclusao",
                 [
                     ':NM_Pessoa'=>$nome,
                     ':CPF_Usuario'=>$cpf,
                     ':NM_Usuario'=>$usuario,
                     ':Senha_Usuario'=>$senha,
-                    ':TP_Usuario'=>$tpusuario
+                    ':TP_Usuario'=>$tpusuario,
+                    ':ID_Usuario_Inclusao'=> $idUsuarioInclusao
                 ]
             );
 

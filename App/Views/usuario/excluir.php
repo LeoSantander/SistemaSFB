@@ -2,6 +2,9 @@
     if(!($Sessao::retornaUsuario())){
         $Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
         $this->redirect('login/');
+    } else if (!($Sessao::retornaTPUsuario() == 'Administrador')){
+        $Sessao::gravaMensagem("É necessário possuir permissão de Administrador para acessar esse módulo!");
+        $this->redirect('home/');
     }
 ?>
 <div class="container">

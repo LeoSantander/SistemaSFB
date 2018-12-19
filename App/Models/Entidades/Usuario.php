@@ -13,6 +13,7 @@ class Usuario
     private $senha;
     private $tpusuario;
     private $dtCadastro;
+    private $idUsuarioInclusao;
 
     public function getId()
     {
@@ -81,5 +82,15 @@ class Usuario
     public function setDtCadastro($dtCadastro)
     {
         $this->dtCadastro = $dtCadastro;
+    }
+    
+    public function getidUsuarioInclusao()
+    {
+        return $this->idUsuarioInclusao;
+    }
+
+    public function setidUsuarioInclusao($idUsuarioInclusao)
+    {
+        $this->idUsuarioInclusao = $idUsuarioInclusao;
     }
 }
