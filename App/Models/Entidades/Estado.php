@@ -6,12 +6,14 @@ use DateTime;
 
 class Estado
 {
+    //atributos de um Estado
     private $id;
     private $sigla;
     private $nome;
     private $dtCadastro;
     private $idUsuario;
 
+    //métodos getters e setters para todos os atributos
     public function getId()
     {
         return $this->id;
@@ -44,7 +46,8 @@ class Estado
 
     public function getDtCadastro()
     {
-        return new DateTime ($this->dtCadastro);
+        //o DateTime já retorna os dados em formato de DATA, facilitando a formatação para exibição
+        return new DateTime($this->dtCadastro);
     }
 
     public function setDtCadastro($dtCadastro)

@@ -8,33 +8,63 @@ use App\Models\Entidades\Estado;
 
 class EstadoController extends Controller
 {
+    //action cadastro
     public function cadastro()
     {
+        //renderiza a view cadastro
         $this->render('/estado/cadastro');
 
+        //ao abrir a view, limpa dados de formulario, mensagem e mensagem de sucesso.
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
         Sessao::limpaSucesso();
     }
 
+    //action salvar(incluir no bd)
     public function salvar()
     {
+        //instanciando novo objeto e setando valores informados pelo usuario na view
         $registro = new Estado();
         $registro->setNome($_POST['nome']);
         $registro->setSigla($_POST['sigla']);
 
+        //grava formulário, caso ocorra alguma excessão
+        Sessao::gravaFormulario($_POST);
+
+        //instanciando nova DAO
         $estadoDAO = new EstadoDAO();
-
-        if($estadoDAO->salvar($registro))
+        
+        //validação de cadastro, não permite o cadastro de estados e siglas já cadastrados
+        if(($estadoDAO->verificaNome($_POST['nome'])) and ($estadoDAO->verificaSigla($_POST['sigla'])))
         {
-            Sessao::limpaFormulario();
-            Sessao::gravaSucesso("Estado Cadastrado com Sucesso!");
-
+            Sessao::gravaMensagem("Estado já Cadastrado!");//mensagem a ser exibida para informar ao usuário
+            $this->redirect('/estado/cadastro');//recarrega a página cadastro de estados, já renderizada
+        }
+        //não permite a inserção de estados já cadastrados
+        else if($estadoDAO->verificaNome($_POST['nome']))
+        {
+            Sessao::gravaMensagem("Nome de estado já cadastrado!");
             $this->redirect('/estado/cadastro');
         }
+        //não permite a inserção de siglas já cadastradas
+        else if($estadoDAO->verificaSigla($_POST['sigla']))
+        {
+            Sessao::gravaMensagem("Sigla já cadastrada!");
+            $this->redirect('/estado/cadastro');
+        }
+
+        //salvar no banco, se retornar true, salva. (salvar - método da classe EstadoController, recebe como parametro o registro de um novo estado)
+        if($estadoDAO->salvar($registro))//o retorno de salvar será true ou false
+        {
+            Sessao::limpaFormulario();//limpa os dados do form
+            Sessao::gravaSucesso("Estado Cadastrado com Sucesso!");//grava mensagem de sucesso a ser exibida ao usuário na view
+
+            $this->redirect('/estado/cadastro');//recarrega a pagina de cadastro
+        }
+        //caso retorne false
         else
         {
-            Sessao::gravaMensagem("Erro ao gravar");
+            Sessao::gravaMensagem("Erro ao gravar");//grava mensagem de erro
         }
     }
 
@@ -60,6 +90,6 @@ class EstadoController extends Controller
 
     public function index()
     {
-        $this->redirect('/estado/cadastro');
+        $this->redirect('/estado/cadastro');//redireciona ao controller estado, action cadastro
     }
 }
