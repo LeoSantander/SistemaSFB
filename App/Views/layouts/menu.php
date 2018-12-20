@@ -51,7 +51,7 @@
             <li class="dropdown-submenu">
 		        <a class="test" tabindex="-1" href="#">Estados<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		             <li><a tabindex="-1" href="http://<?php echo APP_HOST; ?>/estado/cadastro">>Adicionar Novo Estado</a></li>
+		             <li><a tabindex="-1" href="http://<?php echo APP_HOST; ?>/estado/cadastro">Adicionar Novo Estado</a></li>
 		             <li><a tabindex="-1" href="#">Consultar Estados</a></li>
 		          </ul>
 		        </li>
