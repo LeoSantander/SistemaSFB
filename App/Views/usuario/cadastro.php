@@ -24,7 +24,7 @@
 
             <form action="http://<?php echo APP_HOST; ?>/usuario/salvar" method="post" id="form_cadastro">
                 <div class="form-group">
-                    <label for="nome">Nome</label>s
+                    <label for="nome">Nome:</label>
                     <input type="text" class="form-control"  name="nome" placeholder="Nome Completo" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>" required >
                 </div>
                 <div class="form-group">
@@ -32,16 +32,16 @@
                     <input type="cpf" id="cpf" maxlength="11" onblur="validaCPF(this.value)" class="form-control" placeholder="Somente Números" name="cpf" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="usuario">Usuário</label>
+                    <label for="usuario">Usuário:</label>
                     <input type="usuario" class="form-control" name="usuario" placeholder="Ex.: Nome.sobrenome" value="<?php echo $Sessao::retornaValorFormulario('usuario'); ?>" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="senha">Senha</label>
+                    <label for="senha">Senha:</label>
                     <input type="password" class="form-control" name="senha" placeholder="Senha para acessar ao sistema" value="<?php echo $Sessao::retornaValorFormulario('senha'); ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="tpusuario">Tipo Usuario</label>
+                    <label for="tpusuario">Tipo Usuario:</label>
                     <select name= "tpusuario" value="<?php echo $Sessao::retornaValorFormulario('tpusuario'); ?>">
                         <option class="form-control" name="tpusuario" value="Administrador">Administrador</option>
                         <option class="form-control" name="tpusuario" value="Padrao">Padrão</option>

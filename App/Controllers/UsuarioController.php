@@ -51,9 +51,18 @@ class UsuarioController extends Controller
         $usuarioDAO = new UsuarioDAO();
         $usuario = $usuarioDAO->pegarUsuario($id);
 
-        self::setViewParam('usuario', $usuario);
-        $this->render('/usuario/excluir');
-        Sessao::limpaMensagem();
+        if($id == Sessao::retornaidUsuario()){
+            Sessao::gravaMensagem("Não é possível excluir o usuário logado!");
+            $this->redirect('/usuario/consultar');
+            
+            Sessao::limpaFormulario();
+            Sessao::limpaMensagem();
+            Sessao::limpaSucesso();
+        } else{
+            self::setViewParam('usuario', $usuario);
+            $this->render('/usuario/excluir');
+            Sessao::limpaMensagem();
+        }
     }
 
     public function excluir()
