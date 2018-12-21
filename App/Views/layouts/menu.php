@@ -45,7 +45,7 @@
 		        <li class="dropdown-submenu">
 		        <a class="nav-link-test" tabindex="-1" href="#">Cidade<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a tabindex="-1" href="#">Adicionar Nova Cidade</a></li>
+		            <li><a tabindex="-1" href="http://<?php echo APP_HOST; ?>/cidade/cadastro">Adicionar Nova Cidade</a></li>
 		            <li><a tabindex="-1" href="#">Consultar Cidades</a></li>
 		          </ul>
 		        </li>
