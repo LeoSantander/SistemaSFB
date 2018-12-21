@@ -1,14 +1,3 @@
-<style>
-.dropdown-submenu {
-    position: relative;
-}
-
-.dropdown-submenu .dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -1px;
-}
-</style>
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#202020">
   <a class="navbar-brand" href="http://<?php echo APP_HOST; ?>/home">Sistema SFM</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,27 +18,29 @@
         </div>
       </li>
 
-      <li <?php if($viewVar['nameController'] == "EstadoController") { ?> class="nav-item active dropdown" <?php } ?> class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Locais
-        </a>
-        <ul class="dropdown-menu">
-        <li class="dropdown-submenu">
-		        <a class="nav-link-test" tabindex="-1" href="#">Estados<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		             <li><a tabindex="-1" href="http://<?php echo APP_HOST; ?>/estado/cadastro">Adicionar Novo Estado</a></li>
-		             <li><a tabindex="-1" href="#">Consultar Estados</a></li>
-		          </ul>
-		        </li>
+      <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Locais</a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                
+                <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Estados</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/estado/cadastro">Adicionar Novo Estado</a>
+                    <a class="dropdown-item" href="#">Consultar Estado</a>
+                  </div>
+                </li>
 
-		        <li class="dropdown-submenu">
-		        <a class="nav-link-test" tabindex="-1" href="#">Cidade<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a tabindex="-1" href="http://<?php echo APP_HOST; ?>/cidade/cadastro">Adicionar Nova Cidade</a></li>
-		            <li><a tabindex="-1" href="#">Consultar Cidades</a></li>
-		          </ul>
-		        </li>
+                <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Cidades</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/cidade/cadastro">Adicionar Nova Cidade</a>
+                    <a class="dropdown-item" href="#">Consultar Cidades</a>
+                  </div>
+                </li>
+            </ul>
         </li>
+
+
     </ul>
     </ul>
   </div>
@@ -60,13 +51,3 @@
         <a class="nav-link" href="http://<?php echo APP_HOST; ?>/login/">SAIR <span class="sr-only">(current)</span></a>
   </ul>
 </nav>
-
-<script>
-$(document).ready(function(){
-  $('.dropdown-submenu a.nav-link-test').on("click", function(e){
-    $(this).next('ul').toggle();
-    e.stopPropagation();
-    e.preventDefault();
-  });
-});
-</script>

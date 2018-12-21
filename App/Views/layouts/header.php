@@ -8,9 +8,10 @@
 
     <title><?php echo TITLE; ?></title>
 
+    <link href="http://<?php echo APP_HOST; ?>/public/css/bootstrap.css" rel="stylesheet">
     <link href="http://<?php echo APP_HOST; ?>/public/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://<?php echo APP_HOST; ?>/public/css/main.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
 </head>
 <body>
 
