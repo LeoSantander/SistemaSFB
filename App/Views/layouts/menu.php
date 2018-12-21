@@ -26,7 +26,7 @@
                   <a  class="dropdown-item" tabindex="-1" href="#">Estados</a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/estado/cadastro">Adicionar Novo Estado</a>
-                    <a class="dropdown-item" href="#">Consultar Estado</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/estado/consultar">Consultar Estado</a>
                   </div>
                 </li>
 

@@ -5,10 +5,14 @@ namespace App\Controllers;
 use App\Lib\Sessao;
 use App\Models\DAO\EstadoDAO;
 use App\Models\Entidades\Estado;
-use App\Models\Validacao\EstadoValidador;
 
 class EstadoController extends Controller
 {
+    public function index()
+    {
+        $this->redirect('/estado/cadastro');//redireciona ao controller estado, action cadastro
+    }
+
     //action cadastro
     public function cadastro()
     {
@@ -19,7 +23,6 @@ class EstadoController extends Controller
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
         Sessao::limpaSucesso();
-        Sessao::limpaErro();
     }
 
     //action salvar(incluir no bd)
@@ -29,19 +32,10 @@ class EstadoController extends Controller
         $registro = new Estado();
         $registro->setNome($_POST['nome']);
         $registro->setSigla($_POST['sigla']);
-
+        $registro->setidUsuarioInclusao(Sessao::retornaidUsuario());
+        
         //grava formulário, caso ocorra alguma exceção
         Sessao::gravaFormulario($_POST);
-
-        //instanciando o validador
-        $estadoValidador = new EstadoValidador();
-        $resultadoValidacao = $estadoValidador->validar($registro);//validando dados do registro(estado)
-
-        //verificando se existe uma lista de erros 
-        if($resultadoValidacao->getErros()){
-            Sessao::gravaErro($resultadoValidacao->getErros());//gravando os erros através do metodo gravaErro, da Sessao
-            $this->redirect('/estado/cadastro');//recarrega a página cadastro de estados, já renderizada
-        }
 
         //instanciando nova DAO
         $estadoDAO = new EstadoDAO();
@@ -69,16 +63,29 @@ class EstadoController extends Controller
         if($estadoDAO->salvar($registro))//o retorno de salvar será true ou false
         {
             Sessao::limpaFormulario();//limpa os dados do form
-            Sessao::limpaErro();
             Sessao::gravaSucesso("Estado Cadastrado com Sucesso!");//grava mensagem de sucesso a ser exibida ao usuário na view
 
-            $this->redirect('/estado/cadastro');//recarrega a pagina de cadastro
+            $this->redirect('/estado/cadastro');
         }
         //caso retorne false
         else
         {
             Sessao::gravaMensagem("Erro ao gravar");//grava mensagem de erro
         }
+    }
+
+    //action consultar
+    public function consultar()
+    {
+        //instanciando nova DAO
+        $estadoDAO = new EstadoDAO();
+
+        self::setViewParam('listarEstados', $estadoDAO->listarEstados());
+        $this->render('/estado/consultar');
+
+        Sessao::limpaFormulario();
+        Sessao::limpaSucesso();
+        Sessao::limpaMensagem();
     }
 
     public function alterar()
@@ -89,20 +96,5 @@ class EstadoController extends Controller
     public function excluir()
     {
 
-    }
-
-    public function consultar()
-    {
-
-    }
-
-    public function sucesso()
-    {
-
-    }
-
-    public function index()
-    {
-        $this->redirect('/estado/cadastro');//redireciona ao controller estado, action cadastro
     }
 }

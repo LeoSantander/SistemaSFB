@@ -11,7 +11,7 @@ class Estado
     private $sigla;
     private $nome;
     private $dtCadastro;
-    private $idUsuario;
+    private $idUsuarioInclusao;
 
     //métodos getters e setters para todos os atributos
     public function getId()
@@ -55,13 +55,13 @@ class Estado
         $this->dtCadastro = $dtCadastro;
     }
 
-    public function getIdUsuario()
+    public function getidUsuarioInclusao()
     {
-        return $this->idUsuario = $idUsuario;
+        return $this->idUsuarioInclusao;
     }
 
-    public function setIdUsuario($idUsuario)
+    public function setidUsuarioInclusao($idUsuarioInclusao)
     {
-        $this->idUsuario = $idUsuario;
+        $this->idUsuarioInclusao = $idUsuarioInclusao;
     }
 }
