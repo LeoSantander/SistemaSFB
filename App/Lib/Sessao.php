@@ -4,20 +4,10 @@ namespace App\Lib;
 
 class Sessao
 {
-    //grava mensagens a serem exibidas
     public static function gravaMensagem($mensagem){
         $_SESSION['mensagem'] = $mensagem;
     }
     
-    public static function limpaMensagem(){
-        unset($_SESSION['mensagem']);
-    }
-
-    public static function retornaMensagem(){
-        return ($_SESSION['mensagem']) ? $_SESSION['mensagem'] : "";
-    }
-
-    //grava mensagens de sucesso a serem exibidas
     public static function gravaSucesso($sucesso){
         $_SESSION['sucesso'] = $sucesso;
     }
@@ -25,12 +15,19 @@ class Sessao
     public static function limpaSucesso(){
         unset($_SESSION['sucesso']);
     }
+
+    public static function limpaMensagem(){
+        unset($_SESSION['mensagem']);
+    }
+
+    public static function retornaMensagem(){
+        return ($_SESSION['mensagem']) ? $_SESSION['mensagem'] : "";
+    }
     
     public static function retornaSucesso(){
         return ($_SESSION['sucesso']) ? $_SESSION['sucesso'] : "";
     }
 
-    //grava dados do formulário
     public static function gravaFormulario($form){
         $_SESSION['form'] = $form;
     }
@@ -47,7 +44,6 @@ class Sessao
         return (isset($_SESSION['form'])) ? $_SESSION['form'] : "";
     }
 
-    //grava quantidade de usuários do sistema
     public static function gravaQtdUsuarios($qtdUsuarios){
         $_SESSION['qtdUsuarios'] = $qtdUsuarios;
     }
@@ -107,5 +103,17 @@ class Sessao
     public static function limpaidUsuario(){
         unset($_SESSION['idUsuario']);
     }
-    
+    //Validação de erros nos campos 
+    public static function gravaErro($erros){
+        $_SESSION['erro'] = $erros;
+    }
+
+    public static function retornaErro(){
+       return (isset($_SESSION['erro'])) ? $_SESSION['erro'] : false;
+    }
+
+    public static function limpaErro(){
+        unset($_SESSION['erro']);
+    }
+
 }

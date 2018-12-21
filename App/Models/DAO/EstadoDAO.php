@@ -42,26 +42,23 @@ class EstadoDAO extends BaseDAO
     }
 
     //método para salvar os dados de um novo Estado, recebe como parametro o registro(estado) informado pelo usuário
-    public function salvar(Estado $estado)
+    public function salvar(Estado $registro)
     {
         try{
             //obtendo nome e sigla do registro as variaveis 'nome e sigla'
-            $nome = $estado->getNome();
-            $sigla = $estado->getSigla();
+            $nome = $registro->getNome();
+            $sigla = $registro->getSigla();
             
-            $idUsuarioInclusao = $estado->getidUsuarioInclusao();
-            
-            //printf('Nome: '.$nome. '- Sigla:' .$sigla.'Id: '.$idUsuarioInclusao);
+            //printf('Nome: '.$nome. '- Sigla:' .$sigla);
             
             //retorna true or false, fazendo a inserção no banco de dados (insert - função da BaseDAO 
             //recebe 3 parametros: nome da tabela, campos a serem afetados, dados para inserção)
             return $this->insert(
                 'sfm_estado',
-                ":NM_Estado, :CD_Estado, :ID_Usuario_Inclusao",
+                ":NM_Estado, :CD_Estado",
                 [
                     ':NM_Estado'=>$nome,
-                    ':CD_Estado'=>$sigla,
-                    ':ID_Usuario_Inclusao'=>$idUsuarioInclusao
+                    ':CD_Estado'=>$sigla
                 ]
             );
         }
@@ -69,17 +66,6 @@ class EstadoDAO extends BaseDAO
         catch(\Exception $e){
             throw new \Exception("Erro na gravação de dados.", 500);
         }
-    }
-
-    //método para listar estados, realiza uma consulta no banco
-    public function listarEstados()
-    {
-        //fazendo seleção no banco
-        $query = $this->select(
-            "SELECT ID_Estado, NM_Estado, CD_Estado FROM sfm_estado ORDER BY NM_Estado"
-        );
-    
-        return $query->fetchAll(\PDO::FETCH_CLASS, Estado::class);
     }
 
 }
