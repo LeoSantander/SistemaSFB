@@ -8,6 +8,8 @@
       <li <?php if($viewVar['nameController'] == "HomeController") { ?> class="nav-item active" <?php } ?>>
         <a class="nav-link" href="http://<?php echo APP_HOST; ?>/home">Inicio <span class="sr-only">(current)</span></a>
       </li>
+      <!--Menu Usuários | Só vai aparecer se TPUsuário Logado for = Administrador --> 
+      <?php if ($Sessao::retornaTPUsuario() == 'Administrador'){?>
       <li <?php if($viewVar['nameController'] == "UsuarioController") { ?> class="nav-item active dropdown" <?php } ?> class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Usuários
@@ -17,6 +19,7 @@
           <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/usuario/consultar">Consultar Usuários</a>
         </div>
       </li>
+      <?php } ?>
 
       <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Locais</a>
@@ -35,6 +38,14 @@
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/cidade/cadastro">Adicionar Nova Cidade</a>
                     <a class="dropdown-item" href="#">Consultar Cidades</a>
+                  </div>
+                </li>
+                
+                <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Local de Trabalho</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/localTrabalho/cadastro">Adicionar Nova Local</a>
+                    <a class="dropdown-item" href="#">Consultar Locais de Trabalho</a>
                   </div>
                 </li>
             </ul>
