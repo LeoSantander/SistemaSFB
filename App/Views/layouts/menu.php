@@ -45,7 +45,7 @@
                   <a  class="dropdown-item" tabindex="-1" href="#">Local de Trabalho</a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/localTrabalho/cadastro">Adicionar Nova Local</a>
-                    <a class="dropdown-item" href="#">Consultar Locais de Trabalho</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/localTrabalho/consultar">Consultar Locais de Trabalho</a>
                   </div>
                 </li>
             </ul>
