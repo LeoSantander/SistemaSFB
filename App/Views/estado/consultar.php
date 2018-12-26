@@ -32,7 +32,7 @@
                     <td align="center"><?php echo $estado->CD_Estado;?></td>
                     <td align="center">
                         <a href="http://<?php echo APP_HOST;?>/estado/alterar/<?php echo $estado->ID_Estado?>" class="btn btn-info btn-sm">Editar</a>
-                        <a href="http://<?php echo APP_HOST;?>/estado/excluir/<?php echo $estado->ID_Estado?>" class="btn btn-danger btn-sm">Excluir</a>
+                        <a href="http://<?php echo APP_HOST;?>/estado/exclusao/<?php echo $estado->ID_Estado?>" class="btn btn-danger btn-sm">Excluir</a>
                     </td>
                 </tr>
             <?php }?>

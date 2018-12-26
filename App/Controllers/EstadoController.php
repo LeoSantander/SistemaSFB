@@ -88,12 +88,34 @@ class EstadoController extends Controller
         Sessao::limpaMensagem();
     }
 
-    public function alterar()
+    public function excluir()
     {
+        $estado = new Estado();
+        $estado->setId($_POST['id']);
 
+        $estadoDAO = new EstadoDAO();
+
+        if(!$estadoDAO->excluir($estado)){
+            Sessao::gravaMensagem("Estado inválido");
+            $this->redirect('/estado/consultar');
+        }
+
+        Sessao::gravaSucesso("Estado excluído com sucesso!");
+        $this->redirect('/estado/consultar');   
     }
 
-    public function excluir()
+    public function exclusao($params)
+    {
+        $id = $params[0];
+        $estadoDAO = new EstadoDAO();
+        $estado = $estadoDAO->pegarEstado($id);
+
+        self::setViewParam('estado', $estado);
+        $this->render('/estado/excluir');
+        Sessao::limpaMensagem();
+    }
+
+    public function alterar()
     {
 
     }

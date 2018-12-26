@@ -82,4 +82,27 @@ class EstadoDAO extends BaseDAO
         return $query->fetchAll(\PDO::FETCH_CLASS, Estado::class);
     }
 
+    //pegando estado no banco pelo id 
+    public function pegarEstado($id){
+
+        $query = $this->select(
+            "SELECT * FROM sfm_estado WHERE ID_Estado = $id"
+        );
+
+        //retorna o objeto estado
+        return $query->fetchObject(Estado::class);
+    }
+
+    public function excluir(Estado $registro){
+
+        try{
+            $id = $registro->getId();
+
+            return $this->delete('sfm_estado',"ID_Estado = $id");
+        }
+        catch(\Exception $e){
+            throw new \Exception("Erro ao excluir Estado",500);
+        }
+    }
+
 }
