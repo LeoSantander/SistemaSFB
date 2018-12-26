@@ -13,7 +13,7 @@ class Cidade
     private $DtCadastro;
     private $idEstado;
 
-    //Id.
+    //Id Cidade.
     public function getIdCidade()
     {
         return $this->idCidade;
@@ -51,7 +51,7 @@ class Cidade
     {
         return new DateTime($this->DtCadastro);
     }
-
+    
     public function setDtCadastro($DtCadastro)
     {
         $this->DtCadastro = $DtCadastro;
@@ -63,7 +63,7 @@ class Cidade
         return $this->idEstado;
     }
 
-    public function setEstado($idEstado)
+    public function setIdEstado($idEstado)
     {
         $this->idEstado = $idEstado;
     }
