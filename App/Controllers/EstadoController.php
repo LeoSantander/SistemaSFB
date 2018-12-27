@@ -30,8 +30,8 @@ class EstadoController extends Controller
     {
         //instanciando novo objeto e setando valores informados pelo usuario na view
         $registro = new Estado();
-        $registro->setNome($_POST['nome']);
-        $registro->setSigla($_POST['sigla']);
+        $registro->setNome(ucwords($_POST['nome']));
+        $registro->setSigla(strtoupper($_POST['sigla']));
         $registro->setidUsuarioInclusao(Sessao::retornaidUsuario());
         
         //grava formulário, caso ocorra alguma exceção
@@ -80,14 +80,17 @@ class EstadoController extends Controller
         //instanciando nova DAO
         $estadoDAO = new EstadoDAO();
 
+        //enviando dados para a view
         self::setViewParam('listarEstados', $estadoDAO->listarEstados());
         $this->render('/estado/consultar');
 
+        //limpando métodos sessao
         Sessao::limpaFormulario();
         Sessao::limpaSucesso();
         Sessao::limpaMensagem();
     }
 
+    //action excluir (chamada pela action exclusao)
     public function excluir()
     {
         $estado = new Estado();
@@ -108,15 +111,18 @@ class EstadoController extends Controller
     {
         $id = $params[0];
         $estadoDAO = new EstadoDAO();
+
+        //verificando se existe relação com alguma cidade
+        if($estadoDAO->verificaCidade($id)){
+            Sessao::gravaMensagem("Não é possível excluir. Estado tem relação com alguma cidade!");
+            $this->redirect('/estado/consultar');
+        }
+        
         $estado = $estadoDAO->pegarEstado($id);
 
+        //passando dados para a view excluir
         self::setViewParam('estado', $estado);
         $this->render('/estado/excluir');
         Sessao::limpaMensagem();
-    }
-
-    public function alterar()
-    {
-
     }
 }

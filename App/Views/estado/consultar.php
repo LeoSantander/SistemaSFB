@@ -16,6 +16,20 @@
         <div class="alert alert-info" role="alert">Nenhum Estado Encontrado!</div>
     <?php }?>
 
+    <?php if($Sessao::retornaMensagem()){//Retorna mensagem de erro?>
+        <div class="alert alert-warning" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+            <?php echo $Sessao::retornaMensagem(); ?>
+        </div>
+    <?php }?>
+
+    <?php if($Sessao::retornaSucesso()){//Retorna mensagem de sucesso?>
+        <div class="alert alert-success" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <?php echo $Sessao::retornaSucesso(); ?>
+        </div>
+    <?php }?>
+
     <div class="table table-responsive">
         <table class="table table-bordered table-hover">
             <thead class="thead-light">
@@ -31,7 +45,6 @@
                     <td><?php echo $estado->NM_Estado;?></td>
                     <td align="center"><?php echo $estado->CD_Estado;?></td>
                     <td align="center">
-                        <a href="http://<?php echo APP_HOST;?>/estado/alterar/<?php echo $estado->ID_Estado?>" class="btn btn-info btn-sm">Editar</a>
                         <a href="http://<?php echo APP_HOST;?>/estado/exclusao/<?php echo $estado->ID_Estado?>" class="btn btn-danger btn-sm">Excluir</a>
                     </td>
                 </tr>

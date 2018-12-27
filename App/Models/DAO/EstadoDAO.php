@@ -48,7 +48,6 @@ class EstadoDAO extends BaseDAO
             //obtendo nome e sigla do registro as variaveis 'nome e sigla'
             $nome = $estado->getNome();
             $sigla = $estado->getSigla();
-            
             $idUsuarioInclusao = $estado->getidUsuarioInclusao();
             
             //printf('Nome: '.$nome. '- Sigla:' .$sigla.'Id: '.$idUsuarioInclusao);
@@ -93,11 +92,20 @@ class EstadoDAO extends BaseDAO
         return $query->fetchObject(Estado::class);
     }
 
+    //verificando se tem alguma cidade relacionada ao id
+    public function verificaCidade($id){
+
+        $query = $this->select(
+            "SELECT * FROM sfm_cidade WHERE ID_Estado = $id"
+        );
+
+        return $query->fetch(); 
+    }
+
     public function excluir(Estado $registro){
 
         try{
             $id = $registro->getId();
-
             return $this->delete('sfm_estado',"ID_Estado = $id");
         }
         catch(\Exception $e){
