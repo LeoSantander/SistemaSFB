@@ -6,7 +6,7 @@ use DateTime;
 
 class Cidade
 {
-    //atributos de uma cidade.
+    //Atributos de uma cidade.
     private $idCidade;
     private $nome;
     private $idUsuario;
@@ -19,7 +19,7 @@ class Cidade
         return $this->idCidade;
     }
 
-    public function setId($idCidade)
+    public function setIdCidade($idCidade)
     {
         $this->idCidade = $idCidade;
     }

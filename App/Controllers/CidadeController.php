@@ -14,10 +14,10 @@ class CidadeController extends Controller
         $this->redirect('/cidade/cadastro');
     }
 
-    //Cadastro
+    //Função para Cadastro
     public function cadastro()
     {
-        //renderiza a view
+        //renderiza a view Cadastro
         $estadoDAO = new EstadoDAO();
         
         self::setViewParam('listarEstados', $estadoDAO->listarEstados());
@@ -28,7 +28,7 @@ class CidadeController extends Controller
     }
 
 
-    //Salvar no BD
+    //Função para salvar no Banco de Dados
     public function salvar()
     {
         //instancia novo objeto
@@ -36,6 +36,7 @@ class CidadeController extends Controller
         $registro->setNome($_POST['nome']);
         $registro->setIdEstado($_POST['estado']);
         $registro->setIdUsuario(Sessao::retornaidUsuario());
+
         //grava o formulario se acontecer exceções
         Sessao::gravaFormulario($_POST);
 
@@ -64,23 +65,48 @@ class CidadeController extends Controller
         }
     }
 
-    public function alterar()
-    {
-
-    }
-
-    public function excluir()
-    {
-
-    }
-
     public function consultar()
     {
+        //instanciando nova DAO
+        $cidadeDAO = new CidadeDAO();
 
+        self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
+        $this->render('/cidade/consultar');
+
+        Sessao::limpaFormulario();
+        Sessao::limpaSucesso();
+        Sessao::limpaMensagem();
+    }
+    
+    public function excluir()
+    {
+        $cidade = new Cidade();
+        $cidade->setIdCidade($_POST['idCidade']);
+
+        $cidadeDAO = new CidadeDAO();
+        
+        if(!$cidadeDAO->excluir($cidade)){
+            Sessao::gravaMensagem("Cidade inválida");
+            $this->redirect('/cidade/consultar');
+        }
+
+        Sessao::gravaMensagem("Cidade excluída com sucesso!");
+        $this->redirect('/cidade/consultar');
     }
 
-    public function sucesso()
+    public function exclusao($params)
     {
+        $idCidade = $params[0];
+        $cidadeDAO = new CidadeDAO();
+        $cidade = $cidadeDAO->pegarcidade($idCidade);
 
+        self::setViewParam('cidade', $cidade);
+        $this->render('/cidade/excluir');
+        Sessao::limpaMensagem();
+    }
+
+    public function alterar()
+    {
+ 
     }
 }

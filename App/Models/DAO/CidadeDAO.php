@@ -66,5 +66,36 @@ class CidadeDAO extends BaseDAO
         catch(\Exception $e){
             throw new \Exception("Erro na gravação de dados.", 500);
         }
-    }   
+    }
+    
+    public function listarCidades()
+    {
+        //Selecionando no Banco de Dados
+        $query = $this->select(
+            "SELECT sfm_cidade.ID_Cidade, sfm_cidade.NM_Cidade, sfm_estado.NM_Estado FROM sfm_cidade INNER JOIN sfm_estado ON sfm_estado.ID_Estado = sfm_cidade.ID_Estado"
+        );
+        return $query->fetchAll(\PDO::FETCH_CLASS, Cidade::class);
+    }
+
+    public function pegarCidade($idCidade)
+        //Pegando Cidade no banco pelo Id
+    {
+        $query = $this->select(
+            "SELECT * FROM sfm_cidade WHERE ID_Cidade = $idCidade"
+        );
+
+        return $query->fetchObject(Cidade::class);
+    }
+
+    public function excluir(Cidade $registro)
+        //Excluindo cidade no banco pelo Id
+    {
+        try{
+            $idCidade = $registro->getIdCidade();
+            return $this->delete('sfm_cidade', "ID_Cidade = $idCidade");
+        }
+        catch(\Exception $e){
+            throw new \Exception("Erro ao Excluir Cidade",500);
+        }
+    }
 }

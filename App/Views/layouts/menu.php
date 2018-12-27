@@ -37,7 +37,7 @@
                   <a  class="dropdown-item" tabindex="-1" href="#">Cidades</a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/cidade/cadastro">Adicionar Nova Cidade</a>
-                    <a class="dropdown-item" href="#">Consultar Cidades</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST;?>/cidade/consultar">Consultar Cidades</a>
                   </div>
                 </li>
                 
