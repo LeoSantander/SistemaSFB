@@ -45,11 +45,56 @@
                     <td><?php echo $estado->NM_Estado;?></td>
                     <td align="center"><?php echo $estado->CD_Estado;?></td>
                     <td align="center">
-                        <a href="http://<?php echo APP_HOST;?>/estado/exclusao/<?php echo $estado->ID_Estado?>" class="btn btn-danger btn-sm">Excluir</a>
-                    </td>
+                        <!--botão excluir-->
+                        <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom" href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $estado->ID_Estado?>" data-nome="<?php echo $estado->NM_Estado?>">Excluir</a>
+                   </td>
                 </tr>
             <?php }?>
             </tbody>
         </table>
     </div>
 </div>
+
+<!--Modal-->
+<form action="http://<?php echo APP_HOST; ?>/estado/excluir" method="post">
+    <input type="hidden" class="form-control" name="id" id="id">
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Excluir</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				</div>
+				<div class="modal-body">
+					Deseja realmente excluir o Estado <span id="nomeItem"></span>?
+				</div>
+
+				<div class="modal-footer">
+				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
+					<button type="submit" id="deleteItem" class="btn btn-danger btn-sm">Excluir</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+<script>
+    $(window).load(function(){
+        $(document).ready(function(){
+            var id_delete = -1;
+            var nome = "";
+            var item = document.getElementById("nomeItem");
+            $("a#delete-row").click(function() {
+                id_delete = $(this).attr('data-id');
+                nome = $(this).attr('data-nome');
+                //$("#nome p").text(nome);
+                //$("#result p").text("Id do estado selecionado: " + id_delete);
+                document.getElementById('id').value = id_delete;
+                //document.getElementById('nome').value = nome;
+
+                item.innerHTML = "<strong>" + nome +"</strong>";
+            });
+        });
+    });
+</script>

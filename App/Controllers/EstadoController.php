@@ -98,6 +98,11 @@ class EstadoController extends Controller
 
         $estadoDAO = new EstadoDAO();
 
+        if($estadoDAO->verificaCidade($estado->getId())){
+            Sessao::gravaMensagem("Não é possível excluir. Estado tem relação com alguma cidade!");
+            $this->redirect('/estado/consultar');
+        }
+
         if(!$estadoDAO->excluir($estado)){
             Sessao::gravaMensagem("Estado inválido");
             $this->redirect('/estado/consultar');
@@ -105,24 +110,5 @@ class EstadoController extends Controller
 
         Sessao::gravaSucesso("Estado excluído com sucesso!");
         $this->redirect('/estado/consultar');   
-    }
-
-    public function exclusao($params)
-    {
-        $id = $params[0];
-        $estadoDAO = new EstadoDAO();
-
-        //verificando se existe relação com alguma cidade
-        if($estadoDAO->verificaCidade($id)){
-            Sessao::gravaMensagem("Não é possível excluir. Estado tem relação com alguma cidade!");
-            $this->redirect('/estado/consultar');
-        }
-        
-        $estado = $estadoDAO->pegarEstado($id);
-
-        //passando dados para a view excluir
-        self::setViewParam('estado', $estado);
-        $this->render('/estado/excluir');
-        Sessao::limpaMensagem();
     }
 }

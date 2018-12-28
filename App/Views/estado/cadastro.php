@@ -31,8 +31,8 @@
             <form action="http://<?php echo APP_HOST; ?>/estado/salvar" method="post">
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control"  name="nome" placeholder="Ex: São Paulo" pattern="[A-Za-zÀ-ú ']{0,}" 
-                           title="Não use caracteres especiais ou números" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>" 
+                    <input type="text" class="form-control"  name="nome" placeholder="Ex: São Paulo" pattern="[A-Za-zÀ-ú ]{0,}" 
+                           title="Use somente letras. Não use caracteres especiais ou números." value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>" 
                            required autofocus>
                 </div>
                 <div class="form-group">

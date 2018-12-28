@@ -11,6 +11,7 @@
     <link href="http://<?php echo APP_HOST; ?>/public/css/bootstrap.css" rel="stylesheet">
     <link href="http://<?php echo APP_HOST; ?>/public/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://<?php echo APP_HOST; ?>/public/css/main.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     
 </head>
 <body>

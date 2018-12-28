@@ -81,17 +81,6 @@ class EstadoDAO extends BaseDAO
         return $query->fetchAll(\PDO::FETCH_CLASS, Estado::class);
     }
 
-    //pegando estado no banco pelo id 
-    public function pegarEstado($id){
-
-        $query = $this->select(
-            "SELECT * FROM sfm_estado WHERE ID_Estado = $id"
-        );
-
-        //retorna o objeto estado
-        return $query->fetchObject(Estado::class);
-    }
-
     //verificando se tem alguma cidade relacionada ao id
     public function verificaCidade($id){
 
