@@ -78,7 +78,7 @@ class UsuarioDAO extends BaseDAO
         }
         return false;
     }
-
+    
     public function pegarUsuario($id)
     {
         $query = $this->select(

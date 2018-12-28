@@ -67,19 +67,29 @@ class UsuarioController extends Controller
 
     public function excluir()
     {
-        $usuario = new Usuario();
-        $usuario->setId($_POST['id']);
- 
-        $usuarioDAO = new UsuarioDAO();
- 
-        if(!$usuarioDAO->excluir($usuario)){
-            Sessao::gravaMensagem("Usuario Inválido");
+        $id = $_POST['id'];
+
+        if($id == Sessao::retornaidUsuario()){
+            Sessao::gravaMensagem("Não é possível excluir o usuário logado!");
             $this->redirect('/usuario/consultar');
-        }
- 
-        Sessao::gravaSucesso("Usuario excluido com sucesso!");
- 
-        $this->redirect('/usuario/consultar');
+            
+            Sessao::limpaFormulario();
+            Sessao::limpaMensagem();
+            Sessao::limpaSucesso();
+        } else{
+
+            $usuario = new Usuario();
+            $usuario->setId($id);
+            $usuarioDAO = new UsuarioDAO();
+        
+            if(!$usuarioDAO->excluir($usuario)){
+                Sessao::gravaMensagem("Usuario Inválido");
+                $this->redirect('/usuario/consultar');
+            }
+
+            Sessao::gravaSucesso("Usuario excluido com sucesso!");
+            $this->redirect('/usuario/consultar');
+        }    
  
     }
 

@@ -15,13 +15,19 @@
         <div class="col-md-6">
             <h3>Cadastro de Usuário</h3>
             <hr>
-            <?php if($Sessao::retornaMensagem()){ ?>
-                <div class="alert alert-warning" role="alert"><?php echo $Sessao::retornaMensagem(); ?></div>
+            <?php if($Sessao::retornaMensagem()){//Retorna mensagem de erro?>
+                <div class="alert alert-warning" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+                    <?php echo $Sessao::retornaMensagem(); ?>
+                </div>
+            <?php }?>
 
-            <?php } ?>
-            <?php if($Sessao::retornaSucesso()){ ?>
-                <div class="alert alert-success" role="alert"><?php echo $Sessao::retornaSucesso(); ?></div>
-            <?php } ?>
+            <?php if($Sessao::retornaSucesso()){//Retorna mensagem de sucesso?>
+                <div class="alert alert-success" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <?php echo $Sessao::retornaSucesso(); ?>
+                </div>
+            <?php }?>
 
             <form action="http://<?php echo APP_HOST; ?>/usuario/salvar" method="post">
                 <div class="form-group">
