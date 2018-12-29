@@ -37,11 +37,11 @@
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF:</label>
-                    <input type="cpf" id="cpf" maxlength="14" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"  class="form-control" placeholder="000.000.000-00" name="cpf" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required oninvalid="this.setCustomValidity('Este campo deve estar preenchido e atender ao padrão exigido: 000.000.000-00')" onchange="try{setCustomValidity('')}catch(e){}">
+                    <input type="cpf" id="cpf" maxlength="14" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"  class="form-control" placeholder="000.000.000-00" name="cpf" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required oninvalid="this.setCustomValidity('Este campo deve estar preenchido e atender ao padrão exigido: 000.000.000-00')" onchange="try{setCustomValidity('')}catch(e){}" onkeydown="javascript: fMasc( this, mCPF );">
                 </div>
                 <div class="form-group">
                     <label for="usuario">Usuário:</label>
-                    <input type="usuario" class="form-control" name="usuario" placeholder="Ex.: Nome.sobrenome" value="<?php echo $Sessao::retornaValorFormulario('usuario'); ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
+                    <input type="usuario" class="form-control" name="usuario" placeholder="Ex.: NomeSobrenome" value="<?php echo $Sessao::retornaValorFormulario('usuario'); ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
                            title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                 </div>
                 
