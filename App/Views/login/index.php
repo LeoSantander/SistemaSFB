@@ -19,10 +19,13 @@
 
                 <h3 class="text-center">Sindicato dos Frentistas de Marília</h3> <br>
                 
-                <?php if($Sessao::retornaMensagem()){ ?>
-                    <div class="alert alert-warning" role="alert"><?php echo $Sessao::retornaMensagem(); ?></div>
-                <?php } ?>
-
+                <?php if($Sessao::retornaMensagem()){//Retorna mensagem de erro?>
+                <div class="alert alert-warning" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+                    <?php echo $Sessao::retornaMensagem(); ?>
+                </div>
+                <?php }?>
+                
                 <div class="form-group">
                     <label class="sr-only" for="login">Usuário</label>
                     <div class="input-group">
