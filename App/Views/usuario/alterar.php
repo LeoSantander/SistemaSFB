@@ -45,7 +45,8 @@ function ocultaSenha(){
                 
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control"  name="nome" placeholder="Nome Completo" value="<?php echo $viewVar['usuario']->NM_Pessoa; ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}">
+                    <input type="text" class="form-control"  name="nome" placeholder="Nome Completo" value="<?php echo $viewVar['usuario']->NM_Pessoa; ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
+                           title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                 </div>
                 <div class="form-group">
                     <label for="cpf">CPF:</label>
@@ -53,7 +54,8 @@ function ocultaSenha(){
                 </div>
                 <div class="form-group">
                     <label for="usuario">Usuário</label>
-                    <input type="usuario" class="form-control" name="usuario" placeholder="Ex.: Nome.sobrenome" value="<?php echo $viewVar['usuario']->NM_Usuario; ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}">
+                    <input type="usuario" class="form-control" name="usuario" placeholder="Ex.: Nome.sobrenome" value="<?php echo $viewVar['usuario']->NM_Usuario; ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
+                           title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                 </div>
                 
                 <div class="form-group">

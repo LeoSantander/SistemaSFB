@@ -50,6 +50,21 @@ class UsuarioDAO extends BaseDAO
         }
     }
 
+    public function verificaAlteracao($usuario, $id)
+    {
+        try {
+
+            $query = $this->select(
+                "SELECT * FROM sfm_usuarios WHERE ID_Usuario <> '$id' AND NM_Usuario = '$usuario' "
+            );
+
+            return $query->fetch();
+
+        }catch (Exception $e){
+            throw new \Exception("Erro no acesso aos dados.", 500);
+        }
+    }
+
     public function ContaUsuarios()
     {
         try {

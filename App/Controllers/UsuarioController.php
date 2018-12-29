@@ -95,16 +95,25 @@ class UsuarioController extends Controller
 
     public function atualizar()
     {
+        $ID = $_POST['id'];
+        $Usuario = $_POST['usuario'];
+
         $registro = new Usuario();
-        $registro->setId($_POST['id']);
+        $registro->setId($ID);
         $registro->setNome($_POST['nome']);
-        $registro->setUsuario($_POST['usuario']);
+        $registro->setUsuario($Usuario);
         $registro->setSenha($_POST['senha']);
         $registro->setTpUsuario($_POST['tpusuario']); 
 
         Sessao::gravaFormulario($_POST);
         
         $usuarioDAO = new UsuarioDAO();
+
+        if ($usuarioDAO->verificaAlteracao($Usuario, $ID)){
+            Sessao::gravaMensagem("Usuário já associado a um CPF");
+            $this->redirect('/usuario/alterar/'.$ID);
+        }
+
         $usuarioDAO->atualizar($registro);
         
         Sessao::limpaFormulario();
