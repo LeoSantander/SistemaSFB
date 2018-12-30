@@ -61,8 +61,8 @@
 	        <select class="form-control" name= "cidade" value="<?php echo $Sessao::retornaValorFormulario('cidade'); ?>">
                 <option name="estado" value="">Selecione uma Cidade</option>            
 		       <!-- Preciso que o Cadastro de cidade esteja pronto e a function consultar cidade também -->
-                <?php foreach($viewVar['listarEstados'] as $estados){?>
-	                <option  name="estado" value= "<?php echo $estados->ID_Estado;?>"><?php echo $estados->NM_Estado;?> - <?php //echo $estados->CD_Estado;?></option>
+                <?php foreach($viewVar['listarCidades'] as $cidade){?>
+	                <option  name="estado" value= "<?php echo $cidade->ID_Cidade;?>"><?php echo $cidade->NM_Cidade;?> - <?php echo $cidade->CD_Estado;?></option>
                 <?php } ?>
             </select required> 
             <br>

@@ -4,16 +4,16 @@ namespace App\Controllers;
 
 use App\Lib\Sessao;
 use App\Models\DAO\LocalTrabalhoDAO;
-use App\Models\DAO\EstadoDAO;
+use App\Models\DAO\CidadeDAO;
 use App\Models\Entidades\LocalTrabalho;
 
 class LocalTrabalhoController extends Controller
 {
     public function cadastro()
     {
-        $estadoDAO = new EstadoDAO();
+        $cidadeDAO = new CidadeDAO();
 
-        self::setViewParam('listarEstados', $estadoDAO->listarEstados());
+        self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
 
         $this->render('/localTrabalho/cadastro');
 

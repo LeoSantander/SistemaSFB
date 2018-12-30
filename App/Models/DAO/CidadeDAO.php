@@ -72,7 +72,7 @@ class CidadeDAO extends BaseDAO
     {
         //Selecionando no Banco de Dados
         $query = $this->select(
-            "SELECT sfm_cidade.ID_Cidade, sfm_cidade.NM_Cidade, sfm_estado.NM_Estado FROM sfm_cidade INNER JOIN sfm_estado ON sfm_estado.ID_Estado = sfm_cidade.ID_Estado"
+            "SELECT sfm_cidade.ID_Cidade, sfm_cidade.NM_Cidade, sfm_estado.NM_Estado, sfm_estado.CD_Estado  FROM sfm_cidade INNER JOIN sfm_estado ON sfm_estado.ID_Estado = sfm_cidade.ID_Estado"
         );
         return $query->fetchAll(\PDO::FETCH_CLASS, Cidade::class);
     }
