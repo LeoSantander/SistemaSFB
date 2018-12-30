@@ -75,10 +75,21 @@ function ocultaSenha(){
                 </div>
                 <div class="form-group">
                     <label for="tpusuario">Tipo Usuario</label>
-                    <select class="form-control" name= "tpusuario" value="<?php echo $viewVar['usuario']->Senha_Usuario; ?>">
-                        <option name="tpusuario" value="Administrador">Administrador</option>
-                        <option name="tpusuario" value="Padrao">Padrão</option>
-                    </select required> 
+                    <select class="form-control" name= "tpusuario" value="" required>
+                        <option name="tpusuario" value="">Selecione um Tipo de Usuário</option>
+                        
+                        <?php if($viewVar['usuario']->TP_Usuario == "Administrador"){?>
+                            <option selected="selected" name="tpusuario" value="Administrador">Administrador</option>
+                            <option name="tpusuario" value="Padrao">Padrão</option>
+                        
+                        <?php } else if($viewVar['usuario']->TP_Usuario == "Padrao"){?>
+                            <option selected="selected" name="tpusuario" value="Padrao">Padrão</option>
+                            <option name="tpusuario" value="Administrador">Administrador</option>
+                        <?php } else{?>
+                            <option name="tpusuario" value="Administrador">Administrador</option>
+                            <option name="tpusuario" value="Padrao">Padrão</option>
+                        <?php } ?>
+                    </select> 
                 </div>
 
                 <button type="submit" class="btn btn-success btn-sm">Salvar</button>

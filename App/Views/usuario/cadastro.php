@@ -51,10 +51,11 @@
                 </div>
                 <div class="form-group">
                     <label for="tpusuario">Tipo Usuario:</label>
-                    <select class="form-control" name= "tpusuario" value="<?php echo $Sessao::retornaValorFormulario('tpusuario'); ?>">
+                    <select class="form-control" name= "tpusuario" value="" required>
+                        <option  name="tpusuario" value="">Selecione um Tipo de Usuário</option>
                         <option  name="tpusuario" value="Administrador">Administrador</option>
                         <option  name="tpusuario" value="Padrao">Padrão</option>
-                    </select required> 
+                    </select> 
                 </div>
 
                 <button type="submit" class="btn btn-success">Salvar</button>
