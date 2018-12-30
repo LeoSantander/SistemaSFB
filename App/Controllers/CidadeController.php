@@ -45,9 +45,9 @@ class CidadeController extends Controller
         $cidadeDAO = new CidadeDAO();
         
         //Verifica se cidade ja esta cadastrada
-         if(($cidadeDAO->verificaNome($_POST['nome'])))
+         if(($cidadeDAO->verificaNome($_POST['nome'],$_POST['estado'])))
         {
-            Sessao::gravaMensagem("Nome da Cidade já cadastrada!");
+            Sessao::gravaMensagem("Cidade já cadastrada!");
             $this->redirect('/cidade/cadastro');
         }
         
@@ -105,8 +105,48 @@ class CidadeController extends Controller
         Sessao::limpaMensagem();
     }
 
-    public function alterar()
+    public function alterar($params)
     {
- 
+
+        $estadoDAO = new EstadoDAO();
+        self::setViewParam('listarEstados', $estadoDAO->listarEstados());
+
+        $idCidade = $params[0];
+        $cidadeDAO = new CidadeDAO();
+        $cidade = $cidadeDAO->pegarcidade($idCidade);
+
+        if(!$cidade){
+            Sessao::gravaMensagem("Usuário Inválido");
+            $this->redirect('/cidade/alterar');
+        }
+        self::setViewParam('cidade',$cidade);
+        $this->render('/cidade/alterar');
+        Sessao::limpaMensagem();
+    }
+
+    public function atualizar()
+    {
+
+        $registro = new Cidade();
+        $registro->setNome($_POST['nome']);
+        $registro->setIdUsuario(Sessao::retornaidUsuario());
+        $registro->setIdEstado($_POST['estado']);
+        $registro->setIdCidade($_POST['idCidade']);
+        Sessao::gravaFormulario($_POST);
+
+        $cidadeDAO = new CidadeDAO();
+
+        //Verifica se cidade ja esta cadastrada ERRO AQUI
+        if(($cidadeDAO->verificaNome($registro->getNome(),$registro->getIdEstado())))
+        {
+            Sessao::gravaMensagem("Cidade já cadastrada!");
+            $this->redirect('/cidade/alterar');
+        }
+
+        $cidadeDAO->atualizar($registro);
+
+        Sessao::limpaFormulario();
+        Sessao::gravaSucesso("Cidade alterada com Sucesso!");
+        $this->redirect('/cidade/consultar');
     }
 }

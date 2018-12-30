@@ -18,7 +18,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    Deseja realmente excluir a Cidade? <strong><?php echo $viewVar['cidade']->NM_Cidade?></strong>?
+                    Deseja realmente excluir a cidade <strong><?php echo $viewVar['cidade']->NM_Cidade?></strong>?
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-danger btn-sm">Excluir</button>

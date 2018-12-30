@@ -28,9 +28,9 @@
                 <div class="form-group">
                     <label for="nome">Nome:</label>
                     <input type="text" class="form-control"  name="nome" placeholder="Ex: Ourinhos" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>" 
-                           required oninvalid="this.setCustomValidity('Este é um campo obrigatório!')" onchange="try{setCustomValidity('')}catch(e){}">
+                           required pattern="[A-Za-zÀ-ú ]{0,}" 
+                           title="Não use caracteres especiais ou números">
                 </div>
-
 
                 <!--Campo Estado-->
             <div class="form-group">

@@ -6,30 +6,14 @@ use App\Models\Entidades\Cidade;
 
 class CidadeDAO extends BaseDAO
 {
-    public function verificaEstado($idEstado)
-    {
-        try{
-            //buscando no banco
-            $query = $this->select(
-                "SELECT * FROM sfm_cidade WHERE ID_Estado = '$idEstado"
-            );
-            //retorna verdadeiro ou falso
-            return $query->fetch();
-        }
-        //caso de erro
-        catch(Exception $e){
-            throw new \Exception("Erro ao Carregar Dados",500);
-        }
-    }
-
-
+    
     //verificar se cidade já esta cadastrada
-    public function verificaNome($nome)
+    public function verificaNome($nome, $idEstado)
     {
         try{
             //realizar consulta ao banco de dados
             $query = $this->select(
-                "SELECT * FROM sfm_cidade WHERE NM_Cidade = '$nome'"
+                "SELECT * FROM sfm_cidade WHERE ID_Estado = '$idEstado' AND NM_Cidade = '$nome'"
             );
             //retorna true ou false
             return $query->fetch();
@@ -98,4 +82,32 @@ class CidadeDAO extends BaseDAO
             throw new \Exception("Erro ao Excluir Cidade",500);
         }
     }
+
+    public function atualizar(Cidade $registro)
+    {
+        try{
+            $nome = $registro->getNome();
+            $idUsuario = $registro->getIdUsuario();
+            $idEstado = $registro->getIdEstado();
+            $idCidade = $registro->getIdCidade();
+
+            return $this->update(
+                'sfm_cidade',
+                    "NM_Cidade = :NM_Cidade, ID_Usuario_Inclusao = :ID_Usuario_Inclusao, ID_Estado = :ID_Estado",
+                    [
+                        ':ID_Cidade'=>$idCidade,
+                        ':NM_Cidade'=>$nome,
+                        ':ID_Usuario_Inclusao'=>$idUsuario,
+                        ':ID_Estado'=>$idEstado
+                    ],
+                    "ID_Cidade = :ID_Cidade"
+            );
+        }
+        catch (\Exception $e){
+            throw new \Exception("Erro na gravação de dados.",500);
+        }
+    }
+
+
+
 }
