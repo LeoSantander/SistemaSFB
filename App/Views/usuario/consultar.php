@@ -56,7 +56,7 @@
             <tr align="center">
             <th scope="col">Nome</th>
                 <th width="20%" scope="col">Usuário</th>
-                <th width="10%" scope="col">CPF</th>
+                <th width="15%" scope="col">CPF</th>
                 <th width="20%" scope="col">Tipo de Usuário</th>
                 <th width="20%" scope="col">Ações</th>
             </tr>
