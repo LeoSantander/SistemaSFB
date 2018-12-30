@@ -34,7 +34,7 @@
 	        <label for="estado">Estado:</label>
                     
 	        <!-- Inicie a ComboBox --> 
-	        <select class="form-control" name= "estado" value="">
+	        <select class="form-control" name= "estado" value="" required>
                 <option name= "estado" value="">Selecione Estado</option>
 
 		        <?php foreach($viewVar['listarEstados'] as $estados){
@@ -48,7 +48,7 @@
                      <?php } ?>
    
                  <?php } ?>
-            </select required>
+            </select>
             </div> 
                
                 <button type="submit" class="btn btn-success btn-sm">Salvar</button>

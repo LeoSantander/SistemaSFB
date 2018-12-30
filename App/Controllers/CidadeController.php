@@ -81,7 +81,7 @@ class CidadeController extends Controller
     public function excluir()
     {
         $cidade = new Cidade();
-        $cidade->setIdCidade($_POST['idCidade']);
+        $cidade->setIdCidade($_POST['id']);
 
         $cidadeDAO = new CidadeDAO();
         
@@ -90,19 +90,8 @@ class CidadeController extends Controller
             $this->redirect('/cidade/consultar');
         }
 
-        Sessao::gravaMensagem("Cidade excluída com sucesso!");
+        Sessao::gravaSucesso("Cidade excluída com sucesso!");
         $this->redirect('/cidade/consultar');
-    }
-
-    public function exclusao($params)
-    {
-        $idCidade = $params[0];
-        $cidadeDAO = new CidadeDAO();
-        $cidade = $cidadeDAO->pegarcidade($idCidade);
-
-        self::setViewParam('cidade', $cidade);
-        $this->render('/cidade/excluir');
-        Sessao::limpaMensagem();
     }
 
     public function alterar($params)
