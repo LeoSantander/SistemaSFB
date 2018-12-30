@@ -45,32 +45,12 @@ class UsuarioController extends Controller
         Sessao::limpaMensagem();
     }
 
-    public function exclusao($params)
-    {
-        $id = $params[0];
-        $usuarioDAO = new UsuarioDAO();
-        $usuario = $usuarioDAO->pegarUsuario($id);
-
-        if($id == Sessao::retornaidUsuario()){
-            Sessao::gravaMensagem("Não é possível excluir o usuário logado!");
-            $this->redirect('/usuario/consultar');
-            
-            Sessao::limpaFormulario();
-            Sessao::limpaMensagem();
-            Sessao::limpaSucesso();
-        } else{
-            self::setViewParam('usuario', $usuario);
-            $this->render('/usuario/excluir');
-            Sessao::limpaMensagem();
-        }
-    }
-
     public function excluir()
     {
         $id = $_POST['id'];
 
         if($id == Sessao::retornaidUsuario()){
-            Sessao::gravaMensagem("Não é possível excluir o usuário logado!");
+            Sessao::gravaMensagem("Não é possível desativar o usuário logado!");
             $this->redirect('/usuario/consultar');
             
             Sessao::limpaFormulario();
@@ -82,15 +62,32 @@ class UsuarioController extends Controller
             $usuario->setId($id);
             $usuarioDAO = new UsuarioDAO();
         
-            if(!$usuarioDAO->excluir($usuario)){
-                Sessao::gravaMensagem("Usuario Inválido");
+            if(!$usuarioDAO->desativar($usuario)){
+                Sessao::gravaMensagem("Usuário Inválido");
                 $this->redirect('/usuario/consultar');
             }
 
-            Sessao::gravaSucesso("Usuario excluido com sucesso!");
+            Sessao::gravaSucesso("Usuário desativado com sucesso!");
             $this->redirect('/usuario/consultar');
         }    
  
+    }
+
+    public function ativar()
+    {
+        $id = $_POST['id'];
+            
+        $usuario = new Usuario();
+        $usuario->setId($id);
+        $usuarioDAO = new UsuarioDAO();
+        
+        if(!$usuarioDAO->ativar($usuario)){
+            Sessao::gravaMensagem("Usuário Inválido");
+            $this->redirect('/usuario/consultar');
+        }
+
+        Sessao::gravaSucesso("Usuário pronto para ser utilizado!");
+        $this->redirect('/usuario/consultar'); 
     }
 
     public function atualizar()
@@ -130,6 +127,7 @@ class UsuarioController extends Controller
         $registro->setUsuario($_POST['usuario']);
         $registro->setSenha($_POST['senha']);
         $registro->setTpUsuario($_POST['tpusuario']);
+        $registro->setStStatus('Ativo');
         //ID_Usuario ja esta na Sessão
         $registro->setidUsuarioInclusao(Sessao::retornaidUsuario());
 
@@ -178,7 +176,7 @@ class UsuarioController extends Controller
             $this->redirect('/home');
             
         }else{
-            Sessao::gravaMensagem("Usuário ou Senha incorretos!");
+            Sessao::gravaMensagem("Usuário e Senha incorretos, ou seu usuário pode estar impossibilitado de acessar ao Sistema!");
             $this->redirect('/login'); 
         }
     }

@@ -25,7 +25,7 @@ class UsuarioDAO extends BaseDAO
     {
         try {
             $query = $this->select(
-                "SELECT * FROM sfm_usuarios WHERE NM_Usuario = '$usuario' AND Senha_Usuario = '$senha'"
+                "SELECT * FROM sfm_usuarios WHERE NM_Usuario = '$usuario' AND Senha_Usuario = '$senha' AND ST_Status = 'Ativo'"
             );
 
             return $query->fetchAll(\PDO::FETCH_CLASS, Usuario::class);
@@ -82,12 +82,12 @@ class UsuarioDAO extends BaseDAO
     {
         if (isset($nm)){
             $query = $this->select(
-                "SELECT ID_Usuario, NM_Pessoa, NM_Usuario, CPF_Usuario, TP_Usuario  FROM sfm_usuarios WHERE NM_Pessoa LIKE '%".$nm."%'"
+                "SELECT ID_Usuario, NM_Pessoa, NM_Usuario, CPF_Usuario, TP_Usuario, ST_Status  FROM sfm_usuarios WHERE NM_Pessoa LIKE '%".$nm."%' ORDER BY ST_Status"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Usuario::class);
         }else{
             $query = $this->select(
-                "SELECT ID_Usuario, NM_Pessoa, NM_Usuario, CPF_Usuario, TP_Usuario  FROM sfm_usuarios ORDER BY NM_Pessoa"
+                "SELECT ID_Usuario, NM_Pessoa, NM_Usuario, CPF_Usuario, TP_Usuario, ST_Status  FROM sfm_usuarios ORDER BY ST_Status, NM_Pessoa "
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Usuario::class);
         }
@@ -117,7 +117,7 @@ class UsuarioDAO extends BaseDAO
         $nome      = $registro->getNome();
         $usuario   = $registro->getUsuario(); 
         $senha     = $registro->getSenha();
-        $tpusuario = $registro->getTpUsuario();
+        $tpusuario = $registro->getTpUsuario(); 
 
         return $this->update(
             'sfm_usuarios',
@@ -144,19 +144,19 @@ class UsuarioDAO extends BaseDAO
             $senha     = $registro->getSenha();
             $tpusuario = $registro->getTpUsuario();
             $idUsuarioInclusao = $registro->getidUsuarioInclusao();
+            $ststatus = $registro->getStStatus();
             
-           // printf ($nome.' - '.$cpf.' - '.$usuario.' - '.$senha.' - '.$tpusuario);    
-
             return $this->insert(
                 'sfm_usuarios',
-                ":NM_Pessoa,:CPF_Usuario,:NM_Usuario,:Senha_Usuario, :TP_Usuario, :ID_Usuario_Inclusao",
+                ":NM_Pessoa,:CPF_Usuario,:NM_Usuario,:Senha_Usuario, :TP_Usuario, :ID_Usuario_Inclusao, :ST_Status",
                 [
                     ':NM_Pessoa'=>$nome,
                     ':CPF_Usuario'=>$cpf,
                     ':NM_Usuario'=>$usuario,
                     ':Senha_Usuario'=>$senha,
                     ':TP_Usuario'=>$tpusuario,
-                    ':ID_Usuario_Inclusao'=> $idUsuarioInclusao
+                    ':ID_Usuario_Inclusao'=> $idUsuarioInclusao,
+                    ':ST_Status' => $ststatus
                 ]
             );
 
@@ -164,16 +164,41 @@ class UsuarioDAO extends BaseDAO
             throw new \Exception("Erro na gravação de dados.", 500);
         }
     }
-    public function excluir(Usuario $registro)
+    public function desativar(Usuario $registro)
     {
         try {
             $id = $registro->getId();
- 
-            return $this->delete('sfm_usuarios',"ID_Usuario = $id");
- 
-        }catch (Exception $e){
- 
-            throw new \Exception("Erro ao deletar", 500);
-        }
+
+            return $this->update(
+                'sfm_usuarios',
+                    "ST_Status = :ST_Status",  
+                    [
+                        ':ID_Usuario'=>$id,
+                        ':ST_Status' => 'Inativo'
+                    ],
+                    "ID_Usuario = :ID_Usuario"  
+            );
+            }catch (\Exception $e){
+                throw new \Exception("Erro na gravação de dados.", 500);
+            }    
+    }
+
+    public function ativar(Usuario $registro)
+    {
+        try {
+            $id = $registro->getId();
+            
+            return $this->update(
+                'sfm_usuarios',
+                    "ST_Status = :ST_Status",  
+                    [
+                        ':ID_Usuario'=>$id,
+                        ':ST_Status' => 'Ativo'
+                    ],
+                    "ID_Usuario = :ID_Usuario"  
+            );
+            }catch (\Exception $e){
+                throw new \Exception("Erro na gravação de dados.", 500);
+            }    
     }
 }

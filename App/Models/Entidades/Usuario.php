@@ -12,6 +12,7 @@ class Usuario
     private $usuario;
     private $senha;
     private $tpusuario;
+    private $ststatus;
     private $dtCadastro;
     private $idUsuarioInclusao;
 
@@ -72,6 +73,16 @@ class Usuario
     public function setTpUsuario($tpusuario)
     {
         $this->tpusuario = $tpusuario;
+    }
+
+    public function getStStatus()
+    {
+        return $this->ststatus;
+    }
+
+    public function setStStatus($ststatus)
+    {
+        $this->ststatus = $ststatus;
     }
 
     public function getDtCadastro()
