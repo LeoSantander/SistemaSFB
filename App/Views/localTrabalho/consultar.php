@@ -24,33 +24,44 @@
                 </form>
             </div>
 	    </div>
-    </div>  
+    
     <hr>
     
     <?php 
        // if(!count($viewVar['listarLocais'])){
     ?>    
-        <div class="alert alert-info" role="alert">Nenhum Local encontrado!</div>
+        <div class="alert alert-info" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+            Nenhum Local encontrado!
+        </div>
     <?php 
        // }
     ?>    
     <?php if($Sessao::retornaMensagem()){ ?>
-                <div class="alert alert-warning" role="alert"><?php echo $Sessao::retornaMensagem(); ?></div>
+                <div class="alert alert-warning" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+                    <?php echo $Sessao::retornaMensagem(); ?>
+                </div>
     <?php } ?>
     
     <?php if($Sessao::retornaSucesso()){ ?>
-                <div class="alert alert-success" role="alert"><?php echo $Sessao::retornaSucesso(); ?></div>
+                <div class="alert alert-success" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+                    <?php echo $Sessao::retornaSucesso(); ?>
+                </div>
      <?php } ?>
 
     <div class="table table-responsive">
     <table class="table table-bordered table-hover">
-        <tr class = 'active'>
-            <td align='center'><h4>Nome</h4></td>
-            <td align='center'><h4>Endereço</h4></td>
-            <td align='center'><h4>Telefone</h4></td>
-            <td align='center'><h4>Email</h4></td>
-            <td align='center'><h4>Ações</h4></td>
-        </tr>   
+    <thead class="thead-light">
+        <tr align="center">
+            <th scope="col">Nome</th>
+            <th width="20%" scope="col">Endereco</th>
+            <th width="10%" scope="col">Telefone</th>
+            <th width="20%" scope="col">Email</th>
+            <th width="30%" scope="col">Ações</th>
+        </tr>
+    </thead>
         <?php //foreach($viewVar['listarLocais'] as $locais){?>
 		    <tr>
                 <td>Teste<?php //echo $locais->NM_Pessoa;?></td>
@@ -66,29 +77,31 @@
 	    <?php // }?>
     </table>
     
-    <a href='#' class="btn btn-info btn sm">Listar Tudo</a>
+     <a href='#' class="btn btn-info btn sm">Listar Tudo</a>
     </div>
-<!-- Abrir a Modal que será utilizada como detalhes -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Detalhes</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <strong>Nome: </strong> <br>
-        <strong>Endereço: </strong> <br>
-        <strong>Telefone: </strong> <br>
-        <strong>Email: </strong> <br>
-        <strong>CNPJ: </strong> 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-info btn sm">Editar</button>
-      </div>
+</div> 
+    <!-- Abrir a Modal que será utilizada como detalhes -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Detalhes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <strong>Nome: </strong> <br>
+                    <strong>Endereço: </strong> <br>
+                    <strong>Telefone: </strong> <br>
+                    <strong>Email: </strong> <br>
+                    <strong>CNPJ: </strong> 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-info btn sm">Editar</button>
+                </div>
+             </div>
+        </div>
     </div>
-  </div>
-</div>
+ 
