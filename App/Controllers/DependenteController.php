@@ -28,7 +28,8 @@ class DependenteController extends Controller
         $registro->setNome($_POST['nome']);
         $registro->setRg($_POST['rg']);
         $registro->setCpf($_POST['cpf']);
-        //$registro->setDataNascimento($_POST['dataNasc']);
+        $registro->setDataNascimento($_POST['dataNasc']);
+        //$registro->setIdAssociado($_POST['idAssociado']);
         $registro->setGrauDependencia($_POST['grau']);
         $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
 

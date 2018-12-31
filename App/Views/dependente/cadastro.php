@@ -30,39 +30,43 @@
             <form action="http://<?php echo APP_HOST; ?>/dependente/salvar" method="post">
                 <div class="form-group">
                     <label for="nome">Nome Completo:</label>
-                    <input type="text" class="form-control"  name="nome" placeholder="Nome Completo" value="" 
+                    <input type="text" class="form-control" name="nome" placeholder="Nome Completo" pattern="[A-Za-zÀ-ú ]{0,}" 
+                           title="Use somente letras. Não use caracteres especiais ou números." value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>" 
                            required autofocus>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="rg">RG:</label>
-                        <input type="rg" id="rg" maxlength="12" pattern="[0-9]{0,}" title="Digite somente números" class="form-control" placeholder="Somente números" name="rg" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('rg'); ?>" required >
+                        <input type="rg" class="form-control" name="rg" placeholder="000000000" maxlength="9" pattern="[0-9]{8}[0-9xX]{1}" 
+                               title="Digite somente números com 9 digitos" value="<?php echo $Sessao::retornaValorFormulario('rg'); ?>" required >
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="cpf">CPF:</label>
-                        <input type="cpf" id="cpf" maxlength="14" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"  class="form-control" placeholder="000.000.000-00" name="cpf" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required oninvalid="this.setCustomValidity('Este campo deve estar preenchido e atender ao padrão exigido: 000.000.000-00')" onchange="try{setCustomValidity('')}catch(e){}" onkeydown="javascript: fMasc( this, mCPF );">
+                        <input type="cpf" id="cpf" maxlength="14" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"  class="form-control" 
+                               placeholder="000.000.000-00" name="cpf" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('cpf'); ?>" required oninvalid="this.setCustomValidity('Este campo deve estar preenchido e atender ao padrão exigido: 000.000.000-00')" onchange="try{setCustomValidity('')}catch(e){}" onkeydown="javascript: fMasc( this, mCPF );">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="dataNasc">Data de Nascimento:</label>
-                    <input type="date" name="dataNasc" class="form-control">
+                    <input type="date" id="dataNasc" name="dataNasc" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('dataNasc'); ?>" required>
                 </div>
 
                 <br><h5>Dados do Associado</h5><hr>
 
                 <div class="form-group">
                     <label for="associado">Associado:</label>
-                    <select class="form-control" name="associado" value="">
+                    <select class="form-control" name="associado" value="" disabled>
                         <option name="associado">Selecione um Associado</option>
                     </select>
+                    <span class="text-danger">Não é possivel selecionar um Associado no momento</span>
                 </div>
 
                 <div class="form-group">
                     <label for="grau">Grau de Dependência:</label>
-                    <select class="form-control" name="grau" value="">
-                        <option name="grau">Selecione um Grau de Dependência</option>
+                    <select class="form-control" name="grau" value="<?php echo $Sessao::retornaValorFormulario('grau'); ?>" required>
+                        <option name="grau" value="">Selecione um Grau de Dependência</option>
                         <option name="grau" value="Cônjuge">Cônjuge</option>
                         <option name="grau" value="Filho(a)">Filho(a)</option>
                     </select>
