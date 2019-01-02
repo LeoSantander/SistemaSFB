@@ -41,6 +41,15 @@ abstract class Controller
         exit;
     }
 
+    public function redirectMain($view)
+    {
+
+        ?>
+        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=<?php echo ('http://' . APP_HOST . $view);?>">
+        <?php
+        exit;
+    }
+
     public function getViewVar()
     {
         return $this->viewVar;

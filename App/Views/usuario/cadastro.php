@@ -5,7 +5,7 @@
         $this->redirect('login/');
         //Senão se Usuário da Sessão não é Administrador, Retorna para Home!
     } else if (!($Sessao::retornaTPUsuario() == 'Administrador')){
-        $this->redirect('home/');
+        $this->redirectMain('home/');
     }
 ?>
 

@@ -3,7 +3,7 @@
         $Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
         $this->redirect('login/');
     } else if (!($Sessao::retornaTPUsuario() == 'Administrador')){
-        $this->redirect('home/');
+        $this->redirectMain('home/');
     }
 ?>
 <script>
