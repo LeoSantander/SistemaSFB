@@ -52,10 +52,30 @@ class DependenteController extends Controller
 
     public function consultar()
     {
+        $dependenteDAO = new DependenteDAO();
+
+        self::setViewParam('listarDependentes',$dependenteDAO->listarDependentes());
         $this->render('/dependente/consultar');
 
         Sessao::limpaMensagem();
         Sessao::limpaFormulario();
         Sessao::limpaSucesso();
+    }
+
+    public function excluir()
+    {
+        $dependente = new Dependente();
+        $dependente->setIdDependente($_POST['id']);
+
+        $dependenteDAO = new DependenteDAO();
+
+        if(!$dependenteDAO->excluir($dependente))
+        {
+            Sessao::gravaMensagem("Dependente não encontrado!");
+            $this->redirect('/dependente/consultar');
+        }
+
+        Sessao::gravaSucesso("Dependente Excluído com sucesso!");
+        $this->redirect('/dependente/consultar');
     }
 }
