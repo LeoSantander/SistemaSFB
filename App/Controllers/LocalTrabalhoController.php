@@ -11,6 +11,11 @@ class LocalTrabalhoController extends Controller
 {
     public function cadastro()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+
         $cidadeDAO = new CidadeDAO();
 
         self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
@@ -21,13 +26,24 @@ class LocalTrabalhoController extends Controller
         Sessao::limpaMensagem();
         Sessao::limpaSucesso();
     }
+    
     public function index()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+        
         $this->redirect('/localTrabalho/cadastro');
     }
 
     public function consultar()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+        
         $nm = $_POST['buscar'];
 
         $this->render('/localTrabalho/consultar');
