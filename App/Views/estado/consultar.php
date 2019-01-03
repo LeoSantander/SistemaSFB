@@ -7,9 +7,12 @@
 ?>
 
 <div class="container">
-    <div class="row">
-        <h3>Estados Cadastrados</h3>
-    </div>
+    <table width="100%">
+            <tr>
+                <td><h3>Estados Cadastrados</h3></td>
+                <td align="right"><a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/estado/cadastro">+ Adicionar Estado</a></td>
+            </tr>   
+    </table>
     <hr>
 
     <?php if(!count($viewVar['listarEstados'])){?>

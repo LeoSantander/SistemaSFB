@@ -51,7 +51,26 @@
             </ul>
         </li>
 
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Associados</a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Associados</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Adicionar Novo Associado</a>
+                    <a class="dropdown-item" href="#">Consultar Associados</a>
+                  </div>
+                </li> 
 
+                <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Dependentes</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/dependente/cadastro">Adicionar Novo Dependente</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/dependente/consultar">Consultar Dependentes</a>
+                  </div>
+                </li>
+            </ul>
+        </li>
     </ul>
     </ul>
   </div>

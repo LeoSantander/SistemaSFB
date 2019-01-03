@@ -3,7 +3,7 @@
         $Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
         $this->redirect('login/');
     } else if (!($Sessao::retornaTPUsuario() == 'Administrador')){
-        $this->redirect('home/');
+        $this->redirectMain('home/');
     }
 ?>
 <script>
@@ -12,9 +12,12 @@
     }
 </script>
 <div class="container">
-	<div class="row">
-        <div class="col-md-6">
-    		<h3>Usuários Cadastrados</h3>
+    <table width="100%">
+        <tr>
+            <td><h3>Usuários Cadastrados</h3></td>                    
+        </tr>
+        <tr>
+        <td>
             <form action="http://<?php echo APP_HOST; ?>/usuario/consultar/" method="post" id="form_cadastro">
                 <div id="custom-search-input">
                     <div class="input-group col-md-12">
@@ -24,9 +27,13 @@
                         </span>
                     </div>
                 </div>
-             </form>
-        </div>
-	</div>
+            </form>
+        </td>
+        <td align="right">
+            <a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/usuario/cadastro">+ Adicionar Usuário</a>
+        </td>
+        </tr>
+    </table>
     <hr>
     
     <?php 
