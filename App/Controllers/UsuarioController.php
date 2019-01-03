@@ -16,6 +16,7 @@ class UsuarioController extends Controller
 
         //Senão se Usuário da Sessão não é Administrador, Retorna para Home!
         } else if (!(Sessao::retornaTPUsuario() == 'Administrador')){
+            Sessao::gravaMensagem("Parece que você não tem permissão para acessar este módulo :( ");
             $this->redirect('home/');
         }
 
@@ -34,6 +35,7 @@ class UsuarioController extends Controller
 
             //Senão se Usuário da Sessão não é Administrador, Retorna para Home!
         } else if (!(Sessao::retornaTPUsuario() == 'Administrador')){
+            Sessao::gravaMensagem("Parece que você não tem permissão para acessar este módulo :( ");
             $this->redirect('home/');
         }
 
@@ -57,7 +59,9 @@ class UsuarioController extends Controller
 
             //Senão se Usuário da Sessão não é Administrador, Retorna para Home!
         } else if (!(Sessao::retornaTPUsuario() == 'Administrador')){
+            Sessao::gravaMensagem("Parece que você não tem permissão para acessar este módulo :( ");
             $this->redirect('home/');
+            
         }
 
         $id = $params[0];

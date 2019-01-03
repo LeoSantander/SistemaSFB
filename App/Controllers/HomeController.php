@@ -14,7 +14,7 @@ class HomeController extends Controller
             Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
             $this->redirect('login/');   
         }
-        
+
         $usuarioDAO = new UsuarioDAO();
         $qtdUsuarios= $usuarioDAO->ContaUsuarios();
         Sessao::gravaQtdUsuarios($qtdUsuarios); 
@@ -31,5 +31,6 @@ class HomeController extends Controller
 
         //self::setViewParam('teste', $teste);       
         $this->render('home/index');
+        Sessao::limpaMensagem();
     }
 }
