@@ -200,7 +200,7 @@ class UsuarioController extends Controller
             Sessao::gravaUsuario($_POST['usuario']);
             Sessao::gravaSenha($_POST['senha']);
             
-            $this->redirect('/home');
+            $this->redirect('/home/index');
             
         }else{
             Sessao::gravaMensagem("Usuário e Senha incorretos, ou seu usuário pode estar impossibilitado de acessar ao Sistema!");
