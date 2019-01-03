@@ -10,6 +10,15 @@ class UsuarioController extends Controller
 {
     public function cadastro()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+
+        //Senão se Usuário da Sessão não é Administrador, Retorna para Home!
+        } else if (!(Sessao::retornaTPUsuario() == 'Administrador')){
+            $this->redirect('home/');
+        }
+
         $this->render('/usuario/cadastro');
 
         Sessao::limpaFormulario();
@@ -19,6 +28,15 @@ class UsuarioController extends Controller
 
     public function consultar()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+
+            //Senão se Usuário da Sessão não é Administrador, Retorna para Home!
+        } else if (!(Sessao::retornaTPUsuario() == 'Administrador')){
+            $this->redirect('home/');
+        }
+
         $nm = $_POST['buscar'];
 
         $usuarioDAO = new UsuarioDAO();      
@@ -33,6 +51,15 @@ class UsuarioController extends Controller
 
     public function alterar($params)
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+
+            //Senão se Usuário da Sessão não é Administrador, Retorna para Home!
+        } else if (!(Sessao::retornaTPUsuario() == 'Administrador')){
+            $this->redirect('home/');
+        }
+
         $id = $params[0];
         $usuarioDAO = new UsuarioDAO();
         $usuario = $usuarioDAO->pegarUsuario($id);

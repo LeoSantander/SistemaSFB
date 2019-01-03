@@ -1,11 +1,3 @@
-<?php
-    if(!($Sessao::retornaUsuario())){
-        $Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
-        $this->redirect('login/');
-    } else if (!($Sessao::retornaTPUsuario() == 'Administrador')){
-        $this->redirectMain('home/');
-    }
-?>
 <script>
     function valor{
         var idExcluir = $('input[name="btnExcluir"]').val();

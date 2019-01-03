@@ -10,6 +10,15 @@ class HomeController extends Controller
 {
     public function index()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+
+            //Senão se Usuário da Sessão não é Administrador, Retorna para Home!
+        } else if (!(Sessao::retornaTPUsuario() == 'Administrador')){
+            $this->redirect('home/');
+        }
+        
         $usuarioDAO = new UsuarioDAO();
         $qtdUsuarios= $usuarioDAO->ContaUsuarios();
         Sessao::gravaQtdUsuarios($qtdUsuarios); 
