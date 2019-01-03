@@ -7,9 +7,14 @@
 ?>
 
 <div class="container">
-    <div class="row">
-        <h3>Cidades Cadastradas</h3>
-    </div>
+    
+    <table width="100%">
+        <tr>
+            <td><h3>Cidades Cadastradas</h3></td>
+            <td align="right"><a href="http://<?php echo APP_HOST; ?>/cidade/cadastro" class="btn btn-success">+ Adicionar Cidade</a></td>
+        </tr>
+    </table>    
+    
     <hr>
 
     <?php if(!count($viewVar['listarCidades'])){?>

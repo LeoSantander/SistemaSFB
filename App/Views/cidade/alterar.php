@@ -25,7 +25,8 @@
                 
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control"  name="nome" placeholder="Nome Completo" value="<?php echo $viewVar['cidade']->NM_Cidade; ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}">
+                    <input type="text" class="form-control"  name="nome" placeholder="Nome Completo" value="<?php echo $viewVar['cidade']->NM_Cidade; ?>" required pattern="[A-Za-zÀ-ú ]{0,}" 
+                           title="Não use caracteres especiais ou números">
                 </div>
 
             

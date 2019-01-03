@@ -115,23 +115,27 @@ class CidadeController extends Controller
 
     public function atualizar()
     {
+        $id = $_POST['idCidade'];
+        $estado = $_POST['estado'];
+        $cidade = $_POST['nome'];
 
         $registro = new Cidade();
         $registro->setNome($_POST['nome']);
         $registro->setIdUsuario(Sessao::retornaidUsuario());
         $registro->setIdEstado($_POST['estado']);
-        $registro->setIdCidade($_POST['idCidade']);
+        $registro->setIdCidade($id);
+
         Sessao::gravaFormulario($_POST);
 
         $cidadeDAO = new CidadeDAO();
 
-        //Verifica se cidade ja esta cadastrada ERRO AQUI
-        if(($cidadeDAO->verificaNome($registro->getNome(),$registro->getIdEstado())))
+        //Verifica Alteração
+        if($cidadeDAO->verificaAlteracao($_POST['nome'], $_POST['estado'], $id))
         {
             Sessao::gravaMensagem("Cidade já cadastrada!");
-            $this->redirect('/cidade/alterar');
+            $this->redirect('/cidade/alterar/'.$id);
         }
-
+        
         $cidadeDAO->atualizar($registro);
 
         Sessao::limpaFormulario();

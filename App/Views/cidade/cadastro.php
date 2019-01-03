@@ -37,7 +37,7 @@
 	        <label for="estado">Estado:</label>
                     
 	        <!-- Inicie a ComboBox --> 
-	        <select class= "form-control" required>
+	        <select required class="form-control" name= "estado" value="<?php echo $Sessao::retornaValorFormulario('estado'); ?>">
                 <option name= "estado" value="">Selecione um Estado</option>
 
 		        <?php foreach($viewVar['listarEstados'] as $estados){?>
@@ -55,4 +55,3 @@
         <div class=" col-md-3"></div>
     </div>
 </div>
-

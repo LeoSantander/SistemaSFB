@@ -24,6 +24,19 @@ class CidadeDAO extends BaseDAO
         }
     }
 
+    public function verificaAlteracao($nome, $idEstado, $id)
+    {
+        try{
+            $query = $this->select(
+                "SELECT * FROM sfm_cidade WHERE ID_Cidade <> '$id' AND NM_Cidade = '$nome' AND ID_Estado = '$idEstado' "
+            );
+            return $query->fetch();
+        }
+        catch(Exception $e){
+            throw new \Exception("Erro ao carregar Dados",500);
+        }
+    }
+    
     //salvando dados de uma nova cidade
     public function salvar(Cidade $cidade)
     {
