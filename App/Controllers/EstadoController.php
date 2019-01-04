@@ -16,6 +16,11 @@ class EstadoController extends Controller
     //action cadastro
     public function cadastro()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+        
         //renderiza a view cadastro
         $this->render('/estado/cadastro');
 
@@ -77,6 +82,11 @@ class EstadoController extends Controller
     //action consultar
     public function consultar()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+
         //instanciando nova DAO
         $estadoDAO = new EstadoDAO();
 

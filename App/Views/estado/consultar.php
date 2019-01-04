@@ -1,11 +1,3 @@
-<?php
-//Solicitando login para acessar o sistema
-    if(!($Sessao::retornaUsuario())){
-        $Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
-        $this->redirect('login/');
-    }
-?>
-
 <div class="container">
     <table width="100%">
             <tr>
