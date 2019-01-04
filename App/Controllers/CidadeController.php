@@ -17,6 +17,12 @@ class CidadeController extends Controller
     //Função para Cadastro
     public function cadastro()
     {
+        if(!(Sessao::retornaUsuario()))
+        {
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+
         //renderiza a view Cadastro
         $estadoDAO = new EstadoDAO();
         
@@ -40,7 +46,6 @@ class CidadeController extends Controller
         //grava o formulario se acontecer exceções
         Sessao::gravaFormulario($_POST);
 
-       
         //Nova DAO
         $cidadeDAO = new CidadeDAO();
         
@@ -67,6 +72,12 @@ class CidadeController extends Controller
 
     public function consultar()
     {
+        if(!(Sessao::retornaUsuario()))
+        {
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+
         //instanciando nova DAO
         $cidadeDAO = new CidadeDAO();
 
@@ -85,7 +96,8 @@ class CidadeController extends Controller
 
         $cidadeDAO = new CidadeDAO();
         
-        if(!$cidadeDAO->excluir($cidade)){
+        if(!$cidadeDAO->excluir($cidade))
+        {
             Sessao::gravaMensagem("Cidade inválida");
             $this->redirect('/cidade/consultar');
         }
@@ -96,6 +108,11 @@ class CidadeController extends Controller
 
     public function alterar($params)
     {
+        if(!(Sessao::retornaUsuario()))
+        {
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
 
         $estadoDAO = new EstadoDAO();
         self::setViewParam('listarEstados', $estadoDAO->listarEstados());
