@@ -1,9 +1,16 @@
-
+<script>
+    function valor{
+        var idExcluir = $('input[name="btnExcluir"]').val();
+    }
+</script>
 <div class="container">
-	    <div class="row">
-            <div class="col-md-6">
-    		    <h3>Locais de Trabalho Cadastrados</h3>
-                <form action="#" method="post" id="form_cadastro">
+    <table width="100%">
+        <tr>
+            <td><h3>Locais de Trabalho Cadastrados</h3></td>                    
+        </tr>
+        <tr>
+        <td>
+            <form action="#" method="post" id="form_cadastro">
                 <div id="custom-search-input">
                     <div class="input-group col-md-12">
                         <input type="text" name="buscar" value="<?php echo $Sessao::retornaValorFormulario('buscar'); ?>" class="form-control input-lg" placeholder="Buscar" />
@@ -13,20 +20,23 @@
                     </div>
                 </div>
                 </form>
-            </div>
-	    </div>
-    
+        </td>
+        <td align="right">
+            <a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/localTrabalho/cadastro">+ Adicionar Local de Trabalho</a>
+        </td>
+        </tr>
+    </table>
     <hr>
     
     <?php 
-       // if(!count($viewVar['listarLocais'])){
+        if(!count($viewVar['listarLocais'])){
     ?>    
         <div class="alert alert-info" role="alert">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
             Nenhum Local encontrado!
         </div>
     <?php 
-       // }
+        }
     ?>    
     <?php if($Sessao::retornaMensagem()){ ?>
                 <div class="alert alert-warning" role="alert">
@@ -47,52 +57,153 @@
     <thead class="thead-light">
         <tr align="center">
             <th scope="col">Nome</th>
-            <th width="20%" scope="col">Endereco</th>
             <th width="10%" scope="col">Telefone</th>
             <th width="20%" scope="col">Email</th>
             <th width="30%" scope="col">Ações</th>
         </tr>
     </thead>
-        <?php //foreach($viewVar['listarLocais'] as $locais){?>
+        <?php foreach($viewVar['listarLocais'] as $locais){?>
 		    <tr>
-                <td>Teste<?php //echo $locais->NM_Pessoa;?></td>
-                <td>teste<?php //echo $locais->NM_Usuario;?></td>
-			    <td>teste<?php //echo $locais->CPF_Usuario;?></td>
-			    <td>teste<?php //echo $locais->TP_Usuario;?></td>
+                <td><?php echo $locais->NM_Fantasia;?></td>
+                <td><?php echo $locais->Telefone;?></td>
+			    <td><?php echo $locais->Email;?></td>
 			    <td align="center">
-				    <a href='#' class="btn btn-info btn sm">Editar</a>
-                    <a href='#' class="btn btn-secondary btn sm" data-toggle="modal" data-target="#exampleModalCenter">Detalhes</a>
-				    <a href='#' class="btn btn-danger btn sm">Excluir</a>
+				    <a href='#' class="btn btn-info btn-sm">Editar</a>
+                    <a href='#' class="btn btn-secondary btn-sm" id="details-row" data-toggle="modal" data-target="#exampleModalCenter"
+                               data-sigla="<?php echo $locais->CD_Local_Trabalho;?>"
+                               data-fantasia="<?php echo $locais->NM_Fantasia;?>"
+                               data-cnpj = "<?php echo $locais->CNPJ;?>"
+                               data-endereco=  "<?php echo $locais->NM_Rua.", Nº.: ".$locais->NO_Endereco." - ".$locais->NM_Bairro?>"
+                               data-cidade= "<?php echo $locais->NM_Cidade." - ". $locais->CD_Estado;?>"
+                               data-id=  "<?php echo $locais->ID_Local_Trabalho?>" 
+                               data-telefone = "<?php echo $locais->Telefone;?>"
+                               data-email = "<?php echo $locais->Email;?>">Detalhes</a>
+
+                    <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom" 
+                        href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $locais->ID_Local_Trabalho?>" 
+                        data-nome="<?php echo $locais->NM_Fantasia?>">Excluir</a>
 		        </td>
 	        </tr>	
-	    <?php // }?>
+	    <?php }?>
     </table>
     
-     <a href='#' class="btn btn-info btn sm">Listar Tudo</a>
+     <a href='http://<?php echo APP_HOST; ?>/localTrabalho/consultar/' class="btn btn-info btn sm">Listar Tudo</a>
     </div>
 </div> 
-    <!-- Abrir a Modal que será utilizada como detalhes -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Detalhes</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <strong>Nome: </strong> <br>
-                    <strong>Endereço: </strong> <br>
-                    <strong>Telefone: </strong> <br>
-                    <strong>Email: </strong> <br>
-                    <strong>CNPJ: </strong> 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-info btn sm">Editar</button>
-                </div>
-             </div>
+
+
+<!-- Abrir a Modal que será utilizada como detalhes -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Detalhes de <span id="nomeItemTitulo"></span></h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Dados Cadastrais</h5>
+                <strong>Nome Fantasia: </strong> <span id="cdItem"></span> <span id="nomeItemDetalhe"></span><br>
+                <strong>CNPJ: </strong> <span id="cnpjItem"></span><br><br>
+                
+                <h5>Endereço</h5>
+                <strong>Endereço: </strong> <span id="enderecoItem"></span><br>
+                <strong>Cidade: </strong><span id="cidadeItem"></span><br><br>
+                
+                <h5>Contato</h5>
+                <strong>Telefone: </strong><span id="telefoneItem"></span><br>
+                <strong>Email: </strong> <span id="emailItem"></span>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
+                <a class="btn btn-info btn-sm" href="#">Editar</a>
+            </div>
         </div>
     </div>
- 
+</div>
+<!--Modal Excluir-->
+<form action="http://<?php echo APP_HOST; ?>/localTrabalho/excluir" method="post">
+    <input type="hidden" class="form-control" name="id" id="id">
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Excluir</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				</div>
+				<div class="modal-body">
+					Deseja realmente excluir <span id="nomeItem"></span>?
+				</div>
+
+				<div class="modal-footer">
+				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
+					<button type="submit" id="deleteItem" class="btn btn-danger btn-sm">Excluir</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<script>
+    $(window).load(function(){
+        $(document).ready(function(){
+            //delete
+            var id_delete = -1;
+            var nome = "";
+            var item = document.getElementById("nomeItem");
+            
+            //details
+            var id_detail = -1;
+            var nomeItem = "";
+            var cd = "";
+            var cnpj = "";
+            var endereco = "";
+            var cidade = "";
+            var telefone = "";
+            var email = "";
+            var rTitulo = document.getElementById("nomeItemTitulo");
+            var rNome = document.getElementById("nomeItemDetalhe");
+            var rCD = document.getElementById("cdItem");
+            var rCnpj = document.getElementById("cnpjItem");
+
+            var rEndereco = document.getElementById("enderecoItem");
+            var rCidade = document.getElementById("cidadeItem");
+
+            var rTelefone = document.getElementById("telefoneItem");
+            var rEmail = document.getElementById("emailItem");
+
+            $("a#delete-row").click(function() {
+                id_delete = $(this).attr('data-id');
+                nome = $(this).attr('data-nome');
+                document.getElementById('id').value = id_delete;
+                
+                item.innerHTML = "<strong>" + nome +"</strong>";
+            });
+
+            $("a#details-row").click(function() {
+                id_detail = $(this).attr('data-id');
+                nome = $(this).attr('data-fantasia');
+                cd = $(this).attr('data-sigla');
+                cnpj = $(this).attr('data-cnpj');
+                
+                endereco = $(this).attr('data-endereco');
+                cidade = $(this).attr('data-cidade');
+
+                telefone = $(this).attr('data-telefone');
+                email = $(this).attr('data-email');
+                
+
+                rTitulo.innerHTML = nome;
+                rNome.innerHTML = nome;
+                rCD.innerHTML = cd + " - ";
+                rCnpj.innerHTML = cnpj;
+                rEndereco.innerHTML = endereco;
+                rCidade.innerHTML = cidade;
+                rTelefone.innerHTML = telefone;
+                rEmail.innerHTML = email;
+            });
+        });
+    });
+</script>

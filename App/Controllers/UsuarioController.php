@@ -188,7 +188,7 @@ class UsuarioController extends Controller
 
         if($usuarioDAO->salvar($registro)){
             Sessao::limpaFormulario();
-            Sessao::gravaSucesso("Usuário Cadastrado com Sucesso");
+            Sessao::gravaSucesso("Usuário: ".$registro->getNome()." Cadastrado com Sucesso");
             $this->redirect('/usuario/cadastro');            
             //$this->redirect('/usuario/sucesso');
         }else{

@@ -5,14 +5,19 @@
             <h3>Cadastro de Local de Trabalho</h3>
             <hr>
             <?php if($Sessao::retornaMensagem()){ ?>
-                <div class="alert alert-warning" role="alert"><?php echo $Sessao::retornaMensagem(); ?></div>
-
+                <div class="alert alert-warning" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <?php echo $Sessao::retornaMensagem(); ?>
+                </div>
             <?php } ?>
             <?php if($Sessao::retornaSucesso()){ ?>
-                <div class="alert alert-success" role="alert"><?php echo $Sessao::retornaSucesso(); ?></div>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $Sessao::retornaSucesso(); ?>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                </div>
             <?php } ?>
 
-            <form action="http://<?php echo APP_HOST; ?>/cidade/salvar" method="post">
+            <form action="http://<?php echo APP_HOST; ?>/localTrabalho/salvar" method="post">
             <div class="form-group">
             
             <div class="form-group">
@@ -21,29 +26,36 @@
             </div>
             <div class="form-group">
                     <label for="nome">Nome Fantasia:</label>
-                    <input type="text" class="form-control"  name="fantasia" placeholder="Ex.: Auto Posto Marilia" value="<?php echo $Sessao::retornaValorFormulario('fantasia'); ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"> 
+                    <input type="text" class="form-control"  name="fantasia" placeholder="Auto Posto Marilia" value="<?php echo $Sessao::retornaValorFormulario('fantasia'); ?>" 
+                           title="Este campo não pode estar vazio." required autofocus> 
             </div>
             </div>
             <div class="form-group">
                     <label for="nome">CNPJ:</label>
-                    <input type="text" class="form-control"  name="cnpj" placeholder=" " value="<?php echo $Sessao::retornaValorFormulario('cnpj'); ?>" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"> 
+                    <input type="text"  maxlength="18"  class="form-control"  name="cnpj" placeholder=" " 
+                        value="<?php echo $Sessao::retornaValorFormulario('cnpj'); ?>" 
+                        oninvalid="this.setCustomValidity('Este campo deve estar preenchido e atender ao padrão exigido: 000.000.000-00')" onchange="try{setCustomValidity('')}catch(e){}"  pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" 
+                        onkeydown="javascript: fMasc( this, mCNPJ );"> 
             </div>
             
             <h5>Endereço:</h5>
             <hr>
             <div class="form-group">
                     <label for="nome">Rua:</label>
-                    <input type="text" class="form-control"  name="rua" placeholder="EX.: Rua Nove de Julho" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"> 
+                    <input type="text" class="form-control"  name="rua" placeholder=" Rua Nove de Julho" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
+                           title="Use somente letras. Não use caracteres especiais ou números." required autofocus> 
             </div>
 
             <div class="form-group">
                     <label for="nome">Bairro:</label>
-                    <input type="text" class="form-control"  name="bairro" placeholder="EX.: Bairro Nova Marilia" value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"> 
+                    <input type="text" class="form-control" name="bairro" placeholder="Bairro Nova Marilia" value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
+                           title="Use somente letras. Não use caracteres especiais ou números." required autofocus> 
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="nome">Numero:</label>
-                    <input type="text" class="form-control"  name="numero" placeholder="EX.: 871" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"> 
+                    <label for="numero">Numero:</label>
+                    <input type="text" class="form-control" maxlength="5" name="numero" placeholder="871" value="<?php echo $Sessao::retornaValorFormulario('numero'); ?>" 
+                        pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" required autofocus> 
                 </div>
                 <div class="form-group col-md-6">        
                 <label for="cidade">Cidade:</label>
@@ -60,12 +72,15 @@
             <hr>
             <div class="form-group">
                     <label for="telefone">Telefone:</label>
-                    <input type="telefone" class="form-control"  name="telefone" placeholder="EX.: (14) 3300-3000" value="<?php echo $Sessao::retornaValorFormulario('telefone'); ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"> 
+                    <input type="telefone" class="form-control"  name="telefone" placeholder="(14) 3300-3000" 
+                        value="<?php echo $Sessao::retornaValorFormulario('telefone'); ?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
+                        title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" required autofocus> 
             </div>
 
             <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control"  name="email" placeholder="EX.: nome@dominio.com" value="<?php echo $Sessao::retornaValorFormulario('email'); ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"> 
+                    <input type="email" class="form-control"  name="email" placeholder="nome@dominio.com" value="<?php echo $Sessao::retornaValorFormulario('email'); ?>"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Este campo deve atender ao formato solicitado: nome@dominio.com" required autofocus> 
             </div>
             
                 <button type="submit" class="btn btn-success">Salvar</button>
