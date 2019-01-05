@@ -40,20 +40,21 @@
                     <label for="nome">Bairro:</label>
                     <input type="text" class="form-control"  name="bairro" placeholder="EX.: Bairro Nova Marilia" value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"> 
             </div>
-
-            <div class="form-group">
+            <div class="form-row">
+                <div class="form-group col-md-6">
                     <label for="nome">Numero:</label>
                     <input type="text" class="form-control"  name="numero" placeholder="EX.: 871" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"> 
+                </div>
+                <div class="form-group col-md-6">        
+                <label for="cidade">Cidade:</label>
+	                <select name= "cidade" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('cidade'); ?>" required>
+                                <option name="cidade" value="">Selecione uma Cidade</option>            
+                                <?php foreach($viewVar['listarCidades'] as $cidade){?>
+	                                <option  name="cidade" value= "<?php echo $cidade->ID_Cidade;?>"><?php echo $cidade->NM_Cidade;?> - <?php echo $cidade->CD_Estado;?></option>
+                                <?php } ?>
+                        </select> 
+                </div>
             </div>
-            
-            <label for="cidade">Cidade:</label>
-	        <select class="form-control" name= "cidade" value="<?php echo $Sessao::retornaValorFormulario('cidade'); ?>">
-                <option name="estado" value="">Selecione uma Cidade</option>            
-		       <!-- Preciso que o Cadastro de cidade esteja pronto e a function consultar cidade também -->
-                <?php foreach($viewVar['listarCidades'] as $cidade){?>
-	                <option  name="estado" value= "<?php echo $cidade->ID_Cidade;?>"><?php echo $cidade->NM_Cidade;?> - <?php echo $cidade->CD_Estado;?></option>
-                <?php } ?>
-            </select required> 
             <br>
             <h5>Contato:</h5>
             <hr>

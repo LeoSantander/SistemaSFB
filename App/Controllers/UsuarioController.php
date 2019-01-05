@@ -78,6 +78,15 @@ class UsuarioController extends Controller
 
     public function excluir()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }else if (!(Sessao::retornaTPUsuario() == 'Administrador')){
+            Sessao::gravaMensagem("Parece que você não tem permissão para acessar este módulo :( ");
+            $this->redirect('home/');
+            
+        }
+
         $id = $_POST['id'];
 
         if($id == Sessao::retornaidUsuario()){
