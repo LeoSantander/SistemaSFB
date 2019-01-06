@@ -103,6 +103,9 @@
                 </button>
             </div>
             <div class="modal-body">
+            <form action="http://<?php echo APP_HOST; ?>/localTrabalho/alterar" method="post">
+            <input type="hidden" class="form-control" name="id" id="idUpdate">
+
                 <h5>Dados Cadastrais</h5>
                 <strong>Nome Fantasia: </strong> <span id="cdItem"></span> <span id="nomeItemDetalhe"></span><br>
                 <strong>CNPJ: </strong> <span id="cnpjItem"></span><br><br>
@@ -118,8 +121,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
-                <a class="btn btn-info btn-sm" href="#">Editar</a>
+                <button type="submit" id="UpdateItem" class="btn btn-info btn-sm">Editar</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -194,6 +198,7 @@
                 telefone = $(this).attr('data-telefone');
                 email = $(this).attr('data-email');
                 
+                document.getElementById('idUpdate').value = id_detail;
 
                 rTitulo.innerHTML = nome;
                 rNome.innerHTML = nome;

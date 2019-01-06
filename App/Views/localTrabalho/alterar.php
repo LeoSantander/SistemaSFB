@@ -78,7 +78,7 @@
             <hr>
             <div class="form-group">
                     <label for="telefone">Telefone:</label>
-                    <input type="telefone" class="form-control"  name="telefone" placeholder="(14) 3300-3000" 
+                    <input type="telefone" maxlength="14" class="form-control"  name="telefone" placeholder="(14)3300-3000" 
                         value="<?php echo $viewVar['localTrabalho']->Telefone; ?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
                         title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" required autofocus> 
             </div>

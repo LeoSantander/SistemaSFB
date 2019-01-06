@@ -125,8 +125,12 @@ class LocalTrabalhoController extends Controller
         
         $cidadeDAO = new CidadeDAO();
         self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
+        
+        $id = $_POST['id'];//$params[0];
+        if ($id == null){
+            $id = $params[0];
+        }
 
-        $id = $params[0];
         $localTrabalhoDAO = new LocalTrabalhoDAO();
         $localTrabalho = $localTrabalhoDAO->pegarLocal($id);
         if(!$localTrabalho){
