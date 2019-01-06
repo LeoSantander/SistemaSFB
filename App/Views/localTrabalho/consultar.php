@@ -73,7 +73,7 @@
                                data-sigla="<?php echo $locais->CD_Local_Trabalho;?>"
                                data-fantasia="<?php echo $locais->NM_Fantasia;?>"
                                data-cnpj = "<?php echo $locais->CNPJ;?>"
-                               data-endereco=  "<?php echo $locais->NM_Rua.", Nº.: ".$locais->NO_Endereco." - ".$locais->NM_Bairro?>"
+                               data-endereco=  "<?php echo $locais->NM_Rua.", Nº.: ".$locais->NO_Endereco." - ".$locais->NM_Bairro." - ".$locais->CEP?>"
                                data-cidade= "<?php echo $locais->NM_Cidade." - ". $locais->CD_Estado;?>"
                                data-id=  "<?php echo $locais->ID_Local_Trabalho?>" 
                                data-telefone = "<?php echo $locais->Telefone;?>"
@@ -167,6 +167,7 @@
             var cidade = "";
             var telefone = "";
             var email = "";
+            var cep = "";
             var rTitulo = document.getElementById("nomeItemTitulo");
             var rNome = document.getElementById("nomeItemDetalhe");
             var rCD = document.getElementById("cdItem");

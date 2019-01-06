@@ -40,24 +40,31 @@
             
             <h5>Endereço:</h5>
             <hr>
-            <div class="form-group">
+            <div class="form-row">
+                <div class="form-group col-md-10">
                     <label for="nome">Rua:</label>
                     <input type="text" class="form-control"  name="rua" placeholder=" Rua Nove de Julho" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
-                           title="Use somente letras. Não use caracteres especiais ou números." required autofocus> 
+                        title="Use somente letras. Não use caracteres especiais ou números." required autofocus> 
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="numero">Numero:</label>
+                    <input type="text" class="form-control" maxlength="5" name="numero" placeholder="000" value="<?php echo $Sessao::retornaValorFormulario('numero'); ?>" 
+                        pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" required autofocus> 
+                </div>
             </div>
-
-            <div class="form-group">
+            <div class="form-row">
+                <div class="form-group col-md-9">
                     <label for="nome">Bairro:</label>
                     <input type="text" class="form-control" name="bairro" placeholder="Bairro Nova Marilia" value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
                            title="Use somente letras. Não use caracteres especiais ou números." required autofocus> 
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="numero">Numero:</label>
-                    <input type="text" class="form-control" maxlength="5" name="numero" placeholder="871" value="<?php echo $Sessao::retornaValorFormulario('numero'); ?>" 
-                        pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" required autofocus> 
                 </div>
-                <div class="form-group col-md-6">        
+                <div class="form-group col-md-3">
+                        <label for="cep">CEP:</label>
+                        <input type="text" class="form-control" name="cep" maxlength="10" placeholder="00.000-000" value="<?php echo $Sessao::retornaValorFormulario('cep'); ?>" pattern= "[0-9]{2}.[0-9]{3}-[0-9]{3}"
+                           title="Preencha de acordo com o que foi solicitado." onkeydown="javascript: fMasc( this, mCEP );" required autofocus> 
+                    </div>
+            </div>
+            <div class="form-group">        
                 <label for="cidade">Cidade:</label>
 	                <select name= "cidade" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('cidade'); ?>" required>
                                 <option name="cidade" value="">Selecione uma Cidade</option>            
@@ -66,7 +73,6 @@
                                 <?php } ?>
                         </select> 
                 </div>
-            </div>
             <br>
             <h5>Contato:</h5>
             <hr>

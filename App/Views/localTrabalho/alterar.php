@@ -42,35 +42,43 @@
             
             <h5>Endereço:</h5>
             <hr>
-            <div class="form-group">
+            <div class="form-row">
+                <div class="form-group col-md-10">
                     <label for="rua">Rua:</label>
                     <input type="text" class="form-control"  name="rua" placeholder=" Rua Nove de Julho" 
                            value="<?php echo $viewVar['localTrabalho']->NM_Rua; ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
                            title="Use somente letras. Não use caracteres especiais ou números." required autofocus> 
-            </div>
-
-            <div class="form-group">
-                    <label for="nome">Bairro:</label>
-                    <input type="text" class="form-control" name="bairro" placeholder="Bairro Nova Marilia" 
-                           value="<?php echo $viewVar['localTrabalho']->NM_Bairro; ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
-                           title="Use somente letras. Não use caracteres especiais ou números." required autofocus> 
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
+                </div>
+                <div class="form-group col-md-2">
                     <label for="numero">Numero:</label>
-                    <input type="text" class="form-control" maxlength="5" name="numero" placeholder="871" 
+                    <input type="text" class="form-control" maxlength="5" name="numero" placeholder="000" 
                         value="<?php echo $viewVar['localTrabalho']->NO_Endereco; ?>" 
                         pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" required autofocus> 
                 </div>
-                <div class="form-group col-md-6">   
-                    <label for="cidade">Cidade:</label>
-                    <select class="form-control" name= "cidade" value="" required>
-                        <option name= "cidade" value="">Selecione uma Cidade</option>
-		                <?php foreach($viewVar['listarCidades'] as $cidades){?>
-                            <option name="cidade" value= "<?php echo $cidades->ID_Cidade;?>"><?php echo $cidades->NM_Cidade;?> - <?php echo $cidades->CD_Estado;?></option>
-                        <?php } ?>
-                    </select>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" class="form-control" name="bairro" placeholder="Bairro Nova Marilia" 
+                           value="<?php echo $viewVar['localTrabalho']->NM_Bairro; ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
+                           title="Use somente letras. Não use caracteres especiais ou números." required autofocus> 
                 </div>
+                <div class="form-group col-md-4">
+                    <label for="cep">CEP:</label>
+                    <input type="text" class="form-control" maxlength="10" name="cep" placeholder="00.000-00" 
+                           value="<?php echo $viewVar['localTrabalho']->CEP; ?>" pattern= "[0-9]{2}.[0-9]{3}-[0-9]{3}"
+                           title="Preencha conforme solicitado" onkeydown="javascript: fMasc( this, mCEP );" required autofocus> 
+                </div>
+            </div>
+            
+            <div class="form-group">   
+                <label for="cidade">Cidade:</label>
+                <select class="form-control" name= "cidade" value="" required>
+                    <option name= "cidade" value="">Selecione uma Cidade</option>
+		            <?php foreach($viewVar['listarCidades'] as $cidades){?>
+                        <option name="cidade" value= "<?php echo $cidades->ID_Cidade;?>"><?php echo $cidades->NM_Cidade;?> - <?php echo $cidades->CD_Estado;?></option>
+                    <?php } ?>
+                </select>
             </div>
 
             <br>
@@ -78,7 +86,7 @@
             <hr>
             <div class="form-group">
                     <label for="telefone">Telefone:</label>
-                    <input type="telefone" maxlength="14" class="form-control"  name="telefone" placeholder="(14)3300-3000" 
+                    <input type="telefone" maxlength="14" class="form-control"  name="telefone" placeholder="(XX)0000-0000" 
                         value="<?php echo $viewVar['localTrabalho']->Telefone; ?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
                         title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" required autofocus> 
             </div>
@@ -91,7 +99,7 @@
             </div>
             <hr>
                 <button type="submit" class="btn btn-success">Salvar</button>
-                <a href="http://<?php echo APP_HOST; ?>/home/" class="btn btn-outline-danger">Cancelar</a>
+                <a href="http://<?php echo APP_HOST; ?>/localTrabalho/Consultar" class="btn btn-outline-danger">Cancelar</a>
 
             </div> 
             </form>

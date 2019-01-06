@@ -48,11 +48,12 @@ class LocalTrabalhoDAO extends BaseDAO
             $telefone = $registro->getTelefone();
             $email = $registro->getEmail();
             $idUsuarioInclusao = $registro->getidUsuarioInclusao();
+            $cep = $registro->getCep();
 
             
             return $this->insert(
                 'sfm_local_trabalho',
-                ":CD_Local_Trabalho,:NM_Fantasia,:NM_Rua,:NM_Bairro, :NO_Endereco, :ID_Cidade, :CNPJ, :Telefone, :Email, :ID_Usuario_Inclusao",
+                ":CD_Local_Trabalho,:NM_Fantasia,:NM_Rua,:NM_Bairro, :NO_Endereco, :ID_Cidade, :CNPJ, :Telefone, :Email, :ID_Usuario_Inclusao, :CEP",
                 [
                     ':CD_Local_Trabalho' => $sgLocal,
                     ':NM_Fantasia' => $nmFantasia,
@@ -63,7 +64,8 @@ class LocalTrabalhoDAO extends BaseDAO
                     ':CNPJ' => $cnpj, 
                     ':Telefone' => $telefone, 
                     ':Email' => $email, 
-                    ':ID_Usuario_Inclusao' => $idUsuarioInclusao
+                    ':ID_Usuario_Inclusao' => $idUsuarioInclusao,
+                    ':CEP' => $cep
                 ]
             );
 
@@ -143,10 +145,11 @@ class LocalTrabalhoDAO extends BaseDAO
             $telefone = $registro->getTelefone();
             $email = $registro->getEmail();
             $id = $registro->getId();
+            $cep = $registro->getCep();
             
             return $this->update(
                 'sfm_local_trabalho',
-                "CD_Local_Trabalho = :CD_Local_Trabalho, NM_Fantasia = :NM_Fantasia, NM_Rua = :NM_Rua, NM_Bairro = :NM_Bairro, NO_Endereco = :NO_Endereco, ID_Cidade = :ID_Cidade, CNPJ = :CNPJ, Telefone = :Telefone, Email = :Email",
+                "CD_Local_Trabalho = :CD_Local_Trabalho, NM_Fantasia = :NM_Fantasia, NM_Rua = :NM_Rua, NM_Bairro = :NM_Bairro, NO_Endereco = :NO_Endereco, ID_Cidade = :ID_Cidade, CNPJ = :CNPJ, Telefone = :Telefone, Email = :Email, CEP = :CEP",
                     [
                         ':CD_Local_Trabalho' => $sgLocal,
                         ':NM_Fantasia' => $nmFantasia,
@@ -157,7 +160,8 @@ class LocalTrabalhoDAO extends BaseDAO
                         ':CNPJ' => $cnpj, 
                         ':Telefone' => $telefone, 
                         ':Email' => $email, 
-                        ':ID_Local_Trabalho' => $id
+                        ':ID_Local_Trabalho' => $id,
+                        ':CEP' => $cep
                     ],
                     "ID_Local_Trabalho = :ID_Local_Trabalho"
             );

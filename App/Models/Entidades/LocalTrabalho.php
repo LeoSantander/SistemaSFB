@@ -18,6 +18,7 @@ class LocalTrabalho
     private $email;
     private $dtCadastro;
     private $idUsuarioInclusao;
+    private $cep;
 
     public function getId()
     {
@@ -137,6 +138,16 @@ class LocalTrabalho
     public function setidUsuarioInclusao($idUsuarioInclusao)
     {
         $this->idUsuarioInclusao = $idUsuarioInclusao;
+    }
+
+    public function getCep()
+    {
+        return $this->cep;
+    }
+
+    public function setCep($cep)
+    {
+        $this->cep = $cep;
     }
 }
 ?>

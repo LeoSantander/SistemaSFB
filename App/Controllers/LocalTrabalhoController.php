@@ -67,6 +67,7 @@ class LocalTrabalhoController extends Controller
         $registro->setIDCidade($_POST['cidade']);
         $registro->setTelefone($_POST['telefone']);
         $registro->setEmail($_POST['email']);
+        $registro->setCep($_POST['cep']);
         //ID_Usuario ja esta na Sessão
         $registro->setidUsuarioInclusao(Sessao::retornaidUsuario());
 
@@ -158,6 +159,7 @@ class LocalTrabalhoController extends Controller
         $registro->setIDCidade($_POST['cidade']);
         $registro->setTelefone($_POST['telefone']);
         $registro->setEmail($_POST['email']);
+        $registro->setCep($_POST['cep']);
 
         Sessao::gravaFormulario($_POST);
         
