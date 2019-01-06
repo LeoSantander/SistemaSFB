@@ -125,7 +125,7 @@ class LocalTrabalhoDAO extends BaseDAO
     public function pegarLocal($id)
     {
         $query = $this->select(
-            "SELECT *
+            "SELECT *, ID_Cidade as CIDADE
              FROM sfm_local_trabalho 
              WHERE ID_Local_Trabalho = $id"
         );

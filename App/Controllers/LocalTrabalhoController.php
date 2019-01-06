@@ -173,7 +173,7 @@ class LocalTrabalhoController extends Controller
         $localTrabalhoDAO->atualizar($registro);
         
         Sessao::limpaFormulario();
-        Sessao::gravaSucesso("Local de Trabalho alterado com Sucesso");
+        Sessao::gravaSucesso($registro->getNMFantasia()." alterado com Sucesso");
         $this->redirect('/localTrabalho/consultar');
 
     }

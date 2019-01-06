@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h3>Cadastro de Local de Trabalho</h3>
+            <h3>Alterar Local de Trabalho</h3>
             <hr>
             <?php if($Sessao::retornaMensagem()){ ?>
                 <div class="alert alert-warning" role="alert">
@@ -70,12 +70,14 @@
                            title="Preencha conforme solicitado" onkeydown="javascript: fMasc( this, mCEP );" required autofocus> 
                 </div>
             </div>
-            
             <div class="form-group">   
                 <label for="cidade">Cidade:</label>
                 <select class="form-control" name= "cidade" value="" required>
                     <option name= "cidade" value="">Selecione uma Cidade</option>
-		            <?php foreach($viewVar['listarCidades'] as $cidades){?>
+		            <?php foreach($viewVar['listarCidades'] as $cidades){
+                        if ($cidades->ID_Cidade == $viewVar['localTrabalho']->CIDADE){?>
+                            <option selected name="cidade" value= "<?php echo $cidades->ID_Cidade;?>"><?php echo $cidades->NM_Cidade;?> - <?php echo $cidades->CD_Estado;?></option>
+                        <?php } ?>
                         <option name="cidade" value= "<?php echo $cidades->ID_Cidade;?>"><?php echo $cidades->NM_Cidade;?> - <?php echo $cidades->CD_Estado;?></option>
                     <?php } ?>
                 </select>
