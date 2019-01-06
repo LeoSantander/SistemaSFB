@@ -68,7 +68,7 @@
                 <td><?php echo $locais->Telefone;?></td>
 			    <td><?php echo $locais->Email;?></td>
 			    <td align="center">
-				    <a href='#' class="btn btn-info btn-sm">Editar</a>
+				    <a href='http://<?php echo APP_HOST;?>/localTrabalho/alterar/<?php echo $locais->ID_Local_Trabalho?>' class="btn btn-info btn-sm">Editar</a>
                     <a href='#' class="btn btn-secondary btn-sm" id="details-row" data-toggle="modal" data-target="#exampleModalCenter"
                                data-sigla="<?php echo $locais->CD_Local_Trabalho;?>"
                                data-fantasia="<?php echo $locais->NM_Fantasia;?>"

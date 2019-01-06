@@ -119,5 +119,67 @@ class LocalTrabalhoDAO extends BaseDAO
             throw new \Exception("Erro ao excluir Local",500);
         }
     }
+
+    public function pegarLocal($id)
+    {
+        $query = $this->select(
+            "SELECT *
+             FROM sfm_local_trabalho 
+             WHERE ID_Local_Trabalho = $id"
+        );
+            return $query->fetchObject(LocalTrabalho::class);
+    }
+
+    public function atualizar(LocalTrabalho $registro)
+    {
+        try{
+            $sgLocal = $registro->getSgLocal();
+            $nmFantasia = $registro->getNMFantasia();
+            $cnpj = $registro->getCNPJ();
+            $rua = $registro->getRua();
+            $bairro = $registro->getBairro();
+            $numero = $registro->getNumero();
+            $ID_Cidade = $registro->getIDCidade();
+            $telefone = $registro->getTelefone();
+            $email = $registro->getEmail();
+            $id = $registro->getId();
+            
+            return $this->update(
+                'sfm_local_trabalho',
+                "CD_Local_Trabalho = :CD_Local_Trabalho, NM_Fantasia = :NM_Fantasia, NM_Rua = :NM_Rua, NM_Bairro = :NM_Bairro, NO_Endereco = :NO_Endereco, ID_Cidade = :ID_Cidade, CNPJ = :CNPJ, Telefone = :Telefone, Email = :Email",
+                    [
+                        ':CD_Local_Trabalho' => $sgLocal,
+                        ':NM_Fantasia' => $nmFantasia,
+                        ':NM_Rua' => $rua,
+                        ':NM_Bairro' => $bairro, 
+                        ':NO_Endereco' => $numero, 
+                        ':ID_Cidade' => $ID_Cidade, 
+                        ':CNPJ' => $cnpj, 
+                        ':Telefone' => $telefone, 
+                        ':Email' => $email, 
+                        ':ID_Local_Trabalho' => $id
+                    ],
+                    "ID_Local_Trabalho = :ID_Local_Trabalho"
+            );
+        }
+        catch (\Exception $e){
+            throw new \Exception("Erro na gravação de dados.",500);
+        }
+    }
+
+    public function verificaAlteracao($cnpj, $id)
+    {
+        try {
+
+            $query = $this->select(
+                "SELECT * FROM sfm_local_trabalho WHERE ID_Local_Trabalho <> '$id' AND CNPJ = '$cnpj' "
+            );
+
+            return $query->fetch();
+
+        }catch (Exception $e){
+            throw new \Exception("Erro no acesso aos dados.", 500);
+        }
+    }
 }
 ?>
