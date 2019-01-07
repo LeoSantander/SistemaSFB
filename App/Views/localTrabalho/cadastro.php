@@ -37,7 +37,7 @@
                         oninvalid="this.setCustomValidity('Este campo deve estar preenchido e atender ao padrão exigido: 000.000.000-00')" onchange="try{setCustomValidity('')}catch(e){}"  pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" 
                         onkeydown="javascript: fMasc( this, mCNPJ );"> 
             </div>
-            
+            <br>
             <h5>Endereço:</h5>
             <hr>
             <div class="form-row">
