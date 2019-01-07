@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\DAO;
+namespace App\Models\DAO; 
 
 use App\Models\Entidades\Estado;
 

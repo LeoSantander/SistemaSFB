@@ -5,7 +5,7 @@
                 <td align="right"><a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/estado/cadastro">+ Adicionar Estado</a></td>
             </tr>   
     </table>
-    <hr>
+    <hr> 
 
     <?php if(!count($viewVar['listarEstados'])){?>
         <div class="alert alert-info" role="alert">Nenhum Estado Encontrado!</div>

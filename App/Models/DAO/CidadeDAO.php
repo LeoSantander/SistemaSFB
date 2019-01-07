@@ -69,7 +69,7 @@ class CidadeDAO extends BaseDAO
     {
         //Selecionando no Banco de Dados
         $query = $this->select(
-            "SELECT sfm_cidade.ID_Cidade, sfm_cidade.NM_Cidade, sfm_estado.NM_Estado, sfm_estado.CD_Estado  FROM sfm_cidade INNER JOIN sfm_estado ON sfm_estado.ID_Estado = sfm_cidade.ID_Estado"
+            "SELECT sfm_cidade.ID_Cidade, sfm_cidade.NM_Cidade, sfm_estado.NM_Estado, sfm_estado.CD_Estado  FROM sfm_cidade INNER JOIN sfm_estado ON sfm_estado.ID_Estado = sfm_cidade.ID_Estado ORDER BY NM_Cidade"
         );
         return $query->fetchAll(\PDO::FETCH_CLASS, Cidade::class);
     }
@@ -82,6 +82,26 @@ class CidadeDAO extends BaseDAO
         );
 
         return $query->fetchObject(Cidade::class);
+    }
+
+    //verificando se tem algum local de trabalho esta relacionado ao id
+    public function verificaLocaldeTrabalho($idCidade){
+
+        $query = $this->select(
+            "SELECT * FROM sfm_local_trabalho WHERE ID_Cidade = $idCidade"
+        );
+
+        return $query->fetch(); 
+    }
+
+    //verificando se tem algum local de trabalho esta relacionado ao id
+    public function verificaAssociado($idCidade){
+
+        $query = $this->select(
+            "SELECT * FROM sfm_associados WHERE ID_Cidade = $idCidade"
+        );
+
+        return $query->fetch(); 
     }
 
     public function excluir(Cidade $registro)

@@ -95,7 +95,18 @@ class CidadeController extends Controller
         $cidade->setIdCidade($_POST['id']);
 
         $cidadeDAO = new CidadeDAO();
-        
+
+        if($cidadeDAO->verificaLocaldeTrabalho($cidade->getIdCidade()) and $cidadeDAO->verificaAssociado($cidade->getIdCidade())){
+            Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Local de Trabalho e Associados!");
+            $this->redirect('/cidade/consultar');
+        }else if($cidadeDAO->verificaLocaldeTrabalho($cidade->getIdCidade())){
+            Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Local de Trabalho!");
+            $this->redirect('/cidade/consultar');
+        }else if($cidadeDAO->verificaAssociados($cidade->getIdCidade())){
+            Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Associado!");
+            $this->redirect('/cidade/consultar');
+        }
+
         if(!$cidadeDAO->excluir($cidade))
         {
             Sessao::gravaMensagem("Cidade inválida");
