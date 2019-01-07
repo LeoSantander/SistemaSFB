@@ -15,6 +15,11 @@ class DependenteController extends Controller
 
     public function cadastro()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+
         $this->render('/dependente/cadastro');
 
         Sessao::limpaMensagem();
@@ -37,6 +42,12 @@ class DependenteController extends Controller
 
         $dependenteDAO = new DependenteDAO();
 
+        if($dependenteDAO->verificaCPF($_POST['cpf']))
+        {
+            Sessao::gravaMensagem("CPF já associado a um dependente!");
+            $this->redirect('/dependente/cadastro');
+        }
+
         if($dependenteDAO->salvar($registro))
         {
             Sessao::limpaFormulario();
@@ -52,9 +63,15 @@ class DependenteController extends Controller
 
     public function consultar()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+
+        $busca = $_POST['buscar'];
         $dependenteDAO = new DependenteDAO();
 
-        self::setViewParam('listarDependentes',$dependenteDAO->listarDependentes());
+        self::setViewParam('listarDependentes',$dependenteDAO->listarDependentes($busca));
         $this->render('/dependente/consultar');
 
         Sessao::limpaMensagem();
@@ -77,5 +94,60 @@ class DependenteController extends Controller
 
         Sessao::gravaSucesso("Dependente Excluído com sucesso!");
         $this->redirect('/dependente/consultar');
+    }
+
+    public function alterar($params)
+    {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+        
+        $id = $_POST['id'];
+        if ($id == null){
+            $id = $params[0];
+        }
+        $dependenteDAO = new DependenteDAO();
+        $dependente = $dependenteDAO->pegarDependente($id);
+
+        if(!$dependente)
+        {
+            Sessao::gravaMensagem("Dependente Inválido");
+            $this->redirect('/dependente/consultar');
+        }
+
+        self::setViewParam('dependente',$dependente);
+        $this->render('/dependente/alterar');
+        Sessao::limpaMensagem();
+    }
+
+    public function atualizar()
+    {
+        $id = $_POST['id'];
+        $cpf = $_POST['cpf'];
+
+        $registro = new Dependente();
+        $registro->setCpf($cpf);
+        $registro->setDataNascimento($_POST['dataNasc']);
+        $registro->setGrauDependencia($_POST['grau']);
+        //$registro->setIdAssociado($_POST['associado']);
+        $registro->setIdDependente($id);
+        $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
+        $registro->setNome($_POST['nome']);
+        $registro->setRg($_POST['rg']);
+
+        $dependenteDAO = new DependenteDAO();
+
+        if($dependenteDAO->verificaAlteracao($cpf,$id))
+        {
+            Sessao::gravaMensagem("CPF já associado a um dependente!");
+            $this->redirect('/dependente/alterar/'.$id);
+        }
+
+        $dependenteDAO->atualizar($registro);
+        Sessao::limpaFormulario();
+        Sessao::gravaSucesso("Dependente Alterado com Sucesso!");
+        $this->redirect('/dependente/consultar');
+
     }
 }

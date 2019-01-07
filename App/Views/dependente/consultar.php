@@ -1,16 +1,22 @@
-<?php
-//Solicitando login para acessar o sistema
-    if(!($Sessao::retornaUsuario())){
-        $Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
-        $this->redirect('login/');
-    }
-?>
-
 <div class="container">
     
     <table width="100%">
             <tr>
-                <td><h3>Dependentes Cadastrados</h3></td>
+                <td><h3>Dependentes Cadastrados</h3></td>  
+            </tr>
+            <tr>
+                <td>
+                    <form action="#" method="post" id="form_cadastro">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" name="buscar" value="<?php echo $Sessao::retornaValorFormulario('buscar'); ?>" class="form-control input-lg" placeholder="Buscar" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info btn sm" type="submit">Buscar</button>
+                            </span>
+                        </div>
+                    </div>
+                    </form>
+                </td>
                 <td align="right"><a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/dependente/cadastro">+ Adicionar Dependente</a></td>
             </tr>
         </table>
@@ -18,7 +24,7 @@
     <hr>
 
     <?php if(!count($viewVar['listarDependentes'])){?>
-        <div class="alert alert-info" role="alert">Nenhum Dependente Encontrado!  <a class="btn btn-dark btn-sm" href="http://<?php echo APP_HOST; ?>/dependente/cadastro">Cadastre</a></div>
+        <div class="alert alert-info" role="alert">Nenhum Dependente Encontrado!</div>
     <?php }?>
 
     <?php if($Sessao::retornaMensagem()){//Retorna mensagem de erro?>
@@ -52,7 +58,7 @@
                         <td align="center" class="text-danger">Sem Associados</td>
                         <td align="center"><?php echo $dependente->NM_Grau;?></td>
                         <td align="center">
-                            <a class="btn btn-info btn-sm" href="#">Editar</a>
+                            <a class="btn btn-info btn-sm" href="http://<?php echo APP_HOST;?>/dependente/alterar/<?php echo $dependente->ID_Dependente?>">Editar</a>
                             <a href='#' class="btn btn-secondary btn-sm" id="details-row" data-toggle="modal" data-target="#exampleModalCenter"
                                data-nome="<?php echo $dependente->NM_Dependente;?>"
                                data-rg=  "<?php echo $dependente->RG;?>"
@@ -70,6 +76,7 @@
                 <?php }?>
             </tbody>
         </table>
+        <a href='http://<?php echo APP_HOST; ?>/dependente/consultar/' class="btn btn-info btn sm">Listar Tudo</a>
     </div>
     
 </div>
@@ -109,19 +116,24 @@
                 </button>
             </div>
             <div class="modal-body">
-            
+            <form action="http://<?php echo APP_HOST; ?>/dependente/alterar" method="post">
+                <input type="hidden" class="form-control" name="id" id="idUpdate">
+                
+                <h5>Dados Cadastrais</h5>
                 <strong>Nome: </strong>  <span id="nomeItemDetalhe"></span><br>
                 <strong>RG: </strong> <span id="rgItem"></span><br>
                 <strong>CPF: </strong> <span id="cpfItem"></span><br>
-                <strong>Data Nascimento: </strong><span id="dataItem"></span><br>
+                <strong>Data Nascimento: </strong><span id="dataItem"></span><br><br>
+                
+                <h5>Dados do Associado</h5>
                 <strong>Associado: </strong><span id="associadoItem" class="text-danger">Sem associados</span><br>
                 <strong>Grau de Dependência: </strong> <span id="grauItem"></span>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
-                <a class="btn btn-info btn-sm" href="#">Editar</a>
+                <button type="submit" class="btn btn-info btn-sm">Editar</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -158,13 +170,15 @@
             });
 
             $("a#details-row").click(function() {
-                id_delete = $(this).attr('data-id');
+                id_detail = $(this).attr('data-id');
                 nome = $(this).attr('data-nome');
                 rg = $(this).attr('data-rg');
                 cpf = $(this).attr('data-cpf');
                 datanasc = $(this).attr('data-nasc');
                 //associado = $(this).attr('data-associado');
                 grau = $(this).attr('data-grau');
+
+                document.getElementById('idUpdate').value = id_detail;
 
                 rTitulo.innerHTML = nome;
                 rNome.innerHTML = nome;
