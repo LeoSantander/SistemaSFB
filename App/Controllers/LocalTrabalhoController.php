@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Lib\Sessao;
 use App\Models\DAO\LocalTrabalhoDAO;
 use App\Models\DAO\CidadeDAO;
+use App\Models\DAO\EstadoDAO;
 use App\Models\Entidades\LocalTrabalho;
 
 class LocalTrabalhoController extends Controller
@@ -17,8 +18,11 @@ class LocalTrabalhoController extends Controller
         }
 
         $cidadeDAO = new CidadeDAO();
-
         self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
+
+        $estadoDAO = new EstadoDAO();
+        self::setViewParam('listarEstados', $estadoDAO->listarEstados());
+
         $this->render('/localTrabalho/cadastro');
 
         Sessao::limpaFormulario();

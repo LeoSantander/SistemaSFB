@@ -64,15 +64,22 @@
                            title="Preencha de acordo com o que foi solicitado." onkeydown="javascript: fMasc( this, mCEP );" required autofocus> 
                     </div>
             </div>
-            <div class="form-group">        
-                <label for="cidade">Cidade:</label>
-	                <select name= "cidade" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('cidade'); ?>" required>
-                                <option name="cidade" value="">Selecione uma Cidade</option>            
-                                <?php foreach($viewVar['listarCidades'] as $cidade){?>
-	                                <option  name="cidade" value= "<?php echo $cidade->ID_Cidade;?>"><?php echo $cidade->NM_Cidade;?> - <?php echo $cidade->CD_Estado;?></option>
-                                <?php } ?>
+            <label for="cidade">Cidade:</label>
+            <div class="form-row">
+                <div class="form-group col-md-9">        
+                    
+	                    <select name= "cidade" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('cidade'); ?>" required>
+                            <option name="cidade" value="">Selecione uma Cidade</option>            
+                            <?php foreach($viewVar['listarCidades'] as $cidade){?>
+	                            <option  name="cidade" value= "<?php echo $cidade->ID_Cidade;?>"><?php echo $cidade->NM_Cidade;?> - <?php echo $cidade->CD_Estado;?></option>
+                            <?php } ?>
                         </select> 
                 </div>
+                <div class="form-group col-md-3"> 
+                
+                    <a class="btn btn-success" href="#" data-toggle="modal" data-placement="bottom" data-target="#myModal" aria-hidden="true">+ Nova Cidade</a>
+                </div>
+            </div>
             <br>
             <h5>Contato:</h5>
             <hr>
@@ -98,3 +105,50 @@
         <div class=" col-md-3"></div>
     </div>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Adicionar nova Cidade</span></h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+				<div class="modal-body">
+					<!--Montando o formulário-->
+                    <form action="http://<?php echo APP_HOST; ?>/cidade/salvar" method="post">
+                <!-- Só um campo para validar na action e depois retornar na view -->
+                <input type="hidden" class="form-control"  name="id" placeholder="" value="LC"> 
+                
+                <!--Campo Nome-->
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control"  name="nome" placeholder="Ex: Ourinhos" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>" 
+                           required pattern="[A-Za-zÀ-ú ]{0,}" 
+                           title="Não use caracteres especiais ou números">
+                </div>
+
+                <!--Campo Estado-->
+            <div class="form-group">
+	        <label for="estado">Estado:</label>
+                    
+	        <!-- Inicie a ComboBox --> 
+	        <select required class="form-control" name= "estado" value="">
+                <option name= "estado" value="">Selecione um Estado</option>
+
+		        <?php foreach($viewVar['listarEstados'] as $estados){?>
+	                <option  name="estado" value= "<?php echo $estados->ID_Estado;?>"><?php echo $estados->NM_Estado;?> - <?php echo $estados->CD_Estado;?></option>
+                <?php } ?>
+                
+            </select> 
+            </div> 
+				</div>
+
+				<div class="modal-footer">
+				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-success">Salvar</button>
+				</div>
+			</div>
+		</div>
+	</div>
