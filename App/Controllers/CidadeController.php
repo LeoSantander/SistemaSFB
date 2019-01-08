@@ -39,6 +39,7 @@ class CidadeController extends Controller
     {
         //instancia novo objeto
         $registro = new Cidade();
+        $lc = $_POST['id'];
         $registro->setNome($_POST['nome']);
         $registro->setIdEstado($_POST['estado']);
         $registro->setIdUsuario(Sessao::retornaidUsuario());
@@ -59,10 +60,18 @@ class CidadeController extends Controller
         //salvar no banco
         if($cidadeDAO->salvar($registro))
         {
-            Sessao::limpaFormulario();
-            Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
+            if ($lc == 'LC'){
+                Sessao::limpaFormulario();
+                Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
 
-            $this->redirect('/cidade/cadastro');
+                $this->redirect('/localTrabalho/cadastro');  
+                
+            } else {
+                Sessao::limpaFormulario();
+                Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
+
+                $this->redirect('/cidade/cadastro');
+            }
         }
         else
         {
@@ -102,7 +111,7 @@ class CidadeController extends Controller
         }else if($cidadeDAO->verificaLocaldeTrabalho($cidade->getIdCidade())){
             Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Local de Trabalho!");
             $this->redirect('/cidade/consultar');
-        }else if($cidadeDAO->verificaAssociados($cidade->getIdCidade())){
+        }else if($cidadeDAO->verificaAssociado($cidade->getIdCidade())){
             Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Associado!");
             $this->redirect('/cidade/consultar');
         }

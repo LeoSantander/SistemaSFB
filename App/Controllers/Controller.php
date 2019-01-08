@@ -40,12 +40,13 @@ abstract class Controller
         header('Location: http://' . APP_HOST . $view);
         exit;
     }
+    
 
     public function redirectMain($view)
     {
 
         ?>
-        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=<?php echo ('http://' . APP_HOST . $view);?>">
+        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=">
         <?php
         exit;
     }

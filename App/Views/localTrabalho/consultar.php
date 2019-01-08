@@ -57,7 +57,7 @@
     <thead class="thead-light">
         <tr align="center">
             <th scope="col">Nome</th>
-            <th width="10%" scope="col">Telefone</th>
+            <th width="13%" scope="col">Telefone</th>
             <th width="20%" scope="col">Email</th>
             <th width="30%" scope="col">Ações</th>
         </tr>
