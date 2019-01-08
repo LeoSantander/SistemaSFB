@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Lib\Sessao;
 use App\Models\DAO\DependenteDAO;
+use App\Models\DAO\EstadoDAO;//alterar para AssociadoDAO
 use App\Models\Entidades\Dependente;
 
 class DependenteController extends Controller
@@ -19,6 +20,11 @@ class DependenteController extends Controller
             Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
             $this->redirect('login/');
         }
+
+        //$associadoDAO = new AssociadoDAO();
+        //self::setViewParam('listarAssociados',$associadoDAO->listarAssociados());
+        $associadoDAO = new EstadoDAO();
+        self::setViewParam('listarAssociados',$associadoDAO->listarEstados());
 
         $this->render('/dependente/cadastro');
 

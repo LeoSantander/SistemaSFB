@@ -46,24 +46,31 @@
                 </div>
 
                 <br><h5>Dados do Associado</h5><hr>
+                
+                <!--PRECISA ALTERAR QUANDO TIVER ASSOCIADOS,por enquanto está usando ESTADOS-->
+                <div class="form-row">
+                    <div class="form-group col-md-7">
+                        <label for="associado">Associado:</label>
+                        <input list="list-associados" id="associado" name="associado" class="form-control" placeholder="Digite ou Selecione um Associado">
+                        <input type="hidden" name="idAssociado" id="idAssociado" value="">
+                        <datalist id="list-associados">
+                        <select >
+                            <?php foreach($viewVar['listarAssociados'] as $associado){?>
+                                <option data-id="<?php echo $associado->ID_Estado;?>" value="<?php echo $associado->NM_Estado;?>"><?php echo $associado->NM_Estado;?></option>
+                            <?php } ?>
+                        </select>
+                        </datalist>
+                    </div> 
 
-                <div class="form-group">
-                    <label for="associado">Associado:</label>
-                    <select class="form-control" name="associado" value="" disabled>
-                        <option name="associado">Selecione um Associado</option>
-                    </select>
-                    <span class="text-danger">Não é possivel selecionar um Associado no momento</span>
+                    <div class="form-group col-md-5">
+                        <label for="grau">Grau de Dependência:</label>
+                        <select class="form-control" name="grau" value="<?php echo $Sessao::retornaValorFormulario('grau'); ?>" required>
+                            <option name="grau" value="">Selecione um Grau</option>
+                            <option name="grau" value="Cônjuge">Cônjuge</option>
+                            <option name="grau" value="Filho(a)">Filho(a)</option>
+                        </select>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="grau">Grau de Dependência:</label>
-                    <select class="form-control" name="grau" value="<?php echo $Sessao::retornaValorFormulario('grau'); ?>" required>
-                        <option name="grau" value="">Selecione um Grau de Dependência</option>
-                        <option name="grau" value="Cônjuge">Cônjuge</option>
-                        <option name="grau" value="Filho(a)">Filho(a)</option>
-                    </select>
-                </div>
-
                 <div>
                     <button type="submit" class="btn btn-success">Salvar</button>
                     <a href="http://<?php echo APP_HOST; ?>/home/" class="btn btn-outline-danger">Cancelar</a>
@@ -73,3 +80,13 @@
         <div class="col-md-3"></div>
     </div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $("input#associado").focusout(function(){
+        var valor = $('input#associado').val();
+        var teste = $('#list-associados [value="' + valor + '"]').data('id');
+        document.getElementById("idAssociado").setAttribute('value', teste);
+    });
+});
+</script>
