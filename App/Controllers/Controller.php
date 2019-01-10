@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Lib\Sessao;
+use App\Lib\fpdf181\fpdf;
 
 abstract class Controller
 {

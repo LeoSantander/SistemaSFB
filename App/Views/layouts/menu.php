@@ -71,6 +71,9 @@
                 </li>
             </ul>
         </li>
+        <li <?php if($viewVar['nameController'] == "RelatorioController") { ?> class="nav-item active" <?php } ?>>
+          <a class="nav-link" href="http://<?php echo APP_HOST; ?>/relatorio/gerar">Relatório <span class="sr-only">(current)</span></a>
+        </li>
     </ul>
     </ul>
   </div>
