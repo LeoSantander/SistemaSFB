@@ -66,7 +66,14 @@ class CidadeController extends Controller
 
                 $this->redirect('/localTrabalho/cadastro');  
                 
-            } else {
+            } else if($lc == 'AS'){
+
+                Sessao::limpaFormulario();
+                Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
+
+                $this->redirect('/associado/cadastro');
+            }
+            else{
                 Sessao::limpaFormulario();
                 Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
 

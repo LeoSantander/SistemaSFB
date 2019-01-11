@@ -64,6 +64,7 @@
                            title="Preencha de acordo com o que foi solicitado." onkeydown="javascript: fMasc( this, mCEP );" required autofocus> 
                     </div>
             </div>
+
             <label for="cidade">Cidade:</label>
             <div class="form-row">
                 <div class="form-group col-md-9">        
@@ -80,6 +81,7 @@
                     <a class="btn btn-success" href="#" data-toggle="modal" data-placement="bottom" data-target="#myModal" aria-hidden="true">+ Nova Cidade</a>
                 </div>
             </div>
+            
             <br>
             <h5>Contato:</h5>
             <hr>

@@ -26,6 +26,8 @@ class Associado
     private $cargo;
     private $dataCadastro;
     private $idUsuarioInclusao;
+    private $situacao;
+    private $Cep;
 
 
     //Id Associado.
@@ -59,11 +61,11 @@ class Associado
     }
 
     //CPF.
-    public function getCPF()
+    public function getCpf()
     {
         return $this->cpf;
     }
-    public function setCPF($cpf)
+    public function setCpf($cpf)
     {
         $this->cpf = $cpf;
     }
@@ -179,13 +181,13 @@ class Associado
     }
 
     //ID Local de Trabalho.
-    public function getIdLocaldeTrabalho()
+    public function getLocaldeTrabalho()
     {
-        return $this->idLocaldeTrabalho;
+        return $this->LocaldeTrabalho;
     }
-    public function setIdLocaldeTrabalho($idLocaldeTrabalho)
+    public function setLocaldeTrabalho($idLocaldeTrabalho)
     {
-        $this->idLocaldeTrabalho = $idLocaldeTrabalho;
+        $this->LocaldeTrabalho = $idLocaldeTrabalho;
     }
 
     //Cargo.
@@ -216,5 +218,25 @@ class Associado
     public function setIdUsuarioInclusao($idUsuarioInclusao)
     {
         $this->idUsuarioInclusao = $idUsuarioInclusao;
+    }
+
+    //Situação
+    public function getSituacao()
+    {
+        return $this->situacao;
+    }
+    public function setSituacao($situacao)
+    {
+        $this->situacao = $situacao;
+    }
+
+    //CEP
+    public function getCep()
+    {
+        return $this->cep;
+    }
+    public function setCep($Cep)
+    {
+        $this->cep = $Cep;
     }
 }

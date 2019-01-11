@@ -72,6 +72,7 @@ class LocalTrabalhoController extends Controller
         $registro->setTelefone($_POST['telefone']);
         $registro->setEmail($_POST['email']);
         $registro->setCep($_POST['cep']);
+        $lc = $_POST['id'];
         //ID_Usuario ja esta na Sessão
         $registro->setidUsuarioInclusao(Sessao::retornaidUsuario());
 
@@ -91,10 +92,19 @@ class LocalTrabalhoController extends Controller
         }
 
         if($localTrabalhoDAO->salvar($registro)){
-            Sessao::limpaFormulario();
-            Sessao::gravaSucesso($registro->getNMFantasia()." cadastrado com Sucesso");
-            $this->redirect('/localTrabalho/cadastro');            
-            //$this->redirect('/usuario/sucesso');
+            if ($lc == 'AS')
+            {
+                Sessao::limpaFormulario();
+                Sessao::gravaSucesso("Local cadastrado com Sucesso");
+
+                $this->redirect('/associado/cadastro');  
+                
+            }else{
+                Sessao::limpaFormulario();
+                Sessao::gravaSucesso($registro->getNMFantasia()." cadastrado com Sucesso");
+                $this->redirect('/localTrabalho/cadastro');            
+                //$this->redirect('/usuario/sucesso');
+            }
         }else{
             Sessao::gravaMensagem("Erro ao gravar");
         }

@@ -57,8 +57,8 @@
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Associados</a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Adicionar Novo Associado</a>
-                    <a class="dropdown-item" href="#">Consultar Associados</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/associado/cadastro">Adicionar Novo Associado</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/associado/consultar">Consultar Associados</a>
                   </div>
                 </li> 
 
