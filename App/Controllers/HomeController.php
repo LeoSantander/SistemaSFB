@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Lib\Sessao;
 use App\Models\DAO\UsuarioDAO;
+use App\Models\DAO\AssociadoDAO;
 use App\Models\Entidades\Usuario;
 
 class HomeController extends Controller
@@ -18,6 +19,10 @@ class HomeController extends Controller
         $usuarioDAO = new UsuarioDAO();
         $qtdUsuarios= $usuarioDAO->ContaUsuarios();
         Sessao::gravaQtdUsuarios($qtdUsuarios); 
+
+        $associadoDAO = new AssociadoDAO();
+        $qtdAssociados = $associadoDAO->ContaAssociados();
+        Sessao::gravaQtdAssociados($qtdAssociados);
         
         $user= Sessao::retornaUsuario();
         $pwd = Sessao::retornaSenha();

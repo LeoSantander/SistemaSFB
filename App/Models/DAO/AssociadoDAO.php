@@ -72,6 +72,19 @@ class AssociadoDAO extends BaseDAO
             throw new \Exception ("Erro no acesso aos dados!",500);
         }
     }
+
+    public function ContaAssociados()
+    {
+        try {
+            $query = $this->select(
+                "SELECT * FROM sfm_associados WHERE ST_Situacao = 'Ativo'"
+            );
+            return $query->rowCount();
+            
+        }catch (Exception $e){
+            throw new \Exception("Erro no acesso aos dados.", 500);
+        }
+    }
     
    
 }

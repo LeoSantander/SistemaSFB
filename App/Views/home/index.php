@@ -15,10 +15,10 @@
                 <td><strong>Resumo:</strong></td>
             </tr>
             <tr>
-                <td align ='center'><h3>0</h3> Associados Ativos</td>
+                <td align ='center'><h3><?php if ($Sessao::retornaqtdAssociados()==''){ echo 0; }else{ echo $Sessao::retornaqtdAssociados();}?></h3>  Associados Ativos</td>
                 <!--Informações sobre Usuários | Só vai aparecer se TPUsuário Logado for = Administrador -->
                 <?php if ($Sessao::retornaTPUsuario() == 'Administrador'){?>
-                    <td align ='center'><h3><?php echo $Sessao::retornaqtdUsuarios()?></h3> Usuarios Cadastrados</td>
+                    <td align ='center'><h3><?php echo $Sessao::retornaqtdUsuarios();?></h3> Usuarios Cadastrados</td>
                 <?php } ?>
             </tr>
             </table>

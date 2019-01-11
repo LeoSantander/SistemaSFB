@@ -56,6 +56,15 @@ class Sessao
         return ($_SESSION['qtdUsuarios']) ? $_SESSION['qtdUsuarios'] : "";
     }
 
+    //grava quantidade de Associados do sistema
+    public static function gravaQtdAssociados($qtdAssoc){
+        $_SESSION['qtdAssoc'] = $qtdAssoc;
+    }
+
+    public static function retornaqtdAssociados(){
+        return ($_SESSION['qtdAssoc']) ? $_SESSION['qtdAssoc'] : "";
+    }
+
     //Grava Usuário na Sessão
     public static function gravaUsuario($usuario){
         $_SESSION['usuario'] = $usuario;

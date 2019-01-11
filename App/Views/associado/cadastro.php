@@ -147,7 +147,7 @@
                 <div class="form-group">
                         <label for="complemento">Complemento:</label>
                         <input type="text" class="form-control" name="complemento" placeholder="Casa" value="<?php echo $Sessao::retornaValorFormulario('complemento'); ?>" pattern="[A-Za-zÀ-ú ]{0,}" 
-                            title="Use somente letras. Não use caracteres especiais ou números." required autofocus> 
+                            title="Use somente letras. Não use caracteres especiais ou números."> 
                 </div>
 
                 <br><h5>Contato:</h5>
