@@ -18,6 +18,7 @@
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Boletos</a>
                   <div class="dropdown-menu">
+                    <a class="dropdown-item">Ainda não disponível</a>
                   </div>
                 </li>
 
