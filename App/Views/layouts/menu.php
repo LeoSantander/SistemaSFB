@@ -22,7 +22,7 @@
       <?php } ?>
 
       <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Locais</a>
+            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Localidade</a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                                 
                 <li class="dropdown-submenu">
@@ -40,12 +40,26 @@
                     <a class="dropdown-item" href="http://<?php echo APP_HOST;?>/cidade/consultar">Consultar Cidades</a>
                   </div>
                 </li>
-                
+            </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresas</a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                
                 <li class="dropdown-submenu">
-                  <a  class="dropdown-item" tabindex="-1" href="#">Local de Trabalho</a>
+                  <a  class="dropdown-item" tabindex="-1" href="#">Postos</a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/localTrabalho/cadastro">Adicionar Novo Local</a>
-                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/localTrabalho/consultar">Consultar Locais de Trabalho</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/localTrabalho/cadastro">Adicionar Novo Posto</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/localTrabalho/consultar">Consultar Postos</a>
+                  </div>
+                </li>
+
+                <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Escritórios de Contabilidade</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Adicionar Nova Cidade</a>
+                    <a class="dropdown-item" href="#">Consultar Cidades</a>
                   </div>
                 </li>
             </ul>
@@ -54,6 +68,14 @@
         <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Associados</a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Convênios</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Adicionar Novo Convênio</a>
+                    <a class="dropdown-item" href="#">Consultar Convênios</a>
+                  </div>
+                </li>
+                
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Associados</a>
                   <div class="dropdown-menu">
