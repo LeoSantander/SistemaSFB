@@ -1,3 +1,16 @@
+<style>
+  .navbar{
+    padding:0px 15px;
+  }
+  .nav-link{
+    padding:15px;
+  }
+  .dropdown:hover>.dropdown-menu{
+    display:block;
+    top:95%;
+  }
+</style>
+
 <?php if ($Sessao::retornaTPUsuario() == 'Financeiro'){?>
 <!--Interface para Financeiro --> 
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#202020">
