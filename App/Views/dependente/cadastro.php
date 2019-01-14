@@ -51,12 +51,12 @@
                 <div class="form-row">
                     <div class="form-group col-md-7">
                         <label for="associado">Associado:</label>
-                        <input list="list-associados" id="associado" name="associado" class="form-control" placeholder="Digite ou Selecione um Associado">
+                        <input disabled list="list-associados" id="associado" name="associado" class="form-control" placeholder="Digite ou Selecione um Associado">
                         <input type="hidden" name="idAssociado" id="idAssociado" value="">
                         <datalist id="list-associados">
                         <select >
                             <?php foreach($viewVar['listarAssociados'] as $associado){?>
-                                <option data-id="<?php echo $associado->ID_Estado;?>" value="<?php echo $associado->NM_Estado;?>"><?php echo $associado->NM_Estado;?></option>
+                                <option data-id="<?php echo $associado->ID_Estado;?>" value="<?php echo $associado->NM_Estado;?>"></option>
                             <?php } ?>
                         </select>
                         </datalist>

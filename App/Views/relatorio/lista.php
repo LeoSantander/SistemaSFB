@@ -13,15 +13,15 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($viewVar['listarDependentes'] as $dependente) {?>
+                <?php foreach ($viewVar['listarCidades'] as $cidade) {?>
                     <tr>
-                        <td><?php echo $dependente->NM_Dependente;?></td>
-                        <td align="center"><?php echo $dependente->RG;?></td>
-                        <td align="center"><?php echo $dependente->CPF;?></td>
-                        <td align="center" class="text-danger">Sem Associados</td>
-                        <td align="center"><?php echo $dependente->NM_Grau;?></td>
-                        <td align="center"><?php echo $dependente->DH_Inclusao;?></td>
-                        <td align="center"><?php echo $dependente->NM_Usuario;?></td>
+                        <td><?php echo $cidade->NM_Cidade;?></td>
+                        <td align="center"><?php echo $cidade->NM_Estado;?></td>
+                        <td align="center"></td>
+                        <td align="center" class="text-danger"></td>
+                        <td align="center"></td>
+                        <td align="center"></td>
+                        <td align="center"></td>
                     </tr>
                 <?php }?>
             </tbody>
