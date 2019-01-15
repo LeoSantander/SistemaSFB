@@ -26,12 +26,13 @@ class AssociadoDAO extends BaseDAO
         $cargo = $associado->getCargo();
         $situacao = $associado->getSituacao();
         $Cep = $associado->getCep();
+        $salario = $associado->getSalario();
         $idUsuarioInclusao = $associado->getIdUsuarioInclusao();
 
         try{
             return $this->insert(
                 'sfm_associados',
-                ":NM_Associado, :RG, :CPF, :DT_Nascimento, :DT_Associacao, :Telefone, :Celular, :Email, :NM_Rua, :NM_Bairro, :NO_Endereco, :CEP, :Complemento, :ID_Cidade, :NO_Registro, :ID_Local_Trabalho, :Cargo, :ST_Situacao, :ID_Usuario_Inclusao",
+                ":NM_Associado, :RG, :CPF, :DT_Nascimento, :DT_Associacao, :Telefone, :Celular, :Email, :NM_Rua, :NM_Bairro, :NO_Endereco, :CEP, :Complemento, :ID_Cidade, :NO_Registro, :ID_Local_Trabalho, :Cargo, :ST_Situacao, :ID_Usuario_Inclusao, :VL_Salario",
                 [
                     ':NM_Associado'=>$nome,
                     ':RG'=>$rg,
@@ -51,6 +52,7 @@ class AssociadoDAO extends BaseDAO
                     ':ID_Local_Trabalho'=>$idLocaldeTrabalho,
                     ':Cargo'=>$cargo,
                     ':ST_Situacao'=>$situacao,
+                    ':VL_Salario'=>$salario,
                     ':ID_Usuario_Inclusao'=>$idUsuarioInclusao
                 ]
             );
@@ -80,11 +82,31 @@ class AssociadoDAO extends BaseDAO
                 "SELECT * FROM sfm_associados WHERE ST_Situacao = 'Ativo'"
             );
             return $query->rowCount();
-            
+
         }catch (Exception $e){
             throw new \Exception("Erro no acesso aos dados.", 500);
         }
     }
-    
-   
+
+   public function listarAssociados($busca = '')
+   {
+       if(isset($busca))
+       {
+           $query = $this->select(
+               "SELECT NM_Associado, RG, CPF, DT_Nascimento, DT_Associacao, Telefone, Celular, Email, NM_Rua, NM_Bairro, NO_Endereco, CEP, Complemento, ID_Cidade, NO_Registro, ID_Local_Trabalho, Cargo, ST_Situacao, VL_Salario
+                FROM sfm_associados
+                WHERE NM_Associado LIKE '%".$busca."%' ORDER BY NM_Associado AND ST_Situacao"
+            );
+           return $query->fetchAll(\PDO::FETCH_CLASS, Associado::class);
+       }
+       else
+       {
+           $query = $this->select(
+            "SELECT NM_Associado, RG, CPF, DT_Nascimento, DT_Associacao, Telefone, Celular, Email, NM_Rua, NM_Bairro, NO_Endereco, CEP, Complemento, ID_Cidade, NO_Registro, ID_Local_Trabalho, Cargo, ST_Situacao, VL_Salario
+             FROM sfm_associados
+             ORDER BY NM_Associado AND ST_Situacao"
+            );
+            return $query->fetchAll(\PDO::FETCH_CLASS, Associado::class);
+       }
+   }
 }

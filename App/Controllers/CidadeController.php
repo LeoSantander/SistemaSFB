@@ -67,7 +67,6 @@ class CidadeController extends Controller
                 $this->redirect('/localTrabalho/cadastro');  
                 
             } else if($lc == 'AS'){
-
                 Sessao::limpaFormulario();
                 Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
 

@@ -60,6 +60,7 @@ class AssociadoController extends Controller
         $registro->setCargo($_POST['cargo']);
         $registro->setSituacao($_POST['situacao']);
         $registro->setCep($_POST['cep']);
+        $registro->setSalario($_POST['salario']);
         $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
 
         Sessao::gravaFormulario($_POST);
@@ -87,11 +88,24 @@ class AssociadoController extends Controller
 
     public function consultar()
     {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
 
+        $busca = $_POST['buscar'];
+        $associadoDAO = new AssociadoDAO();
+
+        self::setViewParam('listarAssociados', $associadoDAO->listarAssociados($busca));
+        $this->render('/associado/consultar');
+
+        Sessao::limpaMensagem();
+        Sessao::limpaFormulario();
+        Sessao::limpaSucesso();
     }
 
     public function excluir()
     {
-        
+
     }
 }

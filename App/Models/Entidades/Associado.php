@@ -28,6 +28,7 @@ class Associado
     private $idUsuarioInclusao;
     private $situacao;
     private $Cep;
+    private $salario;
 
 
     //Id Associado.
@@ -238,5 +239,15 @@ class Associado
     public function setCep($Cep)
     {
         $this->cep = $Cep;
+    }
+
+    //Salário
+    public function getSalario()
+    {
+        return $this->salario;
+    }
+    public function setSalario($salario)
+    {
+        $this->salario = $salario;
     }
 }
