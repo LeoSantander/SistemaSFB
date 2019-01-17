@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Lib\Sessao;
 use App\Models\DAO\DependenteDAO;
-use App\Models\DAO\EstadoDAO;//alterar para AssociadoDAO
+use App\Models\DAO\AssociadoDAO;//alterar para AssociadoDAO
 use App\Models\Entidades\Dependente;
 
 class DependenteController extends Controller
@@ -21,10 +21,8 @@ class DependenteController extends Controller
             $this->redirect('login/');
         }
 
-        //$associadoDAO = new AssociadoDAO();
-        //self::setViewParam('listarAssociados',$associadoDAO->listarAssociados());
-        $associadoDAO = new EstadoDAO();
-        self::setViewParam('listarAssociados',$associadoDAO->listarEstados());
+        $associadoDAO = new AssociadoDAO();
+        self::setViewParam('listarAssociados',$associadoDAO->listarAssociados());
 
         $this->render('/dependente/cadastro');
 
@@ -40,13 +38,19 @@ class DependenteController extends Controller
         $registro->setRg($_POST['rg']);
         $registro->setCpf($_POST['cpf']);
         $registro->setDataNascimento($_POST['dataNasc']);
-        //$registro->setIdAssociado($_POST['idAssociado']);
+        $registro->setIdAssociado($_POST['idAssociado']);
         $registro->setGrauDependencia($_POST['grau']);
         $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
 
         Sessao::gravaFormulario($_POST);
 
         $dependenteDAO = new DependenteDAO();
+
+        if($_POST['idAssociado'] == "undefined")
+        {
+            Sessao::gravaMensagem("Associado não Encontrado!");
+            $this->redirect('/dependente/cadastro');
+        }
 
         if($dependenteDAO->verificaCPF($_POST['cpf']))
         {
@@ -108,7 +112,10 @@ class DependenteController extends Controller
             Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
             $this->redirect('login/');
         }
-        
+
+        $associadoDAO = new AssociadoDAO();
+        self::setViewParam('listarAssociados', $associadoDAO->listarAssociados());
+
         $id = $_POST['id'];
         if ($id == null){
             $id = $params[0];
@@ -136,13 +143,21 @@ class DependenteController extends Controller
         $registro->setCpf($cpf);
         $registro->setDataNascimento($_POST['dataNasc']);
         $registro->setGrauDependencia($_POST['grau']);
-        //$registro->setIdAssociado($_POST['associado']);
+        $registro->setIdAssociado($_POST['idAssociado']);
         $registro->setIdDependente($id);
         $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
         $registro->setNome($_POST['nome']);
         $registro->setRg($_POST['rg']);
 
         $dependenteDAO = new DependenteDAO();
+
+
+
+        if($_POST['idAssociado'] == "undefined")
+        {
+            Sessao::gravaMensagem("Associado não Encontrado!");
+            $this->redirect('/dependente/alterar/'.$id);
+        }
 
         if($dependenteDAO->verificaAlteracao($cpf,$id))
         {

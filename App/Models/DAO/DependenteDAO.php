@@ -12,21 +12,22 @@ class DependenteDAO extends BaseDAO{
         $rg = $dependente->getRg();
         $cpf = $dependente->getCpf();
         $dataNasc = $dependente->getDataNascimento();
-        //$idAssociado = $dependente->getIdAssociado();
+        $idAssociado = $dependente->getIdAssociado();
         $grauDependencia = $dependente->getGrauDependencia();
         $idUsuarioInclusao = $dependente->getIdUsuarioInclusao();
 
         try{
             return $this->insert(
                 'sfm_dependentes',
-                ":NM_Dependente, :NM_Grau, :RG,:DT_Nascimento, :CPF, :ID_Usuario_Inclusao",
+                ":NM_Dependente, :NM_Grau, :RG,:DT_Nascimento, :CPF, :ID_Usuario_Inclusao, :ID_Associado",
                 [
                     ':NM_Dependente'=>$nome,
                     ':RG'=>$rg,
                     ':CPF'=>$cpf,
                     ':DT_Nascimento'=>$dataNasc,
                     ':NM_Grau'=>$grauDependencia,
-                    ':ID_Usuario_Inclusao'=>$idUsuarioInclusao
+                    ':ID_Usuario_Inclusao'=>$idUsuarioInclusao,
+                    ':ID_Associado'=>$idAssociado
                 ]
             );
 
@@ -41,8 +42,17 @@ class DependenteDAO extends BaseDAO{
         if(isset($busca))
         {
             $query = $this->select(
-                "SELECT ID_Dependente, NM_Dependente, NM_Grau, RG, CPF, DT_Nascimento 
-                 FROM sfm_dependentes 
+                "SELECT
+                      sfm_dependentes.ID_Dependente,
+                      sfm_dependentes.NM_Dependente,
+                      sfm_dependentes.NM_Grau,
+                      sfm_dependentes.RG,
+                      sfm_dependentes.CPF,
+                      sfm_dependentes.DT_Nascimento,
+                      sfm_associados.NM_Associado as NM_Associado
+                 FROM sfm_dependentes
+                    INNER JOIN sfm_associados
+                    ON sfm_associados.ID_Associado = sfm_dependentes.ID_Associado
                  WHERE NM_Dependente LIKE '%".$busca."%' ORDER BY NM_Dependente"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Dependente::class);
@@ -50,8 +60,18 @@ class DependenteDAO extends BaseDAO{
         else
         {
             $query = $this->select(
-                "SELECT ID_Dependente, NM_Dependente, NM_Grau, RG, CPF, DT_Nascimento 
-                 FROM sfm_dependentes ORDER BY NM_Dependente"
+                "SELECT
+                      sfm_dependentes.ID_Dependente,
+                      sfm_dependentes.NM_Dependente,
+                      sfm_dependentes.NM_Grau,
+                      sfm_dependentes.RG,
+                      sfm_dependentes.CPF,
+                      sfm_dependentes.DT_Nascimento,
+                      sfm_associados.NM_Associado as NM_Associado
+                 FROM sfm_dependentes
+                    INNER JOIN sfm_associados
+                    ON sfm_associados.ID_Associado = sfm_dependentes.ID_Associado
+                 ORDER BY NM_Dependente"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Dependente::class);
         }
@@ -83,7 +103,7 @@ class DependenteDAO extends BaseDAO{
             $cpf = $dependente->getCpf();
             $data = $dependente->getDataNascimento();
             $grau = $dependente->getGrauDependencia();
-            //$idAssociado = $dependente->getIdAssociado();
+            $idAssociado = $dependente->getIdAssociado();
             $idDependente = $dependente->getIdDependente();
             $idUsuario = $dependente->getIdUsuarioInclusao();
             $nome = $dependente->getNome();
@@ -91,7 +111,7 @@ class DependenteDAO extends BaseDAO{
 
             return $this->update(
                 'sfm_dependentes',
-                "NM_Dependente = :NM_Dependente, CPF = :CPF, RG = :RG, DT_Nascimento = :DT_Nascimento, NM_Grau = :NM_Grau, ID_Usuario_Inclusao = :ID_Usuario_Inclusao",
+                "NM_Dependente = :NM_Dependente, CPF = :CPF, RG = :RG, DT_Nascimento = :DT_Nascimento, NM_Grau = :NM_Grau, ID_Associado = :ID_Associado,ID_Usuario_Inclusao = :ID_Usuario_Inclusao",
                 [
                     ':ID_Dependente'=>$idDependente,
                     ':NM_Dependente'=>$nome,
@@ -99,7 +119,9 @@ class DependenteDAO extends BaseDAO{
                     ':RG'=>$rg,
                     ':DT_Nascimento'=>$data,
                     ':NM_Grau'=>$grau,
-                    ':ID_Usuario_Inclusao'=>$idUsuario
+                    ':ID_Usuario_Inclusao'=>$idUsuario,
+                    ':ID_Associado'=>$idAssociado
+
                 ],
                 "ID_Dependente = :ID_Dependente"
             );

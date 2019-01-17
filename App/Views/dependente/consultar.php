@@ -1,8 +1,8 @@
 <div class="container">
-    
+
     <table width="100%">
             <tr>
-                <td><h3>Dependentes Cadastrados</h3></td>  
+                <td><h3>Dependentes Cadastrados</h3></td>
             </tr>
             <tr>
                 <td>
@@ -20,7 +20,7 @@
                 <td align="right"><a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/dependente/cadastro">+ Adicionar Dependente</a></td>
             </tr>
         </table>
-    
+
     <hr>
 
     <?php if(!count($viewVar['listarDependentes'])){?>
@@ -47,7 +47,7 @@
                 <tr align="center">
                     <th scope="col">Nome Dependente</th>
                     <th width="30%" scope="col">Nome Associado</th>
-                    <th width="20%" scope="col">Grau</th> 
+                    <th width="20%" scope="col">Grau</th>
                     <th width="20%" scope="col">Ações</th>
                 </tr>
             </thead>
@@ -55,7 +55,7 @@
                 <?php foreach ($viewVar['listarDependentes'] as $dependente) {?>
                     <tr>
                         <td><?php echo $dependente->NM_Dependente;?></td>
-                        <td align="center" class="text-danger">Sem Associados</td>
+                        <td align="center"><?php echo $dependente->NM_Associado;?></td>
                         <td align="center"><?php echo $dependente->NM_Grau;?></td>
                         <td align="center">
                             <a class="btn btn-info btn-sm" href="http://<?php echo APP_HOST;?>/dependente/alterar/<?php echo $dependente->ID_Dependente?>">Editar</a>
@@ -65,11 +65,12 @@
                                data-cpf= "<?php echo $dependente->CPF;?>"
                                data-nasc="<?php echo date('d/m/Y', strtotime($dependente->DT_Nascimento));?>"
                                data-grau="<?php echo $dependente->NM_Grau;?>"
-                               data-id=  "<?php echo $dependente->ID_Dependente?>"                               
+                               data-id=  "<?php echo $dependente->ID_Dependente?>"
+                               data-associado="<?php echo $dependente->NM_Associado;?>"
                                >Detalhes</a>
 
-                            <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom" 
-                               href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $dependente->ID_Dependente?>" 
+                            <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom"
+                               href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $dependente->ID_Dependente?>"
                                data-nome="<?php echo $dependente->NM_Dependente?>">Excluir</a>
                         </td>
                     </tr>
@@ -78,7 +79,7 @@
         </table>
         <a href='http://<?php echo APP_HOST; ?>/dependente/consultar/' class="btn btn-info btn sm">Listar Tudo</a>
     </div>
-    
+
 </div>
 
 <!--Modal Excluir-->
@@ -118,15 +119,15 @@
             <div class="modal-body">
             <form action="http://<?php echo APP_HOST; ?>/dependente/alterar" method="post">
                 <input type="hidden" class="form-control" name="id" id="idUpdate">
-                
+
                 <h5>Dados Cadastrais</h5>
                 <strong>Nome: </strong>  <span id="nomeItemDetalhe"></span><br>
                 <strong>RG: </strong> <span id="rgItem"></span><br>
                 <strong>CPF: </strong> <span id="cpfItem"></span><br>
                 <strong>Data Nascimento: </strong><span id="dataItem"></span><br><br>
-                
+
                 <h5>Dados do Associado</h5>
-                <strong>Associado: </strong><span id="associadoItem" class="text-danger">Sem associados</span><br>
+                <strong>Associado: </strong><span id="associadoItem"></span><br>
                 <strong>Grau de Dependência: </strong> <span id="grauItem"></span>
             </div>
             <div class="modal-footer">
@@ -145,7 +146,7 @@
             var id_delete = -1;
             var nome = "";
             var item = document.getElementById("nomeItem");
-            
+
             //details
             var id_detail = -1;
             var nomeItem = "";
@@ -160,12 +161,13 @@
             var rCpf = document.getElementById("cpfItem");
             var rData = document.getElementById("dataItem");
             var rGrau = document.getElementById("grauItem");
+            var rAssociado = document.getElementById("associadoItem");
 
             $("a#delete-row").click(function() {
                 id_delete = $(this).attr('data-id');
                 nome = $(this).attr('data-nome');
                 document.getElementById('id').value = id_delete;
-                
+
                 item.innerHTML = "<strong>" + nome +"</strong>";
             });
 
@@ -175,7 +177,7 @@
                 rg = $(this).attr('data-rg');
                 cpf = $(this).attr('data-cpf');
                 datanasc = $(this).attr('data-nasc');
-                //associado = $(this).attr('data-associado');
+                associado = $(this).attr('data-associado');
                 grau = $(this).attr('data-grau');
 
                 document.getElementById('idUpdate').value = id_detail;
@@ -186,6 +188,7 @@
                 rCpf.innerHTML = cpf;
                 rData.innerHTML = datanasc;
                 rGrau.innerHTML = grau;
+                rAssociado.innerHTML = associado;
             });
         });
     });
