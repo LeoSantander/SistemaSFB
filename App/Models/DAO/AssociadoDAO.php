@@ -93,7 +93,7 @@ class AssociadoDAO extends BaseDAO
        if(isset($busca))
        {
            $query = $this->select(
-               "SELECT NM_Associado, RG, CPF, DT_Nascimento, DT_Associacao, Telefone, Celular, Email, NM_Rua, NM_Bairro, NO_Endereco, CEP, Complemento, ID_Cidade, NO_Registro, ID_Local_Trabalho, Cargo, ST_Situacao, VL_Salario
+               "SELECT ID_Associado, NM_Associado, RG, CPF, DT_Nascimento, DT_Associacao, Telefone, Celular, Email, NM_Rua, NM_Bairro, NO_Endereco, CEP, Complemento, ID_Cidade, NO_Registro, ID_Local_Trabalho, Cargo, ST_Situacao, VL_Salario
                 FROM sfm_associados
                 WHERE NM_Associado LIKE '%".$busca."%' ORDER BY NM_Associado AND ST_Situacao"
             );
@@ -102,7 +102,7 @@ class AssociadoDAO extends BaseDAO
        else
        {
            $query = $this->select(
-            "SELECT NM_Associado, RG, CPF, DT_Nascimento, DT_Associacao, Telefone, Celular, Email, NM_Rua, NM_Bairro, NO_Endereco, CEP, Complemento, ID_Cidade, NO_Registro, ID_Local_Trabalho, Cargo, ST_Situacao, VL_Salario
+            "SELECT ID_Associado, NM_Associado, RG, CPF, DT_Nascimento, DT_Associacao, Telefone, Celular, Email, NM_Rua, NM_Bairro, NO_Endereco, CEP, Complemento, ID_Cidade, NO_Registro, ID_Local_Trabalho, Cargo, ST_Situacao, VL_Salario
              FROM sfm_associados
              ORDER BY NM_Associado AND ST_Situacao"
             );
