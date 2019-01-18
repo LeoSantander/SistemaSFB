@@ -2,25 +2,24 @@
 
     <table width="100%">
             <tr>
-                <td><h3>Associados Cadastrados</h3></td>
+                <td><h3>Associados Cadastrados</h3><br></td>
             </tr>
             <tr>
                 <td>
                     <form action="#" method="post" id="form_cadastro">
-                    <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <input type="text" name="buscar" value="<?php echo $Sessao::retornaValorFormulario('buscar'); ?>" class="form-control input-lg" placeholder="Buscar" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-info btn sm" type="submit">Buscar</button>
-                            </span>
+                        <div class="form-row">
+                            <div class="col-md-8">
+                              <input type="text" name="buscar" value="<?php echo $Sessao::retornaValorFormulario('buscar'); ?>" class="form-control " placeholder="Buscar" />
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-info" type="submit">Buscar</button>
+                            </div>
                         </div>
-                    </div>
                     </form>
                 </td>
                 <td align="right"><a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/associado/cadastro">+ Adicionar Associado</a></td>
             </tr>
         </table>
-
     <hr>
 
     <?php if(!count($viewVar['listarAssociados'])){?>
@@ -46,7 +45,7 @@
             <thead class="thead-light">
                 <tr align="center">
                     <th scope="col">Nome Associado</th>
-                    <th width="15%" scope="col">Telefone</th>
+                    <th width="15%" scope="col">Celular</th>
                     <th width="20%" scope="col">Email</th>
                     <th width="10%" scope="col">Situação</th>
                     <th width="25%" scope="col">Ações</th>
@@ -57,7 +56,7 @@
                 <?php foreach ($viewVar['listarAssociados'] as $associado) {?>
                     <tr>
                         <td><?php echo $associado->NM_Associado;?></td>
-                        <td align="center"><?php echo $associado->Telefone;?></td>
+                        <td align="center"><?php echo $associado->Celular;?></td>
                         <td align="center"><?php echo $associado->Email;?></td>
                         <td align="center"><?php echo $associado->ST_Situacao;?></td>
                         <td align="center">
@@ -66,11 +65,24 @@
                                data-nome= "<?php echo $associado->NM_Associado;?>"
                                data-rg= "<?php echo $associado->RG;?>"
                                data-cpf= "<?php echo $associado->CPF;?>"
+                               data-cpf= "<?php echo $associado->CPF;?>"
                                data-nasc= "<?php echo date('d/m/Y', strtotime($associado->DT_Nascimento));?>"
                                data-asso= "<?php echo date('d/m/Y', strtotime($associado->DT_Associacao));?>"
-                               data-local= "<?php echo $associado->ID_Local_Trabalho;?>"
+                               data-local= "<?php echo $associado->NM_Fantasia;?>"
                                data-cargo= "<?php echo $associado->Cargo;?>"
                                data-salario=  "<?php echo $associado->VL_Salario;?>"
+                               data-registro= "<?php echo $associado->NO_Registro;?>"
+                               data-situacao= "<?php echo $associado->ST_Situacao;?>"
+                               data-rua= "<?php echo $associado->NM_Rua;?>"
+                               data-numero= "<?php echo $associado->NO_Endereco;?>"
+                               data-bairro= "<?php echo $associado->NM_Bairro;?>"
+                               data-cep= "<?php echo $associado->CEP;?>"
+                               data-cidade= "<?php echo $associado->NM_Cidade;?>"
+                               data-complemento= "<?php echo $associado->Complemento;?>"
+                               data-telefone= "<?php echo $associado->Telefone;?>"
+                               data-celular= "<?php echo $associado->Celular;?>"
+                               data-email= "<?php echo $associado->Email;?>"
+                               data-id= "<?php echo $associado->ID_Associado;?>"
                                >Detalhes</a>
 
                             <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom"
@@ -88,7 +100,7 @@
 
 <!--Modal Excluir-->
 <form action="http://<?php echo APP_HOST; ?>/associado/excluir" method="post">
-    <input type="hidden" class="form-control" name="id" id="id">
+    <input type="hidden" class="form-control" name="excluir" id="id">
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -121,7 +133,7 @@
 
 				<div class="modal-body">
                     <form action="http://<?php echo APP_HOST; ?>/assoiado/ativar" method="post">
-                    <input type="hidden" class="form-control" name="id" id="id-ativar">
+                    <input type="hidden" class="form-control" name="ativar" id="id-ativar">
 
 					Deseja realmente Ativar o usuário <span id="nomeItemAtivar"></span>?
 				</div>
@@ -172,7 +184,41 @@
                 <h5>Contato:</h5>
                 <strong>Telefone: </strong> <span id="telefoneItem"></span><br>
                 <strong>Celular: </strong> <span id="celularItem"></span><br>
-                <strong>Email: </strong> <span id="emailItem"></span><br>
+                <strong>Email: </strong> <span id="emailItem"></span><br><br>
+
+                <h5>Dependentes Relacionados:</h5>
+
+
+                <table width=100%>
+                  <tr>
+                      <td  width=60%>
+                          <strong>Nome: </strong>
+                      </td>
+                      <td>
+                          <strong> Grau: </strong>
+                      </td>
+                  </tr>
+                  <?php foreach ($viewVar['listarDependentes'] as $dependente) {
+                    var_dump ($_POST['id']);
+                    if($dependente->ID_Associado == "")
+                    {
+                        ?>
+                        <tr>
+
+                            <td>
+                                <span><?php echo $dependente->NM_Dependente;?></span>
+                            </td>
+                            <td>
+                                <span><?php echo $dependente->NM_Grau;?></span><br>
+                            </td>
+
+                      </tr>
+
+                <?php
+                }
+                }?>
+              </table>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
@@ -218,7 +264,7 @@
             var rCpf = document.getElementById("cpfItem");
             var rDataNasc = document.getElementById("datanascItem");
             var rDataAssociacao = document.getElementById("dataassoItem");
-            var rLocal = document.getElementById("localtem");
+            var rLocal = document.getElementById("localItem");
             var rCargo = document.getElementById("cargoItem");
             var rSalario = document.getElementById("salarioItem");
             var rRegistro = document.getElementById("registroItem");

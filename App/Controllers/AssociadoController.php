@@ -6,6 +6,7 @@ use App\Lib\Sessao;
 use App\Models\DAO\AssociadoDAO;
 use App\Models\DAO\LocalTrabalhoDAO;
 use App\Models\DAO\CidadeDAO;
+use App\Models\DAO\DependenteDAO;
 use App\Models\DAO\EstadoDAO;
 use App\Models\Entidades\Associado;
 
@@ -95,8 +96,11 @@ class AssociadoController extends Controller
 
         $busca = $_POST['buscar'];
         $associadoDAO = new AssociadoDAO();
+        $dependenteDAO = new DependenteDAO();
 
         self::setViewParam('listarAssociados', $associadoDAO->listarAssociados($busca));
+
+        self::setViewParam('listarDependentes', $dependenteDAO->listarDependentes());
         $this->render('/associado/consultar');
 
         Sessao::limpaMensagem();

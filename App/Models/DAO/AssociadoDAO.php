@@ -93,18 +93,26 @@ class AssociadoDAO extends BaseDAO
        if(isset($busca))
        {
            $query = $this->select(
-               "SELECT ID_Associado, NM_Associado, RG, CPF, DT_Nascimento, DT_Associacao, Telefone, Celular, Email, NM_Rua, NM_Bairro, NO_Endereco, CEP, Complemento, ID_Cidade, NO_Registro, ID_Local_Trabalho, Cargo, ST_Situacao, VL_Salario
-                FROM sfm_associados
-                WHERE NM_Associado LIKE '%".$busca."%' ORDER BY NM_Associado AND ST_Situacao"
+               "SELECT a.*,a.Telefone as Tel, b.NM_Cidade as NM_Cidade, c.NM_Fantasia as NM_Fantasia
+                FROM sfm_associados as a
+                    INNER JOIN sfm_cidade as b
+                    ON b.ID_Cidade = a.ID_Cidade
+                    INNER JOIN sfm_local_trabalho as c
+                    ON c.ID_Local_Trabalho = a.ID_Local_Trabalho
+                WHERE a.NM_Associado LIKE '%".$busca."%' ORDER BY a.NM_Associado AND a.ST_Situacao"
             );
            return $query->fetchAll(\PDO::FETCH_CLASS, Associado::class);
        }
        else
        {
            $query = $this->select(
-            "SELECT ID_Associado, NM_Associado, RG, CPF, DT_Nascimento, DT_Associacao, Telefone, Celular, Email, NM_Rua, NM_Bairro, NO_Endereco, CEP, Complemento, ID_Cidade, NO_Registro, ID_Local_Trabalho, Cargo, ST_Situacao, VL_Salario
-             FROM sfm_associados
-             ORDER BY NM_Associado AND ST_Situacao"
+            "SELECT a.*,a.Telefone as Tel, b.NM_Cidade as NM_Cidade, c.NM_Fantasia as NM_Fantasia
+                FROM sfm_associados as a
+                    INNER JOIN sfm_cidade as b
+                    ON b.ID_Cidade = a.ID_Cidade
+                    INNER JOIN sfm_local_trabalho as c
+                    ON c.ID_Local_Trabalho = a.ID_Local_Trabalho
+                ORDER BY a.NM_Associado AND a.ST_Situacao"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Associado::class);
        }
