@@ -162,6 +162,10 @@
                 <input type="hidden" class="form-control" name="id" id="idUpdate">
 
                 <h5>Dados Cadastrais</h5>
+                <?php $id_associado = "<span id=\"rAssociado\"></span>";
+                      echo $id_associado;
+                ?>
+
                 <strong>Nome: </strong>  <span id="nomeItemDetalhe"></span><br>
                 <strong>RG: </strong> <span id="rgItem"></span><br>
                 <strong>CPF: </strong> <span id="cpfItem"></span><br>
@@ -187,8 +191,6 @@
                 <strong>Email: </strong> <span id="emailItem"></span><br><br>
 
                 <h5>Dependentes Relacionados:</h5>
-
-
                 <table width=100%>
                   <tr>
                       <td  width=60%>
@@ -199,8 +201,8 @@
                       </td>
                   </tr>
                   <?php foreach ($viewVar['listarDependentes'] as $dependente) {
-                    var_dump ($_POST['id']);
-                    if($dependente->ID_Associado == "")
+                    //var_dump ($_POST['id']);
+                    if($dependente->TESTE == $id_associado)
                     {
                         ?>
                         <tr>
@@ -218,7 +220,6 @@
                 }
                 }?>
               </table>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
@@ -311,6 +312,8 @@
 
                 document.getElementById('idUpdate').value = id_detail;
 
+
+
                 rTitulo.innerHTML = nome;
                 rNome.innerHTML = nome;
                 rRg.innerHTML = rg;
@@ -331,6 +334,7 @@
                 rTelefone.innerHTML = telefone;
                 rCelular.innerHTML = celular;
                 rEmail.innerHTML = email;
+                rAssociado.innerHTML = id_detail;
             });
         });
     });

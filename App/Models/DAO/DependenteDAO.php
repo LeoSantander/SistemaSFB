@@ -44,6 +44,7 @@ class DependenteDAO extends BaseDAO{
             $query = $this->select(
                 "SELECT
                       sfm_dependentes.ID_Dependente,
+                      sfm_dependentes.ID_Associado AS TESTE,
                       sfm_dependentes.NM_Dependente,
                       sfm_dependentes.NM_Grau,
                       sfm_dependentes.RG,
@@ -62,6 +63,7 @@ class DependenteDAO extends BaseDAO{
             $query = $this->select(
                 "SELECT
                       sfm_dependentes.ID_Dependente,
+                      sfm_dependentes.ID_Associado AS TESTE,
                       sfm_dependentes.NM_Dependente,
                       sfm_dependentes.NM_Grau,
                       sfm_dependentes.RG,
