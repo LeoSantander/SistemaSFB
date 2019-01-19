@@ -43,13 +43,8 @@ class DependenteDAO extends BaseDAO{
         {
             $query = $this->select(
                 "SELECT
-                      sfm_dependentes.ID_Dependente,
-                      sfm_dependentes.ID_Associado AS TESTE,
-                      sfm_dependentes.NM_Dependente,
-                      sfm_dependentes.NM_Grau,
-                      sfm_dependentes.RG,
-                      sfm_dependentes.CPF,
-                      sfm_dependentes.DT_Nascimento,
+                      sfm_dependentes.*,
+                      sfm_dependentes.ID_Associado as Associado,
                       sfm_associados.NM_Associado as NM_Associado
                  FROM sfm_dependentes
                     INNER JOIN sfm_associados
@@ -62,13 +57,8 @@ class DependenteDAO extends BaseDAO{
         {
             $query = $this->select(
                 "SELECT
-                      sfm_dependentes.ID_Dependente,
-                      sfm_dependentes.ID_Associado AS TESTE,
-                      sfm_dependentes.NM_Dependente,
-                      sfm_dependentes.NM_Grau,
-                      sfm_dependentes.RG,
-                      sfm_dependentes.CPF,
-                      sfm_dependentes.DT_Nascimento,
+                      sfm_dependentes.*,
+                      sfm_dependentes.ID_Associado as Associado,
                       sfm_associados.NM_Associado as NM_Associado
                  FROM sfm_dependentes
                     INNER JOIN sfm_associados

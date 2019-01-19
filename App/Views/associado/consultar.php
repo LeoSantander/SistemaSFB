@@ -162,9 +162,6 @@
                 <input type="hidden" class="form-control" name="id" id="idUpdate">
 
                 <h5>Dados Cadastrais</h5>
-                <?php $id_associado = "<span id=\"rAssociado\"></span>";
-                      echo $id_associado;
-                ?>
 
                 <strong>Nome: </strong>  <span id="nomeItemDetalhe"></span><br>
                 <strong>RG: </strong> <span id="rgItem"></span><br>
@@ -191,35 +188,36 @@
                 <strong>Email: </strong> <span id="emailItem"></span><br><br>
 
                 <h5>Dependentes Relacionados:</h5>
-                <table width=100%>
-                  <tr>
-                      <td  width=60%>
-                          <strong>Nome: </strong>
-                      </td>
-                      <td>
-                          <strong> Grau: </strong>
-                      </td>
-                  </tr>
-                  <?php foreach ($viewVar['listarDependentes'] as $dependente) {
-                    //var_dump ($_POST['id']);
-                    if($dependente->TESTE == $id_associado)
-                    {
-                        ?>
-                        <tr>
-
-                            <td>
-                                <span><?php echo $dependente->NM_Dependente;?></span>
-                            </td>
-                            <td>
-                                <span><?php echo $dependente->NM_Grau;?></span><br>
-                            </td>
-
-                      </tr>
-
                 <?php
+                  $id_associado = (string) "<span id='rAssociado'></span>";
+
+                  foreach ($viewVar['listarDependentes'] as $dependente ) {
+                  printf($id_associado.' - '.$dependente->Associado.'; ');
+
+                  if (($dependente->Associado) == ($id_associado)){ ?>
+
+                        <table width=100%>
+                          <tr>
+                            <td  width=60%>
+                                <strong>Nome: </strong>
+                            </td>
+                            <td>
+                                <strong> Grau: </strong>
+                            </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <?php echo $dependente->NM_Dependente;?>
+                              </td>
+                              <td>
+                                  <?php echo $dependente->NM_Grau;?>
+                              </td>
+                        </tr>
+                      </table>
+                <?php
+                    }
                 }
-                }?>
-              </table>
+                ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
