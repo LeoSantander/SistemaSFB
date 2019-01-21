@@ -117,4 +117,76 @@ class AssociadoDAO extends BaseDAO
             return $query->fetchAll(\PDO::FETCH_CLASS, Associado::class);
        }
    }
+
+   public function pegarAssociado($id)
+   {
+       $query = $this->select(
+           "SELECT * FROM sfm_associados WHERE ID_Associado = '$id'"
+       );
+
+       return $query->fetchObject(Associado::class);
+   }
+
+   public function excluir(Associado $registro)
+   {
+       try{
+           $id = $registro->getIdAssociado();
+           return $this->delete('sfm_associados',"ID_Associado = $id");
+       }
+       catch(\Exception $e){
+           throw new \Exception("Erro ao excluir", 500);
+       }
+   }
+
+   public function atualizar(Associado $associado)
+   {
+       try{
+           $nome = $associado->getNome();
+           $salario = $associado->getSalario();
+           $telefone = $associado->getTelefone();
+           $celular = $associado->getCelular();
+           $email = $associado->getEmail();
+           $rua = $associado->getNomeRua();
+           $numeroEndereco= $associado->getNumeroEndereco();
+           $bairro = $associado->getNomeBairro();
+           $cep = $associado->getCep();
+           $local = $associado->getLocaldeTrabalho();
+           $cidade = $associado->getIdCidade();
+           $cargo = $associado->getCargo();
+           $complemento = $associado->getComplemento();
+           $situacao = $associado->getSituacao();
+           $idAssociado = $associado->getIdAssociado();
+           $idUsuarioInclusao= $associado->getIdUsuarioInclusao();
+
+
+           return $this->update(
+               'sfm_associados',
+               "NM_Associado = :NM_Associado, VL_Salario = :VL_Salario, Telefone = :Telefone, Celular = :Celular, Email = :Email, NM_Rua = :NM_Rua, NM_Bairro = :NM_Bairro, NO_Endereco = :NO_Endereco, CEP = :CEP, ID_Local_Trabalho = :ID_Local_Trabalho, ID_Cidade = :ID_Cidade, Cargo = :Cargo, ST_Situacao = :ST_Situacao, Complemento = :Complemento, ID_Usuario_Inclusao = :ID_Usuario_Inclusao",
+               [
+                   ':ID_Associado'=>$idAssociado,
+                   ':NM_Associado'=>$nome,
+                   ':NM_Rua'=>$rua,
+                   ':VL_Salario'=>$salario,
+                   ':Telefone'=>$telefone,
+                   ':Celular'=>$celular,
+                   ':Email'=>$email,
+                   ':NM_Bairro'=>$bairro,
+                   ':NO_Endereco'=>$numeroEndereco,
+                   ':CEP'=>$cep,
+                   ':ID_Local_Trabalho'=>$local,
+                   ':ID_Cidade'=>$cidade,
+                   ':Cargo'=>$cargo,
+                   ':Complemento'=>$complemento,
+                   ':ST_Situacao'=>$situacao,
+                   ':ID_Usuario_Inclusao'=>$idUsuarioInclusao
+
+               ],
+               "ID_Associado = :ID_Associado"
+           );
+       }
+       catch(\Exception $e)
+       {
+           throw new \Exception("Erro ao atualizar",500);
+       }
+   }
 }

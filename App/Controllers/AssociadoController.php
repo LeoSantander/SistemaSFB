@@ -42,7 +42,7 @@ class AssociadoController extends Controller
 
     public function salvar()
     {
-        $registro = new Associado();
+      $registro = new Associado();
         $registro->setNome($_POST['nome']);
         $registro->setRg($_POST['rg']);
         $registro->setCpf($_POST['cpf']);
@@ -110,6 +110,83 @@ class AssociadoController extends Controller
 
     public function excluir()
     {
+        $associado = new Associado();
+        $associado->setIdAssociado($_POST['id']);
 
+        $associadoDAO = new AssociadoDAO();
+
+        if(!$associadoDAO->excluir($associado))
+        {
+            Sessao::gravaMensagem("Associado não encontrado!");
+            $this->redirect('/associado/consultar');
+        }
+
+        Sessao::gravaSucesso("Associado Excluido com Sucesso!");
+        $this->redirect('/associado/consultar');
+    }
+
+    public function alterar($params)
+    {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+
+        $cidadeDAO = new CidadeDAO();
+        self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
+
+        $estadoDAO = new EstadoDAO();
+        self::setViewParam('listarEstados', $estadoDAO->listarEstados());
+
+        $localDAO = new LocalTrabalhoDAO();
+        self::setViewParam('listarLocais', $localDAO->listarLocais());
+
+
+        $id = $_POST['id'];
+        if ($id == null){
+            $id = $params[0];
+        }
+        $associadoDAO = new AssociadoDAO();
+        $associado = $associadoDAO->pegarAssociado($id);
+
+        if(!$associado)
+        {
+            Sessao::gravaMensagem("Associado Inválido");
+            $this->redirect('/associado/consultar');
+        }
+
+        self::setViewParam('associado',$associado);
+        $this->render('/associado/alterar');
+        Sessao::limpaMensagem();
+    }
+
+    public function atualizar()
+    {
+        $id = $_POST['id'];
+
+        $registro = new Associado();
+        $registro->setNome($_POST['nome']);
+        $registro->setTelefone($_POST['telefone']);
+        $registro->setCelular($_POST['celular']);
+        $registro->setEmail($_POST['email']);
+        $registro->setNomeRua($_POST['rua']);
+        $registro->setNomeBairro($_POST['bairro']);
+        $registro->setNumeroEndereco($_POST['numero']);
+        $registro->setLocaldeTrabalho($_POST['local']);
+        $registro->setIdCidade($_POST['cidade']);
+        $registro->setCep($_POST['cep']);
+        $registro->setCargo($_POST['cargo']);
+        $registro->setSalario($_POST['salario']);
+        $registro->setComplemento($_POST['complemento']);
+        $registro->setSituacao($_POST['situacao']);
+        $registro->setIdAssociado($id);
+        $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
+
+        $associadoDAO = new AssociadoDAO();
+
+        $associadoDAO->atualizar($registro);
+        Sessao::limpaFormulario();
+        Sessao::gravaSucesso("Associado Alterado com Sucesso!");
+        $this->redirect('/associado/consultar');
     }
 }

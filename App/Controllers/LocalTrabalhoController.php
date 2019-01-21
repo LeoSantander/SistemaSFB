@@ -99,6 +99,11 @@ class LocalTrabalhoController extends Controller
 
                 $this->redirect('/associado/cadastro');  
                 
+            }else if($lc == 'AA'){
+                Sessao::limpaFormulario();
+                Sessao::gravaSucesso("Local de Trabalho cadastrado com Sucesso");
+
+                $this->redirect('/associado/consultar');
             }else{
                 Sessao::limpaFormulario();
                 Sessao::gravaSucesso($registro->getNMFantasia()." cadastrado com Sucesso");
