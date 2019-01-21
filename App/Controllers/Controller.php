@@ -36,12 +36,21 @@ abstract class Controller
         require_once PATH . '/App/Views/layouts/footer.php';
     }
 
+    public function renderDetalhes($view)
+    {
+        $viewVar = $this->getViewVar();
+        $Sessao  = Sessao::class;
+
+        require_once PATH . '/App/Views/layouts/header.php';
+        require_once PATH . '/App/Views/' . $view . '.php';
+    }
+
     public function redirect($view)
     {
         header('Location: http://' . APP_HOST . $view);
         exit;
     }
-    
+
 
     public function redirectMain($view)
     {
