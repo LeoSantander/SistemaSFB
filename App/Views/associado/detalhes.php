@@ -1,6 +1,6 @@
     <h5>Dados Cadastrais</h5>
     <?php
-      echo "TESTANDO: ".$associado->ID_Associado+"\n";
+      echo "TESTANDO: ".$associado->ID_Associado."\n";
     ?>
 
     <strong>Nome: </strong>  <span id="nomeItemDetalhe"></span><br>
