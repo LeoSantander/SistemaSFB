@@ -17,6 +17,23 @@ class AssociadoController extends Controller
         $this->redirect('/associado/cadastro');
     }
 
+    public function detalhes($params)
+    {
+
+      $id = $_POST['id'];
+      if ($id == null){
+          $id = $params[0];
+      }
+
+      $associadoDAO = new AssociadoDAO();
+      $dependenteDAO = new DependenteDAO();
+
+      self::setViewParam('associado', $associadoDAO->pegarAssociado($id));
+      self::setViewParam('listarDependentes', $dependenteDAO->pegarDependenteAssociado($id));
+
+      $this->renderDetalhes('/associado/detalhes');
+    }
+
     public function cadastro()
     {
         if(!(Sessao::retornaUsuario())){
