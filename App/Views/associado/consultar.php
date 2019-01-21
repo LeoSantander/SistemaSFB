@@ -65,13 +65,13 @@
                         <td align="center"><?php echo $associado->ST_Situacao;?></td>
                         <td align="center">
                             <a class="btn btn-info btn-sm" href="http://<?php echo APP_HOST;?>/associado/alterar/<?php echo $associado->ID_Associado?>">Editar</a>
-                            <button class="btn btn-info btn-sm"
+                            <button class="btn btn-secondary btn-sm"
                                                 type="button" data-toggle="modal"
                                                 data-id= "<?php echo $associado->ID_Associado;?>"
                                                 data-target="#detalhes" id="ler-pagina">Detalhes</button>
                           </form>
 
-                            <a class="btn btn-secondary btn-sm" id="details-row" data-toggle="modal" data-placement="bottom"
+                            <a class="btn btn-danger btn-sm" id="details-row" data-toggle="modal" data-placement="bottom"
                                href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $associado->ID_Associado?>"
                                data-nome="<?php echo $associado->NM_Associado?>">Excluir</a>
                         </td>
@@ -133,6 +133,8 @@
 	</div>
 </form>
 
+
+
 <div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -158,6 +160,9 @@
             var id_delete = -1;
             var nome = "";
             var item = document.getElementById("nomeItem");
+            var id_detail = -1;
+            id_detail = $(this).attr('data-id');
+
 
             $("a#delete-row").click(function() {
                 id_delete = $(this).attr('data-id');
@@ -175,7 +180,7 @@
             id_detail = $(this).attr('data-id');
 
             $(function(){
-                $("#detalhes-aberto").load("http://<?php echo APP_HOST; ?>/associado/detalhes/"+id_detail);
+                $("#detalhes-aberto").load("http://<?php echo APP_HOST; ?>/associado/detalhes/"+6);
             });
         })
    });
