@@ -32,6 +32,10 @@ class AssociadoController extends Controller
       self::setViewParam('listarDependentes', $dependenteDAO->pegarDependenteAssociado($id));
 
       $this->renderDetalhes('/associado/detalhes');
+
+      Sessao::limpaMensagem();
+      Sessao::limpaFormulario();
+      Sessao::limpaSucesso();
     }
 
     public function cadastro()

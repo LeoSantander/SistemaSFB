@@ -171,17 +171,14 @@
 
                 item.innerHTML = "<strong>" + nome +"</strong>";
             });
+
+            $("#ler-pagina").click(function(){
+                id_detail = $(this).attr('data-id');
+
+                $(function(){
+                    $("#detalhes-aberto").load("http://<?php echo APP_HOST; ?>/associado/detalhes/"+id_detail);
+                });
+            });
         });
     });
-
-    $(document).ready(function(){
-        $("#ler-pagina").click(function(){
-            var id_detail = -1;
-            id_detail = $(this).attr('data-id');
-
-            $(function(){
-                $("#detalhes-aberto").load("http://<?php echo APP_HOST; ?>/associado/detalhes/"+6);
-            });
-        })
-   });
 </script>

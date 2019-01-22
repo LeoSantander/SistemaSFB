@@ -121,10 +121,25 @@ class AssociadoDAO extends BaseDAO
    public function pegarAssociado($id)
    {
        $query = $this->select(
-           "SELECT * FROM sfm_associados WHERE ID_Associado = '$id'"
+           "SELECT *, sfm_associados.ST_Situacao AS Situacao, sfm_associados.Complemento as Comp
+            FROM sfm_associados
+                 INNER JOIN sfm_cidade
+                 ON sfm_associados.ID_Cidade = sfm_cidade.ID_Cidade
+                 INNER JOIN sfm_local_trabalho
+                 ON sfm_local_trabalho.ID_Local_Trabalho = sfm_associados.ID_Local_Trabalho
+            WHERE ID_Associado = '$id'"
        );
 
        return $query->fetchObject(Associado::class);
+   }
+
+   public function detalheAssociado($id)
+   {
+       $query = $this->select(
+           "SELECT * FROM sfm_associados WHERE ID_Associado = '$id'"
+       );
+
+       return $query->fetchAll(\PDO::FETCH_CLASS, Associado::class);
    }
 
    public function excluir(Associado $registro)

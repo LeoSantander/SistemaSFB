@@ -1,30 +1,47 @@
     <h5>Dados Cadastrais</h5>
     <?php
-      echo "TESTANDO: ".$viewVar['associado']->ID_Associado;
+      //echo "TESTANDO: ".$viewVar['associado']->ID_Associado;
+      //var_dump($viewVar['associado']);
     ?>
 
-    <strong>Nome: </strong>  <span id="nomeItemDetalhe"></span><br>
-    <strong>RG: </strong> <span id="rgItem"></span><br>
-    <strong>CPF: </strong> <span id="cpfItem"></span><br>
-    <strong>Data Nascimento: </strong><span id="datanascItem"></span><br>
-    <strong>Data Associação: </strong><span id="dataassoItem"></span><br>
-    <strong>Local de Trabalho: </strong><span id="localItem"></span><br>
-    <strong>Cargo: </strong><span id="cargoItem"></span><br>
-    <strong>Salário Base: </strong><span id="salarioItem"></span><br>
-    <strong>Número de registro: </strong><span id="registroItem"></span><br>
-    <strong>Situação: </strong><span id="situacaoItem"></span><br><br>
+    <strong>Nome:               </strong> <?php echo $viewVar['associado']->NM_Associado; ?>  <br>
+    <strong>RG:                 </strong> <?php echo $viewVar['associado']->RG; ?>            <br>
+    <strong>CPF:                </strong> <?php echo $viewVar['associado']->CPF; ?>           <br>
+    <strong>Data Nascimento:    </strong> <?php echo $viewVar['associado']->DT_Nascimento; ?> <br>
+    <strong>Data Associação:    </strong> <?php echo $viewVar['associado']->DT_Associacao; ?> <br>
+    <strong>Local de Trabalho:  </strong> <?php echo $viewVar['associado']->CD_Local_Trabalho.
+                                               ' - '.$viewVar['associado']->NM_Fantasia; ?>   <br>
+    <strong>Cargo:              </strong> <?php echo $viewVar['associado']->Cargo; ?>         <br>
+    <strong>Salário Base:       </strong> <?php echo $viewVar['associado']->VL_Salario; ?>    <br>
+    <strong>Número de registro: </strong> <?php echo $viewVar['associado']->NO_Registro; ?>   <br>
+    <strong>Situação:           </strong> <?php echo $viewVar['associado']->Situacao; ?>  <br><br>
 
     <h5>Endereço:</h5>
-    <strong>Rua: </strong> <span id="ruaItem"></span><br>
-    <strong>Número: </strong> <span id="numeroItem"></span><br>
-    <strong>Bairro: </strong> <span id="bairroItem"></span><br>
-    <strong>CEP: </strong> <span id="cepItem"></span><br>
-    <strong>Cidade: </strong> <span id="cidadeItem"></span><br>
-    <strong>Complemento: </strong> <span id="complementoItem"></span><br><br>
+    <strong>Endereço:    </strong> <?php echo $viewVar['associado']->NM_Rua.
+                                         ",<strong> Número: </strong>".$viewVar['associado']->NO_Endereco.
+                                         " - ".$viewVar['associado']->NM_Bairro.
+                                         " - ".$viewVar['associado']->CEP ?>       <br>
+    <strong>Cidade:      </strong> <?php echo $viewVar['associado']->NM_Cidade; ?> <br>
+    <strong>Complemento: </strong> <?php echo $viewVar['associado']->Comp; ?>  <br><br>
 
     <h5>Contato:</h5>
-    <strong>Telefone: </strong> <span id="telefoneItem"></span><br>
-    <strong>Celular: </strong> <span id="celularItem"></span><br>
-    <strong>Email: </strong> <span id="emailItem"></span><br><br>
+    <strong>Telefone: </strong> <?php echo $viewVar['associado']->Telefone; ?><br>
+    <strong>Celular:  </strong> <?php echo $viewVar['associado']->Celular; ?><br>
+    <strong>Email:    </strong> <?php echo $viewVar['associado']->Email; ?><br><br>
 
     <h5>Dependentes Relacionados:</h5>
+    <?php
+      //var_dump($viewVar['listarDependentes']);
+
+      foreach ($viewVar['listarDependentes'] as $dependentes) {?>
+        <table>
+          <tr>
+            <td><strong>Nome</strong></td>
+            <td><strong>Grau</strong></td>
+          </tr>
+          <tr>
+            <td><?php echo $dependentes->NM_Dependente;?></td>
+            <td><?php echo $dependentes->NM_Grau;?></td>
+          </tr>
+        </table>
+      <?php } ?>
