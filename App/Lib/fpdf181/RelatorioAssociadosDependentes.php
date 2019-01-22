@@ -26,31 +26,31 @@ class RelatorioAssociadosDependentes extends FPDF
         $totalEstados = count($estadoDAO->listarEstados());
         foreach($estadoDAO->listarEstados() as $estado){
             $pdf->SetY("50");
-            
+
             $i = 0;
             $totalCidade = count($cidadeDAO->listarCidades());
             $pdf->SetFont('Arial', 'B', 16);
             $pdf->Cell(190, 10, utf8_decode($estado->NM_Estado), 1, 1, 'C');
             $pdf->Image('http://agenciaroad.tech/wp-content/uploads/2018/11/cropped-Sem-T%C3%ADtulo-2.png', 10, 15, 50);
-            
+
             if($totalCidade != 0){
                 $pdf->SetFont('Arial', '', 14);
                 $pdf->Cell(190, 8, 'Cidades', 'L, B, R', 1, 'C');
-                
+
                 foreach($cidadeDAO->listarCidades() as $cidade){
                     $i = $i + 1;
-                    if($totalCidade == $i){		
+                    if($totalCidade == $i){
                         $pdf->SetFont($fonte, '', 12);
-                        $pdf->Cell(190, 6, utf8_decode($cidade->NM_Cidade), 'L, B, R', 1, 'C');			
-                    }else{	
+                        $pdf->Cell(190, 6, utf8_decode($cidade->NM_Cidade), 'L, B, R', 1, 'C');
+                    }else{
                         $pdf->SetFont($fonte, '', 12);
-                        $pdf->Cell(190, 6, utf8_decode($cidade->NM_Cidade), 'L, R', 1, 'C');					
-                    }	
-                }	
-            }else{		
+                        $pdf->Cell(190, 6, utf8_decode($cidade->NM_Cidade), 'L, R', 1, 'C');
+                    }
+                }
+            }else{
                 $pdf->SetFont($fonte, '', 12);
                 $pdf->Cell(190, 8, utf8_decode('Nenhum'), 'L, R, B', 1, 'C');
-            }	
+            }
             //$pdf->AddPage();
         }
         $pdf->SetFont('Arial', '', 12);
@@ -59,7 +59,5 @@ class RelatorioAssociadosDependentes extends FPDF
 
         $pdf->Output();//fim do PDF
     }
-    
+
 }
-
-

@@ -13,7 +13,7 @@ abstract class BaseDAO
         $this->conexao = Conexao::getConnection();
     }
 
-    public function select($sql) 
+    public function select($sql)
     {
         if(!empty($sql))
         {
@@ -21,7 +21,19 @@ abstract class BaseDAO
         }
     }
 
-    public function insert($table, $cols, $values) 
+    public function selectRel($table, $cols)
+    {
+        if(!empty($table) && !empty($cols))
+        {
+            return $this->conexao->query("SELECT $cols FROM $table AS p LEFT OUTER JOIN sfm_cidade AS c ON c.ID_Cidade = p.ID_Cidade LEFT OUTER JOIN sfm_usuarios AS u ON u.ID_Usuario = p.ID_Usuario_Inclusao");
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function insert($table, $cols, $values)
     {
         if(!empty($table) && !empty($cols) && !empty($values))
         {
@@ -39,8 +51,8 @@ abstract class BaseDAO
             return false;
         }
     }
-   
-    public function update($table, $cols, $values, $where=null) 
+
+    public function update($table, $cols, $values, $where=null)
     {
         if(!empty($table) && !empty($cols) && !empty($values))
         {
@@ -51,33 +63,33 @@ abstract class BaseDAO
 
             $stmt = $this->conexao->prepare("UPDATE $table SET $cols $where");
             $stmt->execute($values);
-            
+
             return $stmt->rowCount();
         }else{
             return false;
         }
     }
-   
-    public function delete($table, $where=null) 
+
+    public function delete($table, $where=null)
     {
         if(!empty($table))
         {
             /*
                 DELETE usuario WHERE id = 1
             */
- 
+
             if($where)
             {
                 $where = " WHERE $where ";
             }
- 
+
             $stmt = $this->conexao->prepare("DELETE FROM $table $where");
             $stmt->execute();
- 
+
             return $stmt->rowCount();
         }else{
             return false;
         }
     }
-    
+
 }
