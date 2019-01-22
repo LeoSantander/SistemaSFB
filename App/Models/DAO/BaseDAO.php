@@ -21,11 +21,11 @@ abstract class BaseDAO
         }
     }
 
-    public function selectRel($table, $cols)
+    public function selectRel($table, $cols, $where)
     {
         if(!empty($table) && !empty($cols))
         {
-            return $this->conexao->query("SELECT $cols FROM $table AS p LEFT OUTER JOIN sfm_cidade AS c ON c.ID_Cidade = p.ID_Cidade LEFT OUTER JOIN sfm_usuarios AS u ON u.ID_Usuario = p.ID_Usuario_Inclusao");
+            return $this->conexao->query("SELECT $cols FROM $table AS p LEFT OUTER JOIN sfm_cidade AS c ON c.ID_Cidade = p.ID_Cidade LEFT OUTER JOIN sfm_usuarios AS u ON u.ID_Usuario = p.ID_Usuario_Inclusao $where");
         }
         else
         {

@@ -114,9 +114,9 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md">
-                        <input value="Nome" name="p_NM_Fantasia" type="checkbox" checked><label>Nome Local</label><br>
+                        <input value="Nome" name="p_NM_Fantasia" type="checkbox" checked disabled><label>Nome Local</label><br>
+												<input value="CNPJ" name="p_CNPJ" type="checkbox"><label>CNPJ</label><br>
                         <input value="Sigla" name="p_CD_Local_Trabalho" type="checkbox"><label>Sigla</label><br>
-                        <input value="CNPJ" name="p_CNPJ" type="checkbox"><label>CNPJ</label><br>
                         <input value="Email" name="p_Email" type="checkbox"><label>Email</label><br>
                     </div>
 
@@ -227,8 +227,7 @@
     </div><!--Fim do FORMULARIO 3-->
 
 
-    <button type="submit" target="_blank" class="btn btn-danger">Gerar PDF</button>
-    <a href="http://<?php echo APP_HOST; ?>/relatorio/lista" class="btn btn-success">Gerar Relatório</a>
+    <button type="submit" target="_blank" class="btn btn-success">Gerar PDF</button><br>
     </form>
 
 

@@ -81,7 +81,7 @@ class RelatorioController extends Controller
             $dataInicio = $_POST['a_data_inicio'];
             $dataFim = $_POST['a_data_fim'];
 
-            $colunas = (isset($nome)         ? $nome         .', ' : '').
+            $colunas = ($nome                                     .', ').
                        (isset($rg)           ? $rg           .', ' : '').
                        (isset($cpf)          ? $cpf          .', ' : '').
                        (isset($dataNasc)     ? $dataNasc     .', ' : '').
@@ -126,9 +126,10 @@ class RelatorioController extends Controller
             $dataInicio = $_POST['p_data_inicio'];
             $dataFim = $_POST['p_data_fim'];
 
-            //$condicao = "WHERE $dataInicio > p.DH_Inclusao AND $dataFim < p.DH_Inclusao";
+            $condicao = "WHERE p.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim'";
+            //var_dump($condicao);
 
-            $colunas = (isset($nomeLocal)    ? "p.NM_Fantasia"       .', ' : '').
+            $colunas = ("p.NM_Fantasia"                                   .', ').
                        (isset($siglaLocal)   ? "p.CD_Local_Trabalho" .', ' : '').
                        (isset($cnpj)         ? "p.CNPJ"              .', ' : '').
                        (isset($email)        ? "p.Email"             .', ' : '').
@@ -137,24 +138,28 @@ class RelatorioController extends Controller
                        (isset($usuario)      ? "u.NM_Usuario"        .', ' : '').
                        (isset($dataInclusao) ? "p.DH_Inclusao"       .', ' : '');
 
-            $cols = (isset($nomeLocal)    ? $nomeLocal    .', ' : '').
+            $cols = ("Nome"                                    .', ').
                     (isset($siglaLocal)   ? $siglaLocal   .', ' : '').
                     (isset($cnpj)         ? $cnpj         .', ' : '').
                     (isset($email)        ? $email        .', ' : '').
                     (isset($telefone)     ? $telefone     .', ' : '').
-                    (isset($endereco)     ? $endereco     .', ' : '').
+                    (isset($endereco)     ? "Endereço"    .', ' : '').
                     (isset($usuario)      ? $usuario      .', ' : '').
                     (isset($dataInclusao) ? $dataInclusao .', ' : '');
 
             $retira = strlen($colunas);
             $colunas = substr($colunas,0, $retira-2);
-            //$ordem = $nomeLocal;
-            //var_dump($colunas);
             //printf("\nTESTE:  Select ".$colunas." From");
             $localTrabalhoDAO = new LocalTrabalhoDAO();
 
-            $postos = $localTrabalhoDAO->relatorio($colunas);
+            $postos = $localTrabalhoDAO->relatorio($colunas, $condicao);
             //var_dump($postos);
+
+            if(isset($dataInclusao))
+            {
+                foreach($postos as $col)
+                  $col->DH_Inclusao = date('d/m/Y', strtotime($col->DH_Inclusao));
+            }
 
             $retira = strlen($cols);
             $cols = substr($cols,0,$retira-2);
