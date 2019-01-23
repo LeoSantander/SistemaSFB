@@ -10,9 +10,9 @@ class RelatorioPostos extends FPDF
 {
     public function novo($postos, $inicio, $fim, $colunas)
     {
-        $estadoDAO = new EstadoDAO();
-        $cidadeDAO = new CidadeDAO();
-        $localTrabalhoDAO = new LocalTrabalhoDAO();
+        //$estadoDAO = new EstadoDAO();
+        //$cidadeDAO = new CidadeDAO();
+        //$localTrabalhoDAO = new LocalTrabalhoDAO();
 
         $pdf = new FPDF();
 
@@ -26,34 +26,49 @@ class RelatorioPostos extends FPDF
         $pdf->SetFont('Arial','',14);
         $pdf->Cell(190,-35,utf8_decode('Período: '.date('d/m/Y', strtotime($inicio)).' - '.date('d/m/Y', strtotime($fim))),0,0,'C');
 
-        $totalEstados = count($estadoDAO->listarEstados());
-        $totalPostos = count($localTrabalhoDAO->listarLocais());
-        $totalCidade = count($cidadeDAO->listarCidades());
+        //$totalEstados = count($estadoDAO->listarEstados());
+        //$totalPostos = count($localTrabalhoDAO->listarLocais());
+        //$totalCidade = count($cidadeDAO->listarCidades());
 
-        $pdf->SetFont('Arial', '', 12);
-        $pdf->SetY("50");
-        $pdf->Cell(190,0,utf8_decode('Total de Postos: '.$totalPostos),0,1,'R');
-        $pdf->Cell(190,14,utf8_decode('Total de Cidades: '.$totalCidade),0,1,'R');
-        $pdf->Cell(190,0,utf8_decode('Total de Estados: '.$totalEstados),0,1,'R');
+        //$pdf->SetFont('Arial', '', 12);
+        //$pdf->SetY("50");
+        //$pdf->Cell(190,0,utf8_decode('Total de Postos: '.$totalPostos),0,1,'R');
+        //$pdf->Cell(190,14,utf8_decode('Total de Cidades: '.$totalCidade),0,1,'R');
+        //$pdf->Cell(190,0,utf8_decode('Total de Estados: '.$totalEstados),0,1,'R');
 
-        //$pdf->SetFont('Arial', 'B', 16);
-        $pdf->SetY("75");
-        //$pdf->Cell(190, 10, utf8_decode('Postos Ativos'), 1, 1, 'C');
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->SetY("60");
+        $pdf->Cell(190, 10, utf8_decode('Postos Ativos'), 1, 1, 'C');
 
+        $conta = count($colunas);
+        $tam = 190/$conta;
+
+        for($i=0; $i<count($colunas); $i++)
+            $teste[$i] = $tam;
+
+        $pdf->SetFont('Arial','B',12);
+        $pdf->SetWidths($teste);
+        $i=0;
         foreach($colunas as $col){
-          $pdf->SetFont('Arial','',10);
-          //$pdf->MultiCell(0,7,utf8_decode($col),1);
-          $pdf->Cell(30,7,utf8_decode($col),1);
+            $colunas[$i] = utf8_decode($colunas[$i]);
+            $i++;
         }
-        $pdf->Ln();
+        $pdf->Row($colunas);
+
+        $pdf->SetFont('Arial','',11);
+        $pdf->SetWidths($teste);//CADA VALOR DESTE ARRAY SERÁ A LARGURA DE CADA COLUNA
 
         foreach($postos as $linha)
         {
-          $pdf->SetFont('Arial','',8);
-            foreach($linha as $col)
-              $pdf->Cell(30,6,utf8_decode($col),1);
-            $pdf->Ln();
+            $j = 0;
+            foreach($linha as $col){
+                  $array[$j] = utf8_decode($col);
+                  $j++;
+            }
+            $pdf->Row($array);
         }
+        $pdf->Ln();
+
         $pdf->Output();//fim do PDF
     }
 }
