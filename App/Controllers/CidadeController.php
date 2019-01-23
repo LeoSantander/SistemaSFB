@@ -25,12 +25,12 @@ class CidadeController extends Controller
 
         //renderiza a view Cadastro
         $estadoDAO = new EstadoDAO();
-        
+
         self::setViewParam('listarEstados', $estadoDAO->listarEstados());
         $this->render('/cidade/cadastro');
         Sessao::limpaFormulario();
         Sessao::limpaMensagem();
-        Sessao::limpaSucesso(); 
+        Sessao::limpaSucesso();
     }
 
 
@@ -49,14 +49,14 @@ class CidadeController extends Controller
 
         //Nova DAO
         $cidadeDAO = new CidadeDAO();
-        
+
         //Verifica se cidade ja esta cadastrada
          if(($cidadeDAO->verificaNome($_POST['nome'],$_POST['estado'])))
         {
             Sessao::gravaMensagem("Cidade já cadastrada!");
             $this->redirect('/cidade/cadastro');
         }
-        
+
         //salvar no banco
         if($cidadeDAO->salvar($registro))
         {
@@ -64,20 +64,14 @@ class CidadeController extends Controller
                 Sessao::limpaFormulario();
                 Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
 
-                $this->redirect('/localTrabalho/cadastro');  
-                
+                $this->redirect('/localTrabalho/cadastro');
+
             } else if($lc == 'AS'){
                 Sessao::limpaFormulario();
                 Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
 
                 $this->redirect('/associado/cadastro');
-            }else if($lc == 'AA'){
-                Sessao::limpaFormulario();
-                Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
-
-                $this->redirect('/associado/consultar');
-            }
-            else{
+            }else{
                 Sessao::limpaFormulario();
                 Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
 
@@ -108,7 +102,7 @@ class CidadeController extends Controller
         Sessao::limpaSucesso();
         Sessao::limpaMensagem();
     }
-    
+
     public function excluir()
     {
         $cidade = new Cidade();
@@ -183,7 +177,7 @@ class CidadeController extends Controller
             Sessao::gravaMensagem("Cidade já cadastrada!");
             $this->redirect('/cidade/alterar/'.$id);
         }
-        
+
         $cidadeDAO->atualizar($registro);
 
         Sessao::limpaFormulario();

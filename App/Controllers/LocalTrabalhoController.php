@@ -29,14 +29,14 @@ class LocalTrabalhoController extends Controller
         Sessao::limpaMensagem();
         Sessao::limpaSucesso();
     }
-    
+
     public function index()
     {
         if(!(Sessao::retornaUsuario())){
             Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
             $this->redirect('login/');
         }
-        
+
         $this->redirect('/localTrabalho/cadastro');
     }
 
@@ -46,11 +46,11 @@ class LocalTrabalhoController extends Controller
             Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
             $this->redirect('login/');
         }
-        
+
         $nm = $_POST['buscar'];
 
-        $localTrabalhoDAO = new LocalTrabalhoDAO();      
-       
+        $localTrabalhoDAO = new LocalTrabalhoDAO();
+
         self::setViewParam('listarLocais', $localTrabalhoDAO->listarLocais($nm));
 
         $this->render('/localTrabalho/consultar');
@@ -97,17 +97,12 @@ class LocalTrabalhoController extends Controller
                 Sessao::limpaFormulario();
                 Sessao::gravaSucesso("Local cadastrado com Sucesso");
 
-                $this->redirect('/associado/cadastro');  
-                
-            }else if($lc == 'AA'){
-                Sessao::limpaFormulario();
-                Sessao::gravaSucesso("Local de Trabalho cadastrado com Sucesso");
+                $this->redirect('/associado/cadastro');
 
-                $this->redirect('/associado/consultar');
             }else{
                 Sessao::limpaFormulario();
                 Sessao::gravaSucesso($registro->getNMFantasia()." cadastrado com Sucesso");
-                $this->redirect('/localTrabalho/cadastro');            
+                $this->redirect('/localTrabalho/cadastro');
                 //$this->redirect('/usuario/sucesso');
             }
         }else{
@@ -119,21 +114,21 @@ class LocalTrabalhoController extends Controller
      {
          $localTrabalho = new LocalTrabalho();
          $localTrabalho->setId($_POST['id']);
- 
+
          $localTrabalhoDAO = new LocalTrabalhoDAO();
- 
+
          if($localTrabalhoDAO->verificaLocal($localTrabalho->getId())){
              Sessao::gravaMensagem("Não é possível excluir. Local de Trabalho possui associados vinculados");
              $this->redirect('/localTrabalho/consultar');
          }
- 
+
          if(!$localTrabalhoDAO->excluir($localTrabalho)){
              Sessao::gravaMensagem("Local inválido");
              $this->redirect('/localTrabalho/consultar');
          }
- 
+
          Sessao::gravaSucesso("Local de trabalho excluído com sucesso!");
-         $this->redirect('/localTrabalho/consultar');   
+         $this->redirect('/localTrabalho/consultar');
      }
 
      public function alterar($params)
@@ -142,10 +137,10 @@ class LocalTrabalhoController extends Controller
             Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
             $this->redirect('login/');
         }
-        
+
         $cidadeDAO = new CidadeDAO();
         self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
-        
+
         $id = $_POST['id'];//$params[0];
         if ($id == null){
             $id = $params[0];
@@ -161,7 +156,7 @@ class LocalTrabalhoController extends Controller
         $this->render('/localTrabalho/alterar');
         Sessao::limpaMensagem();
     }
-    
+
     public function atualizar()
     {
         $ID = $_POST['id'];
@@ -181,7 +176,7 @@ class LocalTrabalhoController extends Controller
         $registro->setCep($_POST['cep']);
 
         Sessao::gravaFormulario($_POST);
-        
+
         $localTrabalhoDAO = new LocalTrabalhoDAO();
 
         if ($localTrabalhoDAO->verificaAlteracao($CNPJ, $ID)){
@@ -190,7 +185,7 @@ class LocalTrabalhoController extends Controller
         }
 
         $localTrabalhoDAO->atualizar($registro);
-        
+
         Sessao::limpaFormulario();
         Sessao::gravaSucesso($registro->getNMFantasia()." alterado com Sucesso");
         $this->redirect('/localTrabalho/consultar');

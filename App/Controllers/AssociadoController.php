@@ -48,9 +48,6 @@ class AssociadoController extends Controller
         $cidadeDAO = new CidadeDAO();
         self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
 
-        $estadoDAO = new EstadoDAO();
-        self::setViewParam('listarEstados', $estadoDAO->listarEstados());
-
         $localDAO = new LocalTrabalhoDAO();
         self::setViewParam('listarLocais', $localDAO->listarLocais());
 
@@ -155,9 +152,6 @@ class AssociadoController extends Controller
 
         $cidadeDAO = new CidadeDAO();
         self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
-
-        $estadoDAO = new EstadoDAO();
-        self::setViewParam('listarEstados', $estadoDAO->listarEstados());
 
         $localDAO = new LocalTrabalhoDAO();
         self::setViewParam('listarLocais', $localDAO->listarLocais());

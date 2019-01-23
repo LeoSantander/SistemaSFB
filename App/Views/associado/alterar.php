@@ -26,43 +26,42 @@
                 <div class="form-group">
                     <label for="nome">Nome Completo:</label>
                     <input type="text" class="form-control" name="nome" placeholder="Nome Completo" pattern="[A-Za-zÀ-ú ]{0,}"
-                           title="Use somente letras. Não use caracteres especiais ou números." value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>"
+                           title="Use somente letras. Não use caracteres especiais ou números."value="<?php echo $viewVar['associado']->NM_Associado?>"
                            required autofocus>
                 </div>
 
                 <label for="local">Local de Trabalho:</label>
-                <div class="form-row">
-                    <div class="form-group col-md-9">
-	                    <select name= "local" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('local'); ?>" required>
-                            <option name="local" value="">Selecione um Local</option>
-                            <?php foreach($viewVar['listarLocais'] as $local){?>
-	                            <option  name="local" value= "<?php echo $local->ID_Local_Trabalho;?>"><?php echo $local->NM_Fantasia;?> - <?php echo $local->CD_Local_Trabalho;?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-
                     <div class="form-group">
+                      <select class="form-control" name= "local" value="" required>
+                          <option name= "local" value="">Selecione um Local</option>
 
-                        <a class="btn btn-success" href="#" data-toggle="modal" data-placement="bottom" data-target="#myModal1" aria-hidden="true">+ Novo Local</a>
+                        <?php foreach($viewVar['listarLocais'] as $local){
+                                if($viewVar['associado']->ID_Local_Trabalho== $local->ID_Local_Trabalho){?>
+                                    <option selected="selected" name="local" value= "<?php echo $local->ID_Local_Trabalho;?>"><?php echo $local->NM_Fantasia;?></option>
+                                <?php }
+                                else{?>
+                                  <option name="local" value= "<?php echo $local->ID_Local_Trabalho;?>"><?php echo $local->NM_Fantasia;?></option>
+                                 <?php } ?>
+                             <?php } ?>
+                    </select>
                     </div>
-                </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="cargo">Cargo:</label>
-                        <input type="text" class="form-control" name="cargo" placeholder="Administrativo" value="<?php echo $Sessao::retornaValorFormulario('cargo'); ?>" pattern= "[A-Za-zÀ-ú ]{0,}"
+                        <input type="text" class="form-control" name="cargo" placeholder="Administrativo" value="<?php echo $viewVar['associado']->Cargo?>" pattern= "[A-Za-zÀ-ú ]{0,}"
                             title="Preencha de acordo com o que foi solicitado."autofocus>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="salario">Salário Base:</label>
-                        <input type="tel" class="form-control" name="salario" maxlength="15" placeholder="$" value="<?php echo $Sessao::retornaValorFormulario('salario'); ?>" pattern= "([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$"
+                        <input type="tel" class="form-control" name="salario" maxlength="15" placeholder="$" value="<?php echo $viewVar['associado']->VL_Salario?>" pattern= "([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$"
                             title="Preencha de acordo com o que foi solicitado."required autofocus>
                     </div>
 
                 </div>
                 <div class="form-group">
                         <label for="situacao">Situação Atual:</label>
-                        <select name= "situacao" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('situacao'); ?>" required>
+                        <select name= "situacao" class="form-control" value="<?php echo $viewVar['associado']->ST_Situacao?>" required>
                             <option name="situacao" value="">Selecione</option>
                             <option name="situacao" value="Ativo" selected >Ativo</option>
                             <option name="situacao" value="Inativo">Inativo</option>
@@ -76,13 +75,13 @@
                 <div class="form-row">
                     <div class="form-group col-md-10">
                         <label for="rua">Rua:</label>
-                        <input type="text" class="form-control"  name="rua" placeholder=" Rua Nove de Julho" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
+                        <input type="text" class="form-control"  name="rua" placeholder=" Rua Nove de Julho" value="<?php echo $viewVar['associado']->NM_Rua?>" pattern="[A-Za-zÀ-ú ]{0,}"
                             title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                     </div>
 
                     <div class="form-group col-md-2">
                         <label for="numero">Numero:</label>
-                        <input type="text" class="form-control" maxlength="5" name="numero" placeholder="000" value="<?php echo $Sessao::retornaValorFormulario('numero'); ?>"
+                        <input type="text" class="form-control" maxlength="5" name="numero" placeholder="000" value="<?php echo $viewVar['associado']->NO_Endereco?>"
                             pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" required autofocus>
                     </div>
                 </div>
@@ -90,39 +89,40 @@
                 <div class="form-row">
                     <div class="form-group col-md-8">
                         <label for="bairro">Bairro:</label>
-                        <input type="text" class="form-control" name="bairro" placeholder="Bairro Nova Marilia" value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
+                        <input type="text" class="form-control" name="bairro" placeholder="Bairro Nova Marilia" value="<?php echo $viewVar['associado']->NM_Bairro?>" pattern="[A-Za-zÀ-ú ]{0,}"
                             title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                     </div>
 
                     <div class="form-group col-4">
                         <label for="cep">CEP:</label>
-                        <input type="text" class="form-control" name="cep" maxlength="10" placeholder="00.000-000" value="<?php echo $Sessao::retornaValorFormulario('cep'); ?>" pattern= "[0-9]{2}.[0-9]{3}-[0-9]{3}"
+                        <input type="text" class="form-control" name="cep" maxlength="10" placeholder="00.000-000"  value="<?php echo $viewVar['associado']->CEP?>" pattern= "[0-9]{2}.[0-9]{3}-[0-9]{3}"
                             title="Preencha de acordo com o que foi solicitado." onkeydown="javascript: fMasc( this, mCEP );" required autofocus>
                     </div>
                 </div>
 
-                <label for="cidade">Cidade:</label>
                 <div class="form-row">
-                    <div class="form-group col-md-9">
-	                    <select name= "cidade" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('cidade'); ?>" required>
-                            <option name="cidade" value="">Selecione uma Cidade</option>
-                            <?php foreach($viewVar['listarCidades'] as $cidade){?>
-	                            <option  name="cidade" value= "<?php echo $cidade->ID_Cidade;?>"><?php echo $cidade->NM_Cidade;?> - <?php echo $cidade->CD_Estado;?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group col-md-3">
-
-                        <a class="btn btn-success" href="#" data-toggle="modal" data-placement="bottom" data-target="#myModal" aria-hidden="true">+ Nova Cidade</a>
-                    </div>
-                </div>
-
-                <div class="form-group">
+                    <div class="form-group col-6">
                         <label for="complemento">Complemento:</label>
-                        <input type="text" class="form-control" name="complemento" placeholder="Casa" value="<?php echo $Sessao::retornaValorFormulario('complemento'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
-                            title="Use somente letras. Não use caracteres especiais ou números." autofocus>
-                </div>
+                        <input type="text" class="form-control" name="complemento" placeholder="Casa"  value="<?php echo $viewVar['associado']->Complemento?>" pattern="[A-Za-zÀ-ú ]{0,}"
+                              title="Use somente letras. Não use caracteres especiais ou números." autofocus>
+                    </div>
+                    <div class="form-group col-6 ">
+                        <label for="cidade">Cidade:</label>
+                            <select class="form-control" name= "cidade" value="" required>
+                                <option name= "cidade" value="">Selecione Cidade</option>
+
+                          <?php foreach($viewVar['listarCidades'] as $cidade){
+                                  if($viewVar['associado']->ID_Cidade == $cidade->ID_Cidade){?>
+                                      <option selected="selected" name="cidade" value= "<?php echo $cidade->ID_Cidade;?>"><?php echo $cidade->NM_Cidade;?> - <?php echo $cidade->CD_Estado;?></option>
+                                  <?php }
+                                  else{?>
+                                    <option name="cidade" value= "<?php echo $cidade->ID_Cidade;?>"><?php echo $cidade->NM_Cidade;?> - <?php echo $cidade->CD_Estado;?></option>
+                                   <?php } ?>
+                               <?php } ?>
+                          </select>
+                    </div>
+              </div>
+
 
                 <br><h5>Contato:</h5>
                 <hr>
@@ -131,19 +131,19 @@
                     <div class="form-group col-md-6">
                         <label for="telefone">Telefone:</label>
                         <input type="text" maxlength="14" class="form-control"  name="telefone" placeholder="(14) 3300-3000"
-                            value="<?php echo $Sessao::retornaValorFormulario('telefone'); ?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
+                             value="<?php echo $viewVar['associado']->Telefone?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
                             title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" autofocus>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="celular">Celular:</label>
                         <input type="text" maxlength="14" class="form-control"  name="celular" placeholder="(14) 9876-1302"
-                            value="<?php echo $Sessao::retornaValorFormulario('celular'); ?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
+                             value="<?php echo $viewVar['associado']->Celular?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
                             title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" required autofocus>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control"  name="email" placeholder="nome@email.com" value="<?php echo $Sessao::retornaValorFormulario('email'); ?>"
+                    <input type="email" class="form-control"  name="email" placeholder="nome@email.com"  value="<?php echo $viewVar['associado']->Email?>"
                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Este campo deve atender ao formato solicitado: nome@email.com" autofocus>
                 </div>
 
