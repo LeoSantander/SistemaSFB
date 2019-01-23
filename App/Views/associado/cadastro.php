@@ -79,7 +79,7 @@
 
                     <div class="form-group col-md-6">
                         <label for="salario">Salário Base:</label>
-                        <input type="tel" class="form-control" name="salario" maxlength="15" placeholder="$" value="<?php echo $Sessao::retornaValorFormulario('salario'); ?>" pattern= "([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$"
+                        <input type="tel" class="form-control" name="salario" maxlength="15" placeholder="$" value="<?php echo $Sessao::retornaValorFormulario('salario'); ?>" onKeyPress="return(mMoeda(this,'.',',',event))" pattern= "([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$"
                             title="Preencha de acordo com o que foi solicitado."required autofocus>
                     </div>
 
@@ -181,7 +181,7 @@
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" class="form-control"  name="email" placeholder="nome@email.com" value="<?php echo $Sessao::retornaValorFormulario('email'); ?>"
-                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Este campo deve atender ao formato solicitado: nome@email.com" autofocus>
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Este campo deve atender ao formato solicitado: nome@email.com" required autofocus>
                 </div>
 
                 <hr>
