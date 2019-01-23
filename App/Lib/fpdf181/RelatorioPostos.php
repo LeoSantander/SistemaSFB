@@ -16,7 +16,7 @@ class RelatorioPostos extends FPDF
 
         $pdf = new FPDF();
 
-        $pdf->SetTitle('SFM_Relatorio_Postos_'.date("d/m/Y").'.pdf',true);
+        $pdf->SetTitle('SFM_Relatorio_Postos_'.date("d-m-Y").'.pdf',true);
         $pdf->AddPage();//inicio do PDF
 
         $pdf->Image('http://agenciaroad.tech/wp-content/uploads/2018/11/cropped-Sem-T%C3%ADtulo-2.png', 10, 15, 50);
@@ -57,7 +57,7 @@ class RelatorioPostos extends FPDF
 
         $pdf->SetFont('Arial','',11);
         $pdf->SetWidths($teste);//CADA VALOR DESTE ARRAY SERÁ A LARGURA DE CADA COLUNA
-
+        $totalPostos=0;
         foreach($postos as $linha)
         {
             $j = 0;
@@ -66,9 +66,13 @@ class RelatorioPostos extends FPDF
                   $j++;
             }
             $pdf->Row($array);
+            $totalPostos++;
         }
         $pdf->Ln();
+        //$pdf->Footer();
+        $pdf->Cell(190,0,utf8_decode('Total de Postos: '.$totalPostos),0,1,'R');
+        $pdf->AliasNbPages();
 
-        $pdf->Output();//fim do PDF
+        $pdf->Output("SFM_Relatorio_Postos_".date("d-m-Y").".pdf",'I');//fim do PDF
     }
 }

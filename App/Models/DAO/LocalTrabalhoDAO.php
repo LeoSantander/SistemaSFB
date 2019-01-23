@@ -186,12 +186,15 @@ class LocalTrabalhoDAO extends BaseDAO
         }
     }
 
-    public function relatorio($colunas, $condicao)
+    public function relatorio($colunas, $condicao, $ordem, $amarra=null, $group=null)
     {
         $query = $this->selectRel(
           'sfm_local_trabalho',
           $colunas,
-          $condicao
+          $condicao,
+          $ordem,
+          $amarra,
+          $group
         );
 
         //var_dump($query);

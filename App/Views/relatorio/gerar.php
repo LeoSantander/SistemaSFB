@@ -117,6 +117,7 @@
                         <input value="Nome" name="p_NM_Fantasia" type="checkbox" checked disabled><label>Nome Local</label><br>
 												<input value="CNPJ" name="p_CNPJ" type="checkbox"><label>CNPJ</label><br>
                         <input value="Sigla" name="p_CD_Local_Trabalho" type="checkbox"><label>Sigla</label><br>
+												<input value="Associados" name="p_Associados" type="checkbox"><label>Total Associados</label><br>
                         <input value="Email" name="p_Email" type="checkbox"><label>Email</label><br>
                     </div>
 
@@ -142,10 +143,15 @@
                         <label>Data Final</label><br>
                         <input value="p.data_fim" type="date" name="p_data_fim" class="form-control" required>
                     </div>
+										<div class="form-group col-md-1">
+										</div>
 
-                    <div class="form-group col-md-9">
-
+                    <div class="form-group col-md-8">
+											<label><b>Ordenar Por</b></label><br>
+											<input value="p.NM_Fantasia" type="radio" id="p.nome" name="p_ordem" checked><label>Nome</label><br>
+											<input value="p.DH_Inclusao" type="radio" id="p.data" name="p_ordem"><label>Data</label><br>
                     </div>
+
                 </div>
             </div>
         </div><!--FIM DO CARD FILTROS--><br>
@@ -226,8 +232,15 @@
         </div><!--FIM DO CARD FILTROS--><br>
     </div><!--Fim do FORMULARIO 3-->
 
+		<table width="100%">
+				<tr>
+						<td align="right">
+							<button type="submit" target="_blank" class="btn btn-success">Gerar PDF</button>
+							<a href="http://<?php echo APP_HOST; ?>/home" class="btn btn-outline-primary">Voltar</a>
+						</td>
+				</tr>
+		</table>
 
-    <button type="submit" target="_blank" class="btn btn-success">Gerar PDF</button><br>
     </form>
 
 

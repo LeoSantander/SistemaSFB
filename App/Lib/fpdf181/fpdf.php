@@ -370,6 +370,12 @@ function Header()
 function Footer()
 {
 	// To be implemented in your own inherited class
+	// Vai para 1.5 cm da parte inferior
+    $this->SetY(-15);
+    // Seleciona a fonte Arial itálico 8
+    $this->SetFont('Arial','',8);
+    // Imprime o número da página corrente e o total de páginas
+    $this->Cell(0,10,$this->PageNo().'/{nb}',0,0,'R');
 }
 
 function PageNo()

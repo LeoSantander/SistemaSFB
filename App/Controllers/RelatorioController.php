@@ -54,6 +54,7 @@ class RelatorioController extends Controller
     public function imprimir()
     {
         $tipo = $_POST['tipo'];
+
         $inicio = date('d/m/Y', strtotime($_POST['inicio']));
         $fim = date('d/m/Y', strtotime($_POST['fim']));
 
@@ -123,8 +124,18 @@ class RelatorioController extends Controller
             $dataInclusao = $_POST['p_DH_Inclusao'];
             $end = "CONCAT (p.NM_Rua,\", \", p.NO_Endereco,\" - \", p.NM_Bairro,\" - \", c.NM_Cidade, \" - \", p.CEP) AS Endereco";
 
+            $associados = $_POST['p_Associados'];
+            $ass = "count(a.ID_Local_Trabalho) AS QTD_Associados";
+            if(isset($associados))
+            {
+                $amarra = "LEFT OUTER JOIN sfm_associados AS a ON a.ID_Local_Trabalho = p.ID_Local_Trabalho";
+                $group = "GROUP BY p.ID_Local_Trabalho";
+            }
+
             $dataInicio = $_POST['p_data_inicio'];
             $dataFim = $_POST['p_data_fim'];
+
+            $ordem = $_POST['p_ordem'];
 
             $condicao = "WHERE p.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim'";
             //var_dump($condicao);
@@ -132,15 +143,19 @@ class RelatorioController extends Controller
             $colunas = ("p.NM_Fantasia"                                   .', ').
                        (isset($siglaLocal)   ? "p.CD_Local_Trabalho" .', ' : '').
                        (isset($cnpj)         ? "p.CNPJ"              .', ' : '').
+                       (isset($associados)   ? $ass                  .', ' : '').
                        (isset($email)        ? "p.Email"             .', ' : '').
                        (isset($telefone)     ? "p.Telefone"          .', ' : '').
                        (isset($endereco)     ? $end                  .', ' : '').
                        (isset($usuario)      ? "u.NM_Usuario"        .', ' : '').
                        (isset($dataInclusao) ? "p.DH_Inclusao"       .', ' : '');
 
+
+
             $cols = ("Nome"                                    .', ').
                     (isset($siglaLocal)   ? $siglaLocal   .', ' : '').
                     (isset($cnpj)         ? $cnpj         .', ' : '').
+                    (isset($associados)   ? "Associados"  .', ' : '').
                     (isset($email)        ? $email        .', ' : '').
                     (isset($telefone)     ? $telefone     .', ' : '').
                     (isset($endereco)     ? "Endereço"    .', ' : '').
@@ -150,23 +165,31 @@ class RelatorioController extends Controller
             $retira = strlen($colunas);
             $colunas = substr($colunas,0, $retira-2);
             //printf("\nTESTE:  Select ".$colunas." From");
-            $localTrabalhoDAO = new LocalTrabalhoDAO();
 
-            $postos = $localTrabalhoDAO->relatorio($colunas, $condicao);
+            $localTrabalhoDAO = new LocalTrabalhoDAO();
+            $postos = $localTrabalhoDAO->relatorio($colunas, $condicao, $ordem, $amarra, $group);
             //var_dump($postos);
 
             if(isset($dataInclusao))
             {
                 foreach($postos as $col)
-                  $col->DH_Inclusao = date('d/m/Y', strtotime($col->DH_Inclusao));
+                $col->DH_Inclusao = date('d/m/Y', strtotime($col->DH_Inclusao));
             }
 
             $retira = strlen($cols);
             $cols = substr($cols,0,$retira-2);
             $cols = explode(",", $cols);
             //var_dump($cols);
-            $rel = new RelatorioPostos();
-            $rel->novo($postos, $dataInicio, $dataFim, $cols);
+
+            if(!count($postos) OR strtotime($dataFim) < strtotime($dataInicio))
+            {
+                $this->render('/relatorio/validaRelatorio');
+            }
+            else
+            {
+              $rel = new RelatorioPostos();
+              $rel->novo($postos, $dataInicio, $dataFim, $cols);
+            }
         }
 
          //relatorio associados/dependentes
