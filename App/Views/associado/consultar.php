@@ -65,15 +65,17 @@
                         <td align="center"><?php echo $associado->ST_Situacao;?></td>
                         <td align="center">
                             <a class="btn btn-info btn-sm" href="http://<?php echo APP_HOST;?>/associado/alterar/<?php echo $associado->ID_Associado?>">Editar</a>
-                            <button class="btn btn-secondary btn-sm"
+                            <button class="detalhes"
                                                 type="button" data-toggle="modal"
                                                 data-id= "<?php echo $associado->ID_Associado;?>"
-                                                data-target="#detalhes" id="ler-pagina">Detalhes</button>
+                                                data-target="#detalhes" id="ler-pagina"><font color="white"> Detalhes</font></button>
                           </form>
 
-                            <a class="btn btn-danger btn-sm" id="details-row" data-toggle="modal" data-placement="bottom"
-                               href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $associado->ID_Associado?>"
-                               data-nome="<?php echo $associado->NM_Associado?>">Excluir</a>
+                            <a class="btn btn-outline-success btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom"
+                               href="#" data-target="#myModal" aria-hidden="true"
+                               data-id="<?php echo $associado->ID_Associado?>"
+                               data-st="<?php echo $associado->ST_Situacao?>"
+                               data-nome="<?php echo $associado->NM_Associado?>">Opções</a>
                         </td>
                     </tr>
                 <?php }?>
@@ -92,16 +94,29 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">Excluir</h4>
+					<h4 class="modal-title" id="myModalLabel">Opções para: <span id="nomeItem"></span></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 				</div>
 				<div class="modal-body">
-					Deseja realmente excluir o Associado <span id="nomeItem"></span>?
+					Atualmente o Associado encontra-se como: <span id="st"></span>
+          <table align = "center">
+            <tr width ="100%">
+              <td width = "10%" align = "center">
+                <button type="button" class="btn btn-success btn-sm" >Ativar</button>
+              </td>
+              <td width = "10%" align = "center">
+                <button type="button" class="btn btn-warning btn-sm">Inativar</button>
+              </td>
+              <td width = "10%" align = "center">
+                <button type="button" class="btn btn-danger btn-sm" >Desligar</button>
+              </td>
+            </tr>
+          </table>
+
 				</div>
 
 				<div class="modal-footer">
 				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
-					<button type="submit" id="deleteItem" class="btn btn-danger btn-sm">Excluir</button>
 				</div>
 			</div>
 		</div>
@@ -147,6 +162,7 @@
             <div class="modal-body">
 
               <div id="detalhes-aberto"></div>
+               <span id="nomeItemAtivar"></span>
 
             </div>
         </div>
@@ -159,25 +175,27 @@
             //delete
             var id_delete = -1;
             var nome = "";
+            var st_situacao = "";
+            var sit = document.getElementById("st");
             var item = document.getElementById("nomeItem");
             var id_detail = -1;
-            id_detail = $(this).attr('data-id');
-
 
             $("a#delete-row").click(function() {
                 id_delete = $(this).attr('data-id');
                 nome = $(this).attr('data-nome');
+                st_situacao = $(this).attr('data-st');
+                console.log(st_situacao);
                 document.getElementById('id').value = id_delete;
-
-                item.innerHTML = "<strong>" + nome +"</strong>";
+                item.innerHTML = "<strong>" + nome + "</strong>";
+                sit.innerHTML = "<strong>" + st_situacao + "</strong>";
             });
 
-            $("#ler-pagina").click(function(){
-                id_detail = $(this).attr('data-id');
-
-                $(function(){
-                    $("#detalhes-aberto").load("http://<?php echo APP_HOST; ?>/associado/detalhes/"+id_detail);
-                });
+            $(".detalhes").click(function(){
+                document.getElementById("detalhes-aberto").innerHTML="Carregando...";
+                var id_detail = this.dataset.id;
+                var detalhes = document.getElementById("detalhes-aberto");
+                console.log(id_detail);
+                $("#detalhes-aberto").load("http://<?php echo APP_HOST; ?>/associado/detalhes/"+id_detail);
             });
         });
     });

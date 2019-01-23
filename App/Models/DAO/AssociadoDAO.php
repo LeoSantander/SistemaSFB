@@ -121,7 +121,7 @@ class AssociadoDAO extends BaseDAO
    public function pegarAssociado($id)
    {
        $query = $this->select(
-           "SELECT *, sfm_associados.ST_Situacao AS Situacao, sfm_associados.Complemento as Comp
+           "SELECT sfm_associados.*,sfm_cidade.NM_Cidade, sfm_local_trabalho.NM_Fantasia, sfm_associados.ST_Situacao AS Situacao, sfm_associados.Complemento as Comp
             FROM sfm_associados
                  INNER JOIN sfm_cidade
                  ON sfm_associados.ID_Cidade = sfm_cidade.ID_Cidade

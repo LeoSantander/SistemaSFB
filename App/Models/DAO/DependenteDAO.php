@@ -84,7 +84,7 @@ class DependenteDAO extends BaseDAO{
             "SELECT * FROM sfm_dependentes WHERE ID_Associado = '$id'"
         );
 
-        return $query->fetchObject(Dependente::class);
+        return $query->fetchAll(\PDO::FETCH_CLASS, Dependente::class);
     }
 
     public function excluir(Dependente $registro)

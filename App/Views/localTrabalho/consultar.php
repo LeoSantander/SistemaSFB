@@ -6,7 +6,7 @@
 <div class="container">
     <table width="100%">
         <tr>
-            <td><h3>Locais de Trabalho Cadastrados</h3></td>                    
+            <td><h3>Locais de Trabalho Cadastrados</h3></td>
         </tr>
         <tr>
         <td>
@@ -27,24 +27,24 @@
         </tr>
     </table>
     <hr>
-    
-    <?php 
+
+    <?php
         if(!count($viewVar['listarLocais'])){
-    ?>    
+    ?>
         <div class="alert alert-info" role="alert">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
             Nenhum Local encontrado!
         </div>
-    <?php 
+    <?php
         }
-    ?>    
+    ?>
     <?php if($Sessao::retornaMensagem()){ ?>
                 <div class="alert alert-warning" role="alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
                     <?php echo $Sessao::retornaMensagem(); ?>
                 </div>
     <?php } ?>
-    
+
     <?php if($Sessao::retornaSucesso()){ ?>
                 <div class="alert alert-success" role="alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
@@ -75,21 +75,21 @@
                                data-cnpj = "<?php echo $locais->CNPJ;?>"
                                data-endereco=  "<?php echo $locais->NM_Rua.", Nº.: ".$locais->NO_Endereco." - ".$locais->NM_Bairro." - ".$locais->CEP?>"
                                data-cidade= "<?php echo $locais->NM_Cidade." - ". $locais->CD_Estado;?>"
-                               data-id=  "<?php echo $locais->ID_Local_Trabalho?>" 
+                               data-id=  "<?php echo $locais->ID_Local_Trabalho?>"
                                data-telefone = "<?php echo $locais->Telefone;?>"
-                               data-email = "<?php echo $locais->Email;?>">Detalhes</a>
+                               data-email = "<?php echo $locais->Email;?>"><font color="white"> Detalhes</font></a>
 
-                    <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom" 
-                        href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $locais->ID_Local_Trabalho?>" 
+                    <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom"
+                        href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $locais->ID_Local_Trabalho?>"
                         data-nome="<?php echo $locais->NM_Fantasia?>">Excluir</a>
 		        </td>
-	        </tr>	
+	        </tr>
 	    <?php }?>
     </table>
-    
+
      <a href='http://<?php echo APP_HOST; ?>/localTrabalho/consultar/' class="btn btn-info btn sm">Listar Tudo</a>
     </div>
-</div> 
+</div>
 
 
 <!-- Abrir a Modal que será utilizada como detalhes -->
@@ -109,11 +109,11 @@
                 <h5>Dados Cadastrais</h5>
                 <strong>Nome Fantasia: </strong> <span id="cdItem"></span> <span id="nomeItemDetalhe"></span><br>
                 <strong>CNPJ: </strong> <span id="cnpjItem"></span><br><br>
-                
+
                 <h5>Endereço</h5>
                 <strong>Endereço: </strong> <span id="enderecoItem"></span><br>
                 <strong>Cidade: </strong><span id="cidadeItem"></span><br><br>
-                
+
                 <h5>Contato</h5>
                 <strong>Telefone: </strong><span id="telefoneItem"></span><br>
                 <strong>Email: </strong> <span id="emailItem"></span>
@@ -157,7 +157,7 @@
             var id_delete = -1;
             var nome = "";
             var item = document.getElementById("nomeItem");
-            
+
             //details
             var id_detail = -1;
             var nomeItem = "";
@@ -183,7 +183,7 @@
                 id_delete = $(this).attr('data-id');
                 nome = $(this).attr('data-nome');
                 document.getElementById('id').value = id_delete;
-                
+
                 item.innerHTML = "<strong>" + nome +"</strong>";
             });
 
@@ -192,13 +192,13 @@
                 nome = $(this).attr('data-fantasia');
                 cd = $(this).attr('data-sigla');
                 cnpj = $(this).attr('data-cnpj');
-                
+
                 endereco = $(this).attr('data-endereco');
                 cidade = $(this).attr('data-cidade');
 
                 telefone = $(this).attr('data-telefone');
                 email = $(this).attr('data-email');
-                
+
                 document.getElementById('idUpdate').value = id_detail;
 
                 rTitulo.innerHTML = nome;

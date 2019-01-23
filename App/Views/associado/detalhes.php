@@ -29,19 +29,23 @@
     <strong>Celular:  </strong> <?php echo $viewVar['associado']->Celular; ?><br>
     <strong>Email:    </strong> <?php echo $viewVar['associado']->Email; ?><br><br>
 
-    <h5>Dependentes Relacionados:</h5>
-    <?php
-      //var_dump($viewVar['listarDependentes']);
 
-      foreach ($viewVar['listarDependentes'] as $dependentes) {?>
+    <?php
+      if(count($viewVar['listarDependentes'])){
+    ?>
+        <h5>Dependentes Relacionados:</h5>
+        <?php
+        foreach ($viewVar['listarDependentes'] as $dependentes) {?>
         <table>
           <tr>
             <td><strong>Nome</strong></td>
             <td><strong>Grau</strong></td>
           </tr>
           <tr>
-            <td><?php echo $dependentes->NM_Dependente;?></td>
-            <td><?php echo $dependentes->NM_Grau;?></td>
+            <td width="80%"><?php echo $dependentes->NM_Dependente;?></td>
+            <td width="20%"><?php echo $dependentes->NM_Grau;?></td>
           </tr>
         </table>
-      <?php } ?>
+      <?php }
+        }
+      ?>
