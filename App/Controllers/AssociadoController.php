@@ -222,11 +222,4 @@ class AssociadoController extends Controller
 
     }
 
-    public function inativar(){
-      echo "INATIVAR!";
-    }
-
-    public function desligar(){
-      echo "DESLIGAR!";
-    }
 }
