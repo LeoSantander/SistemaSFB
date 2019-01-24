@@ -204,4 +204,26 @@ class AssociadoDAO extends BaseDAO
            throw new \Exception("Erro ao atualizar",500);
        }
    }
+
+   public function trocarStatus(Associado $associado)
+   {
+       try{
+           $situacao = $associado->getSituacao();
+           $idAssociado = $associado->getIdAssociado();
+
+           return $this->update(
+               'sfm_associados',
+               "ST_Situacao = :ST_Situacao",
+               [
+                   ':ID_Associado'=>$idAssociado,
+                   ':ST_Situacao'=>$situacao
+               ],
+               "ID_Associado = :ID_Associado"
+           );
+       }
+       catch(\Exception $e)
+       {
+           throw new \Exception("Erro ao atualizar",500);
+       }
+   }
 }

@@ -204,4 +204,29 @@ class AssociadoController extends Controller
         Sessao::gravaSucesso("Associado Alterado com Sucesso!");
         $this->redirect('/associado/consultar');
     }
+
+    public function altearstatus(){
+
+      $id = $_POST['id'];
+
+      $registro = new Associado();
+      $registro->setSituacao($_POST['situacao']);
+      $registro->setIdAssociado($id);
+
+      $associadoDAO = new AssociadoDAO();
+      $associadoDAO->trocarStatus($registro);
+
+      Sessao::limpaFormulario();
+      Sessao::gravaSucesso("Situação do associado alterado com Sucesso!");
+      $this->redirect('/associado/consultar');
+
+    }
+
+    public function inativar(){
+      echo "INATIVAR!";
+    }
+
+    public function desligar(){
+      echo "DESLIGAR!";
+    }
 }

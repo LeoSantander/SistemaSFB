@@ -1,3 +1,15 @@
+<style>
+#ativo:checked ~ label {
+color: #00cc00;
+}
+#inativo:checked ~ label {
+color: red;
+}
+#desligado:checked ~ label {
+color: blue;
+}
+</style>
+
 <div class="container">
 
     <table width="100%">
@@ -87,7 +99,7 @@
 </div>
 
 <!--Modal Excluir-->
-<form action="http://<?php echo APP_HOST; ?>/associado/excluir" method="post">
+<form action="http://<?php echo APP_HOST; ?>/associado/altearstatus" method="post">
     <input type="hidden" class="form-control" name="excluir" id="id">
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -98,25 +110,33 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 				</div>
 				<div class="modal-body">
-					Atualmente o Associado encontra-se como: <span id="st"></span>
-          <table align = "center">
-            <tr width ="100%">
-              <td width = "10%" align = "center">
-                <button type="button" class="btn btn-success btn-sm" >Ativar</button>
-              </td>
-              <td width = "10%" align = "center">
-                <button type="button" class="btn btn-warning btn-sm">Inativar</button>
-              </td>
-              <td width = "10%" align = "center">
-                <button type="button" class="btn btn-danger btn-sm" >Desligar</button>
-              </td>
-            </tr>
-          </table>
-
+					<center>Atualmente o Associado encontra-se como: <span id="st"></span> <br></center>
 				</div>
+        <div class="row">
+          <div class="col-md-4"></div>
+            <div class="col-md-4">
+
+              <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" id="ativo" name="situacao" value="Ativo" required checked>
+                <label class="custom-control-label" for="ativo">
+                  Ativo</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" id="inativo" name="situacao" value="Inativo">
+                <label class="custom-control-label" for="inativo">Inativo</label>
+              </div>
+
+              <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" id="desligado" name="situacao" value="Desligado">
+                <label class="custom-control-label" for="desligado">Desligado</label>
+              </div>
+            </div>
+          <div class="col-md-4"></div>
+        </div>
 
 				<div class="modal-footer">
 				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
+            <button type="submit" class="btn btn-success btn-sm">Alterar</button>
 				</div>
 			</div>
 		</div>
@@ -199,4 +219,9 @@
             });
         });
     });
+
+    function mudaAction(pagina){
+      document.forms[0].action=pagina;
+      document.forms[0].submit();
+    }
 </script>
