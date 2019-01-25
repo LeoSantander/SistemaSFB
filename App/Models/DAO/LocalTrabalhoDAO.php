@@ -189,7 +189,7 @@ class LocalTrabalhoDAO extends BaseDAO
     public function relatorio($colunas, $condicao, $ordem, $amarra=null, $group=null)
     {
         $query = $this->selectRel(
-          'sfm_local_trabalho',
+          'sfm_local_trabalho AS p',
           $colunas,
           $condicao,
           $ordem,

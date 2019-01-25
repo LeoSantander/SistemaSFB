@@ -5,6 +5,13 @@
 				    obj.style.display = "block";
                     document.getElementById('formulario2').style.display = "none";
                     document.getElementById('formulario3').style.display = "none";
+
+										document.getElementById("a_data_inicio").required = true;
+										document.getElementById("a_data_fim").required = true;
+										document.getElementById("p_data_inicio").required = false;
+										document.getElementById("p_data_fim").required = false;
+										document.getElementById("d_data_inicio").required = false;
+										document.getElementById("d_data_fim").required = false;
 			    }
             }
             else if(document.getElementById('sfm_local_trabalho').checked){
@@ -12,6 +19,13 @@
 				    obj.style.display = "block";
                     document.getElementById('formulario1').style.display = "none";
                     document.getElementById('formulario3').style.display = "none";
+
+										document.getElementById("a_data_inicio").required = false;
+										document.getElementById("a_data_fim").required = false;
+										document.getElementById("p_data_inicio").required = true;
+										document.getElementById("p_data_fim").required = true;
+										document.getElementById("d_data_inicio").required = false;
+										document.getElementById("d_data_fim").required = false;
                 }
             }
             else if(document.getElementById('sfm_dependentes').checked){
@@ -19,6 +33,13 @@
 				    obj.style.display = "block";
                     document.getElementById('formulario1').style.display = "none";
                     document.getElementById('formulario2').style.display = "none";
+
+										document.getElementById("a_data_inicio").required = false;
+										document.getElementById("a_data_fim").required = false;
+										document.getElementById("p_data_inicio").required = false;
+										document.getElementById("p_data_fim").required = false;
+										document.getElementById("d_data_inicio").required = true;
+										document.getElementById("d_data_fim").required = true;
                 }
             }
 
@@ -51,28 +72,28 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md">
-                        <input value="a.NM_Associado" name="a_NM_Associado" type="checkbox"><label>Nome do Associado</label><br>
-                        <input value="a.RG" name="a_RG" type="checkbox"><label>RG</label><br>
-                        <input value="a.CPF" name="a_CPF" type="checkbox"><label>CPF</label><br>
-                        <input value="a.DT_Nascimento" name="a_DT_Nascimento" type="checkbox"><label>Data Nascimento</label><br>
-                        <input value="a.DT_Associacao" name="a_DT_Associacao" type="checkbox"><label>Data Associação</label><br>
+                        <input value="Nome" name="a_NM_Associado" type="checkbox" checked disabled><label>Nome do Associado</label><br>
+                        <input value="RG" name="a_RG" type="checkbox"><label>RG</label><br>
+                        <input value="CPF" name="a_CPF" type="checkbox"><label>CPF</label><br>
+                        <input value="Data Nasc." name="a_DT_Nascimento" type="checkbox"><label>Data Nascimento</label><br>
+                        <input value="Dt. Associação" name="a_DT_Associacao" type="checkbox"><label>Data Associação</label><br>
                     </div>
 
                     <div class="col-md">
-                        <input value="a.Telefone" name="a_Telefone" type="checkbox"><label>Telefone</label><br>
-                        <input value="a.Celular" name="a_Celular" type="checkbox"><label>Celular</label><br>
-                        <input value="a.Email" name="a_Email" type="checkbox"><label>E-mail</label><br>
-                        <input value="a.Endereco" name="a_Endereco" type="checkbox"><label>Endereço</label><br>
-                        <input value="a.NO_Registro" name="a_NO_Registro" type="checkbox"><label>Nº Registro</label><br>
+                        <input value="Telefone" name="a_Telefone" type="checkbox"><label>Telefone</label><br>
+                        <input value="Celular" name="a_Celular" type="checkbox"><label>Celular</label><br>
+                        <input value="Email" name="a_Email" type="checkbox"><label>E-mail</label><br>
+                        <input value="Endereço" name="a_Endereco" type="checkbox"><label>Endereço</label><br>
+                        <input value="N. Registro" name="a_NO_Registro" type="checkbox"><label>Nº Registro</label><br>
                     </div>
 
                     <div class="col-md">
-                        <input value="a.ID_Local_Trabalho" name="a_ID_Local_Trabalho" type="checkbox"><label>Local de Trabalho</label><br>
-                        <input value="a.Cargo" name="a_Cargo" type="checkbox"><label>Cargo</label><br>
-												<input value="a.VL_Salario" name="a_VL_Salario" type="checkbox"><label>Salário</label><br>
-                        <input value="a.ST_Associado" name="a_ST_Associado" type="checkbox"><label>Situação</label><br>
-                        <input value="a.ID_Usuario_Inclusao" name="a_ID_Usuario_Inclusao" type="checkbox"><label>Usuário Inclusão</label><br>
-                        <input value="a.DH_Inclusao" name="a_DH_Inclusao" type="checkbox"><label>Data Inclusão</label><br>
+                        <input value="Posto" name="a_ID_Local_Trabalho" type="checkbox"><label>Local de Trabalho</label><br>
+                        <input value="Cargo" name="a_Cargo" type="checkbox"><label>Cargo</label><br>
+												<input value="Salário" name="a_VL_Salario" type="checkbox"><label>Salário</label><br>
+                        <input value="Situação" name="a_ST_Associado" type="checkbox"><label>Situação</label><br>
+                        <input value="Usuário" name="a_ID_Usuario_Inclusao" type="checkbox"><label>Usuário Inclusão</label><br>
+                        <input value="Data Inclusão" name="a_DH_Inclusao" type="checkbox"><label>Data Inclusão</label><br>
                     </div>
                 </div>
             </div>
@@ -85,21 +106,28 @@
                 <div class="row">
                     <div class="form-group col-md-3">
                         <label><b>Situação do Associado</b></label><br>
-                        <input value="a.ativo" type="radio" id="a.ativo" name="a_situacao" checked><label>Ativo</label><br>
-                        <input value="a.inativo" type="radio" id="a.inativo" name="a_situacao"><label>Inativo</label><br>
-                        <input value="a.todos" type="radio" id="a.todos" name="a_situacao"><label>Todos</label><br>
+                        <input value="Ativo" type="radio" id="a.ativo" name="a_situacao" checked><label>Ativo</label><br>
+                        <input value="Inativo" type="radio" id="a.inativo" name="a_situacao"><label>Inativo</label><br>
+                        <input value="Desligado" type="radio" id="a.desligado" name="a_situacao"><label>Desligado</label><br>
+												<input value="Todos" type="radio" id="a.todos" name="a_situacao"><label>Todos</label><br>
                     </div>
 
                     <div class="form-group col-md-3">
                         <label>Data Inicio</label><br>
-                        <input value="a.data_inicio" type="date" name="a_data_inicio" class="form-control">
+                        <input value="a.data_inicio" type="date" name="a_data_inicio" class="form-control" id="a_data_inicio" required>
                         <label>Data Final</label><br>
-                        <input value="a.data_fim" type="date" name="a_data_fim" class="form-control">
+                        <input value="a.data_fim" type="date" name="a_data_fim" class="form-control" id="a_data_fim" required>
                     </div>
+										<div class="form-group col-md-1">
+										</div>
 
-                    <div class="form-group col-md-6">
-
-                    </div>
+										<div class="form-group col-md-5">
+											<label><b>Ordenar Por</b></label><br>
+											<input value="a.NM_Associado" type="radio" id="a.nome" name="a_ordem" checked><label>Nome</label><br>
+											<input value="a.DT_Associacao" type="radio" id="a.data" name="a_ordem"><label>Data Associação</label><br>
+											<input value="a.Cargo" type="radio" id="a.data" name="a_ordem"><label>Cargo</label><br>
+											<input value="a.VL_Salario" type="radio" id="a.salario" name="a_ordem"><label>Salário</label><br>
+										</div>
                 </div>
             </div>
         </div><!--FIM DO CARD FILTROS--><br>
@@ -139,9 +167,9 @@
 
                     <div class="form-group col-md-3">
                         <label>Data Inicio</label><br>
-                        <input value="p.data_inicio" type="date" name="p_data_inicio" class="form-control"required>
+                        <input value="p.data_inicio" type="date" name="p_data_inicio" class="form-control" id="p_data_inicio">
                         <label>Data Final</label><br>
-                        <input value="p.data_fim" type="date" name="p_data_fim" class="form-control" required>
+                        <input value="p.data_fim" type="date" name="p_data_fim" class="form-control" id="p_data_fim">
                     </div>
 										<div class="form-group col-md-1">
 										</div>
@@ -168,7 +196,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md">
-                        <input value="d.NM_Associado" name="d_NM_Associado" type="checkbox"><label>Nome Associado</label><br>
+                        <input value="d.NM_Associado" name="d_NM_Associado" type="checkbox" checked disabled><label>Nome Associado</label><br>
                         <input value="d.RG" name="d_RG" type="checkbox"><label>RG</label><br>
                         <input value="d.CPF" name="d_CPF" type="checkbox"><label>CPF</label><br>
                         <input value="d.DT_Nascimento" name="d_DT_Nascimento" type="checkbox"><label>Data Nascimento</label><br>
@@ -197,7 +225,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md">
-                        <input value="d.NM_Dependente" name="d_NM_Dependente" type="checkbox"><label>Nome Dependente</label><br>
+                        <input value="d.NM_Dependente" name="d_NM_Dependente" type="checkbox" checked disabled><label>Nome Dependente</label><br>
                         <input value="d.NM_Grau" name="d_NM_Grau" type="checkbox"><label>Grau de Dependência</label><br>
                     </div>
                 </div>
@@ -219,9 +247,9 @@
 
                     <div class="form-group col-md-3">
                         <label>Data Inicio</label><br>
-                        <input value="d.data_inicio" type="date" name="d_data_inicio" class="form-control">
+                        <input value="d.data_inicio" type="date" name="d_data_inicio" id="d_data_inicio" class="form-control">
                         <label>Data Final</label><br>
-                        <input value="d.data_fim" type="date" name="d_data_fim" class="form-control">
+                        <input value="d.data_fim" type="date" name="d_data_fim" id="d_data_fim" class="form-control">
                     </div>
 
                     <div class="form-group col-md-6">

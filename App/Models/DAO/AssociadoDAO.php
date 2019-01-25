@@ -226,4 +226,20 @@ class AssociadoDAO extends BaseDAO
            throw new \Exception("Erro ao atualizar",500);
        }
    }
+
+   public function relatorio($colunas, $condicao, $ordem, $amarra=null, $group=null)
+   {
+       $query = $this->selectRel(
+         'sfm_associados as a',
+         $colunas,
+         $condicao,
+         $ordem,
+         $amarra,
+         $group
+       );
+
+       //var_dump($query);
+
+       return $query->fetchAll(\PDO::FETCH_CLASS, AssociadoDAO::class);
+   }
 }

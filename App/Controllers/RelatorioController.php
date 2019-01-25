@@ -33,30 +33,9 @@ class RelatorioController extends Controller
         Sessao::limpaSucesso();
     }
 
-    public function lista()
-    {
-        /*if(!(Sessao::retornaUsuario()))
-        {
-            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
-            $this->redirect('login/');
-        }
-
-        $cidadeDAO = new CidadeDAO();
-
-        self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
-        $this->render('/relatorio/lista');
-
-        Sessao::limpaFormulario();
-        Sessao::limpaMensagem();
-        Sessao::limpaSucesso();*/
-    }
-
     public function imprimir()
     {
         $tipo = $_POST['tipo'];
-
-        $inicio = date('d/m/Y', strtotime($_POST['inicio']));
-        $fim = date('d/m/Y', strtotime($_POST['fim']));
 
         //relatorio associados
         if($tipo == 'sfm_associados')
@@ -78,42 +57,117 @@ class RelatorioController extends Controller
             $dataInclusao = $_POST['a_DH_Inclusao'];
             $salario = $_POST['a_VL_Salario'];
 
+            $end = "CONCAT (a.NM_Rua,\", \", a.NO_Endereco,\" - \", a.NM_Bairro,\" - \", c.NM_Cidade, \" - \", a.CEP, \" - \", a.Complemento) AS Endereco";
+
             $situacaoEscolha = $_POST['a_situacao'];
             $dataInicio = $_POST['a_data_inicio'];
             $dataFim = $_POST['a_data_fim'];
 
-            $colunas = ($nome                                     .', ').
-                       (isset($rg)           ? $rg           .', ' : '').
-                       (isset($cpf)          ? $cpf          .', ' : '').
-                       (isset($dataNasc)     ? $dataNasc     .', ' : '').
-                       (isset($telefone)     ? $telefone     .', ' : '').
-                       (isset($celular)      ? $celular      .', ' : '').
-                       (isset($email)        ? $email        .', ' : '').
-                       (isset($endereco)     ? $endereco     .', ' : '').
-                       (isset($registro)     ? $registro     .', ' : '').
-                       (isset($local)        ? $local        .', ' : '').
-                       (isset($cargo)        ? $cargo        .', ' : '').
-                       (isset($situacao)     ? $situacao     .', ' : '').
-                       (isset($usuario)      ? $usuario      .', ' : '').
-                       (isset($dataInclusao) ? $dataInclusao .', ' : '').
-                       (isset($salario)      ? $salario            : '');
+            $condicao = ($situacaoEscolha == "Todos" ? "WHERE a.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim'" .' ' :
+                        "WHERE a.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim' AND ST_Situacao = '$situacaoEscolha'" .' ');
+            //var_dump($condicao);
 
-            $condicao = (isset($situacaoEscolha) ? $situacaoEscolha .', ' : '').
-                        (isset($dataInicio)      ? $dataInicio      .', ' : '').
-                        (isset($dataFim)         ? $dataFim               : '');
+            $amarra = (isset($endereco) ? " LEFT OUTER JOIN sfm_cidade AS c ON c.ID_Cidade = a.ID_Cidade" .' ' : '').
+                      (isset($usuario)  ? " LEFT OUTER JOIN sfm_usuarios AS u ON u.ID_Usuario = a.ID_Usuario_Inclusao" .' ' : '').
+                      (isset($local)    ? " LEFT OUTER JOIN sfm_local_trabalho AS p ON p.ID_Local_Trabalho = a.ID_Local_Trabalho" .' ' : '');
 
-            var_dump($colunas);
-            printf("\nTESTE:  Select ".$colunas." From");
+            //var_dump($amarra);
+            $colunas = ("a.NM_Associado"                                    .', ').
+                       (isset($rg)           ? "a.RG"                  .', ' : '').
+                       (isset($cpf)          ? "a.CPF"                 .', ' : '').
+                       (isset($dataNasc)     ? "a.DT_Nascimento"       .', ' : '').
+                       (isset($dataAss)      ? "a.DT_Associacao"       .', ' : '').
+                       (isset($telefone)     ? "a.Telefone"            .', ' : '').
+                       (isset($celular)      ? "a.Celular"             .', ' : '').
+                       (isset($email)        ? "a.Email"               .', ' : '').
+                       (isset($endereco)     ? $end                    .', ' : '').
+                       (isset($registro)     ? "a.NO_Registro"         .', ' : '').
+                       (isset($local)        ? "p.NM_Fantasia"         .', ' : '').
+                       (isset($cargo)        ? "a.Cargo"               .', ' : '').
+                       (isset($situacao)     ? "a.ST_Situacao"         .', ' : '').
+                       (isset($usuario)      ? "u.NM_Usuario"          .', ' : '').
+                       (isset($dataInclusao) ? "a.DH_Inclusao"         .', ' : '').
+                       (isset($salario)      ? "a.VL_Salario"          .', ' : '');
 
-            //$associadoDAO =  new AssociadoDAO();
-            //$associadoDAO->relatorio($colunas,$condicao);
-            //$rel = new RelatorioAssociados();
-            //$rel->novo('relatorio 1');
+            $cols = ("Nome"                                    .', ').
+                    (isset($rg)           ? $rg           .', ' : '').
+                    (isset($cpf)          ? $cpf          .', ' : '').
+                    (isset($dataNasc)     ? $dataNasc     .', ' : '').
+                    (isset($dataAss)      ? $dataAss      .', ' : '').
+                    (isset($telefone)     ? $telefone     .', ' : '').
+                    (isset($celular)      ? $celular      .', ' : '').
+                    (isset($email)        ? $email        .', ' : '').
+                    (isset($endereco)     ? "Endereço"    .', ' : '').
+                    (isset($registro)     ? $registro     .', ' : '').
+                    (isset($local)        ? $local        .', ' : '').
+                    (isset($cargo)        ? $cargo        .', ' : '').
+                    (isset($situacao)     ? $situacao     .', ' : '').
+                    (isset($usuario)      ? $usuario      .', ' : '').
+                    (isset($dataInclusao) ? $dataInclusao .', ' : '').
+                    (isset($salario)      ? $salario      .', ' : '');
+
+            $retira = strlen($colunas);
+            $colunas = substr($colunas,0, $retira-2);
+
+            $retira = strlen($cols);
+            $cols = substr($cols,0,$retira-2);
+            $cols = explode(",", $cols);
+
+            $ordem = $_POST['a_ordem'];
+
+            //var_dump($cols);
+            //printf("\nTESTE:  Select ".$colunas." From sfm_associados as a". $amarra ."".$condicao ." ". $ordem);
+
+            $associadoDAO =  new AssociadoDAO();
+            $associados = $associadoDAO->relatorio($colunas,$condicao,$ordem,$amarra);
+
+            //alterando formato das datas
+            if(isset($dataInclusao))
+            {
+                foreach($associados as $col)
+                $col->DH_Inclusao = date('d/m/Y', strtotime($col->DH_Inclusao));
+            }
+            if(isset($dataNasc))
+            {
+                foreach($associados as $col)
+                $col->DT_Nascimento = date('d/m/Y', strtotime($col->DT_Nascimento));
+            }
+            if(isset($dataAss))
+            {
+                foreach($associados as $col)
+                $col->DT_Associacao = date('d/m/Y', strtotime($col->DT_Associacao));
+            }
+
+            //verificando se existe algum registro ou se a data é válida
+            if($dataFim < $dataInicio)
+            {
+                $dataInicio = date('d/m/Y', strtotime($dataInicio));
+                $dataFim = date('d/m/Y', strtotime($dataFim));
+                Sessao::gravaMensagem("A Data Inicial, $dataInicio é superior a Data Final, $dataFim!<br> Informe outra Data Final!");
+                $this->render('/relatorio/validaRelatorio');
+                Sessao::limpaMensagem();
+            }
+            else if(!count($associados))
+            {
+                $dataInicio = date('d/m/Y', strtotime($dataInicio));
+                $dataFim = date('d/m/Y', strtotime($dataFim));
+                Sessao::gravaMensagem("Nenhum Associado Encontrado no Período de $dataInicio a $dataFim com Situação '$situacaoEscolha'! <br> Informe outro Período ou selecione outra Situação!");
+                $this->render('/relatorio/validaRelatorio');
+                Sessao::limpaMensagem();
+            }
+            //gerando relatorio de acordo com os filtros e colunas selecionadas
+            else
+            {
+                //var_dump($associados);
+                $rel = new RelatorioAssociados();
+                $rel->novo($associados, $dataInicio, $dataFim, $cols, $situacaoEscolha);
+            }
         }
 
          //relatorio Postos
         else if ($tipo == 'sfm_local_trabalho')
         {
+            //Definindo valores para as colunas
             $nomeLocal = $_POST['p_NM_Fantasia'];
             $siglaLocal = $_POST['p_CD_Local_Trabalho'];
             $cnpj = $_POST['p_CNPJ'];
@@ -126,20 +180,30 @@ class RelatorioController extends Controller
 
             $associados = $_POST['p_Associados'];
             $ass = "count(a.ID_Local_Trabalho) AS QTD_Associados";
+
+            //verificando uniões
+            $amarra = (isset($endereco) ? "LEFT OUTER JOIN sfm_cidade AS c ON c.ID_Cidade = p.ID_Cidade" .' ' : '').
+                      (isset($usuario) ? " LEFT OUTER JOIN sfm_usuarios AS u ON u.ID_Usuario = p.ID_Usuario_Inclusao" .' ' : '').
+                      (isset($associados) ? "LEFT OUTER JOIN sfm_associados AS a ON a.ID_Local_Trabalho = p.ID_Local_Trabalho" .' ' : '');
+
+            //definindo group
             if(isset($associados))
             {
-                $amarra = "LEFT OUTER JOIN sfm_associados AS a ON a.ID_Local_Trabalho = p.ID_Local_Trabalho";
                 $group = "GROUP BY p.ID_Local_Trabalho";
             }
 
+            //Definindo data de inicio
             $dataInicio = $_POST['p_data_inicio'];
             $dataFim = $_POST['p_data_fim'];
 
+            //ordem a ser exibida
             $ordem = $_POST['p_ordem'];
 
+            //condição
             $condicao = "WHERE p.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim'";
-            //var_dump($condicao);
+            //var_dump($amarra);
 
+            //definindo campos para consulta ao bd
             $colunas = ("p.NM_Fantasia"                                   .', ').
                        (isset($siglaLocal)   ? "p.CD_Local_Trabalho" .', ' : '').
                        (isset($cnpj)         ? "p.CNPJ"              .', ' : '').
@@ -150,8 +214,7 @@ class RelatorioController extends Controller
                        (isset($usuario)      ? "u.NM_Usuario"        .', ' : '').
                        (isset($dataInclusao) ? "p.DH_Inclusao"       .', ' : '');
 
-
-
+            //definindo nomes para as colunas no relatorio
             $cols = ("Nome"                                    .', ').
                     (isset($siglaLocal)   ? $siglaLocal   .', ' : '').
                     (isset($cnpj)         ? $cnpj         .', ' : '').
@@ -162,6 +225,7 @@ class RelatorioController extends Controller
                     (isset($usuario)      ? $usuario      .', ' : '').
                     (isset($dataInclusao) ? $dataInclusao .', ' : '');
 
+            //formatando, removendo ", " do fim
             $retira = strlen($colunas);
             $colunas = substr($colunas,0, $retira-2);
             //printf("\nTESTE:  Select ".$colunas." From");
@@ -176,15 +240,30 @@ class RelatorioController extends Controller
                 $col->DH_Inclusao = date('d/m/Y', strtotime($col->DH_Inclusao));
             }
 
+            //formatando, removendo ", " do fim
             $retira = strlen($cols);
             $cols = substr($cols,0,$retira-2);
             $cols = explode(",", $cols);
             //var_dump($cols);
 
-            if(!count($postos) OR strtotime($dataFim) < strtotime($dataInicio))
+            //verificando se existe algum registro ou se a data é válida
+            if($dataFim < $dataInicio)
             {
+                $dataInicio = date('d/m/Y', strtotime($dataInicio));
+                $dataFim = date('d/m/Y', strtotime($dataFim));
+                Sessao::gravaMensagem("A Data Inicial, $dataInicio é superior a Data Final, $dataFim!<br> Informe outra Data Final!");
                 $this->render('/relatorio/validaRelatorio');
+                Sessao::limpaMensagem();
             }
+            else if(!count($postos))
+            {
+                $dataInicio = date('d/m/Y', strtotime($dataInicio));
+                $dataFim = date('d/m/Y', strtotime($dataFim));
+                Sessao::gravaMensagem("Nenhum Posto Encontrado no Período de $dataInicio a $dataFim! <br> Informe outro período!");
+                $this->render('/relatorio/validaRelatorio');
+                Sessao::limpaMensagem();
+            }
+            //gerando relatorio de acordo com os filtros e colunas selecionadas
             else
             {
               $rel = new RelatorioPostos();
