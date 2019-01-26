@@ -99,9 +99,6 @@ color: blue;
 </div>
 
 <!--Modal Excluir-->
-<form action="http://<?php echo APP_HOST; ?>/associado/altearstatus" method="post">
-    <input type="hidden" class="form-control" name="excluir" id="id">
-
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -111,6 +108,8 @@ color: blue;
 				</div>
 				<div class="modal-body">
 					<center>Atualmente o Associado encontra-se como: <span id="st"></span> <br></center>
+          <form action="http://<?php echo APP_HOST; ?>/associado/altearstatus" method="post">
+              <input type="hidden" class="form-control" name="id" id="id">
 				</div>
         <div class="row">
           <div class="col-md-4"></div>
@@ -118,8 +117,7 @@ color: blue;
 
               <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" id="ativo" name="situacao" value="Ativo" required checked>
-                <label class="custom-control-label" for="ativo">
-                  Ativo</label>
+                <label class="custom-control-label" for="ativo">Ativo</label>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" id="inativo" name="situacao" value="Inativo">
@@ -137,11 +135,12 @@ color: blue;
 				<div class="modal-footer">
 				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
             <button type="submit" class="btn btn-success btn-sm">Alterar</button>
+          </form>
 				</div>
 			</div>
 		</div>
 	</div>
-</form>
+
 
 <!--Modal Ativar-->
     <div class="modal fade" id="myModalAtivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

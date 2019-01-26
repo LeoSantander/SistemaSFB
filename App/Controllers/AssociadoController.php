@@ -214,11 +214,15 @@ class AssociadoController extends Controller
       $registro->setIdAssociado($id);
 
       $associadoDAO = new AssociadoDAO();
-      $associadoDAO->trocarStatus($registro);
-
-      Sessao::limpaFormulario();
-      Sessao::gravaSucesso("Situação do associado alterado com Sucesso!");
-      $this->redirect('/associado/consultar');
+      if ($associadoDAO->trocarStatus($registro)){
+        Sessao::limpaFormulario();
+        Sessao::gravaSucesso("Situação do associado alterado com Sucesso!");
+        $this->redirect('/associado/consultar');
+      }
+      else
+      {
+          Sessao::gravaMensagem("Erro ao gravar!");
+      }
 
     }
 

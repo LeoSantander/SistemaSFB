@@ -99,7 +99,7 @@ class AssociadoDAO extends BaseDAO
                     ON b.ID_Cidade = a.ID_Cidade
                     INNER JOIN sfm_local_trabalho as c
                     ON c.ID_Local_Trabalho = a.ID_Local_Trabalho
-                WHERE a.NM_Associado LIKE '%".$busca."%' ORDER BY a.NM_Associado AND a.ST_Situacao"
+                WHERE a.NM_Associado LIKE '%".$busca."%' ORDER BY a.ST_Situacao, a.NM_Associado"
             );
            return $query->fetchAll(\PDO::FETCH_CLASS, Associado::class);
        }
@@ -112,7 +112,7 @@ class AssociadoDAO extends BaseDAO
                     ON b.ID_Cidade = a.ID_Cidade
                     INNER JOIN sfm_local_trabalho as c
                     ON c.ID_Local_Trabalho = a.ID_Local_Trabalho
-                ORDER BY a.NM_Associado AND a.ST_Situacao"
+                ORDER BY a.ST_Situacao, a.NM_Associado"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Associado::class);
        }
@@ -210,7 +210,6 @@ class AssociadoDAO extends BaseDAO
        try{
            $situacao = $associado->getSituacao();
            $idAssociado = $associado->getIdAssociado();
-
            return $this->update(
                'sfm_associados',
                "ST_Situacao = :ST_Situacao",
