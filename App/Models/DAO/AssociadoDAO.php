@@ -88,6 +88,15 @@ class AssociadoDAO extends BaseDAO
         }
     }
 
+   public function listAssoc(){
+     $query = $this->select(
+      "SELECT a.*
+          FROM sfm_associados as a
+          ORDER BY a.NM_Associado"
+      );
+      return $query->fetchAll(\PDO::FETCH_CLASS, Associado::class);
+   }
+
    public function listarAssociados($busca = '')
    {
        if(isset($busca))

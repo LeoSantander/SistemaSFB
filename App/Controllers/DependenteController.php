@@ -22,7 +22,7 @@ class DependenteController extends Controller
         }
 
         $associadoDAO = new AssociadoDAO();
-        self::setViewParam('listarAssociados',$associadoDAO->listarAssociados());
+        self::setViewParam('listarAssociados',$associadoDAO->listAssoc());
 
         $this->render('/dependente/cadastro');
 
