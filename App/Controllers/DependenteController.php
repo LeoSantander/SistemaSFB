@@ -114,7 +114,7 @@ class DependenteController extends Controller
         }
 
         $associadoDAO = new AssociadoDAO();
-        self::setViewParam('listarAssociados', $associadoDAO->listarAssociados());
+        self::setViewParam('listarAssociados',$associadoDAO->listAssoc());
 
         $id = $_POST['id'];
         if ($id == null){
