@@ -198,16 +198,13 @@
 
                     <div class="col-md">
                         <input value="Nome" name="d_NM_Associado" type="checkbox" checked disabled><label>Nome Associado</label><br>
-                        <input value="CPF" name="d_CPF" type="checkbox"><label>CPF</label><br>
-                        <input value="Data Associação" name="d_DT_Associacao" type="checkbox"><label>Data Associação</label><br>
-                        <input value="Cargo" name="d_Cargo" type="checkbox"><label>Cargo</label><br>
-                        <input value="Situação" name="d_ST_Situacao" type="checkbox"><label>Situação</label><br>
+                        <input value="CPF" name="d_CPF" type="checkbox" checked disabled><label>CPF</label><br>
                     </div>
 
 		                <h5>Dependente</h5>
                     <div class="col-md">
                         <input value="Nome Dependente" name="d_NM_Dependente" type="checkbox" checked disabled><label>Nome Dependente</label><br>
-                        <input value="Grau" name="d_NM_Grau" type="checkbox"><label>Grau de Dependência</label><br>
+                        <input value="Grau" name="d_NM_Grau" type="checkbox" checked><label>Grau de Dependência</label><br>
                     </div>
                 </div>
             </div>

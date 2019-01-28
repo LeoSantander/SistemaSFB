@@ -8,7 +8,7 @@ use App\Models\DAO\CidadeDAO;
 
 class RelatorioAssociadosDependentes extends FPDF
 {
-    public function novo($postos, $inicio, $fim, $colunas,$total)
+    public function novo($postos, $inicio, $fim, $colunas,$total,$totalDep,$largura=190)
     {
         //var_dump($postos);
         $pdf = new FPDF();
@@ -28,12 +28,19 @@ class RelatorioAssociadosDependentes extends FPDF
         $pdf->SetY("60");
         $pdf->Cell(190, 10, utf8_decode('Associados e Dependentes'), 1, 1, 'C');
 
-        $conta = count($colunas);
-        $tam = 190/$conta;
+        if($largura == 190)
+        {
+            $conta = count($colunas);
+            $tam = $largura/$conta;
+        }
+        else {
+          $conta = count($colunas);
+          $tam = $largura/($conta-1);
+        }
 
-        for($i=0; $i<count($colunas); $i++)
+        for($i=0; $i<2; $i++)
             $teste[$i] = $tam;
-
+        $teste[2] = 30;
         $pdf->SetFont('Arial','B',12);
         $pdf->SetWidths($teste);
         $i=0;
@@ -49,15 +56,7 @@ class RelatorioAssociadosDependentes extends FPDF
 
         $conta = count($postos);
         $i=0;
-        /*while($i < $conta)
-        {
-            for ($j=0; $j < 2; $j++) {
-                  $array[$j] = utf8_decode($postos[$i]);
-                  $i++;
-            }
-            $pdf->Row($array,'C');
-            $totalAssociados++;
-        }*/
+
         foreach($postos as $linha)
         {
             $j = 0;
@@ -65,13 +64,14 @@ class RelatorioAssociadosDependentes extends FPDF
                   $array[$j] = utf8_decode($col);
                   $j++;
             }
-            $pdf->Row($array);
+
+            $pdf->Row($array,$alinha,'alinhaGrau',2);
             $totalAssociados++;
         }
         $pdf->Ln();
         //$pdf->Footer();
         $pdf->Cell(190,0,utf8_decode('Total de Associados: '.$total),0,1,'R');
-        $pdf->Cell(190,14,utf8_decode('Total de Dependentes: 0'.$totalDependentes),0,1,'R');
+        $pdf->Cell(190,14,utf8_decode('Total de Dependentes: '.$totalDep),0,1,'R');
         $pdf->AliasNbPages();
 
         $pdf->Output("SFM_Relatorio_Postos_".date("d-m-Y").".pdf",'I');//fim do PDF

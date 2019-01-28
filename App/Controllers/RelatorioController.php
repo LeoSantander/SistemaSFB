@@ -287,32 +287,25 @@ class RelatorioController extends Controller
         else if ($tipo == 'sfm_dependentes')
         {
             $nome = $_POST['d_NM_Associado'];
-            $cpf = $_POST['d_CPF'];
-            $dataAss = $_POST['d_DT_Associacao'];
-            $cargo = $_POST['d_Cargo'];
-            $situacao = $_POST['d_ST_Associado'];
-
             $nomeDependente = $_POST['d_NM_Dependente'];
             $grau = $_POST['d_NM_Grau'];
 
-            $dep = (isset($grau) ? "CONCAT (d.NM_Dependente,\"- \", d.NM_Grau) AS Dependente" : "d.NM_Dependente AS Dependente");
 
             $situacaoEscolha = $_POST['d_situacao'];
             $dataInicio = $_POST['d_data_inicio'];
             $dataFim = $_POST['d_data_fim'];
 
-            $asso = "a.CPF";
+            $asso = "CONCAT (a.NM_Associado,\" - [\", a.CPF,\"]\") AS NomeAssociado";
 
-            $colunas = ("a.NM_Associado"                                .', ').
-                       (isset($cpf)            ? "a.CPF"           .', ' : '').
-                       (isset($dataAss)        ? "a.DT_Associacao" .', ' : '').
-                       (isset($cargo)          ? "a.Cargo"         .', ' : '').
-                       (isset($situacao)       ? "a.ST_Situacao"   .', ' : '').
-                       ($dep                                            .', ');
+            $colunas = ($asso                                .', ').
+                       ("d.NM_Dependente"                               .', ').
+                       (isset($grau)           ? "d.NM_Grau"       .', ' : '');
 
+            isset($grau) ? $tamanho = 160 : $tamanho=190;
 
             $cols =    ("Nome"       .', ').
-                       ("Dependente" .', ');
+                       ("Dependente" .', ').
+                       (isset($grau) ? "Grau"       .', ':'');
 
             //formatando, removendo ", " do fim
             $retira = strlen($colunas);
@@ -339,31 +332,58 @@ class RelatorioController extends Controller
 
             //var_dump($associadosDependentes);
 
-            $total=0;
+            $totalAss=0;
+            $totalDep=0;
             $nomeAtual='';
             foreach ($associadosDependentes as $a)
             {
-                if($a->NM_Associado == $nomeAtual)
+                if($a->NomeAssociado == $nomeAtual)
                 {
-                    $a->NM_Associado = "";
+                    $a->NomeAssociado = "";
                 }
                 else {
-                  $total++;
+                  $totalAss++;
                 }
-                if($a->Dependente == '')
+                if($a->NM_Dependente == '')
                 {
-                    $a->Dependente = "Sem Dependentes";
+                    $a->NM_Dependente = "-";
+                }
+                else {
+                  $totalDep++;
                 }
 
-                if($a->NM_Associado != '')
-                    $nomeAtual=$a->NM_Associado;
+                if($a->NomeAssociado != '')
+                    $nomeAtual=$a->NomeAssociado;
 
             }
 
             //var_dump($associadosDependentes);
 
-            $rel = new RelatorioAssociadosDependentes();
-            $rel->novo($associadosDependentes, $dataInicio,$dataFim, $cols,$total);
+            //verificando se existe algum registro ou se a data é válida
+            if($dataFim < $dataInicio)
+            {
+                $dataInicio = date('d/m/Y', strtotime($dataInicio));
+                $dataFim = date('d/m/Y', strtotime($dataFim));
+                Sessao::gravaMensagem("A Data Inicial, $dataInicio é superior a Data Final, $dataFim!<br> Informe outra Data Final!");
+                $this->render('/relatorio/validaRelatorio');
+                Sessao::limpaMensagem();
+            }
+            else if(!count($associadosDependentes))
+            {
+                $dataInicio = date('d/m/Y', strtotime($dataInicio));
+                $dataFim = date('d/m/Y', strtotime($dataFim));
+                Sessao::gravaMensagem("Nenhum Associado/Dependente Encontrado no Período de $dataInicio a $dataFim! <br> Informe outro período!");
+                $this->render('/relatorio/validaRelatorio');
+                Sessao::limpaMensagem();
+            }
+            //gerando relatorio de acordo com os filtros e colunas selecionadas
+            else
+            {
+              $rel = new RelatorioAssociadosDependentes();
+              $rel->novo($associadosDependentes, $dataInicio,$dataFim, $cols,$totalAss,$totalDep,$tamanho);
+            }
+
+
         }
     }
 }

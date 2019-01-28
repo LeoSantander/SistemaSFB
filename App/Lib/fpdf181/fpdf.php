@@ -676,7 +676,7 @@ function SetAligns($a)
      $this->aligns=$a;
 }
 
-function Row($data, $align='J')
+function Row($data, $align='J',$alinha=null,$valor=0)
 {
      //Calculate the height of the row
      $nb=0;
@@ -696,7 +696,20 @@ function Row($data, $align='J')
          //Draw the border
          $this->Rect($x,$y,$w,$h);
          //Print the text
-         $this->MultiCell($w,6,$data[$i],0,$a);
+				 if(isset($alinha))
+				 {
+						 if($i==$valor)
+						 {
+							 	$this->MultiCell($w,6,$data[$i],0,'C');
+						 }
+						 else {
+							 $this->MultiCell($w,6,$data[$i],0,$a);
+						 }
+				 }
+				 else{
+					 $this->MultiCell($w,6,$data[$i],0,$a);
+				 }
+
          //Put the position to the right of the cell
          $this->SetXY($x+$w,$y);
      }
