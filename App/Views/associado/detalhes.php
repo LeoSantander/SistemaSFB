@@ -34,18 +34,17 @@
       if(count($viewVar['listarDependentes'])){
     ?>
         <h5>Dependentes Relacionados:</h5>
-        <?php
-        foreach ($viewVar['listarDependentes'] as $dependentes) {?>
         <table>
           <tr>
             <td><strong>Nome</strong></td>
             <td><strong>Grau</strong></td>
           </tr>
+          <?php
+          foreach ($viewVar['listarDependentes'] as $dependentes) {?>
           <tr>
             <td width="80%"><?php echo $dependentes->NM_Dependente;?></td>
             <td width="20%"><?php echo $dependentes->NM_Grau;?></td>
           </tr>
+        <?php }?>
         </table>
-      <?php }
-        }
-      ?>
+    <?php }?>

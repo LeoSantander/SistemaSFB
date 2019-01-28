@@ -14,7 +14,7 @@ class AssociadoController extends Controller
 {
     public function index()
     {
-        $this->redirect('/associado/cadastro');
+        $this->render('/associado/cadastro');
     }
 
     public function detalhes($params)
