@@ -77,13 +77,15 @@
                         <input value="CPF" name="a_CPF" type="checkbox"><label>CPF</label><br>
                         <input value="Data Nasc." name="a_DT_Nascimento" type="checkbox"><label>Data Nascimento</label><br>
                         <input value="Dt. Associação" name="a_DT_Associacao" type="checkbox"><label>Data Associação</label><br>
+												<input value="Endereço" name="a_Endereco" type="checkbox"><label>Endereço</label><br>
                     </div>
 
                     <div class="col-md">
-                        <input value="Telefone" name="a_Telefone" type="checkbox"><label>Telefone</label><br>
+                        <input value="Dependente" name="a_ID_Dependente" type="checkbox"><label>Total Dependentes</label><br>
+												<input value="Telefone" name="a_Telefone" type="checkbox"><label>Telefone</label><br>
                         <input value="Celular" name="a_Celular" type="checkbox"><label>Celular</label><br>
                         <input value="Email" name="a_Email" type="checkbox"><label>E-mail</label><br>
-                        <input value="Endereço" name="a_Endereco" type="checkbox"><label>Endereço</label><br>
+												<input value="Situação" name="a_ST_Associado" type="checkbox"><label>Situação</label><br>
                         <input value="N. Registro" name="a_NO_Registro" type="checkbox"><label>Nº Registro</label><br>
                     </div>
 
@@ -91,7 +93,6 @@
                         <input value="Posto" name="a_ID_Local_Trabalho" type="checkbox"><label>Local de Trabalho</label><br>
                         <input value="Cargo" name="a_Cargo" type="checkbox"><label>Cargo</label><br>
 												<input value="Salário" name="a_VL_Salario" type="checkbox"><label>Salário</label><br>
-                        <input value="Situação" name="a_ST_Associado" type="checkbox"><label>Situação</label><br>
                         <input value="Usuário" name="a_ID_Usuario_Inclusao" type="checkbox"><label>Usuário Inclusão</label><br>
                         <input value="Data Inclusão" name="a_DH_Inclusao" type="checkbox"><label>Data Inclusão</label><br>
                     </div>
@@ -192,41 +193,21 @@
                 Campos
             </div>
             <div class="card-body">
-                <h5>Associado</h5>
-                <hr>
                 <div class="row">
-                    <div class="col-md">
-                        <input value="d.NM_Associado" name="d_NM_Associado" type="checkbox" checked disabled><label>Nome Associado</label><br>
-                        <input value="d.RG" name="d_RG" type="checkbox"><label>RG</label><br>
-                        <input value="d.CPF" name="d_CPF" type="checkbox"><label>CPF</label><br>
-                        <input value="d.DT_Nascimento" name="d_DT_Nascimento" type="checkbox"><label>Data Nascimento</label><br>
-                        <input value="d.DT_Associacao" name="d_DT_Associacao" type="checkbox"><label>Data Associação</label><br>
-                    </div>
+										<h5>Associado</h5>
 
                     <div class="col-md">
-                        <input value="d.Telefone" name="d_Telefone" type="checkbox"><label>Telefone</label><br>
-                        <input value="d.Celular" name="d_Celular" type="checkbox"><label>Celular</label><br>
-                        <input value="d.Email" name="d_Email" type="checkbox"><label>E-mail</label><br>
-                        <input value="d.Endereco" name="d_Endereco" type="checkbox"><label>Endereço</label><br>
-                        <input value="d.NO_Registro" name="d_NO_Registro" type="checkbox"><label>Nº Registro</label><br>
-
+                        <input value="Nome" name="d_NM_Associado" type="checkbox" checked disabled><label>Nome Associado</label><br>
+                        <input value="CPF" name="d_CPF" type="checkbox"><label>CPF</label><br>
+                        <input value="Data Associação" name="d_DT_Associacao" type="checkbox"><label>Data Associação</label><br>
+                        <input value="Cargo" name="d_Cargo" type="checkbox"><label>Cargo</label><br>
+                        <input value="Situação" name="d_ST_Situacao" type="checkbox"><label>Situação</label><br>
                     </div>
 
+		                <h5>Dependente</h5>
                     <div class="col-md">
-                        <input value="d.ID_Local_Trabalho" name="d_ID_Local_Trabalho" type="checkbox"><label>Local de Trabalho</label><br>
-                        <input value="d.Cargo" name="d_Cargo" type="checkbox"><label>Cargo</label><br>
-												<input value="d.VL_Salario" name="d_VL_Salario" type="checkbox"><label>Salário</label><br>
-                        <input value="d.ST_Situacao" name="d_ST_Situacao" type="checkbox"><label>Situação</label><br>
-                        <input value="d.ID_Usuario_Inclusao" name="d_ID_Usuario_Inclusao" type="checkbox"><label>Usuário Inclusão</label><br>
-                        <input value="d.DH_Inclusao" name="d_DH_Inclusao" type="checkbox"><label>Data Inclusão</label><br>
-                    </div>
-                </div><br>
-                <h5>Dependente</h5>
-                <hr>
-                <div class="row">
-                    <div class="col-md">
-                        <input value="d.NM_Dependente" name="d_NM_Dependente" type="checkbox" checked disabled><label>Nome Dependente</label><br>
-                        <input value="d.NM_Grau" name="d_NM_Grau" type="checkbox"><label>Grau de Dependência</label><br>
+                        <input value="Nome Dependente" name="d_NM_Dependente" type="checkbox" checked disabled><label>Nome Dependente</label><br>
+                        <input value="Grau" name="d_NM_Grau" type="checkbox"><label>Grau de Dependência</label><br>
                     </div>
                 </div>
             </div>
@@ -240,9 +221,10 @@
                 <div class="row">
                     <div class="form-group col-md-3">
                         <label><b>Situação do Associado</b></label><br>
-                        <input value="d.todos" type="radio" id="d.ativo" name="d_situacao" checked><label>Ativo</label><br>
-                        <input value="d.todos" type="radio" id="d.inativo" name="d_situacao"><label>Inativo</label><br>
-                        <input value="d.todos" type="radio" id="d.todos" name="d_situacao"><label>Todos</label><br>
+                        <input value="Ativo" type="radio" id="d.ativo" name="d_situacao" checked><label>Ativo</label><br>
+                        <input value="Inativo" type="radio" id="d.inativo" name="d_situacao"><label>Inativo</label><br>
+                        <input value="Desligado" type="radio" id="d.desligado" name="d_situacao"><label>Desligado</label><br>
+												<input value="Todos" type="radio" id="d.todos" name="d_situacao"><label>Todos</label><br>
                     </div>
 
                     <div class="form-group col-md-3">
@@ -252,9 +234,14 @@
                         <input value="d.data_fim" type="date" name="d_data_fim" id="d_data_fim" class="form-control">
                     </div>
 
-                    <div class="form-group col-md-6">
+										<div class="form-group col-md-1">
+										</div>
 
-                    </div>
+										<div class="form-group col-md-5">
+											<label><b>Ordenar Por</b></label><br>
+											<input value="a.NM_Associado" type="radio" id="d.nome" name="d_ordem" checked><label>Nome</label><br>
+											<input value="a.DT_Associacao" type="radio" id="d.data" name="d_ordem"><label>Data Associação</label><br>
+										</div>
                 </div>
             </div>
         </div><!--FIM DO CARD FILTROS--><br>

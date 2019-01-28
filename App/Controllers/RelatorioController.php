@@ -67,33 +67,39 @@ class RelatorioController extends Controller
                         "WHERE a.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim' AND ST_Situacao = '$situacaoEscolha'" .' ');
             //var_dump($condicao);
 
+            $dependentes = $_POST['a_ID_Dependente'];
+            $dep = "count(d.ID_Associado) AS QTD_Dependentes";
+
             $amarra = (isset($endereco) ? " LEFT OUTER JOIN sfm_cidade AS c ON c.ID_Cidade = a.ID_Cidade" .' ' : '').
                       (isset($usuario)  ? " LEFT OUTER JOIN sfm_usuarios AS u ON u.ID_Usuario = a.ID_Usuario_Inclusao" .' ' : '').
+                      (isset($dependentes)  ? " LEFT OUTER JOIN sfm_dependentes AS d ON d.ID_Associado = a.ID_Associado" .' ' : '').
                       (isset($local)    ? " LEFT OUTER JOIN sfm_local_trabalho AS p ON p.ID_Local_Trabalho = a.ID_Local_Trabalho" .' ' : '');
 
             //var_dump($amarra);
             $colunas = ("a.NM_Associado"                                    .', ').
-                       (isset($rg)           ? "a.RG"                  .', ' : '').
-                       (isset($cpf)          ? "a.CPF"                 .', ' : '').
-                       (isset($dataNasc)     ? "a.DT_Nascimento"       .', ' : '').
-                       (isset($dataAss)      ? "a.DT_Associacao"       .', ' : '').
-                       (isset($telefone)     ? "a.Telefone"            .', ' : '').
-                       (isset($celular)      ? "a.Celular"             .', ' : '').
-                       (isset($email)        ? "a.Email"               .', ' : '').
-                       (isset($endereco)     ? $end                    .', ' : '').
-                       (isset($registro)     ? "a.NO_Registro"         .', ' : '').
-                       (isset($local)        ? "p.NM_Fantasia"         .', ' : '').
-                       (isset($cargo)        ? "a.Cargo"               .', ' : '').
-                       (isset($situacao)     ? "a.ST_Situacao"         .', ' : '').
-                       (isset($usuario)      ? "u.NM_Usuario"          .', ' : '').
-                       (isset($dataInclusao) ? "a.DH_Inclusao"         .', ' : '').
-                       (isset($salario)      ? "a.VL_Salario"          .', ' : '');
+                       (isset($rg)           ? "a.RG"            .', ' : '').
+                       (isset($cpf)          ? "a.CPF"           .', ' : '').
+                       (isset($dataNasc)     ? "a.DT_Nascimento" .', ' : '').
+                       (isset($dataAss)      ? "a.DT_Associacao" .', ' : '').
+                       (isset($dependentes)  ? $dep              .', ' : '').
+                       (isset($telefone)     ? "a.Telefone"      .', ' : '').
+                       (isset($celular)      ? "a.Celular"       .', ' : '').
+                       (isset($email)        ? "a.Email"         .', ' : '').
+                       (isset($endereco)     ? $end              .', ' : '').
+                       (isset($registro)     ? "a.NO_Registro"   .', ' : '').
+                       (isset($local)        ? "p.NM_Fantasia"   .', ' : '').
+                       (isset($cargo)        ? "a.Cargo"         .', ' : '').
+                       (isset($situacao)     ? "a.ST_Situacao"   .', ' : '').
+                       (isset($usuario)      ? "u.NM_Usuario"    .', ' : '').
+                       (isset($dataInclusao) ? "a.DH_Inclusao"   .', ' : '').
+                       (isset($salario)      ? "a.VL_Salario"    .', ' : '');
 
             $cols = ("Nome"                                    .', ').
                     (isset($rg)           ? $rg           .', ' : '').
                     (isset($cpf)          ? $cpf          .', ' : '').
                     (isset($dataNasc)     ? $dataNasc     .', ' : '').
                     (isset($dataAss)      ? $dataAss      .', ' : '').
+                    (isset($dependentes)  ? "Dependentes" .', ' : '').
                     (isset($telefone)     ? $telefone     .', ' : '').
                     (isset($celular)      ? $celular      .', ' : '').
                     (isset($email)        ? $email        .', ' : '').
@@ -115,11 +121,17 @@ class RelatorioController extends Controller
 
             $ordem = $_POST['a_ordem'];
 
+            //definindo group
+            if(isset($dependentes))
+            {
+                $group = "GROUP BY a.ID_Associado";
+            }
+
             //var_dump($cols);
             //printf("\nTESTE:  Select ".$colunas." From sfm_associados as a". $amarra ."".$condicao ." ". $ordem);
 
             $associadoDAO =  new AssociadoDAO();
-            $associados = $associadoDAO->relatorio($colunas,$condicao,$ordem,$amarra);
+            $associados = $associadoDAO->relatorio($colunas,$condicao,$ordem,$amarra,$group);
 
             //alterando formato das datas
             if(isset($dataInclusao))
@@ -275,57 +287,83 @@ class RelatorioController extends Controller
         else if ($tipo == 'sfm_dependentes')
         {
             $nome = $_POST['d_NM_Associado'];
-            $rg = $_POST['d_RG'];
             $cpf = $_POST['d_CPF'];
-            $dataNasc = $_POST['d_DT_Nascimento'];
             $dataAss = $_POST['d_DT_Associacao'];
-            $telefone = $_POST['d_Telefone'];
-            $celular = $_POST['d_Celular'];
-            $email = $_POST['d_Email'];
-            $endereco = $_POST['d_Endereco'];
-            $registro = $_POST['d_NO_Registro'];
-            $local = $_POST['d_ID_Local_Trabalho'];
             $cargo = $_POST['d_Cargo'];
             $situacao = $_POST['d_ST_Associado'];
-            $usuario = $_POST['d_ID_Usuario_Inclusao'];
-            $dataInclusao = $_POST['d_DH_Inclusao'];
-            $salario = $_POST['d_VL_Salario'];
 
             $nomeDependente = $_POST['d_NM_Dependente'];
             $grau = $_POST['d_NM_Grau'];
+
+            $dep = (isset($grau) ? "CONCAT (d.NM_Dependente,\"- \", d.NM_Grau) AS Dependente" : "d.NM_Dependente AS Dependente");
 
             $situacaoEscolha = $_POST['d_situacao'];
             $dataInicio = $_POST['d_data_inicio'];
             $dataFim = $_POST['d_data_fim'];
 
-            $colunas = (isset($nome)           ? $nome           .', ' : '').
-                       (isset($rg)             ? $rg             .', ' : '').
-                       (isset($cpf)            ? $cpf            .', ' : '').
-                       (isset($dataNasc)       ? $dataNasc       .', ' : '').
-                       (isset($telefone)       ? $telefone       .', ' : '').
-                       (isset($celular)        ? $celular        .', ' : '').
-                       (isset($email)          ? $email          .', ' : '').
-                       (isset($endereco)       ? $endereco       .', ' : '').
-                       (isset($registro)       ? $registro       .', ' : '').
-                       (isset($local)          ? $local          .', ' : '').
-                       (isset($cargo)          ? $cargo          .', ' : '').
-                       (isset($situacao)       ? $situacao       .', ' : '').
-                       (isset($usuario)        ? $usuario        .', ' : '').
-                       (isset($dataInclusao)   ? $dataInclusao   .', ' : '').
-                       (isset($nomeDependente) ? $nomeDependente .', ' : '').
-                       (isset($grau)           ? $grau           .', ' : '').
-                       (isset($salario)        ? $salario              : '');
+            $asso = "a.CPF";
 
-            $condicao = (isset($situacaoEscolha) ? $situacaoEscolha .', ' : '').
-                        (isset($dataInicio)      ? $dataInicio      .', ' : '').
-                        (isset($dataFim)         ? $dataFim               : '');
+            $colunas = ("a.NM_Associado"                                .', ').
+                       (isset($cpf)            ? "a.CPF"           .', ' : '').
+                       (isset($dataAss)        ? "a.DT_Associacao" .', ' : '').
+                       (isset($cargo)          ? "a.Cargo"         .', ' : '').
+                       (isset($situacao)       ? "a.ST_Situacao"   .', ' : '').
+                       ($dep                                            .', ');
 
 
-            printf("\nTESTE:  Select ".$colunas." From");
-            printf("\nTESTE:  ".$condicao);
+            $cols =    ("Nome"       .', ').
+                       ("Dependente" .', ');
 
-            //$rel = new RelatorioAssociadosDependentes();
-            //$rel->novo('agora é a hora');
+            //formatando, removendo ", " do fim
+            $retira = strlen($colunas);
+            $colunas = substr($colunas,0, $retira-2);
+
+            //formatando, removendo ", " do fim
+            $retira = strlen($cols);
+            $cols = substr($cols,0,$retira-2);
+            $cols = explode(",", $cols);
+
+            $condicao = ($situacaoEscolha == "Todos" ? "WHERE a.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim'" .' ' :
+                        "WHERE a.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim' AND ST_Situacao = '$situacaoEscolha'" .' ');
+            //var_dump($condicao);
+
+            $amarra = ("LEFT OUTER JOIN sfm_dependentes AS d ON d.ID_Associado = a.ID_Associado" .' ');
+
+            $ordem = $_POST['d_ordem'];
+
+            //printf("\nTESTE:  Select ".$colunas." From sfm_associados as a ". $amarra. " ".$condicao);
+            //printf("\nTESTE:  ".$condicao);
+
+            $dependenteDAO = new DependenteDAO();
+            $associadosDependentes = $dependenteDAO->relatorio($colunas, $condicao, $ordem, $amarra);
+
+            //var_dump($associadosDependentes);
+
+            $total=0;
+            $nomeAtual='';
+            foreach ($associadosDependentes as $a)
+            {
+                if($a->NM_Associado == $nomeAtual)
+                {
+                    $a->NM_Associado = "";
+                }
+                else {
+                  $total++;
+                }
+                if($a->Dependente == '')
+                {
+                    $a->Dependente = "Sem Dependentes";
+                }
+
+                if($a->NM_Associado != '')
+                    $nomeAtual=$a->NM_Associado;
+
+            }
+
+            //var_dump($associadosDependentes);
+
+            $rel = new RelatorioAssociadosDependentes();
+            $rel->novo($associadosDependentes, $dataInicio,$dataFim, $cols,$total);
         }
     }
 }

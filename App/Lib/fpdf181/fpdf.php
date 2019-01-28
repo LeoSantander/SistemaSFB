@@ -676,7 +676,7 @@ function SetAligns($a)
      $this->aligns=$a;
 }
 
-function Row($data)
+function Row($data, $align='J')
 {
      //Calculate the height of the row
      $nb=0;
@@ -689,7 +689,7 @@ function Row($data)
      for($i=0;$i< count($data);$i++)
      {
          $w=$this->widths[$i];
-         $a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'C';
+         $a=isset($this->aligns[$i]) ? $this->aligns[$i] : $align;
          //Save the current position
          $x=$this->GetX();
          $y=$this->GetY();
