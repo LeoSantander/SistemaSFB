@@ -21,10 +21,10 @@ class App
         define('APP_HOST'       , $_SERVER['HTTP_HOST'] . "/AgenciaRoad/SistemaSFM/");
         define('PATH'           , realpath('./'));
         define('TITLE'          , "Sistema SFM | Agência Road Tech");
-        define('DB_HOST'        , "sql136.main-hosting.eu");
-        define('DB_USER'        , "u204053349_des");
+        define('DB_HOST'        , "31.220.56.144");
+        define('DB_USER'        , "roadtech_admin");
         define('DB_PASSWORD'    , "acesso?roadtech");
-        define('DB_NAME'        , "u204053349_des");
+        define('DB_NAME'        , "roadtech_des");
         define('DB_DRIVER'      , "mysql");
 
         $this->url();
@@ -57,7 +57,7 @@ class App
         if (!class_exists($nomeClasse)) {
             throw new Exception("Erro na aplicação", 500);
         }
-        
+
         if (method_exists($objetoController, $this->action)) {
             $objetoController->{$this->action}($this->params);
             return;
@@ -76,7 +76,7 @@ class App
 
             $path = $_GET['url'];
             $path = rtrim($path, '/');
-            $path = filter_var($path, FILTER_SANITIZE_URL); 
+            $path = filter_var($path, FILTER_SANITIZE_URL);
 
             $path = explode('/', $path);
 
