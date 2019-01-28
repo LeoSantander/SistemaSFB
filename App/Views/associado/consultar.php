@@ -99,9 +99,6 @@ color: blue;
 </div>
 
 <!--Modal Excluir-->
-<form action="http://<?php echo APP_HOST; ?>/associado/altearstatus" method="post">
-    <input type="hidden" class="form-control" name="excluir" id="id">
-
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -111,6 +108,8 @@ color: blue;
 				</div>
 				<div class="modal-body">
 					<center>Atualmente o Associado encontra-se como: <span id="st"></span> <br></center>
+          <form action="http://<?php echo APP_HOST; ?>/associado/altearstatus" method="post">
+              <input type="hidden" class="form-control" name="id" id="id">
 				</div>
         <div class="row">
           <div class="col-md-4"></div>
@@ -118,8 +117,7 @@ color: blue;
 
               <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" id="ativo" name="situacao" value="Ativo" required checked>
-                <label class="custom-control-label" for="ativo">
-                  Ativo</label>
+                <label class="custom-control-label" for="ativo">Ativo</label>
               </div>
               <div class="custom-control custom-radio">
                 <input type="radio" class="custom-control-input" id="inativo" name="situacao" value="Inativo">
@@ -137,38 +135,11 @@ color: blue;
 				<div class="modal-footer">
 				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
             <button type="submit" class="btn btn-success btn-sm">Alterar</button>
+          </form>
 				</div>
 			</div>
 		</div>
 	</div>
-</form>
-
-<!--Modal Ativar-->
-    <div class="modal fade" id="myModalAtivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">Ativar Usuário</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-				</div>
-
-				<div class="modal-body">
-                    <form action="http://<?php echo APP_HOST; ?>/assoiado/ativar" method="post">
-                    <input type="hidden" class="form-control" name="ativar" id="id-ativar">
-
-					Deseja realmente Ativar o usuário <span id="nomeItemAtivar"></span>?
-				</div>
-
-				<div class="modal-footer">
-				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
-					<button type="submit" id="deleteItem" class="btn btn-info btn-sm">Ativar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</form>
-
-
 
 <div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -204,7 +175,6 @@ color: blue;
                 id_delete = $(this).attr('data-id');
                 nome = $(this).attr('data-nome');
                 st_situacao = $(this).attr('data-st');
-                console.log(st_situacao);
                 document.getElementById('id').value = id_delete;
                 item.innerHTML = "<strong>" + nome + "</strong>";
                 sit.innerHTML = "<strong>" + st_situacao + "</strong>";
@@ -214,14 +184,9 @@ color: blue;
                 document.getElementById("detalhes-aberto").innerHTML="Carregando...";
                 var id_detail = this.dataset.id;
                 var detalhes = document.getElementById("detalhes-aberto");
-                console.log(id_detail);
                 $("#detalhes-aberto").load("http://<?php echo APP_HOST; ?>/associado/detalhes/"+id_detail);
             });
         });
     });
 
-    function mudaAction(pagina){
-      document.forms[0].action=pagina;
-      document.forms[0].submit();
-    }
 </script>

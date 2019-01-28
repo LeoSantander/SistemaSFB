@@ -61,13 +61,13 @@ class CidadeController extends Controller
         if($cidadeDAO->salvar($registro))
         {
             if ($lc == 'LC'){
-                Sessao::limpaFormulario();
+                Sessao::gravaFormulario($_POST);
                 Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
 
                 $this->redirect('/localTrabalho/cadastro');
 
             } else if($lc == 'AS'){
-                Sessao::limpaFormulario();
+                Sessao::gravaFormulario($_POST);
                 Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
 
                 $this->redirect('/associado/cadastro');
