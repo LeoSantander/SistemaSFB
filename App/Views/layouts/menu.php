@@ -12,7 +12,7 @@
 </style>
 
 <?php if ($Sessao::retornaTPUsuario() == 'Financeiro'){?>
-<!--Interface para Financeiro --> 
+<!--Interface para Financeiro -->
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#202020">
   <a class="navbar-brand" href="http://<?php echo APP_HOST; ?>/home">Sistema SFM</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@
       <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cobranças</a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                                
+
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Boletos</a>
                   <div class="dropdown-menu">
@@ -48,7 +48,7 @@
         <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresas</a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                                
+
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Postos</a>
                   <div class="dropdown-menu">
@@ -75,7 +75,7 @@
             <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/usuario/consultar">Consultar Convênios</a>
           </div>
         </li>
-        
+
         <li <?php if($viewVar['nameController'] == "RelatorioController") { ?> class="nav-item active" <?php } ?>>
           <a class="nav-link" href="http://<?php echo APP_HOST; ?>/relatorio/gerar">Relatórios <span class="sr-only">(current)</span></a>
         </li>
@@ -101,7 +101,7 @@
       <li <?php if($viewVar['nameController'] == "HomeController") { ?> class="nav-item active" <?php } ?>>
         <a class="nav-link" href="http://<?php echo APP_HOST; ?>/home">Inicio <span class="sr-only">(current)</span></a>
       </li>
-      <!--Menu Usuários | Só vai aparecer se TPUsuário Logado for = Administrador --> 
+      <!--Menu Usuários | Só vai aparecer se TPUsuário Logado for = Administrador -->
       <?php if ($Sessao::retornaTPUsuario() == 'Administrador'){?>
       <li <?php if($viewVar['nameController'] == "UsuarioController") { ?> class="nav-item active dropdown" <?php } ?> class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -117,7 +117,7 @@
       <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Localidade</a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                                
+
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Estados</a>
                   <div class="dropdown-menu">
@@ -139,7 +139,7 @@
         <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresas</a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                                
+
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Postos</a>
                   <div class="dropdown-menu">
@@ -164,18 +164,18 @@
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Convênios</a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Adicionar Novo Convênio</a>
-                    <a class="dropdown-item" href="#">Consultar Convênios</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/convenio/cadastro">Adicionar Novo Convênio</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/convenio/consultar">Consultar Convênios</a>
                   </div>
                 </li>
-                
+
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Associados</a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/associado/cadastro">Adicionar Novo Associado</a>
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/associado/consultar">Consultar Associados</a>
                   </div>
-                </li> 
+                </li>
 
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Dependentes</a>
