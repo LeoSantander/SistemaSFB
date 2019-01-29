@@ -58,7 +58,9 @@
                     <td align="center"><?php echo $convenio->Dia_Vencimento;?></td>
                     <td align="center">
                         <a href="http://<?php echo APP_HOST;?>/convenio/alterar/<?php echo $convenio->ID_Convenio?>" class="btn btn-info btn-sm">Editar</a>
-                        <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom" href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $convenio->ID_Convenio?>" data-nome="<?php echo $convenio->NM_Convenio?>">Excluir</a>
+                        <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom"
+                           href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $convenio->ID_Convenio?>"
+                           data-nome="<?php echo $convenio->NM_Convenio?>">Excluir</a>
                     </td>
                 </tr>
             <?php }?>
@@ -67,3 +69,50 @@
         <a href='http://<?php echo APP_HOST; ?>/convenio/consultar/' class="btn btn-info btn sm">Listar Tudo</a>
     </div>
 </div>
+
+
+
+<!--Modal Excluir-->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Excluir</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				</div>
+				<div class="modal-body">
+                    <form action="http://<?php echo APP_HOST; ?>/convenio/excluir" method="post">
+                    <input type="hidden" class="form-control" name="id" id="id">
+					Deseja realmente excluir o Convênio <span id="nomeItem"></span>?
+                    
+				</div>
+
+				<div class="modal-footer">
+				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
+					<button type="submit" id="deleteItem" class="btn btn-danger btn-sm">Excluir</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+<script>
+    $(window).load(function(){
+        $(document).ready(function(){
+            var id_delete = -1;
+            var nome = "";
+            var item = document.getElementById("nomeItem");
+            $("a#delete-row").click(function() {
+                id_delete = $(this).attr('data-id');
+                nome = $(this).attr('data-nome');
+                //$("#nome p").text(nome);
+                //$("#result p").text("Id do estado selecionado: " + id_delete);
+                document.getElementById('id').value = id_delete;
+                //document.getElementById('nome').value = nome;
+
+                item.innerHTML = "<strong>" + nome +"</strong>";
+            });
+        });
+    });
+</script>
