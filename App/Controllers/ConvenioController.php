@@ -46,20 +46,111 @@ class ConvenioController extends Controller
 
         if($convenioDAO->verificaConvenio($convenio , $empresa))
         {
-            Sessao::gravaMensagem("Convenio já cadastrado!");
+            Sessao::gravaMensagem("Convênio já cadastrado!");
 
             $this->redirect('/convenio/cadastro');
         }
         if($convenioDAO->salvar($registro))
         {
             Sessao::limpaFormulario();
-            Sessao::gravaSucesso("Convenio cadastrado com Sucesso!");
+            Sessao::gravaSucesso("Convênio cadastrado com Sucesso!");
 
             $this->redirect('/convenio/cadastro');
         }
         else
         {
             Sessao::gravaMensagem("Erro ao gravar!");
+        }
+    }
+
+    public function consultar()
+    {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+
+        $busca = $_POST['buscar'];
+        $convenioDAO = new ConvenioDAO();
+
+        self::setViewParam('listarConvenios', $convenioDAO->listarConvenios($busca));
+        $this->render('/convenio/consultar');
+
+        Sessao::limpaMensagem();
+        Sessao::limpaFormulario();
+        Sessao::limpaSucesso();
+    }
+
+    public function excluir()
+    {
+        $convenio = new Convenio();
+        $convenio->setIdConvenio($_POST['id']);
+
+        $convenioDAO = new ConvenioDAO();
+
+        if(!$convenioDAO->excluir($convenio))
+        {
+            Sessao::gravaMensagem("Convênio não encontrado!");
+            $this->redirect('/convenio/consultar');
+        }
+
+        Sessao::gravaSucesso("Convênio Excluído com sucesso!");
+        $this->redirect('/convenio/consultar');
+    }
+
+    public function alterar($params)
+    {
+        if(!(Sessao::retornaUsuario())){
+            Sessao::gravaMensagem("É necessário realizar Login para acessar ao Sistema!");
+            $this->redirect('login/');
+        }
+
+        $convenioDAO = new ConvenioDAO();
+
+        $id = $_POST['id'];
+        if ($id == null){
+            $id = $params[0];
+        }
+
+        $convenio = $convenioDAO->pegarConvenio($id);
+
+        if(!$convenio)
+        {
+            Sessao::gravaMensagem("Convênio Inválido");
+            $this->redirect('/convenio/alterar/');
+        }
+
+        self::setViewParam('convenio',$convenio);
+        $this->render('/convenio/alterar');
+        Sessao::limpaMensagem();
+    }
+
+    public function atualizar()
+    {
+        $id = $_POST['id'];
+
+        $registro = new Convenio();
+        $registro->setNmConvenio    ($_POST['convenio']);
+        $registro->setNmEmpresa     ($_POST['empresa']);
+        $registro->setVlConvenio    ($_POST['valor']);
+        $registro->setVlConvenioDep ($_POST['valorDep']);
+        $registro->setDtVencimento  ($_POST['dataVenc']);
+        $registro->setSituacao      ($_POST['situacao']);
+        $registro->setIdConvenio    ($id);
+        $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
+
+        $convenioDAO = new ConvenioDAO();
+
+        if($convenioDAO->verificaAlteracao($_POST['convenio'], $_POST['empresa'], $id))
+        {
+            Sessao::gravaMensagem("Convênio já cadastrado!");
+            $this->redirect('/convenio/consultar/'.$id);
+        }else{
+            $convenioDAO->atualizar($registro);
+
+            Sessao::limpaFormulario();
+            Sessao::gravaSucesso("Convênio Alterado com Sucesso!");
+            $this->redirect('/convenio/consultar');
         }
     }
 }

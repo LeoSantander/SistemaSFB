@@ -6,7 +6,7 @@ use App\Models\Entidades\Cidade;
 
 class CidadeDAO extends BaseDAO
 {
-    
+
     //verificar se cidade já esta cadastrada
     public function verificaNome($nome, $idEstado)
     {
@@ -36,7 +36,7 @@ class CidadeDAO extends BaseDAO
             throw new \Exception("Erro ao carregar Dados",500);
         }
     }
-    
+
     //salvando dados de uma nova cidade
     public function salvar(Cidade $cidade)
     {
@@ -46,8 +46,8 @@ class CidadeDAO extends BaseDAO
             $idUsuario= $cidade->getIdUsuario();
             $idEstado = $cidade->getIdEstado();
             //printf('Nome: '.$nome. '- Sigla:' .$sigla.'Id: '.$idUsuarioInclusao);
-            
-            //retorna true or false, fazendo a inserção no banco de dados (insert - função da BaseDAO 
+
+            //retorna true or false, fazendo a inserção no banco de dados (insert - função da BaseDAO
             //recebe 3 parametros: nome da tabela, campos a serem afetados, dados para inserção)
             return $this->insert(
                 'sfm_cidade',
@@ -64,7 +64,7 @@ class CidadeDAO extends BaseDAO
             throw new \Exception("Erro na gravação de dados.", 500);
         }
     }
-    
+
     public function listarCidades()
     {
         //Selecionando no Banco de Dados
@@ -91,7 +91,7 @@ class CidadeDAO extends BaseDAO
             "SELECT * FROM sfm_local_trabalho WHERE ID_Cidade = $idCidade"
         );
 
-        return $query->fetch(); 
+        return $query->fetch();
     }
 
     //verificando se tem algum local de trabalho esta relacionado ao id
@@ -101,7 +101,7 @@ class CidadeDAO extends BaseDAO
             "SELECT * FROM sfm_associados WHERE ID_Cidade = $idCidade"
         );
 
-        return $query->fetch(); 
+        return $query->fetch();
     }
 
     public function excluir(Cidade $registro)

@@ -48,4 +48,103 @@ class ConvenioDAO extends BaseDAO
             throw new \Exception ("Erro no acesso aos dados!",500);
         }
     }
+
+    public function listarConvenios($busca = '')
+    {
+        if(isset($busca))
+        {
+            $query = $this->select(
+                "SELECT
+                      sfm_convenios.*,
+                      sfm_convenios.ID_Convenio,
+                      sfm_convenios.NM_Convenio,
+                      sfm_convenios.NM_Empresa,
+                      sfm_convenios.Dia_Vencimento
+                 FROM sfm_convenios
+                 WHERE NM_Convenio LIKE '%".$busca."%' ORDER BY NM_Convenio"
+            );
+            return $query->fetchAll(\PDO::FETCH_CLASS, Convenio::class);
+        }
+        else
+        {
+            $query = $this->select(
+                "SELECT
+                      sfm_convenios.*,
+                      sfm_convenios.ID_Convenio,
+                      sfm_convenios.NM_Convenio,
+                      sfm_convenios.NM_Empresa,
+                      sfm_convenios.Dia_Vencimento
+                 FROM sfm_convenios
+                 ORDER BY NM_Convenio"
+            );
+            return $query->fetchAll(\PDO::FETCH_CLASS, Convenio::class);
+        }
+    }
+
+    public function excluir(Convenio $registro)
+    {
+        try{
+            $id = $registro->getIdConvenio();
+            return $this->delete('sfm_convenios',"ID_Convenio = $id");
+        }
+        catch(\Exception $e){
+            throw new \Exception("Erro ao excluir", 500);
+        }
+    }
+
+    public function pegarConvenio($id)
+    {
+        $query = $this->select(
+            "SELECT * FROM sfm_convenios WHERE ID_Convenio = '$id'"
+        );
+
+        return $query->fetchObject(Convenio::class);
+    }
+
+    public function atualizar(Convenio $convenio)
+    {
+        try{
+            $empresa = $convenio->getNmEmpresa();
+            $vlConvenio = $convenio->getVlConvenio();
+            $valorDep = $convenio->getVlConvenioDep();
+            $nmConvenio = $convenio->getNmConvenio();
+            $dataVenc = $convenio->getDtVencimento();
+            $situacao = $convenio->getSituacao();
+            $idConvenio = $convenio->getIdConvenio();
+            $idUsuario = $convenio->getIdUsuarioInclusao();
+            return $this->update(
+                'sfm_convenios',
+                "NM_Empresa = :NM_Empresa, VL_Convenio = :VL_Convenio, VL_Convenio_Dep = :VL_Convenio_Dep, NM_Convenio = :NM_Convenio, Dia_Vencimento = :Dia_Vencimento, ST_Situacao = :ST_Situacao, ID_Usuario_Inclusao = :ID_Usuario_Inclusao",
+                [
+                    ':ID_Convenio'=>$idConvenio,
+                    ':NM_Convenio'=>$nmConvenio,
+                    ':NM_Empresa'=>$empresa,
+                    ':VL_Convenio'=>$vlConvenio,
+                    ':VL_Convenio_Dep'=>$valorDep,
+                    ':Dia_Vencimento'=>$dataVenc,
+                    ':ID_Usuario_Inclusao'=>$idUsuario,
+                    ':ST_Situacao'=>$situacao
+
+                ],
+                "ID_Convenio = :ID_Convenio"
+            );
+        }
+        catch(\Exception $e)
+        {
+            throw new \Exception("Erro ao atualizar",500);
+        }
+    }
+
+    public function verificaAlteracao($nmConvenio, $nmEmpresa, $id)
+    {
+        try{
+            $query = $this->select(
+                "SELECT * FROM sfm_convenios WHERE ID_Convenio <> '$id' AND NM_Convenio = '$nmConvenio' AND NM_Empresa = '$nmEmpresa' "
+            );
+            return $query->fetch();
+        }
+        catch(Exception $e){
+            throw new \Exception("Erro ao carregar Dados",500);
+        }
+    }
 }//fim do programa.

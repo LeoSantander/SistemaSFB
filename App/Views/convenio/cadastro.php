@@ -30,7 +30,7 @@
 
                 <div class="form-group">
                     <label for="nome">Nome da Empresa:</label>
-                    <input type="text" class="form-control" name="empresa" placeholder="Nome Completo" pattern="[A-Za-zÀ-ú ]{0,}"
+                    <input type="text" class="form-control" name="empresa" placeholder="Nome da Empresa" pattern="[A-Za-zÀ-ú ]{0,}"
                            title="Use somente letras. Não use caracteres especiais ou números." value="<?php echo $Sessao::retornaValorFormulario('empresa'); ?>"
                            required autofocus>
                 </div>

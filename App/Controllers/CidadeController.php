@@ -147,7 +147,7 @@ class CidadeController extends Controller
         $cidade = $cidadeDAO->pegarcidade($idCidade);
 
         if(!$cidade){
-            Sessao::gravaMensagem("Usuário Inválido");
+            Sessao::gravaMensagem("Cidade Inválida");
             $this->redirect('/cidade/alterar');
         }
         self::setViewParam('cidade',$cidade);
