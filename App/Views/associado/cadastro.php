@@ -102,9 +102,15 @@
                             </select>
                     </div>
                 </div>
+                <div class="form-row">
+                <?php $i=0;
+                  var_dump($viewVar['listarConvenios']);
+                foreach($viewVar['listarConvenios'] as $convenios){ ?>
 
-                <? ///////////// CHECKBOX COM CONVENIOS ////////////// ?>
+                    <input type="checkbox" name="convenio<?php echo $i?>" id="<?php echo $convenio->ID_Convenio;?>" value="<?php echo $convenio->ID_Convenio;?>"/><?php echo $convenio->NM_Convenio;?><br>
 
+                <?php $i++; } ?>
+              </div>
                 <br><h5>Endereço:</h5>
                 <hr>
 
@@ -205,7 +211,7 @@
               Deseja adicionar dependentes?
             </div>
             <div class="modal-footer">
-                <button type="submit" name="actionConcluir" value ="Concluir" class="btn btn-outline-primary btn-sm">Não, Conluir esta ação!</button>
+                <button type="submit" name="actionConcluir" value ="Concluir" class="btn btn-outline-primary btn-sm">Não, Concluir esta ação!</button>
                 <button type="submit" name="actionCadDep" value ="CadDep" class="btn btn-success btn-sm">Sim, Adicionar Dependentes</button>
               </form>
             </div>

@@ -98,7 +98,7 @@
               Deseja adicionar outro dependente?
             </div>
             <div class="modal-footer">
-                <button type="submit" name="actionConcluir" value ="Concluir" class="btn btn-outline-primary btn-sm">Não, Conluir esta ação!</button>
+                <button type="submit" name="actionConcluir" value ="Concluir" class="btn btn-outline-primary btn-sm">Não, Concluir esta ação!</button>
                 <button type="submit" name="actionCadDep" value ="CadDep" class="btn btn-success btn-sm">Sim, Adicionar outro Dependentes</button>
               </form>
             </div>
