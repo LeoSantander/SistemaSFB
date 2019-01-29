@@ -45,8 +45,9 @@
             <thead class="thead-light">
                 <tr align="center">
                     <th scope="col">Nome do Convênio</th>
-                    <th width="30%" scope="col">Nome da Empresa</th>
+                    <th width="20%" scope="col">Nome da Empresa</th>
                     <th width="20%" scope="col">Dia de Vencimento</th>
+                    <th width="15%" scope="col">Situação</th>
                     <th width="20%" scope="col">Ações</th>
                 </tr>
             </thead>
@@ -56,6 +57,7 @@
                     <td><?php echo $convenio->NM_Convenio;?></td>
                     <td align="center"><?php echo $convenio->NM_Empresa;?></td>
                     <td align="center"><?php echo $convenio->Dia_Vencimento;?></td>
+                    <td align="center"><?php echo $convenio->ST_Situacao;?></td>
                     <td align="center">
                         <a href="http://<?php echo APP_HOST;?>/convenio/alterar/<?php echo $convenio->ID_Convenio?>" class="btn btn-info btn-sm">Editar</a>
                         <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom"
@@ -85,7 +87,7 @@
                     <form action="http://<?php echo APP_HOST; ?>/convenio/excluir" method="post">
                     <input type="hidden" class="form-control" name="id" id="id">
 					Deseja realmente excluir o Convênio <span id="nomeItem"></span>?
-                    
+
 				</div>
 
 				<div class="modal-footer">

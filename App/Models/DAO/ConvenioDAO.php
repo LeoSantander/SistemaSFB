@@ -75,10 +75,21 @@ class ConvenioDAO extends BaseDAO
                       sfm_convenios.NM_Empresa,
                       sfm_convenios.Dia_Vencimento
                  FROM sfm_convenios
-                 ORDER BY NM_Convenio"
+                 ORDER BY ST_Situacao, NM_Convenio"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Convenio::class);
         }
+    }
+
+    public function listarConveniosAtivos()
+    {
+        $query = $this->select(
+                "SELECT
+                      sfm_convenios.*
+                 FROM sfm_convenios WHERE sfm_convenios.ST_Situacao = 'Ativo'
+                 ORDER BY NM_Convenio"
+            );
+            return $query->fetchAll(\PDO::FETCH_CLASS, Convenio::class);
     }
 
     public function excluir(Convenio $registro)
