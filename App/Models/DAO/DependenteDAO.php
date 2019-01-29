@@ -49,7 +49,7 @@ class DependenteDAO extends BaseDAO{
                  FROM sfm_dependentes
                     INNER JOIN sfm_associados
                     ON sfm_associados.ID_Associado = sfm_dependentes.ID_Associado
-                 WHERE NM_Dependente LIKE '%".$busca."%' ORDER BY NM_Dependente"
+                 WHERE NM_Dependente LIKE '%".$busca."%' ORDER BY NM_Associado, NM_Dependente"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Dependente::class);
         }
@@ -63,7 +63,7 @@ class DependenteDAO extends BaseDAO{
                  FROM sfm_dependentes
                     INNER JOIN sfm_associados
                     ON sfm_associados.ID_Associado = sfm_dependentes.ID_Associado
-                 ORDER BY NM_Dependente"
+                 ORDER BY NM_Associado, NM_Dependente"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Dependente::class);
         }

@@ -20,6 +20,7 @@
             <?php }?>
 
             <form action="http://<?php echo APP_HOST; ?>/dependente/salvar" method="post">
+
                 <div class="form-group">
                     <label for="nome">Nome Completo:</label>
                     <input type="text" class="form-control" name="nome" placeholder="Nome Completo" pattern="[A-Za-zÀ-ú ]{0,}"
@@ -50,8 +51,13 @@
                 <div class="form-row">
                     <div class="form-group col-md-7">
                         <label for="associado">Associado:</label>
-                        <input list="list-associados" id="associado" name="associado" class="form-control" placeholder="Digite ou Selecione um Associado" required autocomplete="off">
-                        <input type="hidden" name="idAssociado" id="idAssociado" value="">
+                        <input list="list-associados" id="associado" name="associado" class="form-control" placeholder="Digite ou Selecione um Associado" required autocomplete="off" value="<?php echo $Sessao::retornaLastID();?>">
+                        <input type="hidden" name="idAssociado" id="idAssociado">
+                        <?php foreach($viewVar['listarAssociados'] as $associado){
+                          if (($associado->NM_Associado == $Sessao::retornaLastID()) || ($associado->CPF == $Sessao::retornaLastCPF())){?>
+                            <input type="hidden" name="idAssociado" id="idAssociado" value="<?php echo $associado->ID_Associado;?>">
+                        <?php }
+                        } ?>
                         <datalist id="list-associados">
                         <select >
                             <?php foreach($viewVar['listarAssociados'] as $associado){?>
@@ -71,12 +77,32 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <button type="button" data-toggle="modal" data-target="#detalhes" data-placement="bottom" href="#" class="btn btn-success">Salvar</button>
                     <a href="http://<?php echo APP_HOST; ?>/home/" class="btn btn-outline-danger">Cancelar</a>
                 </div>
-            </form>
         </div>
         <div class="col-md-3"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Confirmação</span></h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              Deseja adicionar outro dependente?
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="actionConcluir" value ="Concluir" class="btn btn-outline-primary btn-sm">Não, Conluir esta ação!</button>
+                <button type="submit" name="actionCadDep" value ="CadDep" class="btn btn-success btn-sm">Sim, Adicionar outro Dependentes</button>
+              </form>
+            </div>
+        </div>
     </div>
 </div>
 

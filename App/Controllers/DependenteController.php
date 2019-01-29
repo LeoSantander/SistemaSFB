@@ -58,16 +58,35 @@ class DependenteController extends Controller
             $this->redirect('/dependente/cadastro');
         }
 
-        if($dependenteDAO->salvar($registro))
-        {
+        $acaoConcluir = $_POST['actionConcluir'];
+        $acaoCadDep = $_POST['actionCadDep'];
+
+        if (isset($acaoConcluir)){
+          if($dependenteDAO->salvar($registro))
+          {
             Sessao::limpaFormulario();
-            Sessao::gravaSucesso("Dependente Cadastrado com Sucesso!");
+            Sessao::limpaLastID();
+            Sessao::gravaSucesso("Dependente ".$registro->getNome()." Cadastrado com Sucesso!");
+            $this->redirect('/dependente/consultar');
+          }
+          else
+          {
+            Sessao::gravaMensagem("Erro ao gravar");
+          }
+        }
+
+        if (isset($acaoCadDep)){
+          if($dependenteDAO->salvar($registro))
+          {
+            Sessao::limpaFormulario();
+            Sessao::gravaSucesso("Dependente ".$registro->getNome()." Cadastrado com Sucesso!");
 
             $this->redirect('/dependente/cadastro');
-        }
-        else
-        {
+          }
+          else
+          {
             Sessao::gravaMensagem("Erro ao gravar");
+          }
         }
     }
 

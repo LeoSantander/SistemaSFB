@@ -250,4 +250,9 @@ class AssociadoDAO extends BaseDAO
 
        return $query->fetchAll(\PDO::FETCH_CLASS, AssociadoDAO::class);
    }
+
+   public function recUltID(){
+     $query = $this->select("SELECT MAX(ID_Associado) AS MaxID FROM sfm_associados");
+     return $query->fetch();
+   }
 }

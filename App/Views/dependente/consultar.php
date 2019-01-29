@@ -48,7 +48,7 @@
                     <th scope="col">Nome Dependente</th>
                     <th width="30%" scope="col">Nome Associado</th>
                     <th width="20%" scope="col">Grau</th>
-                    <th width="20%" scope="col">Ações</th>
+                    <th width="25%" scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>

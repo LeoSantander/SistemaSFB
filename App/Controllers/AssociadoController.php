@@ -60,7 +60,7 @@ class AssociadoController extends Controller
 
     public function salvar()
     {
-      $registro = new Associado();
+        $registro = new Associado();
         $registro->setNome($_POST['nome']);
         $registro->setRg($_POST['rg']);
         $registro->setCpf($_POST['cpf']);
@@ -92,16 +92,36 @@ class AssociadoController extends Controller
             $this->redirect('/associado/cadastro');
         }
 
-        if($associadoDAO->salvar($registro))
-        {
-            Sessao::limpaFormulario();
-            Sessao::gravaSucesso("Sócio cadastrado com Sucesso!");
+        $acaoConcluir = $_POST['actionConcluir'];
+        $acaoCadDep = $_POST['actionCadDep'];
 
-            $this->redirect('/associado/cadastro');
+        if (isset($acaoConcluir)){
+          if($associadoDAO->salvar($registro)){
+
+              Sessao::limpaFormulario();
+              Sessao::gravaSucesso("Sócio cadastrado com Sucesso!");
+
+              $this->redirect('/associado/cadastro');
+          }
+          else{
+                Sessao::gravaMensagem("Erro ao gravar!");
+          }
         }
-        else
-        {
-            Sessao::gravaMensagem("Erro ao gravar!");
+        if (isset($acaoCadDep)){
+          if($associadoDAO->salvar($registro)){
+
+            Sessao::limpaFormulario();
+            Sessao::gravaSucesso("Sócio ".$registro->getNome()." cadastrado com Sucesso!");
+
+            $Last_ID = $associadoDAO->recUltID();
+            Sessao::gravaLastID($registro->getNome());
+            Sessao::gravaLastCPF($registro->getCPF());
+
+            $this->redirect('/dependente/cadastro');
+          }
+          else{
+                Sessao::gravaMensagem("Erro ao gravar!");
+          }
         }
     }
 

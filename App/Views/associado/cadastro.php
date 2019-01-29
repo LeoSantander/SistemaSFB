@@ -185,13 +185,34 @@
                 </div>
 
                 <hr>
-                    <button data-toggle="modal" data-target="#detalhes" data-placement="bottom" href="#" class="btn btn-success">Salvar</button>
+                    <button type="button" data-toggle="modal" data-target="#detalhes" data-placement="bottom" href="#" class="btn btn-success">Salvar</button>
                     <a href="http://<?php echo APP_HOST; ?>/home/" class="btn btn-outline-danger">Cancelar</a>
-                </form>
 
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Confirmação</span></h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              Deseja adicionar dependentes?
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="actionConcluir" value ="Concluir" class="btn btn-outline-primary btn-sm">Não, Conluir esta ação!</button>
+                <button type="submit" name="actionCadDep" value ="CadDep" class="btn btn-success btn-sm">Sim, Adicionar Dependentes</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -335,28 +356,8 @@
 				<div class="modal-footer">
 				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-success">Salvar</button>
+          </form>
 				</div>
 			</div>
 		</div>
 	</div>
-
-  <div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-              <div class="modal-header bg-dark text-white">
-                  <h5 class="modal-title" id="exampleModalCenterTitle">Confirmação<span id="nomeItemTitulo"></span></h5>
-                  <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                Deseja adicionar dependentes?
-              </div>
-              <div class="modal-footer">
-      				    <button type="submit" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Não, Conluir esta ação!</button>
-                  <button type="button" class="btn btn-success btn-sm">Sim, Adicionar Dependentes</button>
-                </form>
-      				</div>
-          </div>
-      </div>
-  </div>

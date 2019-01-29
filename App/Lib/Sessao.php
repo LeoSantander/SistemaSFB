@@ -8,7 +8,7 @@ class Sessao
     public static function gravaMensagem($mensagem){
         $_SESSION['mensagem'] = $mensagem;
     }
-    
+
     public static function limpaMensagem(){
         unset($_SESSION['mensagem']);
     }
@@ -17,15 +17,42 @@ class Sessao
         return ($_SESSION['mensagem']) ? $_SESSION['mensagem'] : "";
     }
 
+    //LAST ID / Nome
+    public static function gravaLastID($LastID){
+        $_SESSION['lastID'] = $LastID;
+    }
+
+    public static function limpaLastID(){
+        unset($_SESSION['lastID']);
+    }
+
+    public static function retornaLastID(){
+        return ($_SESSION['lastID']) ? $_SESSION['lastID'] : "";
+    }
+
+   //LAST CPF
+    public static function retornaLastCPF(){
+        return ($_SESSION['LastCPF']) ? $_SESSION['LastCPF'] : "";
+    }
+
+    public static function gravaLastCPF($LastCPF){
+        $_SESSION['LastCPF'] = $LastCPF;
+    }
+
+    public static function limpaLastCPF(){
+        unset($_SESSION['LastCPF']);
+    }
+
+
     //grava mensagens de sucesso a serem exibidas
     public static function gravaSucesso($sucesso){
         $_SESSION['sucesso'] = $sucesso;
     }
-    
+
     public static function limpaSucesso(){
         unset($_SESSION['sucesso']);
     }
-    
+
     public static function retornaSucesso(){
         return ($_SESSION['sucesso']) ? $_SESSION['sucesso'] : "";
     }
@@ -73,7 +100,7 @@ class Sessao
     public static function retornaUsuario(){
         return ($_SESSION['usuario']) ? $_SESSION['usuario'] : "";
     }
-   
+
     public static function limpaUsuario(){
         unset($_SESSION['usuario']);
     }
@@ -86,20 +113,20 @@ class Sessao
     public static function retornaSenha(){
         return ($_SESSION['senha']) ? $_SESSION['senha'] : "";
     }
-   
+
     public static function limpaSenha(){
         unset($_SESSION['senha']);
     }
-    
+
     //TP Usuario
     public static function gravaTPUsuario($TPUsuario){
         $_SESSION['TPUsuario'] = $TPUsuario;
     }
-    
+
     public static function retornaTPUsuario(){
         return ($_SESSION['TPUsuario']) ? $_SESSION['TPUsuario'] : "";
     }
-   
+
     public static function limpaTPUsuario(){
         unset($_SESSION['TPUsuario']);
     }
@@ -112,9 +139,9 @@ class Sessao
     public static function retornaidUsuario(){
         return ($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : "";
     }
-   
+
     public static function limpaidUsuario(){
         unset($_SESSION['idUsuario']);
     }
-    
+
 }
