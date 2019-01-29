@@ -63,9 +63,19 @@
                         <label for="situacao">Situação Atual:</label>
                         <select name= "situacao" class="form-control" value="<?php echo $viewVar['associado']->ST_Situacao?>" required>
                             <option name="situacao" value="">Selecione</option>
-                            <option name="situacao" value="Ativo" selected >Ativo</option>
-                            <option name="situacao" value="Inativo">Inativo</option>
-                            <option name="situacao" value="Desligado">Desligado</option>
+                            <?php if ($viewVar['associado']->ST_Situacao == "Ativo") {?>
+                              <option name="situacao" value="Ativo" selected >Ativo</option>
+                              <option name="situacao" value="Inativo">Inativo</option>
+                              <option name="situacao" value="Desligado">Desligado</option>
+                            <?php } else if ($viewVar['associado']->ST_Situacao == "Inativo"){?>
+                              <option name="situacao" value="Ativo" >Ativo</option>
+                              <option name="situacao" value="Inativo" selected>Inativo</option>
+                              <option name="situacao" value="Desligado">Desligado</option>
+                            <?php } else if ($viewVar['associado']->ST_Situacao == "Desligado"){?>
+                              <option name="situacao" value="Ativo" >Ativo</option>
+                              <option name="situacao" value="Inativo" >Inativo</option>
+                              <option name="situacao" value="Desligado" selected>Desligado</option>
+                            <?php } ?>
                         </select>
                 </div>
 
