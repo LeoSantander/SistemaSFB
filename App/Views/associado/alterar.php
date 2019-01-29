@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="salario">Salário Base:</label>
-                        <input type="tel" class="form-control" name="salario" maxlength="15" placeholder="$" value="<?php echo $viewVar['associado']->VL_Salario?>" pattern= "([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$"
+                        <input type="tel" class="form-control" name="salario" maxlength="15" placeholder="$" value="<?php echo $viewVar['associado']->VL_Salario?>" onKeyPress="return(mMoeda(this,'.',',',event))" pattern= "([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$"
                             title="Preencha de acordo com o que foi solicitado."required autofocus>
                     </div>
 
