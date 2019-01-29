@@ -8,7 +8,7 @@ use App\Models\DAO\CidadeDAO;
 
 class RelatorioAssociadosDependentes extends FPDF
 {
-    public function novo($postos, $inicio, $fim, $colunas,$total,$totalDep,$largura=190)
+    public function novo($postos, $inicio, $fim, $colunas,$total,$totalDep,$largura=190,$totalC, $totalF)
     {
         //var_dump($postos);
         $pdf = new FPDF();
@@ -72,6 +72,8 @@ class RelatorioAssociadosDependentes extends FPDF
         //$pdf->Footer();
         $pdf->Cell(190,0,utf8_decode('Total de Associados: '.$total),0,1,'R');
         $pdf->Cell(190,14,utf8_decode('Total de Dependentes: '.$totalDep),0,1,'R');
+        $pdf->Cell(190,0,utf8_decode('Total de Cônjuges: '.$totalC),0,1,'R');
+        $pdf->Cell(190,14,utf8_decode('Total de Filhos(as): '.$totalF),0,1,'R');
         $pdf->AliasNbPages();
 
         $pdf->Output("SFM_Relatorio_Postos_".date("d-m-Y").".pdf",'I');//fim do PDF

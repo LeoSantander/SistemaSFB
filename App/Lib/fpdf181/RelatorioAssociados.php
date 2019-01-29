@@ -39,7 +39,7 @@ class RelatorioAssociados extends FPDF
           $colunas[$i] = utf8_decode($colunas[$i]);
           $i++;
       }
-      $pdf->Row($colunas);
+      $pdf->Row($colunas,'C');
 
       $pdf->SetFont('Arial','',11);
       $pdf->SetWidths($teste);//CADA VALOR DESTE ARRAY SERÁ A LARGURA DE CADA COLUNA
@@ -51,7 +51,7 @@ class RelatorioAssociados extends FPDF
                 $array[$j] = utf8_decode($col);
                 $j++;
           }
-          $pdf->Row($array);
+          $pdf->Row($array,'L');
           $totalAssociados++;
       }
       $pdf->Ln();

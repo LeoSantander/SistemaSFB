@@ -44,8 +44,47 @@
             }
 
 		}
-</script>
 
+		function libera() {
+
+				if(document.getElementById('adataAsso').checked){
+						document.getElementById("ordData").disabled = false;
+				}
+				else {
+					document.getElementById("ordData").disabled = true;
+				}
+
+				if(document.getElementById('a_cargo').checked){
+					document.getElementById("ordCargo").disabled = false;
+				}
+				else {
+					document.getElementById("ordCargo").disabled = true;
+				}
+
+				if(document.getElementById('p_data').checked){
+					document.getElementById("p.data").disabled = false;
+				}
+				else {
+					document.getElementById("p.data").disabled = true;
+				}
+		}
+</script>
+<script>
+		$(document).on('change', '.a_check', function() {
+			var a_conta = $('.a_check:checked').length;
+			if(a_conta > 5 && $(this).is(':checked')) {
+					alert("Você Selecionou o Número Máximo de Campos(5) para este Relatório!\nDesmarque algum Campo e Selecione Novamente!");
+					$(this).prop('checked',false);
+			}
+		});
+		$(document).on('change', '.p_check', function() {
+			var p_conta = $('.p_check:checked').length;
+			if(p_conta > 5 && $(this).is(':checked')) {
+					alert("Você Selecionou o Número Máximo de Campos(5) para este Relatório!\nDesmarque algum Campo e Selecione Novamente!");
+					$(this).prop('checked',false);
+			}
+		});
+</script>
 <div class="container">
     <div class="row">
         <h3>Relatórios<h3>
@@ -72,29 +111,29 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md">
-                        <input value="Nome" name="a_NM_Associado" type="checkbox" checked disabled><label>Nome do Associado</label><br>
-                        <input value="RG" name="a_RG" type="checkbox"><label>RG</label><br>
-                        <input value="CPF" name="a_CPF" type="checkbox"><label>CPF</label><br>
-                        <input value="Data Nasc." name="a_DT_Nascimento" type="checkbox"><label>Data Nascimento</label><br>
-                        <input value="Dt. Associação" name="a_DT_Associacao" type="checkbox"><label>Data Associação</label><br>
-												<input value="Endereço" name="a_Endereco" type="checkbox"><label>Endereço</label><br>
+                        <input class="a_check" value="Nome" name="a_NM_Associado" type="checkbox" checked disabled><label>Nome do Associado</label><br>
+                        <input class="a_check" value="RG" name="a_RG" type="checkbox"><label>RG</label><br>
+                        <input class="a_check" value="CPF" name="a_CPF" type="checkbox"><label>CPF</label><br>
+                        <input class="a_check" value="Data Nasc." name="a_DT_Nascimento" type="checkbox"><label>Data Nascimento</label><br>
+                        <input class="a_check" value="Dt. Associação" name="a_DT_Associacao" type="checkbox" id="adataAsso" onclick="libera();"><label>Data Associação</label><br>
+												<input class="a_check" value="Endereço" name="a_Endereco" type="checkbox"><label>Endereço</label><br>
                     </div>
 
                     <div class="col-md">
-                        <input value="Dependente" name="a_ID_Dependente" type="checkbox"><label>Total Dependentes</label><br>
-												<input value="Telefone" name="a_Telefone" type="checkbox"><label>Telefone</label><br>
-                        <input value="Celular" name="a_Celular" type="checkbox"><label>Celular</label><br>
-                        <input value="Email" name="a_Email" type="checkbox"><label>E-mail</label><br>
-												<input value="Situação" name="a_ST_Associado" type="checkbox"><label>Situação</label><br>
-                        <input value="N. Registro" name="a_NO_Registro" type="checkbox"><label>Nº Registro</label><br>
+                        <input class="a_check" value="Dependente" name="a_ID_Dependente" type="checkbox"><label>Total Dependentes</label><br>
+												<input class="a_check" value="Telefone" name="a_Telefone" type="checkbox"><label>Telefone</label><br>
+                        <input class="a_check" value="Celular" name="a_Celular" type="checkbox"><label>Celular</label><br>
+                        <input class="a_check" value="Email" name="a_Email" type="checkbox"><label>E-mail</label><br>
+												<input class="a_check" value="Situação" name="a_ST_Associado" type="checkbox"><label>Situação</label><br>
+                        <input class="a_check" value="N. Registro" name="a_NO_Registro" type="checkbox"><label>Nº Registro</label><br>
                     </div>
 
                     <div class="col-md">
-                        <input value="Posto" name="a_ID_Local_Trabalho" type="checkbox"><label>Local de Trabalho</label><br>
-                        <input value="Cargo" name="a_Cargo" type="checkbox"><label>Cargo</label><br>
-												<input value="Salário" name="a_VL_Salario" type="checkbox"><label>Salário</label><br>
-                        <input value="Usuário" name="a_ID_Usuario_Inclusao" type="checkbox"><label>Usuário Inclusão</label><br>
-                        <input value="Data Inclusão" name="a_DH_Inclusao" type="checkbox"><label>Data Inclusão</label><br>
+                        <input class="a_check" value="Posto" name="a_ID_Local_Trabalho" type="checkbox"><label>Local de Trabalho</label><br>
+                        <input class="a_check" value="Cargo" name="a_Cargo" type="checkbox" id="a_cargo" onclick="libera();"><label>Cargo</label><br>
+												<input class="a_check" value="Salário" name="a_VL_Salario" type="checkbox"><label>Salário</label><br>
+                        <input class="a_check" value="Usuário" name="a_ID_Usuario_Inclusao" type="checkbox"><label>Usuário Inclusão</label><br>
+                        <input class="a_check" value="Data Inclusão" name="a_DH_Inclusao" type="checkbox"><label>Data Inclusão</label><br>
                     </div>
                 </div>
             </div>
@@ -125,9 +164,8 @@
 										<div class="form-group col-md-5">
 											<label><b>Ordenar Por</b></label><br>
 											<input value="a.NM_Associado" type="radio" id="a.nome" name="a_ordem" checked><label>Nome</label><br>
-											<input value="a.DT_Associacao" type="radio" id="a.data" name="a_ordem"><label>Data Associação</label><br>
-											<input value="a.Cargo" type="radio" id="a.data" name="a_ordem"><label>Cargo</label><br>
-											<input value="a.VL_Salario" type="radio" id="a.salario" name="a_ordem"><label>Salário</label><br>
+											<input value="a.DT_Associacao" type="radio" id="ordData" name="a_ordem" disabled><label>Data Associação</label><br>
+											<input value="a.Cargo" type="radio" id="ordCargo" name="a_ordem" disabled><label>Cargo</label><br>
 										</div>
                 </div>
             </div>
@@ -143,18 +181,18 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md">
-                        <input value="Nome" name="p_NM_Fantasia" type="checkbox" checked disabled><label>Nome Local</label><br>
-												<input value="CNPJ" name="p_CNPJ" type="checkbox"><label>CNPJ</label><br>
-                        <input value="Sigla" name="p_CD_Local_Trabalho" type="checkbox"><label>Sigla</label><br>
-												<input value="Associados" name="p_Associados" type="checkbox"><label>Total Associados</label><br>
-                        <input value="Email" name="p_Email" type="checkbox"><label>Email</label><br>
+                        <input class="p_check" value="Nome" name="p_NM_Fantasia" type="checkbox" checked disabled><label>Nome Local</label><br>
+												<input class="p_check" value="CNPJ" name="p_CNPJ" type="checkbox"><label>CNPJ</label><br>
+                        <input class="p_check" value="Sigla" name="p_CD_Local_Trabalho" type="checkbox"><label>Sigla</label><br>
+												<input class="p_check" value="Associados" name="p_Associados" type="checkbox"><label>Total Associados</label><br>
+                        <input class="p_check" value="Email" name="p_Email" type="checkbox"><label>Email</label><br>
                     </div>
 
                     <div class="col-md">
-												<input value="Telefone" name="p_Telefone" type="checkbox"><label>Telefone</label><br>
-                        <input value="Endereço" name="p_Endereco" type="checkbox"><label>Endereço</label><br>
-                        <input value="Usuário" name="p_ID_Usuario_Inclusao" type="checkbox"><label>Usuário Inclusão</label><br>
-                        <input value="Data de Inclusão" name="p_DH_Inclusao" type="checkbox"><label>Data Inclusão</label><br>
+												<input class="p_check" value="Telefone" name="p_Telefone" type="checkbox"><label>Telefone</label><br>
+                        <input class="p_check" value="Endereço" name="p_Endereco" type="checkbox"><label>Endereço</label><br>
+                        <input class="p_check" value="Usuário" name="p_ID_Usuario_Inclusao" type="checkbox"><label>Usuário Inclusão</label><br>
+                        <input class="p_check" value="Data de Inclusão" name="p_DH_Inclusao" type="checkbox" id="p_data" onclick="libera();"><label>Data Inclusão</label><br>
                     </div>
                 </div>
             </div>
@@ -178,7 +216,7 @@
                     <div class="form-group col-md-8">
 											<label><b>Ordenar Por</b></label><br>
 											<input value="p.NM_Fantasia" type="radio" id="p.nome" name="p_ordem" checked><label>Nome</label><br>
-											<input value="p.DH_Inclusao" type="radio" id="p.data" name="p_ordem"><label>Data</label><br>
+											<input value="p.DH_Inclusao" type="radio" id="p.data" name="p_ordem" disabled><label>Data</label><br>
                     </div>
 
                 </div>
@@ -236,8 +274,7 @@
 
 										<div class="form-group col-md-5">
 											<label><b>Ordenar Por</b></label><br>
-											<input value="a.NM_Associado" type="radio" id="d.nome" name="d_ordem" checked><label>Nome</label><br>
-											<input value="a.DT_Associacao" type="radio" id="d.data" name="d_ordem"><label>Data Associação</label><br>
+											<p>Este relatório é ordenado pelo <br>Nome do Associado.</p>
 										</div>
                 </div>
             </div>
