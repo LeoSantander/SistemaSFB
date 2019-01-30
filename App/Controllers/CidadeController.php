@@ -71,6 +71,11 @@ class CidadeController extends Controller
                 Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
 
                 $this->redirect('/associado/cadastro');
+            }else if($lc == 'ES'){
+                Sessao::gravaFormulario($_POST);
+                Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
+
+                $this->redirect('/escritorio/cadastro');
             }else{
                 Sessao::limpaFormulario();
                 Sessao::gravaSucesso("Cidade cadastrada com Sucesso");

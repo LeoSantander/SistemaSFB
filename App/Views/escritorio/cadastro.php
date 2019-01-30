@@ -18,20 +18,22 @@
             <?php } ?>
 
             <form action="http://<?php echo APP_HOST; ?>/escritorio/salvar" method="post">
-            <div class="form-group">
 
-              <div class="form-group">
-                      <label for="nome">Nome do Escritório:</label>
-                      <input type="text" class="form-control"  name="nome" placeholder="Nome Completo" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>"
-                             title="Este campo não pode estar vazio." required autofocus>
+            <div class="form-row">
+                  <div class="form-group col-md-8">
+                          <label for="escritorio">Nome do Escritório:</label>
+                          <input type="text" class="form-control"  name="escritorio" placeholder="Nome Completo" value="<?php echo $Sessao::retornaValorFormulario('escritorio'); ?>"
+                                 title="Este campo não pode estar vazio." required autofocus>
+                  </div>
+                  <div class="form-group col-md-4">
+                          <label for="nome">CNPJ:</label>
+                          <input type="text"  maxlength="18"  class="form-control"  name="cnpj" placeholder=" "
+                              value="<?php echo $Sessao::retornaValorFormulario('cnpj'); ?>"
+                              oninvalid="this.setCustomValidity('Este campo deve estar preenchido e atender ao padrão exigido: 000.000.000-00')" onchange="try{setCustomValidity('')}catch(e){}"  pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}"
+                              onkeydown="javascript: fMasc( this, mCNPJ );">
+                  </div>
               </div>
-              <div class="form-group">
-                      <label for="nome">CNPJ:</label>
-                      <input type="text"  maxlength="18"  class="form-control"  name="cnpj" placeholder=" "
-                          value="<?php echo $Sessao::retornaValorFormulario('cnpj'); ?>"
-                          oninvalid="this.setCustomValidity('Este campo deve estar preenchido e atender ao padrão exigido: 000.000.000-00')" onchange="try{setCustomValidity('')}catch(e){}"  pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}"
-                          onkeydown="javascript: fMasc( this, mCNPJ );">
-              </div>
+
 
               <h5>Endereço:</h5>
               <hr>
@@ -100,3 +102,51 @@
           <div class=" col-md-3"></div>
       </div>
   </div>
+
+<?//modal de cidades?>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header bg-dark text-white">
+                  <h5 class="modal-title" id="exampleModalCenterTitle">Adicionar nova Cidade</span></h5>
+                  <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+  				<div class="modal-body">
+  					<!--Montando o formulário-->
+                      <form action="http://<?php echo APP_HOST; ?>/cidade/salvar" method="post">
+                  <!-- Só um campo para validar na action e depois retornar na view -->
+                  <input type="hidden" class="form-control"  name="id" placeholder="" value="ES">
+
+                  <!--Campo Nome-->
+                  <div class="form-group">
+                      <label for="nome">Nome:</label>
+                      <input type="text" class="form-control"  name="nome" placeholder="Ex: Ourinhos" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>"
+                             required pattern="[A-Za-zÀ-ú ]{0,}"
+                             title="Não use caracteres especiais ou números">
+                  </div>
+
+                  <!--Campo Estado-->
+              <div class="form-group">
+  	        <label for="estado">Estado:</label>
+
+  	        <!-- Inicie a ComboBox -->
+  	        <select required class="form-control" name= "estado" value="">
+                  <option name= "estado" value="">Selecione um Estado</option>
+
+  		        <?php foreach($viewVar['listarEstados'] as $estados){?>
+  	                <option  name="estado" value= "<?php echo $estados->ID_Estado;?>"><?php echo $estados->NM_Estado;?> - <?php echo $estados->CD_Estado;?></option>
+                  <?php } ?>
+
+              </select>
+              </div>
+  				</div>
+
+  				<div class="modal-footer">
+  				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Cancelar</button>
+  					<button type="submit" class="btn btn-success">Salvar</button>
+  				</div>
+  			</div>
+  		</div>
+  	</div>

@@ -23,7 +23,7 @@ class Escritorio
 //id do Escritorio
     public function getIdEscritorio()
     {
-        return $this->$idEscritorio;
+        return $this->idEscritorio;
     }
     public function setIdEscritorio($idEscritorio)
     {
@@ -115,11 +115,11 @@ class Escritorio
     {
         return $this->cep;
     }
-    public function setCep()
+    public function setCep($cep)
     {
         $this->cep = $cep;
     }
-    
+
 //data Inclusao
     public function getDtInclusao()
     {
@@ -139,3 +139,4 @@ class Escritorio
     {
         $this->idUsuarioInclusao = $idUsuarioInclusao;
     }
+}//fim do programa
