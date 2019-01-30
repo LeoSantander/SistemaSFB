@@ -113,6 +113,9 @@ class EscritorioController extends Controller
 
         $escritorioDAO = new EscritorioDAO();
 
+        $cidadeDAO = new CidadeDAO();
+        self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
+
         $id = $_POST['id'];
         if ($id == null){
             $id = $params[0];
@@ -136,6 +139,7 @@ class EscritorioController extends Controller
         $id = $_POST['id'];
 
         $registro = new Escritorio();
+        $registro->setIdEscritorio  ($id);
         $registro->setNmEscritorio  ($_POST['escritorio']);
         $registro->setCNPJ          ($_POST['cnpj']);
         $registro->setTelefone      ($_POST['telefone']);

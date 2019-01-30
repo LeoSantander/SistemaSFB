@@ -111,6 +111,7 @@ class EscritorioDAO extends BaseDAO
     public function atualizar(Escritorio $escritorio)
     {
         try{
+            $idEscritorio = $escritorio->getIdEscritorio();
             $nmEscritorio = $escritorio->getNmEscritorio();
             $cnpj = $escritorio->getCNPJ();
             $rua = $escritorio->getNmRua();
@@ -121,10 +122,12 @@ class EscritorioDAO extends BaseDAO
             $cep = $escritorio->getCep();
             $email = $escritorio->getEmail();
             $idUsuarioInclusao = $escritorio->getIdUsuarioInclusao();
+
             return $this->update(
                 'sfm_escritorios',
                 "NM_Escritorio = :NM_Escritorio, CNPJ_Escritorio = :CNPJ_Escritorio, NM_Rua = :NM_Rua, NM_Bairro = :NM_Bairro, NO_Endereco = :NO_Endereco, ID_Cidade = :ID_Cidade, Telefone = :Telefone, CEP = :CEP, Email = :Email, ID_Usuario_Inclusao = :ID_Usuario_Inclusao",
                 [
+                  ':ID_Escritorio'=>$idEscritorio,
                   ':NM_Escritorio'=>$nmEscritorio,
                   ':CEP'=>$cep,
                   ':NM_Rua'=>$rua,
@@ -135,7 +138,6 @@ class EscritorioDAO extends BaseDAO
                   ':Telefone'=>$telefone,
                   ':Email'=>$email,
                   ':ID_Usuario_Inclusao'=>$idUsuarioInclusao
-
                 ],
                 "ID_Escritorio = :ID_Escritorio"
             );
