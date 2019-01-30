@@ -39,4 +39,42 @@ class PessoaConvenioDAO extends BaseDAO
 
     }
 
+    public function pegarConveniosDep($id){
+      $query = $this->select(
+          "SELECT * FROM sfm_convenio_pessoa WHERE ID_Dependente = '$id'"
+      );
+
+      return $query->fetchAll(\PDO::FETCH_CLASS, PessoaConvenio::class);
+
+    }
+
+    public function relacaoAssociado($id){
+      $query = $this->select(
+          "SELECT ID_Associado FROM sfm_convenio_pessoa WHERE ID_convenio_associado = '$id'"
+      );
+
+      return $query->fetch();
+
+    }
+
+    public function relacaoDependente($id){
+      $query = $this->select(
+          "SELECT ID_Dependente FROM sfm_convenio_pessoa WHERE ID_convenio_associado = '$id'"
+      );
+
+      return $query->fetch();
+
+    }
+
+    public function excluir(PessoaConvenio $registro){
+      try{
+          $idRelacao = $registro->getIdConvenioPessoa();
+          return $this->delete('sfm_convenio_pessoa', "ID_convenio_associado = $idRelacao");
+      }
+      catch(\Exception $e){
+          throw new \Exception("Erro ao Excluir Cidade",500);
+      }
+
+    }
+
 }//fim do programa.
