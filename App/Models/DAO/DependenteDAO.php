@@ -78,6 +78,16 @@ class DependenteDAO extends BaseDAO{
         return $query->fetchObject(Dependente::class);
     }
 
+    public function pegarParaConvenio($nm, $cpf){
+      $query = $this->select(
+        "SELECT sfm_dependentes.ID_Dependente AS DependenteID
+         FROM sfm_dependentes
+         WHERE sfm_dependentes.NM_Dependente = '$nm' AND sfm_dependentes.CPF = '$cpf'
+      ");
+      return $query->fetch();
+
+    }
+
     public function pegarDependenteAssociado($id)
     {
         $query = $this->select(

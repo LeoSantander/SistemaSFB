@@ -127,6 +127,16 @@ class AssociadoDAO extends BaseDAO
        }
    }
 
+   public function pegarParaConvenio($nm, $cpf){
+     $query = $this->select(
+       "SELECT sfm_associados.ID_Associado AS SocioID
+        FROM sfm_associados
+        WHERE sfm_associados.NM_Associado = '$nm' AND sfm_associados.CPF = '$cpf'
+     ");
+     return $query->fetch();
+
+   }
+
    public function pegarAssociado($id)
    {
        $query = $this->select(

@@ -4,8 +4,11 @@ namespace App\Controllers;
 
 use App\Lib\Sessao;
 use App\Models\DAO\DependenteDAO;
-use App\Models\DAO\AssociadoDAO;//alterar para AssociadoDAO
+use App\Models\DAO\AssociadoDAO;
+use App\Models\DAO\PessoaConvenioDAO;
+use App\Models\DAO\ConvenioDAO;
 use App\Models\Entidades\Dependente;
+use App\Models\Entidades\PessoaConvenio;
 
 class DependenteController extends Controller
 {
@@ -24,6 +27,9 @@ class DependenteController extends Controller
         $associadoDAO = new AssociadoDAO();
         self::setViewParam('listarAssociados',$associadoDAO->listAssoc());
 
+        $conveioDAO = new ConvenioDAO();
+        self::setViewParam('listarConvenios', $conveioDAO->listarConveniosAtivos());
+
         $this->render('/dependente/cadastro');
 
         Sessao::limpaMensagem();
@@ -41,6 +47,12 @@ class DependenteController extends Controller
         $registro->setIdAssociado($_POST['idAssociado']);
         $registro->setGrauDependencia($_POST['grau']);
         $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
+
+        $qtd = $_POST['qtdConvenios'];
+
+        for ($i=0; $i < $qtd; $i++) {
+          $convenio[$i] = $_POST['check'.$i];
+        }
 
         Sessao::gravaFormulario($_POST);
 
@@ -67,6 +79,27 @@ class DependenteController extends Controller
             Sessao::limpaFormulario();
             Sessao::limpaLastID();
             Sessao::gravaSucesso("Dependente ".$registro->getNome()." Cadastrado com Sucesso!");
+
+            $dep = $dependenteDAO->pegarParaConvenio($registro->getNome(), $registro->getCPF());
+
+            $convenioPessoa  = new PessoaConvenio();
+
+            $ID_Dep = $dep[0];
+
+            for ($i=0; $i < $qtd; $i++) {
+              if(isset($convenio[$i])){
+
+                $convenioPessoa->setIdAssociado($registro->getIdAssociado());
+                $convenioPessoa->setIdDependente($ID_Dep);
+                $convenioPessoa->setIdConvenio($convenio[$i]);
+                $convenioPessoa->setIdUsuarioInclusao(Sessao::retornaidUsuario());
+
+                $pessoaConveioDAO = new PessoaConvenioDAO();
+                $pessoaConveioDAO->salvar($convenioPessoa);
+
+              }
+            }
+
             $this->redirect('/dependente/consultar');
           }
           else
@@ -80,6 +113,26 @@ class DependenteController extends Controller
           {
             Sessao::limpaFormulario();
             Sessao::gravaSucesso("Dependente ".$registro->getNome()." Cadastrado com Sucesso!");
+
+            $dep = $dependenteDAO->pegarParaConvenio($registro->getNome(), $registro->getCPF());
+
+            $convenioPessoa  = new PessoaConvenio();
+
+            $ID_Dep = $dep[0];
+
+            for ($i=0; $i < $qtd; $i++) {
+              if(isset($convenio[$i])){
+
+                $convenioPessoa->setIdAssociado($registro->getIdAssociado());
+                $convenioPessoa->setIdDependente($ID_Dep);
+                $convenioPessoa->setIdConvenio($convenio[$i]);
+                $convenioPessoa->setIdUsuarioInclusao(Sessao::retornaidUsuario());
+
+                $pessoaConveioDAO = new PessoaConvenioDAO();
+                $pessoaConveioDAO->salvar($convenioPessoa);
+
+              }
+            }
 
             $this->redirect('/dependente/cadastro');
           }

@@ -103,14 +103,21 @@
                     </div>
                 </div>
                 <div class="form-row">
+
+                <label for="check">Convênios Aderidos:</label>
+                </div>
                 <?php $i=0;
-                  var_dump($viewVar['listarConvenios']);
                 foreach($viewVar['listarConvenios'] as $convenios){ ?>
-
-                    <input type="checkbox" name="convenio<?php echo $i?>" id="<?php echo $convenio->ID_Convenio;?>" value="<?php echo $convenio->ID_Convenio;?>"/><?php echo $convenio->NM_Convenio;?><br>
-
+                <div class="form-row">
+                  <div class="form-check">
+                      <input type="checkbox" class="checkbox" id="check<?php echo $i?>" name="check<?php echo $i?>" value="<?php echo $convenios->ID_Convenio;?>">
+                      <label class="form-check-label" for="check<?php echo $i?>"><?php echo $convenios->NM_Convenio; ?></label>
+                  </div>
+                </div>
                 <?php $i++; } ?>
-              </div>
+
+                <input type="hidden" class="form-control"  name="qtdConvenios" value="<?php echo  $i; ?>">
+
                 <br><h5>Endereço:</h5>
                 <hr>
 
