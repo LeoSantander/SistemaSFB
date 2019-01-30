@@ -6,10 +6,20 @@ use DataTime;
 
 class PessoaConvenio
 {
+  private $idConvenioPessoa;
   private $idConvenio;
   private $idAssociado;
   private $idDependente;
   private $idUsuarioInclusao;
+
+  public function getIdConvenioPessoa()
+  {
+      return $this->idConvenioPessoa;
+  }
+  public function setIdConvenioPessoa($idConvenioPessoa)
+  {
+      $this->idConvenioPessoa = $idConvenioPessoa;
+  }
 
   public function getIdConvenio()
   {

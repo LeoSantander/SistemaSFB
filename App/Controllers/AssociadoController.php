@@ -313,4 +313,40 @@ class AssociadoController extends Controller
 
     }
 
+      public function aderirConvenio($params){
+
+      $idConvenio = $params[0];//$_POST['idConvenio'];
+      $idAssociado = $params[1];//$_POST['idAssociado'];
+
+      $convenioPessoa = new PessoaConvenio();
+      $convenioPessoa->setIdAssociado($idAssociado);
+      $convenioPessoa->setIdConvenio($idConvenio);
+      $convenioPessoa->setIdUsuarioInclusao(Sessao::retornaidUsuario());
+
+      $pessoaConveioDAO = new PessoaConvenioDAO();
+      $pessoaConveioDAO->salvar($convenioPessoa);
+
+      Sessao::gravaSucesso("Convenio Aderido com sucesso");
+      $this->redirect('/associado/alterar/'.$idAssociado);
+    }
+
+    public function desvincularConvenio($params){
+      $id = $params[0];
+
+      echo $id;
+
+      $convenioPessoa = new PessoaConvenio();
+      $convenioPessoa->setIdConvenioPessoa($id);
+
+      $pessoaConveioDAO = new PessoaConvenioDAO();
+      $socio = $pessoaConveioDAO->relacaoAssociado($id);
+      $idSocio = $socio[0];
+
+      $pessoaConveioDAO->excluir($convenioPessoa);
+
+      Sessao::gravaSucesso("Convenio desvinculado com sucesso");
+      $this->redirect('/associado/alterar/'.$idSocio);
+
+    }
+
 }

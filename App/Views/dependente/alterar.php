@@ -48,6 +48,52 @@
                     <input type="date" id="dataNasc" name="dataNasc" class="form-control" value="<?php echo $viewVar['dependente']->DT_Nascimento?>" required>
                 </div>
 
+                <div class="form-row">
+                  <label for="check">Convênios Aderidos:</label>
+                </div>
+                <div class="table table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead class="thead-light">
+                      <tr align="center">
+                          <th scope="col">Convenio</th>
+                          <th scope="col">Situação</th>
+                          <th width="25%" scope="col">Ações</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                <?php $i=0;$teste=0;
+                //var_dump($viewVar['ConvenioAssociado']);
+                foreach($viewVar['listarConvenios'] as $convenios){ ?>
+                <div class="form-row">
+                  <div class="form-check">
+                      <?php
+                      foreach($viewVar['ConvenioDependentes'] as $convenioAssoc){
+                          if($convenios->ID_Convenio == $convenioAssoc->ID_Convenio){
+                              $teste = $convenioAssoc->ID_Convenio;
+                              $idRelacao = $convenioAssoc->ID_convenio_associado;
+                       } }?>
+                  </div>
+                  <tr>
+                      <td>
+                        <?php echo $convenios->NM_Convenio;?>
+                      </td>
+                      <td>
+                        <?php if($convenios->ID_Convenio == $teste)echo "Aderido"; else echo "Não Aderido";?>
+                      </td>
+                      <td>
+                        <?php if($convenios->ID_Convenio == $teste){?>
+                          <a class="btn btn-danger btn-sm" href="http://<?php echo APP_HOST;?>/dependente/desvincularConvenio/<?php echo $idRelacao;?>">Desvincular</a>
+                        <?php } else { ?>
+                          <a class="btn btn-success" href="http://<?php echo APP_HOST;?>/dependente/aderirConvenio/<?php echo $convenios->ID_Convenio;?>/<?php echo $viewVar['dependente']->ID_Dependente?>">Aderir</button>
+                        <?php } ?>
+                      </td>
+                    </tr>
+                </div>
+                <?php } ?>
+              </tbody>
+               </table>
+               </div>
+
                 <br><h5>Dados do Associado</h5><hr>
 
                 <div class="form-row">

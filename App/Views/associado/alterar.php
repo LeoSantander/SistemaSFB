@@ -82,25 +82,48 @@
                 <div class="form-row">
                   <label for="check">Convênios Aderidos:</label>
                 </div>
+                <div class="table table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead class="thead-light">
+                      <tr align="center">
+                          <th scope="col">Convenio</th>
+                          <th scope="col">Situação</th>
+                          <th width="25%" scope="col">Ações</th>
+                      </tr>
+                  </thead>
+                  <tbody>
                 <?php $i=0;$teste=0;
                 //var_dump($viewVar['ConvenioAssociado']);
-
                 foreach($viewVar['listarConvenios'] as $convenios){ ?>
                 <div class="form-row">
                   <div class="form-check">
                       <?php
                       foreach($viewVar['ConvenioAssociado'] as $convenioAssoc){
-                          if($convenios->ID_Convenio == $convenioAssoc->ID_Convenio)
+                          if($convenios->ID_Convenio == $convenioAssoc->ID_Convenio){
                               $teste = $convenioAssoc->ID_Convenio;
-                       } ?>
+                              $idRelacao = $convenioAssoc->ID_convenio_associado;
+                       } }?>
                   </div>
-                  <input type="checkbox" class="checkbox" id="check<?php echo $i?>" name="check<?php echo $i?>" value="<?php echo $convenios->ID_Convenio;?>" <?php if($convenios->ID_Convenio == $teste)echo "checked";?>>
-                  <label class="form-check-label" for="check<?php echo $i?>"><?php echo $convenios->NM_Convenio; ?></label>
+                  <tr>
+                      <td>
+                        <?php echo $convenios->NM_Convenio;?>
+                      </td>
+                      <td>
+                        <?php if($convenios->ID_Convenio == $teste)echo "Aderido"; else echo "Não Aderido";?>
+                      </td>
+                      <td>
+                        <?php if($convenios->ID_Convenio == $teste){?>
+                          <a class="btn btn-danger btn-sm" href="http://<?php echo APP_HOST;?>/associado/desvincularConvenio/<?php echo $idRelacao;?>">Desvincular</a>
+                        <?php } else { ?>
+                          <a class="btn btn-success" href="http://<?php echo APP_HOST;?>/associado/aderirConvenio/<?php echo $convenios->ID_Convenio;?>/<?php echo $viewVar['associado']->ID_Associado?>">Aderir</button>
+                        <?php } ?>
+                      </td>
+                    </tr>
                 </div>
-                <?php $i++; } ?>
-
-                <input type="hidden" class="form-control"  name="qtdConvenios" value="<?php echo  $i; ?>">
-
+                <?php } ?>
+              </tbody>
+               </table>
+               </div>
 
                 <br><h5>Endereço:</h5>
                 <hr>

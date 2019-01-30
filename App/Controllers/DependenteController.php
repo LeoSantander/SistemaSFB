@@ -188,12 +188,18 @@ class DependenteController extends Controller
         $associadoDAO = new AssociadoDAO();
         self::setViewParam('listarAssociados',$associadoDAO->listAssoc());
 
+        $conveioDAO = new ConvenioDAO();
+        self::setViewParam('listarConvenios', $conveioDAO->listarConveniosAtivos());
+
         $id = $_POST['id'];
         if ($id == null){
             $id = $params[0];
         }
         $dependenteDAO = new DependenteDAO();
         $dependente = $dependenteDAO->pegarDependente($id);
+
+        $pessoaConveioDAO = new PessoaConvenioDAO();
+        self::setViewParam('ConvenioDependentes', $pessoaConveioDAO->pegarConveniosDep($id) );
 
         if(!$dependente)
         {
@@ -243,4 +249,42 @@ class DependenteController extends Controller
         $this->redirect('/dependente/consultar');
 
     }
+
+    public function aderirConvenio($params){
+
+    $idConvenio = $params[0];//$_POST['idConvenio'];
+    $idAssociado = $params[1];//$_POST['idAssociado'];
+
+    echo $idAssociado;
+
+    $convenioPessoa = new PessoaConvenio();
+    $convenioPessoa->setIdDependente($idAssociado);
+    $convenioPessoa->setIdConvenio($idConvenio);
+    $convenioPessoa->setIdUsuarioInclusao(Sessao::retornaidUsuario());
+
+    $pessoaConveioDAO = new PessoaConvenioDAO();
+    $pessoaConveioDAO->salvar($convenioPessoa);
+
+    Sessao::gravaSucesso("Convenio Aderido com sucesso");
+    $this->redirect('/dependente/alterar/'.$idAssociado);
+  }
+
+  public function desvincularConvenio($params){
+    $id = $params[0];
+
+    echo $id;
+
+    $convenioPessoa = new PessoaConvenio();
+    $convenioPessoa->setIdConvenioPessoa($id);
+
+    $pessoaConveioDAO = new PessoaConvenioDAO();
+    $socio = $pessoaConveioDAO->relacaoDependente($id);
+    $idDep = $socio[0];
+
+    $pessoaConveioDAO->excluir($convenioPessoa);
+
+    Sessao::gravaSucesso("Convenio desvinculado com sucesso");
+    $this->redirect('/dependente/alterar/'.$idDep);
+
+  }
 }
