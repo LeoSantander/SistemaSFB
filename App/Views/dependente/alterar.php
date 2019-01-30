@@ -58,7 +58,7 @@
                         <datalist id="list-associados">
                         <select >
                             <?php foreach($viewVar['listarAssociados'] as $associado){?>
-                                <option data-id="<?php echo $associado->ID_Associado;?>" value="<?php echo $associado->NM_Associado;?>"></option>
+                                <option data-id="<?php echo $associado->ID_Associado;?>" value="<?php echo $associado->NM_Associado;?> - <?php echo $associado->ID_Associado;?>"></option>
                             <?php } ?>
                         </select>
                         </datalist>
