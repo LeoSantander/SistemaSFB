@@ -82,7 +82,7 @@
                 <div class="form-row">
                   <label for="check">Convênios Aderidos:</label>
                 </div>
-                <?php $i=0;
+                <?php $i=0;$teste=0;
                 //var_dump($viewVar['ConvenioAssociado']);
 
                 foreach($viewVar['listarConvenios'] as $convenios){ ?>
@@ -90,15 +90,12 @@
                   <div class="form-check">
                       <?php
                       foreach($viewVar['ConvenioAssociado'] as $convenioAssoc){
-                          if ($convenios->ID_Convenio == $convenioAssoc->ID_Convenio){?>
-                          <input type="checkbox" class="checkbox" id="check<?php echo $i?>" name="check<?php echo $i?>" value="<?php echo $convenios->ID_Convenio;?>" checked>
-                          <label class="form-check-label" for="check<?php echo $i?>"><?php echo $convenios->NM_Convenio; ?></label>
-                      <?php } else{ ?>
-                          <input type="checkbox" class="checkbox" id="check<?php echo $i?>" name="check<?php echo $i?>" value="<?php echo $convenios->ID_Convenio;?>">
-                          <label class="form-check-label" for="check<?php echo $i?>"><?php echo $convenios->NM_Convenio; ?></label>
-                      <?php }
-                      } ?>
+                          if($convenios->ID_Convenio == $convenioAssoc->ID_Convenio)
+                              $teste = $convenioAssoc->ID_Convenio;
+                       } ?>
                   </div>
+                  <input type="checkbox" class="checkbox" id="check<?php echo $i?>" name="check<?php echo $i?>" value="<?php echo $convenios->ID_Convenio;?>" <?php if($convenios->ID_Convenio == $teste)echo "checked";?>>
+                  <label class="form-check-label" for="check<?php echo $i?>"><?php echo $convenios->NM_Convenio; ?></label>
                 </div>
                 <?php $i++; } ?>
 
