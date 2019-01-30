@@ -6,7 +6,7 @@
 <div class="container">
     <table width="100%">
         <tr>
-            <td><h3>Locais de Trabalho Cadastrados</h3></td>
+            <td><h3>Postos Cadastrados</h3></td>
         </tr>
         <tr>
         <td>
@@ -22,7 +22,7 @@
                 </form>
         </td>
         <td align="right">
-            <a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/localTrabalho/cadastro">+ Adicionar Local de Trabalho</a>
+            <a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/localTrabalho/cadastro">+ Adicionar Posto</a>
         </td>
         </tr>
     </table>
@@ -65,19 +65,20 @@
         <?php foreach($viewVar['listarLocais'] as $locais){?>
 		    <tr>
                 <td><?php echo $locais->NM_Fantasia;?></td>
-                <td><?php echo $locais->Telefone;?></td>
-			    <td><?php echo $locais->Email;?></td>
+                <td><?php echo $locais->Tel;?></td>
+			    <td><?php echo $locais->EmailLocal;?></td>
 			    <td align="center">
 				    <a href='http://<?php echo APP_HOST;?>/localTrabalho/alterar/<?php echo $locais->ID_Local_Trabalho?>' class="btn btn-info btn-sm">Editar</a>
                     <a href='#' class="btn btn-secondary btn-sm" id="details-row" data-toggle="modal" data-target="#exampleModalCenter"
                                data-sigla="<?php echo $locais->CD_Local_Trabalho;?>"
                                data-fantasia="<?php echo $locais->NM_Fantasia;?>"
                                data-cnpj = "<?php echo $locais->CNPJ;?>"
-                               data-endereco=  "<?php echo $locais->NM_Rua.", Nº.: ".$locais->NO_Endereco." - ".$locais->NM_Bairro." - ".$locais->CEP?>"
+                               data-endereco=  "<?php echo $locais->Rua.", Nº.: ".$locais->Num." - ".$locais->Bairro." - ".$locais->CepLocal?>"
                                data-cidade= "<?php echo $locais->NM_Cidade." - ". $locais->CD_Estado;?>"
                                data-id=  "<?php echo $locais->ID_Local_Trabalho?>"
-                               data-telefone = "<?php echo $locais->Telefone;?>"
-                               data-email = "<?php echo $locais->Email;?>"><font color="white"> Detalhes</font></a>
+                               data-telefone = "<?php echo $locais->Tel;?>"
+                               data-email = "<?php echo $locais->EmailLocal;?>"
+                               data-escritorio = "<?php echo $locais->NM_Escritorio;?>"><font color="white"> Detalhes</font></a>
 
                     <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom"
                         href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $locais->ID_Local_Trabalho?>"
@@ -108,7 +109,8 @@
 
                 <h5>Dados Cadastrais</h5>
                 <strong>Nome Fantasia: </strong> <span id="cdItem"></span> <span id="nomeItemDetalhe"></span><br>
-                <strong>CNPJ: </strong> <span id="cnpjItem"></span><br><br>
+                <strong>CNPJ: </strong> <span id="cnpjItem"></span><br>
+                <strong>Escritório: </strong> <span id="escritorioItem"></span><br><br>
 
                 <h5>Endereço</h5>
                 <strong>Endereço: </strong> <span id="enderecoItem"></span><br>
@@ -168,10 +170,12 @@
             var telefone = "";
             var email = "";
             var cep = "";
+            var escritorio = "";
             var rTitulo = document.getElementById("nomeItemTitulo");
             var rNome = document.getElementById("nomeItemDetalhe");
             var rCD = document.getElementById("cdItem");
             var rCnpj = document.getElementById("cnpjItem");
+            var rEscritorio = document.getElementById("escritorioItem");
 
             var rEndereco = document.getElementById("enderecoItem");
             var rCidade = document.getElementById("cidadeItem");
@@ -195,7 +199,7 @@
 
                 endereco = $(this).attr('data-endereco');
                 cidade = $(this).attr('data-cidade');
-
+                escritorio = $(this).attr('data-escritorio');
                 telefone = $(this).attr('data-telefone');
                 email = $(this).attr('data-email');
 
@@ -209,6 +213,7 @@
                 rCidade.innerHTML = cidade;
                 rTelefone.innerHTML = telefone;
                 rEmail.innerHTML = email;
+                rEscritorio.innerHTML = escritorio;
             });
         });
     });

@@ -19,6 +19,7 @@ class LocalTrabalho
     private $dtCadastro;
     private $idUsuarioInclusao;
     private $cep;
+    private $idEscritorio;
 
     public function getId()
     {
@@ -79,7 +80,7 @@ class LocalTrabalho
     {
         $this->bairro = $bairro;
     }
-    
+
     public function getNumero()
     {
         return $this->numero;
@@ -89,7 +90,7 @@ class LocalTrabalho
     {
         $this->numero = $numero;
     }
-    
+
     public function getIDCidade()
     {
         return $this->ID_Cidade;
@@ -99,7 +100,7 @@ class LocalTrabalho
     {
         $this->ID_Cidade = $ID_Cidade;
     }
-    
+
     public function getTelefone()
     {
         return $this->telefone;
@@ -129,7 +130,7 @@ class LocalTrabalho
     {
         $this->dtCadastro = $dtCadastro;
     }
-    
+
     public function getidUsuarioInclusao()
     {
         return $this->idUsuarioInclusao;
@@ -148,6 +149,16 @@ class LocalTrabalho
     public function setCep($cep)
     {
         $this->cep = $cep;
+    }
+
+    public function getIdEscritorio()
+    {
+        return $this->idEscritorio;
+    }
+
+    public function setIdEscritorio($idEscritorio)
+    {
+        $this->idEscritorio = $idEscritorio;
     }
 }
 ?>
