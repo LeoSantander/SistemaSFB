@@ -28,11 +28,29 @@
     <strong>Telefone: </strong> <?php echo $viewVar['associado']->Telefone; ?><br>
     <strong>Celular:  </strong> <?php echo $viewVar['associado']->Celular; ?><br>
     <strong>Email:    </strong> <?php echo $viewVar['associado']->Email; ?><br><br>
-
+    <?php
+      if(count($viewVar['convenios'])){
+    ?>
+    <table>
+      <tr>
+        <td><strong>Convenio</strong></td>
+        <td><strong>Empresa</strong></td>
+        <td><strong>Dia do Vencimento</strong></td>
+      </tr>
+      <?php
+      foreach ($viewVar['convenios'] as $convenios) {?>
+      <tr>
+        <td width="20%"><?php echo $convenios->NM_Convenio;?></td>
+        <td width="20%"><?php echo $convenios->NM_Empresa;?></td>
+        <td width="20%"><?php echo $convenios->Dia_Vencimento;?></td>
+      </tr>
+    <?php }?>
+    </table>
+    <?php }?>
 
     <?php
       if(count($viewVar['listarDependentes'])){
-    ?>
+    ?><br>
         <h5>Dependentes Relacionados:</h5>
         <table>
           <tr>

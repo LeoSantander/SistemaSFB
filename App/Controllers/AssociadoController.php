@@ -30,9 +30,11 @@ class AssociadoController extends Controller
 
       $associadoDAO = new AssociadoDAO();
       $dependenteDAO = new DependenteDAO();
+      $PessoaConvenioDAO = new PessoaConvenioDAO();
 
       self::setViewParam('associado', $associadoDAO->pegarAssociado($id));
       self::setViewParam('listarDependentes', $dependenteDAO->pegarDependenteAssociado($id));
+      self::setViewParam('convenios', $PessoaConvenioDAO->associadosConvenios($id));
 
       $this->renderDetalhes('/associado/detalhes');
 
