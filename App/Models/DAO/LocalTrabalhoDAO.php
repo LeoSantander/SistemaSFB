@@ -49,11 +49,11 @@ class LocalTrabalhoDAO extends BaseDAO
             $email = $registro->getEmail();
             $idUsuarioInclusao = $registro->getidUsuarioInclusao();
             $cep = $registro->getCep();
-
+            $idEscritorio = $registro->getIdEscritorio();
 
             return $this->insert(
                 'sfm_local_trabalho',
-                ":CD_Local_Trabalho,:NM_Fantasia,:NM_Rua,:NM_Bairro, :NO_Endereco, :ID_Cidade, :CNPJ, :Telefone, :Email, :ID_Usuario_Inclusao, :CEP",
+                ":CD_Local_Trabalho,:NM_Fantasia,:NM_Rua,:NM_Bairro, :NO_Endereco, :ID_Cidade, :CNPJ, :Telefone, :Email, :ID_Usuario_Inclusao, :CEP, :ID_Escritorio_Contabilidade",
                 [
                     ':CD_Local_Trabalho' => $sgLocal,
                     ':NM_Fantasia' => $nmFantasia,
@@ -65,7 +65,8 @@ class LocalTrabalhoDAO extends BaseDAO
                     ':Telefone' => $telefone,
                     ':Email' => $email,
                     ':ID_Usuario_Inclusao' => $idUsuarioInclusao,
-                    ':CEP' => $cep
+                    ':CEP' => $cep,
+                    ':ID_Escritorio_Contabilidade' => $idEscritorio
                 ]
             );
 
@@ -78,24 +79,28 @@ class LocalTrabalhoDAO extends BaseDAO
     {
         if (isset($nm)){
             $query = $this->select(
-                "SELECT *, sfm_cidade.NM_Cidade as NM_Cidade, sfm_estado.CD_Estado as CD_Estado
-                 FROM sfm_local_trabalho
-                      INNER JOIN sfm_cidade
-                      ON sfm_cidade.ID_Cidade = sfm_local_trabalho.ID_Cidade
-                      INNER JOIN sfm_estado
-                      ON sfm_estado.ID_Estado = sfm_cidade.ID_Estado
-                 WHERE NM_Fantasia LIKE '%".$nm."%' ORDER BY NM_Fantasia"
+                "SELECT *, l.Telefone as Tel, l.Email as EmailLocal, l.NM_Rua as Rua, l.NO_Endereco as Num, l.NM_Bairro as Bairro, l.CEP as CepLocal, c.NM_Cidade as NM_Cidade, e.CD_Estado as CD_Estado, s.NM_Escritorio as NM_Escritorio
+                 FROM sfm_local_trabalho as l
+                      INNER JOIN sfm_cidade as c
+                      ON c.ID_Cidade = l.ID_Cidade
+                      INNER JOIN sfm_estado as e
+                      ON e.ID_Estado = c.ID_Estado
+                      INNER JOIN sfm_escritorios as s
+                      ON s.ID_Escritorio = l.ID_Escritorio_Contabilidade
+                 WHERE l.NM_Fantasia LIKE '%".$nm."%' ORDER BY l.NM_Fantasia"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, LocalTrabalhoDAO::class);
         }else{
             $query = $this->select(
-                "SELECT *, sfm_cidade.NM_Cidade as NM_Cidade, sfm_estado.CD_Estado as CD_Estado
-                 FROM sfm_local_trabalho
-                      INNER JOIN sfm_cidade
-                      ON sfm_cidade.ID_Cidade = sfm_local_trabalho.ID_Cidade
-                      INNER JOIN sfm_estado
-                      ON sfm_estado.ID_Estado = sfm_cidade.ID_Estado
-                 ORDER BY NM_Fantasia"
+                "SELECT *, l.Telefone as Tel, l.Email as EmailLocal, l.NM_Rua as Rua, l.NO_Endereco as Num, l.NM_Bairro as Bairro, l.CEP as CepLocal, c.NM_Cidade as NM_Cidade, e.CD_Estado as CD_Estado, s.NM_Escritorio as NM_Escritorio
+                 FROM sfm_local_trabalho as l
+                      INNER JOIN sfm_cidade as c
+                      ON c.ID_Cidade = l.ID_Cidade
+                      INNER JOIN sfm_estado as e
+                      ON e.ID_Estado = c.ID_Estado
+                      INNER JOIN sfm_escritorios as s
+                      ON s.ID_Escritorio = l.ID_Escritorio_Contabilidade
+                 ORDER BY l.NM_Fantasia"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, LocalTrabalhoDAO::class);
         }
@@ -125,7 +130,7 @@ class LocalTrabalhoDAO extends BaseDAO
     public function pegarLocal($id)
     {
         $query = $this->select(
-            "SELECT *, ID_Cidade as CIDADE
+            "SELECT *, ID_Cidade as CIDADE, ID_Escritorio_Contabilidade as ESCRITORIO
              FROM sfm_local_trabalho
              WHERE ID_Local_Trabalho = $id"
         );
@@ -146,10 +151,11 @@ class LocalTrabalhoDAO extends BaseDAO
             $email = $registro->getEmail();
             $id = $registro->getId();
             $cep = $registro->getCep();
+            $idEscritorio = $registro->getIdEscritorio();
 
             return $this->update(
                 'sfm_local_trabalho',
-                "CD_Local_Trabalho = :CD_Local_Trabalho, NM_Fantasia = :NM_Fantasia, NM_Rua = :NM_Rua, NM_Bairro = :NM_Bairro, NO_Endereco = :NO_Endereco, ID_Cidade = :ID_Cidade, CNPJ = :CNPJ, Telefone = :Telefone, Email = :Email, CEP = :CEP",
+                "CD_Local_Trabalho = :CD_Local_Trabalho, NM_Fantasia = :NM_Fantasia, NM_Rua = :NM_Rua, NM_Bairro = :NM_Bairro, NO_Endereco = :NO_Endereco, ID_Cidade = :ID_Cidade, CNPJ = :CNPJ, Telefone = :Telefone, Email = :Email, CEP = :CEP, ID_Escritorio_Contabilidade = :ID_Escritorio_Contabilidade",
                     [
                         ':CD_Local_Trabalho' => $sgLocal,
                         ':NM_Fantasia' => $nmFantasia,
@@ -161,7 +167,8 @@ class LocalTrabalhoDAO extends BaseDAO
                         ':Telefone' => $telefone,
                         ':Email' => $email,
                         ':ID_Local_Trabalho' => $id,
-                        ':CEP' => $cep
+                        ':CEP' => $cep,
+                        ':ID_Escritorio_Contabilidade' =>$idEscritorio
                     ],
                     "ID_Local_Trabalho = :ID_Local_Trabalho"
             );

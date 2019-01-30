@@ -6,6 +6,7 @@ use App\Lib\Sessao;
 use App\Models\DAO\LocalTrabalhoDAO;
 use App\Models\DAO\CidadeDAO;
 use App\Models\DAO\EstadoDAO;
+use App\Models\DAO\EscritorioDAO;
 use App\Models\Entidades\LocalTrabalho;
 
 class LocalTrabalhoController extends Controller
@@ -22,6 +23,9 @@ class LocalTrabalhoController extends Controller
 
         $estadoDAO = new EstadoDAO();
         self::setViewParam('listarEstados', $estadoDAO->listarEstados());
+
+        $escritorioDAO = new EscritorioDAO();
+        self::setViewParam('listarEscritorios',$escritorioDAO->listarEscritorios());
 
         $this->render('/localTrabalho/cadastro');
 
@@ -63,15 +67,16 @@ class LocalTrabalhoController extends Controller
     {
         $registro = new LocalTrabalho();
         $registro->setSgLocal($_POST['sglocal']);
-        $registro->setNMFantasia($_POST['fantasia']);
+        $registro->setNMFantasia(ucwords($_POST['fantasia']));
         $registro->setCNPJ($_POST['cnpj']);
-        $registro->setRua($_POST['rua']);
-        $registro->setBairro($_POST['bairro']);
+        $registro->setRua(ucwords($_POST['rua']));
+        $registro->setBairro(ucwords($_POST['bairro']));
         $registro->setNumero($_POST['numero']);
         $registro->setIDCidade($_POST['cidade']);
         $registro->setTelefone($_POST['telefone']);
         $registro->setEmail($_POST['email']);
         $registro->setCep($_POST['cep']);
+        $registro->setIdEscritorio($_POST['escritorio']);
         $lc = $_POST['id'];
         //ID_Usuario ja esta na Sessão
         $registro->setidUsuarioInclusao(Sessao::retornaidUsuario());
@@ -81,13 +86,13 @@ class LocalTrabalhoController extends Controller
         $localTrabalhoDAO = new LocalTrabalhoDAO();
 
         if(($localTrabalhoDAO->verificaCNPJ($_POST['cnpj'])) and ($localTrabalhoDAO->verificaNMFantasia($_POST['fantasia']))){
-            Sessao::gravaMensagem("Local de Trabalho ja Registrado!");
+            Sessao::gravaMensagem("Posto já Registrado!");
             $this->redirect('/localTrabalho/cadastro');
         } else if ($localTrabalhoDAO->verificaCNPJ($_POST['cnpj'])){
-            Sessao::gravaMensagem("CNPJ já associado a um local de trabalho");
+            Sessao::gravaMensagem("CNPJ já associado a um Posto!");
             $this->redirect('/localTrabalho/cadastro');
         }else if ($localTrabalhoDAO->verificaNMFantasia($_POST['fantasia'])){
-            Sessao::gravaMensagem("Nome Fantasia já associado a um CNPJ");
+            Sessao::gravaMensagem("Nome Fantasia já associado a um CNPJ!");
             $this->redirect('/localTrabalho/cadastro');
         }
 
@@ -95,13 +100,13 @@ class LocalTrabalhoController extends Controller
             if ($lc == 'AS')
             {
                 Sessao::limpaFormulario();
-                Sessao::gravaSucesso("Local cadastrado com Sucesso");
+                Sessao::gravaSucesso("Posto Cadastrado com Sucesso!");
 
                 $this->redirect('/associado/cadastro');
 
             }else{
                 Sessao::limpaFormulario();
-                Sessao::gravaSucesso($registro->getNMFantasia()." cadastrado com Sucesso");
+                Sessao::gravaSucesso($registro->getNMFantasia()." Cadastrado com Sucesso!");
                 $this->redirect('/localTrabalho/cadastro');
                 //$this->redirect('/usuario/sucesso');
             }
@@ -118,16 +123,16 @@ class LocalTrabalhoController extends Controller
          $localTrabalhoDAO = new LocalTrabalhoDAO();
 
          if($localTrabalhoDAO->verificaLocal($localTrabalho->getId())){
-             Sessao::gravaMensagem("Não é possível excluir. Local de Trabalho possui associados vinculados");
+             Sessao::gravaMensagem("Não é possível excluir! Posto possui associados vinculados");
              $this->redirect('/localTrabalho/consultar');
          }
 
          if(!$localTrabalhoDAO->excluir($localTrabalho)){
-             Sessao::gravaMensagem("Local inválido");
+             Sessao::gravaMensagem("Posto inválido!");
              $this->redirect('/localTrabalho/consultar');
          }
 
-         Sessao::gravaSucesso("Local de trabalho excluído com sucesso!");
+         Sessao::gravaSucesso("Posto excluído com sucesso!");
          $this->redirect('/localTrabalho/consultar');
      }
 
@@ -141,6 +146,9 @@ class LocalTrabalhoController extends Controller
         $cidadeDAO = new CidadeDAO();
         self::setViewParam('listarCidades', $cidadeDAO->listarCidades());
 
+        $escritorioDAO = new EscritorioDAO();
+        self::setViewParam('listarEscritorios',$escritorioDAO->listarEscritorios());
+
         $id = $_POST['id'];//$params[0];
         if ($id == null){
             $id = $params[0];
@@ -149,7 +157,7 @@ class LocalTrabalhoController extends Controller
         $localTrabalhoDAO = new LocalTrabalhoDAO();
         $localTrabalho = $localTrabalhoDAO->pegarLocal($id);
         if(!$localTrabalho){
-            Sessao::gravaMensagem("Local de Trabalho Inválido");
+            Sessao::gravaMensagem("Posto Inválido!");
             $this->redirect('/usuario/consultar');
         }
         self::setViewParam('localTrabalho', $localTrabalho);
@@ -165,29 +173,30 @@ class LocalTrabalhoController extends Controller
         $registro = new LocalTrabalho();
         $registro->setId($ID);
         $registro->setSgLocal($_POST['sglocal']);
-        $registro->setNMFantasia($_POST['fantasia']);
+        $registro->setNMFantasia(ucwords($_POST['fantasia']));
         $registro->setCNPJ($CNPJ);
-        $registro->setRua($_POST['rua']);
-        $registro->setBairro($_POST['bairro']);
+        $registro->setRua(ucwords($_POST['rua']));
+        $registro->setBairro(ucwords($_POST['bairro']));
         $registro->setNumero($_POST['numero']);
         $registro->setIDCidade($_POST['cidade']);
         $registro->setTelefone($_POST['telefone']);
         $registro->setEmail($_POST['email']);
         $registro->setCep($_POST['cep']);
+        $registro->setIdEscritorio($_POST['escritorio']);
 
         Sessao::gravaFormulario($_POST);
 
         $localTrabalhoDAO = new LocalTrabalhoDAO();
 
         if ($localTrabalhoDAO->verificaAlteracao($CNPJ, $ID)){
-            Sessao::gravaMensagem("CNPJ já associado a uma Empresa");
+            Sessao::gravaMensagem("CNPJ já associado a um Posto!");
             $this->redirect('/localTrabalho/alterar/'.$ID);
         }
 
         $localTrabalhoDAO->atualizar($registro);
 
         Sessao::limpaFormulario();
-        Sessao::gravaSucesso($registro->getNMFantasia()." alterado com Sucesso");
+        Sessao::gravaSucesso($registro->getNMFantasia()." alterado com Sucesso!");
         $this->redirect('/localTrabalho/consultar');
 
     }
