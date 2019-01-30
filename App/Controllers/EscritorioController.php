@@ -8,7 +8,7 @@ use App\Models\DAO\CidadeDAO;
 use App\Models\DAO\EstadoDAO;
 use App\Models\Entidades\Escritorio;
 
-class ConvenioController extends Controller
+class EscritorioController extends Controller
 {
     public function index()
     {
