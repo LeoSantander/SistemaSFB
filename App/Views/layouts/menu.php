@@ -60,8 +60,8 @@
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Escritórios de Contabilidade</a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Adicionar Nova Cidade</a>
-                    <a class="dropdown-item" href="#">Consultar Cidades</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/escritorio/cadastro">Adicionar Novo Escritório</a>
+                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/escritorio/consultar">Consultar Escritórios</a>
                   </div>
                 </li>
             </ul>
