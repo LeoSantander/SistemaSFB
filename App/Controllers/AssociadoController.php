@@ -57,6 +57,9 @@ class AssociadoController extends Controller
         $conveioDAO = new ConvenioDAO();
         self::setViewParam('listarConvenios', $conveioDAO->listarConveniosAtivos());
 
+        $estadoDAO = new EstadoDAO();
+        self::setViewParam('listarEstados', $estadoDAO->listarEstados());
+
 
         $this->render('/associado/cadastro');
 
@@ -232,6 +235,11 @@ class AssociadoController extends Controller
         $localDAO = new LocalTrabalhoDAO();
         self::setViewParam('listarLocais', $localDAO->listarLocais());
 
+        $conveioDAO = new ConvenioDAO();
+        self::setViewParam('listarConvenios', $conveioDAO->listarConveniosAtivos());
+
+        $estadoDAO = new EstadoDAO();
+        self::setViewParam('listarEstados', $estadoDAO->listarEstados());
 
         $id = $_POST['id'];
         if ($id == null){
@@ -239,6 +247,9 @@ class AssociadoController extends Controller
         }
         $associadoDAO = new AssociadoDAO();
         $associado = $associadoDAO->pegarAssociado($id);
+
+        $pessoaConveioDAO = new PessoaConvenioDAO();
+        self::setViewParam('ConvenioAssociado', $pessoaConveioDAO->pegarConvenios($id) );
 
         if(!$associado)
         {

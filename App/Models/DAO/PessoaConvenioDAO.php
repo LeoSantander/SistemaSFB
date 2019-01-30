@@ -30,5 +30,13 @@ class PessoaConvenioDAO extends BaseDAO
         }
     }//fim function salvar.
 
+    public function pegarConvenios($id){
+      $query = $this->select(
+          "SELECT * FROM sfm_convenio_pessoa WHERE ID_Associado = '$id'"
+      );
+
+      return $query->fetchAll(\PDO::FETCH_CLASS, PessoaConvenio::class);
+
+    }
 
 }//fim do programa.
