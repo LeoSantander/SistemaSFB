@@ -73,8 +73,8 @@ class RelatorioController extends Controller
             $dataFim = $_POST['a_data_fim'];
 
             //convertendo para datetime
-            $dataInicio = $dataInicio.'00:00:00.000';
-            $dataFim = $dataFim.'23:59:00.000';
+            $dataInicio = $dataInicio.' 00:00:00.000';
+            $dataFim = $dataFim.' 23:59:00.000';
 
             //string condição
             $condicao = ($situacaoEscolha == "Todos" ? "WHERE a.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim'" .' ' :
@@ -200,6 +200,7 @@ class RelatorioController extends Controller
             $endereco = $_POST['p_Endereco'];
             $usuario = $_POST['p_ID_Usuario_Inclusao'];
             $dataInclusao = $_POST['p_DH_Inclusao'];
+            $escritorio = $_POST['p_Escritorio'];
 
             //total de associados em cada posto
             $associados = $_POST['p_Associados'];
@@ -213,8 +214,8 @@ class RelatorioController extends Controller
             $dataFim = $_POST['p_data_fim'];
 
             //convertendo para datetime
-            $dataInicio = $dataInicio.'00:00:00.000';
-            $dataFim = $dataFim.'23:59:00.000';
+            $dataInicio = $dataInicio.' 00:00:00.000';
+            $dataFim = $dataFim.' 23:59:00.000';
 
             //string condição
             $condicao = "WHERE p.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim'";
@@ -223,6 +224,7 @@ class RelatorioController extends Controller
             //verificando uniões
             $amarra = (isset($endereco)   ? "LEFT OUTER JOIN sfm_cidade AS c ON c.ID_Cidade = p.ID_Cidade" .' ' : '').
                       (isset($usuario)    ? "LEFT OUTER JOIN sfm_usuarios AS u ON u.ID_Usuario = p.ID_Usuario_Inclusao" .' ' : '').
+                      (isset($escritorio) ? "LEFT OUTER JOIN sfm_escritorios AS e ON e.ID_Escritorio = p.ID_Escritorio_Contabilidade" .' ' : '').
                       (isset($associados) ? "LEFT OUTER JOIN sfm_associados AS a ON a.ID_Local_Trabalho = p.ID_Local_Trabalho" .' ' : '');
             //var_dump($amarra);
 
@@ -237,6 +239,7 @@ class RelatorioController extends Controller
             $colunas = ("p.NM_Fantasia"                                   .', ').
                        (isset($siglaLocal)   ? "p.CD_Local_Trabalho" .', ' : '').
                        (isset($cnpj)         ? "p.CNPJ"              .', ' : '').
+                       (isset($escritorio)   ? "e.NM_Escritorio"        .', ' : '').
                        (isset($associados)   ? $ass                  .', ' : '').
                        (isset($email)        ? "p.Email"             .', ' : '').
                        (isset($telefone)     ? "p.Telefone"          .', ' : '').
@@ -248,6 +251,7 @@ class RelatorioController extends Controller
             $cols = ("Nome"                                    .', ').
                     (isset($siglaLocal)   ? $siglaLocal   .', ' : '').
                     (isset($cnpj)         ? $cnpj         .', ' : '').
+                    (isset($escritorio)   ? $escritorio   .', ' : '').
                     (isset($associados)   ? "Associados"  .', ' : '').
                     (isset($email)        ? $email        .', ' : '').
                     (isset($telefone)     ? $telefone     .', ' : '').

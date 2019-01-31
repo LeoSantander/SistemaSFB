@@ -185,10 +185,12 @@
 												<input class="p_check" value="CNPJ" name="p_CNPJ" type="checkbox"><label>CNPJ</label><br>
                         <input class="p_check" value="Sigla" name="p_CD_Local_Trabalho" type="checkbox"><label>Sigla</label><br>
 												<input class="p_check" value="Associados" name="p_Associados" type="checkbox"><label>Total Associados</label><br>
-                        <input class="p_check" value="Email" name="p_Email" type="checkbox"><label>Email</label><br>
+												<input class="p_check" value="Escritório" name="p_Escritorio" type="checkbox"><label>Escritório</label><br>
+
                     </div>
 
                     <div class="col-md">
+												<input class="p_check" value="Email" name="p_Email" type="checkbox"><label>Email</label><br>
 												<input class="p_check" value="Telefone" name="p_Telefone" type="checkbox"><label>Telefone</label><br>
                         <input class="p_check" value="Endereço" name="p_Endereco" type="checkbox"><label>Endereço</label><br>
                         <input class="p_check" value="Usuário" name="p_ID_Usuario_Inclusao" type="checkbox"><label>Usuário Inclusão</label><br>
