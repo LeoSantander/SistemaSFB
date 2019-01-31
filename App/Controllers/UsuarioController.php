@@ -41,8 +41,8 @@ class UsuarioController extends Controller
 
         $nm = $_POST['buscar'];
 
-        $usuarioDAO = new UsuarioDAO();      
-       
+        $usuarioDAO = new UsuarioDAO();
+
         self::setViewParam('listarUsuarios', $usuarioDAO->listarUsuarios($nm));
 
         $this->render('/usuario/consultar');
@@ -61,7 +61,7 @@ class UsuarioController extends Controller
         } else if (!(Sessao::retornaTPUsuario() == 'Administrador')){
             Sessao::gravaMensagem("Parece que você não tem permissão para acessar este módulo :( ");
             $this->redirect('home/');
-            
+
         }
 
         $id = $params[0];
@@ -84,7 +84,7 @@ class UsuarioController extends Controller
         }else if (!(Sessao::retornaTPUsuario() == 'Administrador')){
             Sessao::gravaMensagem("Parece que você não tem permissão para acessar este módulo :( ");
             $this->redirect('home/');
-            
+
         }
 
         $id = $_POST['id'];
@@ -92,7 +92,7 @@ class UsuarioController extends Controller
         if($id == Sessao::retornaidUsuario()){
             Sessao::gravaMensagem("Não é possível desativar o usuário logado!");
             $this->redirect('/usuario/consultar');
-            
+
             Sessao::limpaFormulario();
             Sessao::limpaMensagem();
             Sessao::limpaSucesso();
@@ -101,7 +101,7 @@ class UsuarioController extends Controller
             $usuario = new Usuario();
             $usuario->setId($id);
             $usuarioDAO = new UsuarioDAO();
-        
+
             if(!$usuarioDAO->desativar($usuario)){
                 Sessao::gravaMensagem("Usuário Inválido");
                 $this->redirect('/usuario/consultar');
@@ -109,25 +109,25 @@ class UsuarioController extends Controller
 
             Sessao::gravaSucesso("Usuário desativado com sucesso!");
             $this->redirect('/usuario/consultar');
-        }    
- 
+        }
+
     }
 
     public function ativar()
     {
         $id = $_POST['id'];
-            
+
         $usuario = new Usuario();
         $usuario->setId($id);
         $usuarioDAO = new UsuarioDAO();
-        
+
         if(!$usuarioDAO->ativar($usuario)){
             Sessao::gravaMensagem("Usuário Inválido");
             $this->redirect('/usuario/consultar');
         }
 
         Sessao::gravaSucesso("Usuário pronto para ser utilizado!");
-        $this->redirect('/usuario/consultar'); 
+        $this->redirect('/usuario/consultar');
     }
 
     public function atualizar()
@@ -137,13 +137,13 @@ class UsuarioController extends Controller
 
         $registro = new Usuario();
         $registro->setId($ID);
-        $registro->setNome($_POST['nome']);
+        $registro->setNome(ucwords($_POST['nome']));
         $registro->setUsuario($Usuario);
         $registro->setSenha($_POST['senha']);
-        $registro->setTpUsuario($_POST['tpusuario']); 
+        $registro->setTpUsuario($_POST['tpusuario']);
 
         Sessao::gravaFormulario($_POST);
-        
+
         $usuarioDAO = new UsuarioDAO();
 
         if ($usuarioDAO->verificaAlteracao($Usuario, $ID)){
@@ -152,7 +152,7 @@ class UsuarioController extends Controller
         }
 
         $usuarioDAO->atualizar($registro);
-        
+
         Sessao::limpaFormulario();
         Sessao::gravaSucesso("Usuário alterado com Sucesso");
         $this->redirect('/usuario/consultar');
@@ -162,7 +162,7 @@ class UsuarioController extends Controller
     public function salvar()
     {
         $registro = new Usuario();
-        $registro->setNome($_POST['nome']);
+        $registro->setNome(ucwords($_POST['nome']));
         $registro->setCpf($_POST['cpf']);
         $registro->setUsuario($_POST['usuario']);
         $registro->setSenha($_POST['senha']);
@@ -189,13 +189,13 @@ class UsuarioController extends Controller
         if($usuarioDAO->salvar($registro)){
             Sessao::limpaFormulario();
             Sessao::gravaSucesso("Usuário: ".$registro->getNome()." Cadastrado com Sucesso");
-            $this->redirect('/usuario/cadastro');            
+            $this->redirect('/usuario/cadastro');
             //$this->redirect('/usuario/sucesso');
         }else{
             Sessao::gravaMensagem("Erro ao gravar");
         }
     }
-    
+
     public function index()
     {
         $this->redirect('/usuario/cadastro');
@@ -207,17 +207,17 @@ class UsuarioController extends Controller
         $registro->setSenha($_POST['senha']);
 
         $usuarioDAO = new UsuarioDAO();
-       
-        if ($usuarioDAO->verificaLogin($_POST['usuario'],$_POST['senha'])){ 
-            
+
+        if ($usuarioDAO->verificaLogin($_POST['usuario'],$_POST['senha'])){
+
             Sessao::gravaUsuario($_POST['usuario']);
             Sessao::gravaSenha($_POST['senha']);
-            
+
             $this->redirect('/home/index');
-            
+
         }else{
             Sessao::gravaMensagem("Usuário e Senha incorretos, ou seu usuário pode estar impossibilitado de acessar ao Sistema!");
-            $this->redirect('/login'); 
+            $this->redirect('/login');
         }
     }
 

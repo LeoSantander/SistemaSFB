@@ -36,6 +36,7 @@ class EscritorioController extends Controller
 
     public function salvar()
     {
+        $lc = $_POST['id'];
         $registro = new Escritorio();
         $registro->setNmEscritorio  ($_POST['escritorio']);
         $registro->setCNPJ          ($_POST['cnpj']);
@@ -59,10 +60,20 @@ class EscritorioController extends Controller
 
         if($escritorioDAO->salvar($registro))
         {
-            Sessao::limpaFormulario();
-            Sessao::gravaSucesso("Escritório cadastrado com Sucesso!");
+            if ($lc == 'LC'){
+                Sessao::gravaFormulario($_POST);
+                Sessao::gravaSucesso("Posto cadastrado com Sucesso");
 
-            $this->redirect('/escritorio/cadastro');
+                $this->redirect('/localTrabalho/cadastro');
+
+            }
+            else{
+              Sessao::limpaFormulario();
+              Sessao::gravaSucesso("Escritório cadastrado com Sucesso!");
+
+              $this->redirect('/escritorio/cadastro');
+            }
+
         }
         else
         {

@@ -40,7 +40,7 @@ class CidadeController extends Controller
         //instancia novo objeto
         $registro = new Cidade();
         $lc = $_POST['id'];
-        $registro->setNome($_POST['nome']);
+        $registro->setNome(ucwords($_POST['nome']));
         $registro->setIdEstado($_POST['estado']);
         $registro->setIdUsuario(Sessao::retornaidUsuario());
 
@@ -116,10 +116,10 @@ class CidadeController extends Controller
         $cidadeDAO = new CidadeDAO();
 
         if($cidadeDAO->verificaLocaldeTrabalho($cidade->getIdCidade()) and $cidadeDAO->verificaAssociado($cidade->getIdCidade())){
-            Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Local de Trabalho e Associados!");
+            Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Posto e Associado!");
             $this->redirect('/cidade/consultar');
         }else if($cidadeDAO->verificaLocaldeTrabalho($cidade->getIdCidade())){
-            Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Local de Trabalho!");
+            Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Posto!");
             $this->redirect('/cidade/consultar');
         }else if($cidadeDAO->verificaAssociado($cidade->getIdCidade())){
             Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Associado!");
@@ -167,7 +167,7 @@ class CidadeController extends Controller
         $cidade = $_POST['nome'];
 
         $registro = new Cidade();
-        $registro->setNome($_POST['nome']);
+        $registro->setNome(ucwords($_POST['nome']));
         $registro->setIdUsuario(Sessao::retornaidUsuario());
         $registro->setIdEstado($_POST['estado']);
         $registro->setIdCidade($id);
