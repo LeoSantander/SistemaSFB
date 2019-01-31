@@ -72,7 +72,11 @@ class DependenteDAO extends BaseDAO{
     public function pegarDependente($id)
     {
         $query = $this->select(
-            "SELECT * FROM sfm_dependentes WHERE ID_Dependente = '$id'"
+            "SELECT sfm_dependentes.*, sfm_associados.NM_Associado
+             FROM sfm_dependentes
+                  INNER JOIN sfm_associados
+                  ON sfm_associados.ID_Associado = sfm_dependentes.ID_Associado
+             WHERE ID_Dependente = '$id'"
         );
 
         return $query->fetchObject(Dependente::class);

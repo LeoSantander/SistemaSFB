@@ -65,6 +65,19 @@ class PessoaConvenioDAO extends BaseDAO
                 ON sfm_convenios.ID_Convenio = sfm_convenio_pessoa.ID_Convenio
            WHERE ID_Associado = '$id'"
       );
+      return $query->fetchAll(\PDO::FETCH_CLASS, PessoaConvenio::class);
+    }
+
+    public function dependenteConvenios($id){
+      $query = $this->select(
+          "SELECT sfm_convenio_pessoa.ID_Dependente, sfm_convenios.NM_Convenio, sfm_convenios.NM_Empresa, sfm_convenios.Dia_Vencimento
+           FROM sfm_convenio_pessoa
+                INNER JOIN sfm_convenios
+                ON sfm_convenios.ID_Convenio = sfm_convenio_pessoa.ID_Convenio
+                INNER JOIN sfm_dependentes
+                ON sfm_dependentes.ID_Dependente = sfm_convenio_pessoa.ID_Dependente
+           WHERE sfm_convenio_pessoa.ID_Dependente = '$id'"
+      );
 
       return $query->fetchAll(\PDO::FETCH_CLASS, PessoaConvenio::class);
 

@@ -54,20 +54,20 @@
             <tbody>
                 <?php foreach ($viewVar['listarDependentes'] as $dependente) {?>
                     <tr>
-                        <td><?php echo $dependente->NM_Dependente;?></td>
+                        <td> <form method="post">
+                              <input type="hidden" class="form-control" name="id" id="idUpdate" value="<?php echo $dependente->ID_Dependente;?>">
+                              <?php echo $dependente->NM_Dependente;?>
+                        </td>
                         <td align="center"><?php echo $dependente->NM_Associado;?></td>
                         <td align="center"><?php echo $dependente->NM_Grau;?></td>
                         <td align="center">
                             <a class="btn btn-info btn-sm" href="http://<?php echo APP_HOST;?>/dependente/alterar/<?php echo $dependente->ID_Dependente?>">Editar</a>
-                            <a href='#' class="btn btn-secondary btn-sm" id="details-row" data-toggle="modal" data-target="#exampleModalCenter"
-                               data-nome="<?php echo $dependente->NM_Dependente;?>"
-                               data-rg=  "<?php echo $dependente->RG;?>"
-                               data-cpf= "<?php echo $dependente->CPF;?>"
-                               data-nasc="<?php echo date('d/m/Y', strtotime($dependente->DT_Nascimento));?>"
-                               data-grau="<?php echo $dependente->NM_Grau;?>"
-                               data-id=  "<?php echo $dependente->ID_Dependente?>"
-                               data-associado="<?php echo $dependente->NM_Associado;?>"
-                               >Detalhes</a>
+
+                            <button class="detalhes"
+                                type="button" data-toggle="modal"
+                                data-id= "<?php echo $dependente->ID_Dependente;?>"
+                                data-target="#detalhes" id="ler-pagina"><font color="white"> Detalhes</font></button>
+                            </form>
 
                             <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom"
                                href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $dependente->ID_Dependente?>"
@@ -106,35 +106,23 @@
 	</div>
 </form>
 
-<!-- Abrir a Modal que será utilizada como detalhes -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Detalhes de <span id="nomeItemTitulo"></span></h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Detalhes Dependente</span></h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-            <form action="http://<?php echo APP_HOST; ?>/dependente/alterar" method="post">
-                <input type="hidden" class="form-control" name="id" id="idUpdate">
 
-                <h5>Dados Cadastrais</h5>
-                <strong>Nome: </strong>  <span id="nomeItemDetalhe"></span><br>
-                <strong>RG: </strong> <span id="rgItem"></span><br>
-                <strong>CPF: </strong> <span id="cpfItem"></span><br>
-                <strong>Data Nascimento: </strong><span id="dataItem"></span><br><br>
+                <div id="detalhes-aberto"></div>
 
-                <h5>Dados do Associado</h5>
-                <strong>Associado: </strong><span id="associadoItem"></span><br>
-                <strong>Grau de Dependência: </strong> <span id="grauItem"></span>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
-                <button type="submit" class="btn btn-info btn-sm">Editar</button>
-            </div>
-            </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
+              </div>
         </div>
     </div>
 </div>
@@ -155,13 +143,7 @@
             var datanasc = "";
             var associado = "";
             var grau = "";
-            var rTitulo = document.getElementById("nomeItemTitulo");
-            var rNome = document.getElementById("nomeItemDetalhe");
-            var rRg = document.getElementById("rgItem");
-            var rCpf = document.getElementById("cpfItem");
-            var rData = document.getElementById("dataItem");
-            var rGrau = document.getElementById("grauItem");
-            var rAssociado = document.getElementById("associadoItem");
+
 
             $("a#delete-row").click(function() {
                 id_delete = $(this).attr('data-id');
@@ -180,15 +162,16 @@
                 associado = $(this).attr('data-associado');
                 grau = $(this).attr('data-grau');
 
-                document.getElementById('idUpdate').value = id_detail;
+            });
 
-                rTitulo.innerHTML = nome;
-                rNome.innerHTML = nome;
-                rRg.innerHTML = rg;
-                rCpf.innerHTML = cpf;
-                rData.innerHTML = datanasc;
-                rGrau.innerHTML = grau;
-                rAssociado.innerHTML = associado;
+            $(".detalhes").click(function(){
+                document.getElementById("detalhes-aberto").innerHTML="Carregando...";
+                var id_detail = this.dataset.id;
+                var detalhes = document.getElementById("detalhes-aberto");
+
+                $("#detalhes-aberto").load("http://<?php echo APP_HOST; ?>/dependente/detalhes/"+id_detail);
+
+
             });
         });
     });

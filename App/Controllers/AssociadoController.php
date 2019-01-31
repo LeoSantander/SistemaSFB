@@ -73,7 +73,7 @@ class AssociadoController extends Controller
     public function salvar()
     {
         $registro = new Associado();
-        $registro->setNome($_POST['nome']);
+        $registro->setNome(ucwords($_POST['nome']));
         $registro->setRg($_POST['rg']);
         $registro->setCpf($_POST['cpf']);
         $registro->setDataNascimento($_POST['dataNasc']);
@@ -81,14 +81,14 @@ class AssociadoController extends Controller
         $registro->setTelefone($_POST['telefone']);
         $registro->setCelular($_POST['celular']);
         $registro->setEmail($_POST['email']);
-        $registro->setNomeRua($_POST['rua']);
-        $registro->setNomeBairro($_POST['bairro']);
+        $registro->setNomeRua(ucwords($_POST['rua']));
+        $registro->setNomeBairro(ucwords($_POST['bairro']));
         $registro->setNumeroEndereco($_POST['numero']);
-        $registro->setComplemento($_POST['complemento']);
+        $registro->setComplemento(ucwords($_POST['complemento']));
         $registro->setIdCidade($_POST['cidade']);
         $registro->setNumeroRegistro($_POST['registro']);
         $registro->setLocaldeTrabalho($_POST['local']);
-        $registro->setCargo($_POST['cargo']);
+        $registro->setCargo(ucwords($_POST['cargo']));
         $registro->setSituacao($_POST['situacao']);
         $registro->setCep($_POST['cep']);
         $registro->setSalario($_POST['salario']);
@@ -269,19 +269,19 @@ class AssociadoController extends Controller
         $id = $_POST['id'];
 
         $registro = new Associado();
-        $registro->setNome($_POST['nome']);
+        $registro->setNome(ucwords($_POST['nome']));
         $registro->setTelefone($_POST['telefone']);
         $registro->setCelular($_POST['celular']);
         $registro->setEmail($_POST['email']);
-        $registro->setNomeRua($_POST['rua']);
-        $registro->setNomeBairro($_POST['bairro']);
+        $registro->setNomeRua(ucwords($_POST['rua']));
+        $registro->setNomeBairro(ucwords($_POST['bairro']));
         $registro->setNumeroEndereco($_POST['numero']);
         $registro->setLocaldeTrabalho($_POST['local']);
         $registro->setIdCidade($_POST['cidade']);
         $registro->setCep($_POST['cep']);
-        $registro->setCargo($_POST['cargo']);
+        $registro->setCargo(ucwords($_POST['cargo']));
         $registro->setSalario($_POST['salario']);
-        $registro->setComplemento($_POST['complemento']);
+        $registro->setComplemento(ucwords($_POST['complemento']));
         $registro->setSituacao($_POST['situacao']);
         $registro->setIdAssociado($id);
         $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());

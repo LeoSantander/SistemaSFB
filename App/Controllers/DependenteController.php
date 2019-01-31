@@ -40,7 +40,7 @@ class DependenteController extends Controller
     public function salvar()
     {
         $registro = new Dependente();
-        $registro->setNome($_POST['nome']);
+        $registro->setNome(ucwords($_POST['nome']));
         $registro->setRg($_POST['rg']);
         $registro->setCpf($_POST['cpf']);
         $registro->setDataNascimento($_POST['dataNasc']);
@@ -151,9 +151,11 @@ class DependenteController extends Controller
         }
 
         $busca = $_POST['buscar'];
+
         $dependenteDAO = new DependenteDAO();
 
         self::setViewParam('listarDependentes',$dependenteDAO->listarDependentes($busca));
+        
         $this->render('/dependente/consultar');
 
         Sessao::limpaMensagem();
@@ -286,5 +288,27 @@ class DependenteController extends Controller
     Sessao::gravaSucesso("Convenio desvinculado com sucesso");
     $this->redirect('/dependente/alterar/'.$idDep);
 
+  }
+
+  public function detalhes($params)
+  {
+
+    $id = $_POST['id'];
+    if ($id == null){
+        $id = $params[0];
+    }
+
+    $dependenteDAO = new DependenteDAO();
+    self::setViewParam('dependente', $dependenteDAO->pegarDependente($id));
+
+
+    $PessoaConvenioDAO = new PessoaConvenioDAO();
+    self::setViewParam('convenios', $PessoaConvenioDAO->dependenteConvenios($id));
+
+    $this->renderDetalhes('/dependente/detalhes');
+
+    Sessao::limpaMensagem();
+    Sessao::limpaFormulario();
+    Sessao::limpaSucesso();
   }
 }
