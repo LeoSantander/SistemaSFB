@@ -47,7 +47,7 @@
                     <th scope="col">Nome do Escritório</th>
                     <th width="15%" scope="col">Telefone</th>
                     <th width="30%" scope="col">Email</th>
-                    <th width="20%" scope="col">Ações</th>
+                    <th width="25%" scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -174,7 +174,7 @@
 
                 item.innerHTML = "<strong>" + nome +"</strong>";
             });
-        });
+
 
         $("a#details-row").click(function() {
             id_detail = $(this).attr('data-id');
@@ -196,5 +196,6 @@
             rTelefone.innerHTML = telefone;
             rEmail.innerHTML = email;
         });
+      });
     });
 </script>
