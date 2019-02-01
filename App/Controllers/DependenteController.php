@@ -155,7 +155,7 @@ class DependenteController extends Controller
         $dependenteDAO = new DependenteDAO();
 
         self::setViewParam('listarDependentes',$dependenteDAO->listarDependentes($busca));
-        
+
         $this->render('/dependente/consultar');
 
         Sessao::limpaMensagem();
@@ -170,14 +170,21 @@ class DependenteController extends Controller
 
         $dependenteDAO = new DependenteDAO();
 
-        if(!$dependenteDAO->excluir($dependente))
-        {
+        if ($dependenteDAO->verificaRelacao($_POST['id'])){
+          Sessao::gravaMensagem("Não foi possível excluir: Dependente possui vinculos com convenios!");
+          $this->redirect('/dependente/consultar');
+        }
+        else{
+          if(!$dependenteDAO->excluir($dependente))
+          {
             Sessao::gravaMensagem("Dependente não encontrado!");
             $this->redirect('/dependente/consultar');
+          }
+          else{
+            Sessao::gravaSucesso("Dependente Excluído com sucesso!");
+            $this->redirect('/dependente/consultar');
+          }
         }
-
-        Sessao::gravaSucesso("Dependente Excluído com sucesso!");
-        $this->redirect('/dependente/consultar');
     }
 
     public function alterar($params)
