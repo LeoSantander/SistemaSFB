@@ -12,20 +12,18 @@
     <div id="form-container">
         <div class="panel" id="form-box">
             <form action="http://<?php echo APP_HOST; ?>/usuario/logar" method="post">
-                
-                <div class="img"align="center" style="width:30%">
+
+                <div class="img"align="center" style="width:35%">
                    <img src="http://<?php echo APP_HOST; ?>/public/img/logo.png" style="width:100%">
                 </div>
-
-                <h3 class="text-center">Sindicato dos Frentistas de Marília</h3> <br>
-                
+                <br>
                 <?php if($Sessao::retornaMensagem()){//Retorna mensagem de erro?>
                 <div class="alert alert-warning" role="alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
                     <?php echo $Sessao::retornaMensagem(); ?>
                 </div>
                 <?php }?>
-                
+
                 <div class="form-group">
                     <label class="sr-only" for="login">Usuário</label>
                     <div class="input-group">
@@ -35,7 +33,7 @@
                         <input type="text" name="usuario" class="form-control" placeholder="Digite seu Usuário" required>
                     </div>
                 </div>
- 
+
                 <div class="form-group">
                     <label class="sr-only" for="senha">Senha</label>
                     <div class="input-group">
@@ -45,12 +43,12 @@
                         <input type="password" name="senha" class="form-control" placeholder="Digite sua senha" required>
                     </div>
                 </div>
- 
+
                 <div class="form-group">
                     <input type="submit" value="Entrar" class="btn btn-success form-control">
                 </div>
- 
-                
+
+
             </form>
         </div>
     </div>

@@ -20,7 +20,7 @@ class App
          */
         define('APP_HOST'       , $_SERVER['HTTP_HOST'] . "/AgenciaRoad/SistemaSFM/");
         define('PATH'           , realpath('./'));
-        define('TITLE'          , "Sistema SFM | Agência Road Tech");
+        define('TITLE'          , "SEPEC | Sistema de Gestão de Associados");
         define('DB_HOST'        , "31.220.56.144");
         define('DB_USER'        , "roadtech_admin");
         define('DB_PASSWORD'    , "acesso?roadtech");

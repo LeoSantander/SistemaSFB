@@ -8,8 +8,8 @@
             <?php }?>
 
             <center><h1>Bem vindo(a)</h1>
-            <h2>Sistema Sindicato dos Frentistas de Marília</h2></center><br>
-            
+            <h2>Sistema de gestão SEPEC Marília e região</h2></center><br>
+
             <table width='50%' align ='center'>
             <tr>
                 <td><strong>Resumo:</strong></td>

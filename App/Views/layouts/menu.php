@@ -14,7 +14,7 @@
 <?php if ($Sessao::retornaTPUsuario() == 'Financeiro'){?>
 <!--Interface para Financeiro -->
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#202020">
-  <a class="navbar-brand" href="http://<?php echo APP_HOST; ?>/home">Sistema SFM</a>
+  <a class="navbar-brand" href="http://<?php echo APP_HOST; ?>/home">SEPEC</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -92,7 +92,7 @@
 
 <?php }else{ ?>
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#202020">
-  <a class="navbar-brand" href="http://<?php echo APP_HOST; ?>/home">Sistema SFM</a>
+  <a class="navbar-brand" href="http://<?php echo APP_HOST; ?>/home">SEPEC</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
