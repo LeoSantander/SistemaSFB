@@ -83,19 +83,22 @@ class ConvenioController extends Controller
 
     public function excluir()
     {
+        $idConvenio = $_POST['id'];
+
         $convenio = new Convenio();
-        $convenio->setIdConvenio($_POST['id']);
+        $convenio->setIdConvenio($idConvenio);
 
         $convenioDAO = new ConvenioDAO();
 
-        if(!$convenioDAO->excluir($convenio))
-        {
-            Sessao::gravaMensagem("Convênio não encontrado!");
-            $this->redirect('/convenio/consultar');
+        if($convenioDAO->verificaRelacao($idConvenio)){
+          Sessao::gravaMensagem("Não foi possível excluir: Convênio vinculado a algum associado e/ou dependente!");
+          $this->redirect('/convenio/consultar');
         }
-
-        Sessao::gravaSucesso("Convênio Excluído com sucesso!");
-        $this->redirect('/convenio/consultar');
+        else {
+          $convenioDAO->excluir($convenio);
+          Sessao::gravaSucesso("Convênio Excluído com sucesso!");
+          $this->redirect('/convenio/consultar');
+        }
     }
 
     public function alterar($params)

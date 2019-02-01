@@ -49,6 +49,19 @@ class ConvenioDAO extends BaseDAO
         }
     }
 
+    public function verificaRelacao($id)
+    {
+        try{
+            $query=$this->select(
+                "SELECT * FROM sfm_convenio_pessoa WHERE ID_Convenio ='$id'"
+            );
+            return $query->fetchAll(\PDO::FETCH_CLASS, ConvenioDAO::class);
+        }
+        catch(\Exception $e){
+            throw new \Exception ("Erro no acesso aos dados!",500);
+        }
+    }
+
     public function listarConvenios($busca = '')
     {
         if(isset($busca))
