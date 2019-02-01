@@ -11,7 +11,7 @@ class LocalTrabalhoDAO extends BaseDAO
         try {
 
             $query = $this->select(
-                "SELECT * FROM sfm_local_trabalho WHERE CNPJ = '$cpf' "
+                "SELECT * FROM sfm_local_trabalho WHERE CNPJ = '$cnpj' "
             );
 
             return $query->fetch();
