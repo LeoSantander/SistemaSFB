@@ -153,7 +153,6 @@ class AssociadoController extends Controller
             Sessao::limpaFormulario();
             Sessao::gravaSucesso("Sócio ".$registro->getNome()." cadastrado com Sucesso!");
 
-            $Last_ID = $associadoDAO->recUltID();
             Sessao::gravaLastID($registro->getNome());
             Sessao::gravaLastCPF($registro->getCPF());
 
@@ -168,13 +167,19 @@ class AssociadoController extends Controller
 
                 printf("\nSocio: ".$ID_Socio."\nConvenio: ".$convenio[$i]);
 
+
+
                 $convenioPessoa->setIdAssociado($ID_Socio);
                 $convenioPessoa->setIdConvenio($convenio[$i]);
                 $convenioPessoa->setIdUsuarioInclusao(Sessao::retornaidUsuario());
 
                 $pessoaConveioDAO = new PessoaConvenioDAO();
-                $pessoaConveioDAO->salvar($convenioPessoa);
 
+                if($pessoaConveioDAO->verificaConvenio($ID_Socio, $convenio[$i])){
+                  $this->redirect('/dependente/cadastro');
+                } else{
+                  $pessoaConveioDAO->salvar($convenioPessoa);
+                }
               }
             }
 

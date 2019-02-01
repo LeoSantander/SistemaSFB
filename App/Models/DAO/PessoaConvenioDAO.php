@@ -63,7 +63,7 @@ class PessoaConvenioDAO extends BaseDAO
            FROM sfm_convenio_pessoa
                 INNER JOIN sfm_convenios
                 ON sfm_convenios.ID_Convenio = sfm_convenio_pessoa.ID_Convenio
-           WHERE ID_Associado = '$id'"
+           WHERE sfm_convenio_pessoa.ID_Associado = '$id' AND sfm_convenio_pessoa.ID_Dependente IS NULL"
       );
       return $query->fetchAll(\PDO::FETCH_CLASS, PessoaConvenio::class);
     }
@@ -101,6 +101,19 @@ class PessoaConvenioDAO extends BaseDAO
           throw new \Exception("Erro ao Excluir Cidade",500);
       }
 
+    }
+
+    public function verificaConvenio($ID_Socio, $ID_Convenio)
+    {
+        try{
+            $query=$this->select(
+                "SELECT * FROM sfm_convenio_pessoa WHERE ID_Associado='$ID_Socio' AND ID_Convenio = '$ID_Convenio'"
+            );
+            return $query->fetch();
+        }
+        catch(\Exception $e){
+            throw new \Exception ("Erro no acesso aos dados!",500);
+        }
     }
 
 }//fim do programa.
