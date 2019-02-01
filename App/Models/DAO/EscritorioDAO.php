@@ -66,9 +66,15 @@ class EscritorioDAO extends BaseDAO
                       sfm_escritorios.ID_Escritorio,
                       sfm_escritorios.NM_Escritorio,
                       sfm_escritorios.CNPJ_Escritorio,
-                      sfm_escritorios.Email
+                      sfm_escritorios.Email,
+                      sfm_cidade.NM_Cidade,
+                      sfm_estado.NM_Estado
                  FROM sfm_escritorios
-                 WHERE NM_Escritorio LIKE '%".$busca."%' ORDER BY NM_Escritorio"
+                      INNER JOIN sfm_cidade
+                      ON sfm_cidade.ID_Cidade = sfm_escritorios.ID_Cidade
+                      INNER JOIN sfm_estado
+                      ON sfm_estado.ID_Estado = sfm_cidade.ID_Estado
+                 WHERE sfm_escritorios.NM_Escritorio LIKE '%".$busca."%' ORDER BY sfm_escritorios.NM_Escritorio"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Escritorio::class);
         }
@@ -80,9 +86,15 @@ class EscritorioDAO extends BaseDAO
                     sfm_escritorios.ID_Escritorio,
                     sfm_escritorios.NM_Escritorio,
                     sfm_escritorios.CNPJ_Escritorio,
-                    sfm_escritorios.Email
+                    sfm_escritorios.Email,
+                    sfm_cidade.NM_Cidade,
+                    sfm_estado.CD_Estado
                FROM sfm_escritorios
-               ORDER BY NM_Escritorio"
+                    INNER JOIN sfm_cidade
+                    ON sfm_cidade.ID_Cidade = sfm_escritorios.ID_Cidade
+                    INNER JOIN sfm_estado
+                    ON sfm_estado.ID_Estado = sfm_cidade.ID_Estado
+               ORDER BY sfm_escritorios.NM_Escritorio"
             );
             return $query->fetchAll(\PDO::FETCH_CLASS, Escritorio::class);
         }
