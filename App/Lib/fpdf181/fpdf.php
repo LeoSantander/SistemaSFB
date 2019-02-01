@@ -723,7 +723,7 @@ function Row($data, $align='J',$alinha=null,$valor=0)
      if($this->GetY()+$h>$this->PageBreakTrigger)
 		 {
 			 $this->AddPage($this->CurOrientation);
-			 $this->Image('http://agenciaroad.tech/wp-content/uploads/2018/11/cropped-Sem-T%C3%ADtulo-2.png', 10, 15, 50);
+			 $this->Image('http://'.APP_HOST.'/public/img/logo.png', 10, 15, 50);
 			 $this->SetY("40");//localização do começo da tabela na vertical
 		 }
 
