@@ -79,9 +79,9 @@
                         </select>
                 </div>
 
-                <div class="form-row">
-                  <label for="check">Convênios Aderidos:</label>
-                </div>
+                <br><h5>Convênios:</h5>
+                <hr>
+
                 <div class="table table-responsive">
                 <table class="table table-bordered table-hover">
                   <thead class="thead-light">
@@ -205,8 +205,9 @@
 
 
                 <div>
+                  <hr>
                     <button type="submit" class="btn btn-success">Salvar</button>
-                    <a href="http://<?php echo APP_HOST; ?>/home/" class="btn btn-outline-danger">Cancelar</a>
+                    <a href="http://<?php echo APP_HOST; ?>/associado/consultar" class="btn btn-outline-danger">Voltar</a>
                 </div>
             </form>
 
@@ -355,6 +356,7 @@
 			</div>
 
 				<div class="modal-footer">
+
 				    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Cancelar</button>
 					<button type="submit" class="btn btn-success">Salvar</button>
 				</div>
