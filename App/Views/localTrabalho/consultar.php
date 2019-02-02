@@ -4,28 +4,26 @@
     }
 </script>
 <div class="container">
-    <table width="100%">
-        <tr>
-            <td><h3>Postos Cadastrados</h3></td>
-        </tr>
-        <tr>
-        <td>
-            <form action="#" method="post" id="form_cadastro">
-                <div id="custom-search-input">
-                    <div class="input-group col-md-12">
-                        <input type="text" name="buscar" value="<?php echo $Sessao::retornaValorFormulario('buscar'); ?>" class="form-control input-lg" placeholder="Buscar" />
-                        <span class="input-group-btn">
-                            <button class="btn btn-info btn sm" type="submit">Buscar</button>
-                        </span>
-                    </div>
-                </div>
-                </form>
-        </td>
-        <td align="right">
-            <a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/localTrabalho/cadastro">+ Adicionar Posto</a>
-        </td>
-        </tr>
-    </table>
+  <table width="100%">
+          <tr>
+              <td><h3>Postos Cadastrados</h3><br></td>
+          </tr>
+          <tr>
+              <td>
+                  <form action="#" method="post" id="form_cadastro">
+                      <div class="form-row">
+                          <div class="col-md-8">
+                            <input type="text" name="buscar" value="<?php echo $Sessao::retornaValorFormulario('buscar'); ?>" class="form-control " placeholder="Buscar" />
+                          </div>
+                          <div class="col-md-4">
+                            <button class="btn btn-info" type="submit">Buscar</button>
+                          </div>
+                      </div>
+                  </form>
+              </td>
+              <td align="right"><a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/localTrabalho/cadastro">+ Adicionar Postos</a></td>
+          </tr>
+      </table>
     <hr>
 
     <?php
