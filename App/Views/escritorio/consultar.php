@@ -108,7 +108,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Detalhes de <span id="nomeItemTitulo"></span></h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Detalhes de <span id="teste"></span></h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -117,11 +117,11 @@
             <form action="http://<?php echo APP_HOST; ?>/escritorio/alterar" method="post">
             <input type="hidden" class="form-control" name="id" id="idUpdate">
 
-                <h5>Dados Cadastrais</h5><hr>
+                <h5>Dados Cadastrais</h5>
                 <strong>Nome Escritório: </strong><span id="teste"></span><br>
                 <strong>CNPJ: </strong> <span id="cnpjItem"></span><br><br>
 
-                <h5>Endereço</h5><hr>
+                <h5>Endereço</h5>
                 <strong>Endereço: </strong> <span id="enderecoItem"></span><br>
                 <strong>Cidade: </strong><span id="cidadeItem"></span><br><br>
 
