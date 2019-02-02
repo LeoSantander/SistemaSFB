@@ -49,19 +49,19 @@
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresas</a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
 
+              <li class="dropdown-submenu">
+                <a  class="dropdown-item" tabindex="-1" href="#">Escritórios de Contabilidade</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/escritorio/cadastro">Adicionar Novo Escritório</a>
+                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/escritorio/consultar">Consultar Escritórios</a>
+                </div>
+              </li>
+
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Postos</a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/localTrabalho/cadastro">Adicionar Novo Posto</a>
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/localTrabalho/consultar">Consultar Postos</a>
-                  </div>
-                </li>
-
-                <li class="dropdown-submenu">
-                  <a  class="dropdown-item" tabindex="-1" href="#">Escritórios de Contabilidade</a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/escritorio/cadastro">Adicionar Novo Escritório</a>
-                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/escritorio/consultar">Consultar Escritórios</a>
                   </div>
                 </li>
             </ul>
@@ -140,19 +140,20 @@
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresas</a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
 
+
+              <li class="dropdown-submenu">
+                <a  class="dropdown-item" tabindex="-1" href="#">Escritórios de Contabilidade</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/escritorio/cadastro">Adicionar Novo Escritório</a>
+                  <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/escritorio/consultar">Consultar Escritórios</a>
+                </div>
+              </li>
+              
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Postos</a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/localTrabalho/cadastro">Adicionar Novo Posto</a>
                     <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/localTrabalho/consultar">Consultar Postos</a>
-                  </div>
-                </li>
-
-                <li class="dropdown-submenu">
-                  <a  class="dropdown-item" tabindex="-1" href="#">Escritórios de Contabilidade</a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/escritorio/cadastro">Adicionar Novo Escritório</a>
-                    <a class="dropdown-item" href="http://<?php echo APP_HOST; ?>/escritorio/consultar">Consultar Escritórios</a>
                   </div>
                 </li>
             </ul>
