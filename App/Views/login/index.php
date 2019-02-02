@@ -16,7 +16,7 @@
                 <div class="img"align="center" style="width:35%">
                    <img src="http://<?php echo APP_HOST; ?>/public/img/logo.png" style="width:100%">
                 </div>
-                <br>
+                <br> <br>
                 <?php if($Sessao::retornaMensagem()){//Retorna mensagem de erro?>
                 <div class="alert alert-warning" role="alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>

@@ -6,18 +6,22 @@
 <div class="container">
     <table width="100%">
         <tr>
-            <td><h3>Usuários Cadastrados</h3></td>                    
+            <td><h3>Usuários Cadastrados</h3></td>
         </tr>
         <tr>
         <td>
             <form action="http://<?php echo APP_HOST; ?>/usuario/consultar/" method="post" id="form_cadastro">
                 <div id="custom-search-input">
-                    <div class="input-group col-md-12">
+                  <div class="form-row">
+                    <div class="col-md-8">
                         <input type="text" name="buscar" value="<?php echo $Sessao::retornaValorFormulario('buscar'); ?>" class="form-control input-lg" placeholder="Buscar" />
+                    </div>
+                    <div class="col-md-4">
                         <span class="input-group-btn">
                             <button class="btn btn-info btn sm" type="submit">Buscar</button>
                         </span>
                     </div>
+                  </div>
                 </div>
             </form>
         </td>
@@ -27,21 +31,21 @@
         </tr>
     </table>
     <hr>
-    
-    <?php 
+
+    <?php
         if(!count($viewVar['listarUsuarios'])){
-    ?>    
+    ?>
         <div class="alert alert-info" role="alert">Nenhum Usuário encontrado!</div>
-    <?php 
+    <?php
         }
-    ?>    
+    ?>
     <?php if($Sessao::retornaMensagem()){ ?>
                 <div class="alert alert-warning" role="alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
                     <?php echo $Sessao::retornaMensagem(); ?>
                 </div>
     <?php } ?>
-    
+
     <?php if($Sessao::retornaSucesso()){ ?>
                 <div class="alert alert-success" role="alert">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
@@ -73,15 +77,15 @@
 				        <!--botão excluir-->
                         <a class="btn btn-danger btn-sm" id="delete-row" data-toggle="modal" data-placement="bottom" href="#" data-target="#myModal" aria-hidden="true" data-id="<?php echo $usuarios->ID_Usuario?>" data-nome="<?php echo $usuarios->NM_Usuario?>">Desativar</a>
                     <?php } else {?>
-                        Inativo |  
+                        Inativo |
                         <!--botão Ativar-->
                         <a class="btn btn-success btn-sm" id="update-row" data-toggle="modal" data-placement="bottom" href="#" data-target="#myModalAtivar" aria-hidden="true" data-id-ativar="<?php echo $usuarios->ID_Usuario?>" data-nome-ativar="<?php echo $usuarios->NM_Usuario?>">Ativar</a>
                     <?php }?>
 		        </td>
-	        </tr>	
+	        </tr>
 	    <?php }?>
     </table>
-    
+
     <a href='http://<?php echo APP_HOST; ?>/usuario/consultar/' class="btn btn-info btn sm">Listar Tudo</a>
     </div>
 </div>
@@ -97,7 +101,7 @@
 				<div class="modal-body">
                     <form action="http://<?php echo APP_HOST; ?>/usuario/excluir" method="post">
                     <input type="hidden" class="form-control" name="id" id="id">
-					
+
                     Deseja realmente desativar o usuário <span id="nomeItem"></span>?
                     <p> Essa ação tornará o usuário impossilitado de acessar ao sistema!
 				</div>
@@ -119,7 +123,7 @@
 					<h4 class="modal-title" id="myModalLabel">Ativar Usuário</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 				</div>
-                
+
 				<div class="modal-body">
                     <form action="http://<?php echo APP_HOST; ?>/usuario/ativar" method="post">
                     <input type="hidden" class="form-control" name="id" id="id-ativar">
