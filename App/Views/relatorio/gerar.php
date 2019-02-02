@@ -93,8 +93,8 @@
     <hr>
     <form method="post" action="http://<?php echo APP_HOST; ?>/relatorio/imprimir" target="_blank">
     <div class="card">
-        <div class="card-header">
-            <label>Tipo:</label><br>
+        <div class="card-header bg-dark">
+            <h6 class="text-white">Tipo</h6>
         </div>
         <div class="card-body">
             <input onclick="return trocar(formulario1);" type="radio" id="sfm_associados" value="sfm_associados" name="tipo"checked><label>Associados</label><br>
@@ -105,8 +105,8 @@
 
     <div id="formulario1" style="display:block">
         <div class="card">
-            <div class="card-header">
-                Campos
+            <div class="card-header bg-dark">
+                <h6 class="text-white">Campos</h6>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -140,8 +140,8 @@
             </div>
         </div><!--Fim do CARD CAMPOS--><br>
         <div class="card">
-            <div class="card-header">
-                Filtros
+            <div class="card-header bg-dark">
+                <h6 class="text-white">Filtros</h6>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -154,7 +154,7 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label>Data Inicio</label><br>
+                        <label>Data Início</label><br>
                         <input value="a.data_inicio" type="date" name="a_data_inicio" class="form-control" id="a_data_inicio" required>
                         <label>Data Final</label><br>
                         <input value="a.data_fim" type="date" name="a_data_fim" class="form-control" id="a_data_fim" required>
@@ -176,8 +176,8 @@
 
     <div id="formulario2" style="display:none">
         <div class="card">
-            <div class="card-header">
-                Campos
+            <div class="card-header bg-dark">
+                <h6 class="text-white">Campos</h6>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -201,14 +201,14 @@
             </div>
         </div><!--Fim do CARD CAMPOS--><br>
         <div class="card">
-            <div class="card-header">
-                Filtros
+            <div class="card-header bg-dark">
+                <h6 class="text-white">Filtros</h6>
             </div>
             <div class="card-body">
                 <div class="row">
 
                     <div class="form-group col-md-3">
-                        <label>Data Inicio</label><br>
+                        <label>Data Início</label><br>
                         <input value="p.data_inicio" type="date" name="p_data_inicio" class="form-control" id="p_data_inicio">
                         <label>Data Final</label><br>
                         <input value="p.data_fim" type="date" name="p_data_fim" class="form-control" id="p_data_fim">
@@ -230,8 +230,8 @@
 
     <div id="formulario3" style="display:none">
         <div class="card">
-            <div class="card-header">
-                Campos
+            <div class="card-header bg-dark">
+                <h6 class="text-white">Campos</h6>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -252,8 +252,8 @@
         </div><!--FIM DO CARD CAMPOS--><br>
 
         <div class="card">
-            <div class="card-header">
-                Filtros
+            <div class="card-header bg-dark">
+                <h6 class="text-white">Filtros</h6>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -266,7 +266,7 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label>Data Inicio</label><br>
+                        <label>Data Início</label><br>
                         <input value="d.data_inicio" type="date" name="d_data_inicio" id="d_data_inicio" class="form-control">
                         <label>Data Final</label><br>
                         <input value="d.data_fim" type="date" name="d_data_fim" id="d_data_fim" class="form-control">
