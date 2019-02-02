@@ -59,6 +59,7 @@ class RelatorioController extends Controller
             $usuario = $_POST['a_ID_Usuario_Inclusao'];
             $dataInclusao = $_POST['a_DH_Inclusao'];
             $salario = $_POST['a_VL_Salario'];
+            $assinatura = $_POST['a_Assinatura'];
 
             //total de dependentes para cada associado
             $dependentes = $_POST['a_ID_Dependente'];
@@ -111,7 +112,8 @@ class RelatorioController extends Controller
                        (isset($situacao)     ? "a.ST_Situacao"   .', ' : '').
                        (isset($usuario)      ? "u.NM_Usuario"    .', ' : '').
                        (isset($dataInclusao) ? "a.DH_Inclusao"   .', ' : '').
-                       (isset($salario)      ? "a.VL_Salario"    .', ' : '');
+                       (isset($salario)      ? "a.VL_Salario"    .', ' : '').
+                       (isset($assinatura)   ? "a.Assinatura"    .', ' : '');
 
             //nome de cada coluna passado para o cabeçalho do relatorio
             $cols = ("Nome"                                    .', ').
@@ -130,7 +132,8 @@ class RelatorioController extends Controller
                     (isset($situacao)     ? $situacao     .', ' : '').
                     (isset($usuario)      ? $usuario      .', ' : '').
                     (isset($dataInclusao) ? $dataInclusao .', ' : '').
-                    (isset($salario)      ? $salario      .', ' : '');
+                    (isset($salario)      ? $salario      .', ' : '').
+                    (isset($assinatura)   ? $assinatura   .', ' : '');
 
             //removendo ", " do final das strings
             $retira = strlen($colunas);

@@ -134,6 +134,7 @@
 												<input class="a_check" value="Salário" name="a_VL_Salario" type="checkbox"><label>Salário</label><br>
                         <input class="a_check" value="Usuário" name="a_ID_Usuario_Inclusao" type="checkbox"><label>Usuário Inclusão</label><br>
                         <input class="a_check" value="Data Inclusão" name="a_DH_Inclusao" type="checkbox"><label>Data Inclusão</label><br>
+												<input class="a_check" value="Assinatura" name="a_Assinatura" type="checkbox"><label>Assinatura</label><br>
                     </div>
                 </div>
             </div>
