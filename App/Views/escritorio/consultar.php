@@ -117,11 +117,11 @@
             <form action="http://<?php echo APP_HOST; ?>/escritorio/alterar" method="post">
             <input type="hidden" class="form-control" name="id" id="idUpdate">
 
-                <h5>Dados Cadastrais</h5><hr>
+                <h5>Dados Cadastrais</h5>
                 <strong>Nome Escritório: </strong><span id="teste"></span><br>
                 <strong>CNPJ: </strong> <span id="cnpjItem"></span><br><br>
 
-                <h5>Endereço</h5><hr>
+                <h5>Endereço</h5>
                 <strong>Endereço: </strong> <span id="enderecoItem"></span><br>
                 <strong>Cidade: </strong><span id="cidadeItem"></span><br><br>
 
