@@ -98,7 +98,7 @@
                   </div>
                   <hr>
                       <button type="submit" class="btn btn-success">Salvar</button>
-                      <a href="http://<?php echo APP_HOST; ?>/home/" class="btn btn-outline-danger">Cancelar</a>
+                      <a href="http://<?php echo APP_HOST; ?>/escritorio/consultar" class="btn btn-outline-danger">Voltar</a>
 
                   </div>
                   </form>

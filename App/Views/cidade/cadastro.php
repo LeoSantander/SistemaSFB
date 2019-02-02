@@ -38,7 +38,7 @@
 
             </select>
             </div>
-
+                <hr>
                 <button type="submit" class="btn btn-success">Salvar</button>
                 <a href="http://<?php echo APP_HOST; ?>/home/" class="btn btn-outline-danger">Cancelar</a>
 
