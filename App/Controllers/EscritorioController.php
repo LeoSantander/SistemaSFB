@@ -38,11 +38,11 @@ class EscritorioController extends Controller
     {
         $lc = $_POST['id'];
         $registro = new Escritorio();
-        $registro->setNmEscritorio  ($_POST['escritorio']);
+        $registro->setNmEscritorio  (ucwords($_POST['escritorio']));
         $registro->setCNPJ          ($_POST['cnpj']);
         $registro->setTelefone      ($_POST['telefone']);
-        $registro->setNmRua         ($_POST['rua']);
-        $registro->setNmBairro      ($_POST['bairro']);
+        $registro->setNmRua         (ucwords($_POST['rua']));
+        $registro->setNmBairro      (ucwords($_POST['bairro']));
         $registro->setNumEndereco   ($_POST['endereco']);
         $registro->setIdCidade      ($_POST['cidade']);
         $registro->setEmail         ($_POST['email']);
@@ -151,11 +151,11 @@ class EscritorioController extends Controller
 
         $registro = new Escritorio();
         $registro->setIdEscritorio  ($id);
-        $registro->setNmEscritorio  ($_POST['escritorio']);
+        $registro->setNmEscritorio  (ucwords($_POST['escritorio']));
         $registro->setCNPJ          ($_POST['cnpj']);
         $registro->setTelefone      ($_POST['telefone']);
-        $registro->setNmRua         ($_POST['rua']);
-        $registro->setNmBairro      ($_POST['bairro']);
+        $registro->setNmRua         (ucwords($_POST['rua']));
+        $registro->setNmBairro      (ucwords($_POST['bairro']));
         $registro->setNumEndereco   ($_POST['endereco']);
         $registro->setIdCidade      ($_POST['cidade']);
         $registro->setEmail         ($_POST['email']);

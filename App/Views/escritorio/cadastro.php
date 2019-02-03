@@ -63,7 +63,7 @@
               </div>
               <label for="cidade">Cidade:</label>
               <div class="form-row">
-                  <div class="form-group col-md-9">
+                  <div class="form-group col-md-8">
 
   	                    <select name= "cidade" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('cidade'); ?>" required>
                               <option name="cidade" value="">Selecione uma Cidade</option>
@@ -72,9 +72,9 @@
                               <?php } ?>
                           </select>
                   </div>
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-4">
 
-                      <a class="btn btn-success" href="#" data-toggle="modal" data-placement="bottom" data-target="#myModal" aria-hidden="true">+ Nova Cidade</a>
+                      <a class="btn btn-success btn-block" href="#" data-toggle="modal" data-placement="bottom" data-target="#myModal" aria-hidden="true">+ Nova Cidade</a>
                   </div>
               </div>
               <br>
