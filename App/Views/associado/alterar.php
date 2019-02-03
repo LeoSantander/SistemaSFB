@@ -88,7 +88,7 @@
                 <table class="table table-bordered table-hover">
                   <thead class="thead-light">
                       <tr align="center">
-                          <th scope="col">Convenio</th>
+                          <th scope="col">Convênio</th>
                           <th scope="col">Situação</th>
                           <th width="25%" scope="col">Ações</th>
                       </tr>
