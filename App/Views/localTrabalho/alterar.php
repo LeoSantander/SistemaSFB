@@ -18,15 +18,15 @@
             <?php } ?>
 
             <form action="http://<?php echo APP_HOST; ?>/localTrabalho/atualizar" method="post">
-            <div class="form-group">
+            <div class="form-row">
 
             <input type="hidden" class="form-control"  name="id" placeholder="" value="<?php echo $viewVar['localTrabalho']->ID_Local_Trabalho; ?>">
 
-            <div class="form-group">
+            <div class="form-group col-md-4">
                     <label for="nome">Sigla Posto: </label>
                     <input type="text" class="form-control"  name="sglocal" placeholder="" value="<?php echo $viewVar['localTrabalho']->CD_Local_Trabalho; ?>">
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-8">
                     <label for="nome">Nome Fantasia:</label>
                     <input type="text" class="form-control"  name="fantasia" placeholder="Auto Posto Marilia" value="<?php echo $viewVar['localTrabalho']->NM_Fantasia; ?>"
                            title="Este campo não pode estar vazio." required autofocus>
@@ -62,7 +62,7 @@
                            title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="numero">Numero:</label>
+                    <label for="numero">Número:</label>
                     <input type="text" class="form-control" maxlength="5" name="numero" placeholder="000"
                         value="<?php echo $viewVar['localTrabalho']->NO_Endereco; ?>"
                         pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" required autofocus>
@@ -98,22 +98,24 @@
             <br>
             <h5>Contato:</h5>
             <hr>
-            <div class="form-group">
+            <div class="form-row">
+            <div class="form-group col-md-4">
                     <label for="telefone">Telefone:</label>
                     <input type="telefone" maxlength="14" class="form-control"  name="telefone" placeholder="(XX)0000-0000"
                         value="<?php echo $viewVar['localTrabalho']->Telefone; ?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
                         title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" required autofocus>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-8">
                     <label for="email">Email:</label>
                     <input type="email" class="form-control"  name="email" placeholder="nome@dominio.com"
                         value="<?php echo $viewVar['localTrabalho']->Email; ?>"
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Este campo deve atender ao formato solicitado: nome@dominio.com" required autofocus>
             </div>
+          </div>
             <hr>
                 <button type="submit" class="btn btn-success">Salvar</button>
-                <a href="http://<?php echo APP_HOST; ?>/localTrabalho/Consultar" class="btn btn-outline-danger">Cancelar</a>
+                <a href="http://<?php echo APP_HOST; ?>/localTrabalho/Consultar" class="btn btn-outline-danger">Voltar</a>
 
             </div>
             </form>

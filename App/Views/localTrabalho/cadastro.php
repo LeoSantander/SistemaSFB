@@ -18,17 +18,18 @@
             <?php } ?>
 
             <form action="http://<?php echo APP_HOST; ?>/localTrabalho/salvar" method="post">
-            <div class="form-group">
 
-            <div class="form-group">
+
+            <div class="form-row">
+              <div class="form-group col-md-4">
                     <label for="nome">Sigla Posto(Opcional): </label>
                     <input type="text" class="form-control"  name="sglocal" placeholder="" value="<?php echo $Sessao::retornaValorFormulario('sglocal'); ?>">
-            </div>
-            <div class="form-group">
+                  </div>
+                <div class="form-group col-md-8">
                     <label for="nome">Nome Fantasia:</label>
                     <input type="text" class="form-control"  name="fantasia" placeholder="Auto Posto Marilia" value="<?php echo $Sessao::retornaValorFormulario('fantasia'); ?>"
                            title="Este campo não pode estar vazio." required autofocus>
-            </div>
+                </div>
             </div>
             <div class="form-group">
                     <label for="nome">CNPJ:</label>
@@ -64,7 +65,7 @@
                         title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="numero">Numero:</label>
+                    <label for="numero">Número:</label>
                     <input type="text" class="form-control" maxlength="5" name="numero" placeholder="000" value="<?php echo $Sessao::retornaValorFormulario('numero'); ?>"
                         pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" required autofocus>
                 </div>
@@ -84,7 +85,7 @@
 
             <label for="cidade">Cidade:</label>
             <div class="form-row">
-                <div class="form-group col-md-9">
+                <div class="form-group col-md-8">
 
 	                    <select name= "cidade" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('cidade'); ?>" required>
                             <option name="cidade" value="">Selecione uma Cidade</option>
@@ -93,7 +94,7 @@
                             <?php } ?>
                         </select>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <a class="btn btn-success btn-block" href="#" data-toggle="modal" data-placement="bottom" data-target="#myModal" aria-hidden="true">+ Nova Cidade</a>
                 </div>
             </div>
@@ -101,17 +102,19 @@
             <br>
             <h5>Contato:</h5>
             <hr>
-            <div class="form-group">
+            <div class="form-row">
+              <div class="form-group col-md-4">
                     <label for="telefone">Telefone:</label>
                     <input type="telefone" maxlength="14" class="form-control"  name="telefone" placeholder="(14) 3300-3000"
                         value="<?php echo $Sessao::retornaValorFormulario('telefone'); ?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
                         title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" required autofocus>
-            </div>
+              </div>
 
-            <div class="form-group">
+              <div class="form-group col-md-8">
                     <label for="email">Email:</label>
                     <input type="email" class="form-control"  name="email" placeholder="nome@dominio.com" value="<?php echo $Sessao::retornaValorFormulario('email'); ?>"
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Este campo deve atender ao formato solicitado: nome@dominio.com" required autofocus>
+              </div>
             </div>
             <hr>
                 <button type="submit" class="btn btn-success">Salvar</button>
@@ -237,7 +240,7 @@
               <?php } ?>
             </select>
           </div>
-                
+
           <br>
           <h5>Contato:</h5>
           <hr>
