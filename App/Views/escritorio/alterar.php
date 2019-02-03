@@ -48,7 +48,7 @@
                               title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                       </div>
                       <div class="form-group col-md-2">
-                          <label for="endereco">Numero:</label>
+                          <label for="endereco">Número:</label>
                           <input type="text" class="form-control" maxlength="5" name="endereco" placeholder="000" value="<?php echo $viewVar['escritorio']->NO_Endereco; ?>"
                               pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" required autofocus>
                       </div>

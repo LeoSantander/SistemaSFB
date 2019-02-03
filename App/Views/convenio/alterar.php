@@ -24,7 +24,7 @@
                 <input type="hidden" name="id" value="<?php echo $viewVar['convenio']->ID_Convenio?>">
 
                 <div class="form-group">
-                    <label for="nome">Nome do Convenio:</label>
+                    <label for="nome">Nome do Convênio:</label>
                     <input type="text" class="form-control" name="convenio" placeholder="Nome Completo" pattern="[A-Za-zÀ-ú ]{0,}"
                            title="Use somente letras. Não use caracteres especiais ou números." value="<?php echo $viewVar['convenio']->NM_Convenio?>"
                            required autofocus>
@@ -75,8 +75,9 @@
                         </div>
                 </div>
                     <div>
+                      <hr>
                         <button type="submit" class="btn btn-success">Salvar</button>
-                        <a href="http://<?php echo APP_HOST; ?>/home/" class="btn btn-outline-danger">Cancelar</a>
+                        <a href="http://<?php echo APP_HOST; ?>/convenio/consultar" class="btn btn-outline-danger">Voltar</a>
                     </div>
                 </form>
 

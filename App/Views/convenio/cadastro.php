@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h3>Cadastro de Convenios</h3>
+            <h3>Cadastro de Convênios</h3>
             <hr>
 
             <?php if($Sessao::retornaMensagem()){//Retorna mensagem de erro?>
@@ -22,15 +22,15 @@
             <form action="http://<?php echo APP_HOST; ?>/convenio/salvar" method="post">
 
                 <div class="form-group">
-                    <label for="nome">Nome do Convenio:</label>
-                    <input type="text" class="form-control" name="convenio" placeholder="Nome Completo" pattern="[A-Za-zÀ-ú ]{0,}"
+                    <label for="nome">Nome do Convênio:</label>
+                    <input type="text" class="form-control" name="convenio" pattern="[A-Za-zÀ-ú ]{0,}"
                            title="Use somente letras. Não use caracteres especiais ou números." value="<?php echo $Sessao::retornaValorFormulario('convenio'); ?>"
                            required autofocus>
                 </div>
 
                 <div class="form-group">
                     <label for="nome">Nome da Empresa:</label>
-                    <input type="text" class="form-control" name="empresa" placeholder="Nome da Empresa" pattern="[A-Za-zÀ-ú ]{0,}"
+                    <input type="text" class="form-control" name="empresa"  pattern="[A-Za-zÀ-ú ]{0,}"
                            title="Use somente letras. Não use caracteres especiais ou números." value="<?php echo $Sessao::retornaValorFormulario('empresa'); ?>"
                            required autofocus>
                 </div>
@@ -38,12 +38,12 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="valor">Valor para Associados:</label>
-                        <input type="tel" class="form-control" name="valor" maxlength="15" placeholder="$" value="<?php echo $Sessao::retornaValorFormulario('valor'); ?>" onKeyPress="return(mMoeda(this,'.',',',event))"
+                        <input type="tel" class="form-control" name="valor" maxlength="15" placeholder="R$" value="<?php echo $Sessao::retornaValorFormulario('valor'); ?>" onKeyPress="return(mMoeda(this,'.',',',event))"
                             title="Preencha de acordo com o que foi solicitado."required autofocus>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="valorDep">Valor para Dependentes:</label>
-                        <input type="tel" class="form-control" name="valorDep" maxlength="15" placeholder="$" value="<?php echo $Sessao::retornaValorFormulario('valorDep'); ?>" onKeyPress="return(mMoeda(this,'.',',',event))"
+                        <input type="tel" class="form-control" name="valorDep" maxlength="15" placeholder="R$" value="<?php echo $Sessao::retornaValorFormulario('valorDep'); ?>" onKeyPress="return(mMoeda(this,'.',',',event))"
                             title="Preencha de acordo com o que foi solicitado." autofocus>
                     </div>
                 </div>

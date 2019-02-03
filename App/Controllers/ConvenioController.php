@@ -32,8 +32,8 @@ class ConvenioController extends Controller
         $empresa = $_POST['empresa'];
 
         $registro = new Convenio();
-        $registro->setNmConvenio    ($_POST['convenio']);
-        $registro->setNmEmpresa     ($_POST['empresa']);
+        $registro->setNmConvenio    (ucwords($_POST['convenio']));
+        $registro->setNmEmpresa     (ucwords($_POST['empresa']));
         $registro->setVlConvenio    ($_POST['valor']);
         $registro->setVlConvenioDep ($_POST['valorDep']);
         $registro->setDtVencimento  ($_POST['dataVenc']);
@@ -133,8 +133,8 @@ class ConvenioController extends Controller
         $id = $_POST['id'];
 
         $registro = new Convenio();
-        $registro->setNmConvenio    ($_POST['convenio']);
-        $registro->setNmEmpresa     ($_POST['empresa']);
+        $registro->setNmConvenio    (ucwords($_POST['convenio']));
+        $registro->setNmEmpresa     (ucwords($_POST['empresa']));
         $registro->setVlConvenio    ($_POST['valor']);
         $registro->setVlConvenioDep ($_POST['valorDep']);
         $registro->setDtVencimento  ($_POST['dataVenc']);
