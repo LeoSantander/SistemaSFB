@@ -48,9 +48,8 @@
                     <input type="date" id="dataNasc" name="dataNasc" class="form-control" value="<?php echo $viewVar['dependente']->DT_Nascimento?>" required>
                 </div>
 
-                <div class="form-row">
-                  <label for="check">Convênios Aderidos:</label>
-                </div>
+                <h5>Convênios:</h5>
+                <hr>
                 <div class="table table-responsive">
                 <table class="table table-bordered table-hover">
                   <thead class="thead-light">
@@ -80,11 +79,11 @@
                       <td>
                         <?php if($convenios->ID_Convenio == $teste)echo "Aderido"; else echo "Não Aderido";?>
                       </td>
-                      <td>
+                      <td align="center">
                         <?php if($convenios->ID_Convenio == $teste){?>
                           <a class="btn btn-danger btn-sm" href="http://<?php echo APP_HOST;?>/dependente/desvincularConvenio/<?php echo $idRelacao;?>">Desvincular</a>
                         <?php } else { ?>
-                          <a class="btn btn-success" href="http://<?php echo APP_HOST;?>/dependente/aderirConvenio/<?php echo $convenios->ID_Convenio;?>/<?php echo $viewVar['dependente']->ID_Dependente?>">Aderir</button>
+                          <a class="btn btn-success btn-sm" href="http://<?php echo APP_HOST;?>/dependente/aderirConvenio/<?php echo $convenios->ID_Convenio;?>/<?php echo $viewVar['dependente']->ID_Dependente?>">Aderir</button>
                         <?php } ?>
                       </td>
                     </tr>
@@ -132,7 +131,7 @@
                 </div>
                 <div>
                     <button type="submit" class="btn btn-success">Salvar</button>
-                    <a href="http://<?php echo APP_HOST; ?>/home/" class="btn btn-outline-danger">Cancelar</a>
+                    <a href="http://<?php echo APP_HOST; ?>/dependente/consultar" class="btn btn-outline-danger">Voltar</a>
                 </div>
             </form>
 
