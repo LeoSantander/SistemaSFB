@@ -128,7 +128,7 @@
                             <?php }?>
                         </select>
                     </div>
-                </div>
+                </div><hr>
                 <div>
                     <button type="submit" class="btn btn-success">Salvar</button>
                     <a href="http://<?php echo APP_HOST; ?>/dependente/consultar" class="btn btn-outline-danger">Voltar</a>

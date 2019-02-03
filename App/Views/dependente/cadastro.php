@@ -45,7 +45,7 @@
                     <label for="dataNasc">Data de Nascimento:</label>
                     <input type="date" id="dataNasc" name="dataNasc" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('dataNasc'); ?>" required>
                 </div>
-
+                <br>
                 <h5>Convênios:</h5>
                 <hr>
                 <?php $i=0;

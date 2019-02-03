@@ -2,20 +2,20 @@
 
     <table width="100%">
             <tr>
-                <td><h3>Dependentes Cadastrados</h3></td>
+                <td><h3>Dependentes Cadastrados</h3><br></td>
             </tr>
             <tr>
                 <td>
-                    <form action="#" method="post" id="form_cadastro">
-                    <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <input type="text" name="buscar" value="<?php echo $Sessao::retornaValorFormulario('buscar'); ?>" class="form-control input-lg" placeholder="Buscar" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-info btn sm" type="submit">Buscar</button>
-                            </span>
-                        </div>
-                    </div>
-                    </form>
+                  <form action="#" method="post" id="form_cadastro">
+                      <div class="form-row">
+                          <div class="col-md-8">
+                            <input type="text" name="buscar" value="<?php echo $Sessao::retornaValorFormulario('buscar'); ?>" class="form-control " placeholder="Buscar" />
+                          </div>
+                          <div class="col-md-4">
+                            <button class="btn btn-info" type="submit">Buscar</button>
+                          </div>
+                      </div>
+                  </form>
                 </td>
                 <td align="right"><a class="btn btn-success" href="http://<?php echo APP_HOST; ?>/dependente/cadastro">+ Adicionar Dependente</a></td>
             </tr>
@@ -119,9 +119,6 @@
 
                 <div id="detalhes-aberto"></div>
 
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Voltar</button>
               </div>
         </div>
     </div>
