@@ -105,6 +105,12 @@ class EscritorioController extends Controller
 
         $escritorioDAO = new EscritorioDAO();
 
+        if($escritorioDAO->verificaEscritorio($escritorio->getIdEscritorio()))
+        {
+            Sessao::gravaMensagem('Não é possível excluir. Escritório está relacionado com algum Posto!');
+            $this->redirect('/escritorio/consultar');
+        }
+
         if(!$escritorioDAO->excluir($escritorio))
         {
             Sessao::gravaMensagem("Escritório não encontrado!");

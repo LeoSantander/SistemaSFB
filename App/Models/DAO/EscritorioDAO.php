@@ -56,6 +56,15 @@ class EscritorioDAO extends BaseDAO
         }
     }
 
+    public function verificaEscritorio($id)
+    {
+        $query = $this->select(
+            "SELECT * FROM sfm_local_trabalho WHERE ID_Escritorio_Contabilidade = '$id'"
+        );
+
+        return $query->fetch();
+    }
+
     public function listarEscritorios($busca = '')
     {
         if(isset($busca))
