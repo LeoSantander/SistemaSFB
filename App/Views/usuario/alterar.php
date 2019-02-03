@@ -16,7 +16,7 @@ function ocultaSenha(){
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h3>Editar Usuário</h3>
+            <h3>Editar Usuário</h3><hr>
 
             <?php if($Sessao::retornaMensagem()){//Retorna mensagem de erro?>
                 <div class="alert alert-warning" role="alert">
@@ -36,7 +36,7 @@ function ocultaSenha(){
                 <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $viewVar['usuario']->ID_Usuario; ?>">
 
                 <div class="form-group">
-                    <label for="nome">Nome</label>
+                    <label for="nome">Nome:</label>
                     <input type="text" class="form-control"  name="nome" placeholder="Nome Completo" value="<?php echo $viewVar['usuario']->NM_Pessoa; ?>" pattern="[A-Za-zÀ-ú ]{0,}"
                            title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                 </div>
@@ -45,7 +45,7 @@ function ocultaSenha(){
                     <input type="cpf" maxlength="11" class="form-control" readonly="true" placeholder="Somente Números" name="cpf" placeholder="" value="<?php echo $viewVar['usuario']->CPF_Usuario; ?>">
                 </div>
                 <div class="form-group">
-                    <label for="usuario">Usuário</label>
+                    <label for="usuario">Usuário:</label>
                     <input type="usuario" class="form-control" name="usuario" placeholder="Ex.: Nome.sobrenome" value="<?php echo $viewVar['usuario']->NM_Usuario; ?>" pattern="[A-Za-zÀ-ú ]{0,}"
                            title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                 </div>
@@ -53,7 +53,7 @@ function ocultaSenha(){
                 <div class="form-group col-md-7">
                     <table>
                         <tr>
-                            <td><label for="senha">Senha</label></td>
+                            <td><label for="senha">Senha:</label></td>
                         </tr>
                         <tr>
                            <td>
@@ -66,7 +66,7 @@ function ocultaSenha(){
                     </table>
                 </div>
                 <div class="form-group col-md-5">
-                    <label for="tpusuario">Tipo Usuario</label>
+                    <label for="tpusuario">Tipo Usuário:</label>
                     <select class="form-control" name= "tpusuario" value="" required>
                         <option name="tpusuario" value="">Selecione um Tipo de Usuário</option>
 
