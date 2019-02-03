@@ -12,19 +12,23 @@
       if(count($viewVar['convenios'])){
     ?>
     <br>
-    <table>
-      <tr>
+    <table class= "table-striped">
+      <thead>
+        <tr>
         <td><strong>Convenio</strong></td>
         <td><strong>Empresa</strong></td>
         <td><strong>Dia do Vencimento</strong></td>
       </tr>
+      </thead>
       <?php
       foreach ($viewVar['convenios'] as $convenios) {?>
+      <tbody>
       <tr>
         <td width="20%"><?php echo $convenios->NM_Convenio;?></td>
         <td width="20%"><?php echo $convenios->NM_Empresa;?></td>
         <td width="20%"><?php echo $convenios->Dia_Vencimento;?></td>
       </tr>
+    </tbody>
     <?php }?>
     </table>
     <?php }?> <br>

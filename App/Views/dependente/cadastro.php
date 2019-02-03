@@ -46,9 +46,8 @@
                     <input type="date" id="dataNasc" name="dataNasc" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('dataNasc'); ?>" required>
                 </div>
 
-                <div class="form-row">
-                <label for="check">Convênios Aderidos:</label>
-                </div>
+                <h5>Convênios:</h5>
+                <hr>
                 <?php $i=0;
                 foreach($viewVar['listarConvenios'] as $convenios){ ?>
                 <div class="form-row">
