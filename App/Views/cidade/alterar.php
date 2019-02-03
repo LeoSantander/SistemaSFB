@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h3>Editar Cidade</h3>
+            <h3>Editar Cidade</h3><hr>
 
             <?php if($Sessao::retornaSucesso()){ ?>
                 <div class="alert alert-success" role="alert"><?php echo $Sessao::retornaSucesso(); ?></div>
@@ -16,7 +16,7 @@
                 <input type="hidden" class="form-control" name="idCidade" id="idCidade" value="<?php echo $viewVar['cidade']->ID_Cidade; ?>">
 
                 <div class="form-group">
-                    <label for="nome">Nome</label>
+                    <label for="nome">Nome:</label>
                     <input type="text" class="form-control"  name="nome" placeholder="Nome Completo" value="<?php echo $viewVar['cidade']->NM_Cidade; ?>" required pattern="[A-Za-zÀ-ú ]{0,}"
                            title="Não use caracteres especiais ou números">
                 </div>
@@ -44,7 +44,7 @@
             </select>
             </div>
                <hr>
-                <button type="submit" class="btn btn-success btn-sm">Salvar</button>
+                <button type="submit" class="btn btn-success">Salvar</button>
                 <a href="http://<?php echo APP_HOST; ?>/cidade/consultar" class="btn btn-outline-danger">Voltar</a>
             </form>
 
