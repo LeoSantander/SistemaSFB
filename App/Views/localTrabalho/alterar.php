@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h3>Alterar Posto</h3>
+            <h3>Editar Posto</h3>
             <hr>
             <?php if($Sessao::retornaMensagem()){ ?>
                 <div class="alert alert-warning" role="alert">
@@ -50,7 +50,7 @@
                         <option name="escritorio" value= "<?php echo $escritorio->ID_Escritorio;?>"><?php echo $escritorio->NM_Escritorio;?></option>
                     <?php }} ?>
                 </select>
-            </div>
+            </div><br>
 
             <h5>Endereço:</h5>
             <hr>
