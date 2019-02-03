@@ -4,16 +4,16 @@
       //var_dump($viewVar['associado']);
     ?>
 
-    <strong>Nome:               </strong> <?php echo $viewVar['associado']->NM_Associado; ?>  <br>
-    <strong>RG:                 </strong> <?php echo $viewVar['associado']->RG; ?>            <br>
-    <strong>CPF:                </strong> <?php echo $viewVar['associado']->CPF; ?>           <br>
-    <strong>Data Nascimento:    </strong> <?php echo $viewVar['associado']->DT_Nascimento; ?> <br>
-    <strong>Data Associação:    </strong> <?php echo $viewVar['associado']->DT_Associacao; ?> <br>
+    <strong>Nome:               </strong> <?php if (isset($viewVar['associado']->NM_Associado)) echo $viewVar['associado']->NM_Associado; else echo " Não Informado"; ?>  <br>
+    <strong>RG:                 </strong> <?php if (isset($viewVar['associado']->RG)) echo $viewVar['associado']->RG; else echo " Não Informado";?>            <br>
+    <strong>CPF:                </strong> <?php if (isset($viewVar['associado']->CPF)) echo $viewVar['associado']->CPF; else echo " Não Informado"; ?>           <br>
+    <strong>Data Nascimento:    </strong> <?php if (isset($viewVar['associado']->DT_Nascimento)) echo date("d/m/Y", strtotime($viewVar['associado']->DT_Nascimento)); else echo " Não Informado"; ?> <br>
+    <strong>Data Associação:    </strong> <?php if (isset($viewVar['associado']->DT_Associacao)) echo date("d/m/Y",strtotime($viewVar['associado']->DT_Associacao)); else echo " Não Informado"; ?> <br>
     <strong>Local de Trabalho:  </strong> <?php echo $viewVar['associado']->CD_Local_Trabalho.
                                                ' - '.$viewVar['associado']->NM_Fantasia; ?>   <br>
-    <strong>Cargo:              </strong> <?php echo $viewVar['associado']->Cargo; ?>         <br>
+    <strong>Cargo:              </strong> <?php if ($viewVar['associado']->Cargo == '') echo "Não Informado"; else echo $viewVar['associado']->Cargo;   ?>         <br>
     <strong>Salário Base:       </strong> <?php echo $viewVar['associado']->VL_Salario; ?>    <br>
-    <strong>Número de registro: </strong> <?php echo $viewVar['associado']->NO_Registro; ?>   <br>
+    <strong>Número de registro: </strong> <?php if ($viewVar['associado']->NO_Registro == '') echo "Não Informado"; else echo $viewVar['associado']->NO_Registro; ?>   <br>
     <strong>Situação:           </strong> <?php echo $viewVar['associado']->Situacao; ?>  <br><br>
 
     <h5>Endereço:</h5>
@@ -25,8 +25,8 @@
     <strong>Complemento: </strong> <?php echo $viewVar['associado']->Comp; ?>  <br><br>
 
     <h5>Contato:</h5>
-    <strong>Telefone: </strong> <?php echo $viewVar['associado']->Telefone; ?><br>
-    <strong>Celular:  </strong> <?php echo $viewVar['associado']->Celular; ?><br>
+    <strong>Telefone: </strong> <?php if ($viewVar['associado']->Telefone == '') echo "Não Informado"; else echo $viewVar['associado']->Telefone; ?><br>
+    <strong>Celular:  </strong> <?php if ($viewVar['associado']->Celular == '') echo "Não Informado"; else echo $viewVar['associado']->Celular; ?><br>
     <strong>Email:    </strong> <?php echo $viewVar['associado']->Email; ?><br><br>
     <?php
       if(count($viewVar['convenios'])){

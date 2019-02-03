@@ -29,8 +29,10 @@
                            title="Use somente letras. Não use caracteres especiais ou números."value="<?php echo $viewVar['associado']->NM_Associado?>"
                            required autofocus>
                 </div>
+                <br><h5>Trabalho:</h5>
+                <hr>
 
-                <label for="local">Local de Trabalho:</label>
+                <label for="local">Posto:</label>
                     <div class="form-group">
                       <select class="form-control" name= "local" value="" required>
                           <option name= "local" value="">Selecione um Local</option>
@@ -111,11 +113,11 @@
                       <td>
                         <?php if($convenios->ID_Convenio == $teste)echo "Aderido"; else echo "Não Aderido";?>
                       </td>
-                      <td>
+                      <td align = "center">
                         <?php if($convenios->ID_Convenio == $teste){?>
                           <a class="btn btn-danger btn-sm" href="http://<?php echo APP_HOST;?>/associado/desvincularConvenio/<?php echo $idRelacao;?>">Desvincular</a>
                         <?php } else { ?>
-                          <a class="btn btn-success" href="http://<?php echo APP_HOST;?>/associado/aderirConvenio/<?php echo $convenios->ID_Convenio;?>/<?php echo $viewVar['associado']->ID_Associado?>">Aderir</button>
+                          <a class="btn btn-success btn-sm" href="http://<?php echo APP_HOST;?>/associado/aderirConvenio/<?php echo $convenios->ID_Convenio;?>/<?php echo $viewVar['associado']->ID_Associado?>">Aderir</button>
                         <?php } ?>
                       </td>
                     </tr>
@@ -131,7 +133,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-10">
                         <label for="rua">Rua:</label>
-                        <input type="text" class="form-control"  name="rua" placeholder=" Rua Nove de Julho" value="<?php echo $viewVar['associado']->NM_Rua?>" pattern="[A-Za-zÀ-ú ]{0,}"
+                        <input type="text" class="form-control"  name="rua"  value="<?php echo $viewVar['associado']->NM_Rua?>" pattern="[A-Za-zÀ-ú ]{0,}"
                             title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                     </div>
 
@@ -145,7 +147,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-8">
                         <label for="bairro">Bairro:</label>
-                        <input type="text" class="form-control" name="bairro" placeholder="Bairro Nova Marilia" value="<?php echo $viewVar['associado']->NM_Bairro?>" pattern="[A-Za-zÀ-ú ]{0,}"
+                        <input type="text" class="form-control" name="bairro"  value="<?php echo $viewVar['associado']->NM_Bairro?>" pattern="[A-Za-zÀ-ú ]{0,}"
                             title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                     </div>
 
@@ -159,7 +161,7 @@
                 <div class="form-row">
                     <div class="form-group col-6">
                         <label for="complemento">Complemento:</label>
-                        <input type="text" class="form-control" name="complemento" placeholder="Casa"  value="<?php echo $viewVar['associado']->Complemento?>" pattern="[A-Za-zÀ-ú ]{0,}"
+                        <input type="text" class="form-control" name="complemento"  value="<?php echo $viewVar['associado']->Complemento?>" pattern="[A-Za-zÀ-ú ]{0,}"
                               title="Use somente letras. Não use caracteres especiais ou números." autofocus>
                     </div>
                     <div class="form-group col-6 ">
@@ -186,13 +188,13 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="telefone">Telefone:</label>
-                        <input type="text" maxlength="14" class="form-control"  name="telefone" placeholder="(14) 3300-3000"
+                        <input type="text" maxlength="14" class="form-control"  name="telefone" placeholder="(xx) xxxx-xxxx"
                              value="<?php echo $viewVar['associado']->Telefone?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
                             title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" autofocus>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="celular">Celular:</label>
-                        <input type="text" maxlength="14" class="form-control"  name="celular" placeholder="(14) 9876-1302"
+                        <input type="text" maxlength="14" class="form-control"  name="celular" placeholder="(xx) 9xxxx-xxxx"
                              value="<?php echo $viewVar['associado']->Celular?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
                             title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" required autofocus>
                     </div>
