@@ -65,7 +65,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group col-md">
                         <a class="btn btn-success btn-block" href="#" data-toggle="modal" data-placement="bottom" data-target="#myModal1" aria-hidden="true">+ Novo Posto</a>
                     </div>
                 </div>
