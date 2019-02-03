@@ -19,7 +19,7 @@
                 <!--Campo Nome-->
                 <div class="form-group">
                     <label for="nome">Nome:</label>
-                    <input type="text" class="form-control"  name="nome" placeholder="Ex: Ourinhos" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>"
+                    <input type="text" class="form-control"  name="nome" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>"
                            required pattern="[A-Za-zÀ-ú ]{0,}"
                            title="Não use caracteres especiais ou números">
                 </div>

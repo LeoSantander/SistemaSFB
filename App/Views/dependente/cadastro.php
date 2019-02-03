@@ -23,7 +23,7 @@
 
                 <div class="form-group">
                     <label for="nome">Nome Completo:</label>
-                    <input type="text" class="form-control" name="nome" placeholder="Nome Completo" pattern="[A-Za-zÀ-ú ]{0,}"
+                    <input type="text" class="form-control" name="nome" pattern="[A-Za-zÀ-ú ]{0,}"
                            title="Use somente letras. Não use caracteres especiais ou números." value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>"
                            required autofocus>
                 </div>

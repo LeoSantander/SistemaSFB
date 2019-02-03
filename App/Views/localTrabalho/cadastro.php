@@ -27,13 +27,13 @@
                   </div>
                 <div class="form-group col-md-8">
                     <label for="nome">Nome Fantasia:</label>
-                    <input type="text" class="form-control"  name="fantasia" placeholder="Auto Posto Marilia" value="<?php echo $Sessao::retornaValorFormulario('fantasia'); ?>"
+                    <input type="text" class="form-control"  name="fantasia" value="<?php echo $Sessao::retornaValorFormulario('fantasia'); ?>"
                            title="Este campo não pode estar vazio." required autofocus>
                 </div>
             </div>
             <div class="form-group">
                     <label for="nome">CNPJ:</label>
-                    <input type="text"  maxlength="18"  class="form-control"  name="cnpj" placeholder=" "
+                    <input type="text"  maxlength="18"  class="form-control"  name="cnpj" placeholder="00.000.000/0000-00"
                         value="<?php echo $Sessao::retornaValorFormulario('cnpj'); ?>"
                         oninvalid="this.setCustomValidity('Este campo deve estar preenchido e atender ao padrão exigido: 000.000.000-00')" onchange="try{setCustomValidity('')}catch(e){}"  pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}"
                         onkeydown="javascript: fMasc( this, mCNPJ );">
@@ -61,7 +61,7 @@
             <div class="form-row">
                 <div class="form-group col-md-10">
                     <label for="nome">Rua:</label>
-                    <input type="text" class="form-control"  name="rua" placeholder=" Rua Nove de Julho" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
+                    <input type="text" class="form-control"  name="rua" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
                         title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                 </div>
                 <div class="form-group col-md-2">
@@ -73,7 +73,7 @@
             <div class="form-row">
                 <div class="form-group col-md-9">
                     <label for="nome">Bairro:</label>
-                    <input type="text" class="form-control" name="bairro" placeholder="Bairro Nova Marilia" value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
+                    <input type="text" class="form-control" name="bairro" value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
                            title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                 </div>
                 <div class="form-group col-md-3">
@@ -105,7 +105,7 @@
             <div class="form-row">
               <div class="form-group col-md-4">
                     <label for="telefone">Telefone:</label>
-                    <input type="telefone" maxlength="14" class="form-control"  name="telefone" placeholder="(14) 3300-3000"
+                    <input type="telefone" maxlength="14" class="form-control"  name="telefone" placeholder="(xx) xxxx-xxxx"
                         value="<?php echo $Sessao::retornaValorFormulario('telefone'); ?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
                         title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" required autofocus>
               </div>
