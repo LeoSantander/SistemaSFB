@@ -60,7 +60,7 @@
 
                 <input type="hidden" class="form-control"  name="qtdConvenios" value="<?php echo  $i; ?>">
 
-                <br><h5>Dados do Associado</h5><hr>
+                <br><h5>Dados do Associado:</h5><hr>
 
                 <div class="form-row">
                     <div class="form-group col-md-7">
@@ -89,7 +89,7 @@
                             <option name="grau" value="Filho(a)">Filho(a)</option>
                         </select>
                     </div>
-                </div>
+                </div><hr>
                 <div>
                     <button type="button" data-toggle="modal" data-target="#detalhes" data-placement="bottom" href="#" class="btn btn-success">Salvar</button>
                     <a href="http://<?php echo APP_HOST; ?>/home/" class="btn btn-outline-danger">Cancelar</a>

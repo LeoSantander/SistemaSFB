@@ -93,7 +93,7 @@
                </table>
                </div>
 
-                <br><h5>Dados do Associado</h5><hr>
+                <br><h5>Dados do Associado:</h5><hr>
 
                 <div class="form-row">
                     <div class="form-group col-md-7">

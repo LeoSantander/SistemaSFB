@@ -7,8 +7,8 @@
                 </div>
             <?php }?>
 
-            <center><h1>Bem vindo(a)</h1>
-            <h2>Sistema de gestão SEPEC Marília e região</h2></center><br>
+            <center><h1>Bem-vindo(a)</h1>
+            <h2>Sistema de gestão SEPEC Marília e Região</h2></center><br>
 
             <table width='50%' align ='center'>
             <tr>
@@ -18,7 +18,7 @@
                 <td align ='center'><h3><?php if ($Sessao::retornaqtdAssociados()==''){ echo 0; }else{ echo $Sessao::retornaqtdAssociados();}?></h3>  Associados Ativos</td>
                 <!--Informações sobre Usuários | Só vai aparecer se TPUsuário Logado for = Administrador -->
                 <?php if ($Sessao::retornaTPUsuario() == 'Administrador'){?>
-                    <td align ='center'><h3><?php echo $Sessao::retornaqtdUsuarios();?></h3> Usuarios Cadastrados</td>
+                    <td align ='center'><h3><?php echo $Sessao::retornaqtdUsuarios();?></h3> Usuários Cadastrados</td>
                 <?php } ?>
             </tr>
             </table>

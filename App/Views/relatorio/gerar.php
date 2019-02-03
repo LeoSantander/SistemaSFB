@@ -158,6 +158,7 @@
                         <input value="a.data_inicio" type="date" name="a_data_inicio" class="form-control" id="a_data_inicio" required>
                         <label>Data Final</label><br>
                         <input value="a.data_fim" type="date" name="a_data_fim" class="form-control" id="a_data_fim" required>
+												<p style="font-size:12px;"><b>*Considerar Data de Associação</b></p>
                     </div>
 										<div class="form-group col-md-1">
 										</div>
@@ -212,6 +213,7 @@
                         <input value="p.data_inicio" type="date" name="p_data_inicio" class="form-control" id="p_data_inicio">
                         <label>Data Final</label><br>
                         <input value="p.data_fim" type="date" name="p_data_fim" class="form-control" id="p_data_fim">
+												<p style="font-size:12px;"><b>*Considerar Data de Inclusão</b></p>
                     </div>
 										<div class="form-group col-md-1">
 										</div>
@@ -270,6 +272,7 @@
                         <input value="d.data_inicio" type="date" name="d_data_inicio" id="d_data_inicio" class="form-control">
                         <label>Data Final</label><br>
                         <input value="d.data_fim" type="date" name="d_data_fim" id="d_data_fim" class="form-control">
+												<p style="font-size:12px;"><b>*Considerar Data de Associação</b></p>
                     </div>
 
 										<div class="form-group col-md-1">
