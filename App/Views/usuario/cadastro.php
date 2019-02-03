@@ -40,7 +40,7 @@
                       <input type="password" class="form-control" name="senha"  value="<?php echo $Sessao::retornaValorFormulario('senha'); ?>" required oninvalid="this.setCustomValidity('Este é um campo obrigatório')" onchange="try{setCustomValidity('')}catch(e){}">
                   </div>
                   <div class="form-group col-md-6">
-                      <label for="tpusuario">Tipo Usuario:</label>
+                      <label for="tpusuario">Tipo Usuário:</label>
                       <select class="form-control" name= "tpusuario" value="" required>
                           <option  name="tpusuario" value="">Selecione um Tipo de Usuário</option>
                           <option  name="tpusuario" value="Administrador">Administrador</option>

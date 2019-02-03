@@ -31,12 +31,16 @@
     <?php
       if(count($viewVar['convenios'])){
     ?>
-    <table>
+    <br>
+    <h5>Convênios</h5>
+    <table class="table-striped">
+      <thead>
       <tr>
-        <td><strong>Convenio</strong></td>
+        <td><strong>Convênio</strong></td>
         <td><strong>Empresa</strong></td>
         <td><strong>Dia do Vencimento</strong></td>
       </tr>
+      </thead>
       <?php
       foreach ($viewVar['convenios'] as $convenios) {?>
       <tr>
