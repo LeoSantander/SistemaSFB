@@ -315,7 +315,7 @@
                             title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="numero">Numero:</label>
+                        <label for="numero">Número:</label>
                         <input type="text" class="form-control" maxlength="5" name="numero" placeholder="000" value="<?php echo $Sessao::retornaValorFormulario('numero'); ?>"
                             pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" required autofocus>
                     </div>
