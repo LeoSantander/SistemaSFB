@@ -30,8 +30,8 @@
                 </div>
                 <div class="form-group">
                     <label for="usuario">Usuário:</label>
-                    <input type="usuario" class="form-control" name="usuario"  value="<?php echo $Sessao::retornaValorFormulario('usuario'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
-                           title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
+                    <input type="usuario" class="form-control" name="usuario"  value="<?php echo $Sessao::retornaValorFormulario('usuario'); ?>"
+                           required autofocus>
                 </div>
 
                 <div class = "form-row">
