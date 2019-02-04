@@ -30,7 +30,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="rg">RG:</label>
-                        <input type="rg" class="form-control" name="rg" placeholder="00.000.000-0" maxlength="9" pattern="[0-9]{8}[0-9xX]{1}"
+                        <input type="rg" class="form-control" name="rg" placeholder="000000000" maxlength="9" pattern="[0-9]{8}[0-9xX]{1}"
                                title="Digite somente números com 9 digitos" value="<?php echo $Sessao::retornaValorFormulario('rg'); ?>" required >
                     </div>
 
@@ -229,7 +229,7 @@
 <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Adicionar nova Cidade</span></h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Adicionar Nova Cidade</span></h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -243,7 +243,7 @@
                 <!--Campo Nome-->
                 <div class="form-group">
                     <label for="nome">Nome:</label>
-                    <input type="text" class="form-control"  name="nome" placeholder="Ex: Ourinhos" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>"
+                    <input type="text" class="form-control"  name="nome" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>"
                            required pattern="[A-Za-zÀ-ú ]{0,}"
                            title="Não use caracteres especiais ou números">
                 </div>
@@ -277,7 +277,7 @@
 <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Adicionar novo Local</span></h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Adicionar Novo Posto</span></h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -294,7 +294,7 @@
                 </div>
                 <div class="form-group">
                         <label for="nome">Nome Fantasia:</label>
-                        <input type="text" class="form-control"  name="fantasia" placeholder="Auto Posto Marilia" value="<?php echo $Sessao::retornaValorFormulario('fantasia'); ?>"
+                        <input type="text" class="form-control"  name="fantasia" value="<?php echo $Sessao::retornaValorFormulario('fantasia'); ?>"
                             title="Este campo não pode estar vazio." required autofocus>
                 </div>
                 </div>
@@ -311,7 +311,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-10">
                         <label for="nome">Rua:</label>
-                        <input type="text" class="form-control"  name="rua" placeholder=" Rua Nove de Julho" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
+                        <input type="text" class="form-control"  name="rua" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
                             title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                     </div>
                     <div class="form-group col-md-2">
@@ -323,7 +323,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-9">
                         <label for="nome">Bairro:</label>
-                        <input type="text" class="form-control" name="bairro" placeholder="Bairro Nova Marilia" value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
+                        <input type="text" class="form-control" name="bairro" value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
                             title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
                     </div>
                     <div class="form-group col-md-3">
@@ -351,7 +351,7 @@
                 <hr>
                 <div class="form-group">
                         <label for="telefone">Telefone:</label>
-                        <input type="telefone" maxlength="14" class="form-control"  name="telefone" placeholder="(14) 3300-3000"
+                        <input type="telefone" maxlength="14" class="form-control"  name="telefone" placeholder="(xx) xxxx-xxxx"
                             value="<?php echo $Sessao::retornaValorFormulario('telefone'); ?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
                             title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" required autofocus>
                 </div>

@@ -111,7 +111,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
               <div class="modal-header bg-dark text-white">
-                  <h5 class="modal-title" id="exampleModalCenterTitle">Adicionar nova Cidade</span></h5>
+                  <h5 class="modal-title" id="exampleModalCenterTitle">Adicionar Nova Cidade</span></h5>
                   <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
@@ -125,7 +125,7 @@
                   <!--Campo Nome-->
                   <div class="form-group">
                       <label for="nome">Nome:</label>
-                      <input type="text" class="form-control"  name="nome" placeholder="Ex: Ourinhos" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>"
+                      <input type="text" class="form-control"  name="nome" value="<?php echo $Sessao::retornaValorFormulario('nome'); ?>"
                              required pattern="[A-Za-zÀ-ú ]{0,}"
                              title="Não use caracteres especiais ou números">
                   </div>
