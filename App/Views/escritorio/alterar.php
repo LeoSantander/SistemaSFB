@@ -44,8 +44,8 @@
                   <div class="form-row">
                       <div class="form-group col-md-10">
                           <label for="nome">Rua:</label>
-                          <input type="text" class="form-control"  name="rua" placeholder=" Rua Nove de Julho" value="<?php echo $viewVar['escritorio']->NM_Rua; ?>" pattern="[A-Za-zÀ-ú ]{0,}"
-                              title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
+                          <input type="text" class="form-control"  name="rua" placeholder=" Rua Nove de Julho" value="<?php echo $viewVar['escritorio']->NM_Rua; ?>" pattern="[A-Za-zÀ-ú0-9 ]{0,}"
+                              title="Use somente letras ou números. Não use caracteres especiais." required autofocus>
                       </div>
                       <div class="form-group col-md-2">
                           <label for="endereco">Número:</label>
