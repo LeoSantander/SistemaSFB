@@ -66,7 +66,7 @@ class DependenteController extends Controller
 
         if($dependenteDAO->verificaCPF($_POST['cpf']))
         {
-            Sessao::gravaMensagem("CPF já associado a um dependente!");
+            Sessao::gravaMensagem("CPF já associado a algum Dependente!");
             $this->redirect('/dependente/cadastro');
         }
 
@@ -171,7 +171,7 @@ class DependenteController extends Controller
         $dependenteDAO = new DependenteDAO();
 
         if ($dependenteDAO->verificaRelacao($_POST['id'])){
-          Sessao::gravaMensagem("Não foi possível excluir: Dependente possui vinculos com convenios!");
+          Sessao::gravaMensagem("Não foi possível excluir: Dependente possui vínculos com Convênios!");
           $this->redirect('/dependente/consultar');
         }
         else{
@@ -248,7 +248,7 @@ class DependenteController extends Controller
 
         if($dependenteDAO->verificaAlteracao($cpf,$id))
         {
-            Sessao::gravaMensagem("CPF já associado a um dependente!");
+            Sessao::gravaMensagem("CPF já associado a algum Dependente!");
             $this->redirect('/dependente/alterar/'.$id);
         }
 
@@ -274,7 +274,7 @@ class DependenteController extends Controller
     $pessoaConveioDAO = new PessoaConvenioDAO();
     $pessoaConveioDAO->salvar($convenioPessoa);
 
-    Sessao::gravaSucesso("Convenio Aderido com sucesso");
+    Sessao::gravaSucesso("Convênio Aderido com sucesso");
     $this->redirect('/dependente/alterar/'.$idAssociado);
   }
 
@@ -292,7 +292,7 @@ class DependenteController extends Controller
 
     $pessoaConveioDAO->excluir($convenioPessoa);
 
-    Sessao::gravaSucesso("Convenio desvinculado com sucesso");
+    Sessao::gravaSucesso("Convênio desvinculado com sucesso");
     $this->redirect('/dependente/alterar/'.$idDep);
 
   }

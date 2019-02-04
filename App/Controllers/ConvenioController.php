@@ -46,14 +46,14 @@ class ConvenioController extends Controller
 
         if($convenioDAO->verificaConvenio($convenio , $empresa))
         {
-            Sessao::gravaMensagem("Convênio já cadastrado!");
+            Sessao::gravaMensagem("Convênio já Cadastrado!");
 
             $this->redirect('/convenio/cadastro');
         }
         if($convenioDAO->salvar($registro))
         {
             Sessao::limpaFormulario();
-            Sessao::gravaSucesso("Convênio cadastrado com Sucesso!");
+            Sessao::gravaSucesso("Convênio Cadastrado com Sucesso!");
 
             $this->redirect('/convenio/cadastro');
         }

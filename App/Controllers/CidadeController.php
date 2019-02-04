@@ -53,7 +53,7 @@ class CidadeController extends Controller
         //Verifica se cidade ja esta cadastrada
          if(($cidadeDAO->verificaNome($_POST['nome'],$_POST['estado'])))
         {
-            Sessao::gravaMensagem("Cidade já cadastrada!");
+            Sessao::gravaMensagem("Cidade já Cadastrada!");
             $this->redirect('/cidade/cadastro');
         }
 
@@ -62,30 +62,30 @@ class CidadeController extends Controller
         {
             if ($lc == 'LC'){
                 Sessao::gravaFormulario($_POST);
-                Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
+                Sessao::gravaSucesso("Cidade cadastrada com Sucesso!");
 
                 $this->redirect('/localTrabalho/cadastro');
 
             } else if($lc == 'AS'){
                 Sessao::gravaFormulario($_POST);
-                Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
+                Sessao::gravaSucesso("Cidade cadastrada com Sucesso!");
 
                 $this->redirect('/associado/cadastro');
             }else if($lc == 'ES'){
                 Sessao::gravaFormulario($_POST);
-                Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
+                Sessao::gravaSucesso("Cidade cadastrada com Sucesso!");
 
                 $this->redirect('/escritorio/cadastro');
             }else{
                 Sessao::limpaFormulario();
-                Sessao::gravaSucesso("Cidade cadastrada com Sucesso");
+                Sessao::gravaSucesso("Cidade cadastrada com Sucesso!");
 
                 $this->redirect('/cidade/cadastro');
             }
         }
         else
         {
-            Sessao::gravaMensagem("Erro ao gravar");
+            Sessao::gravaMensagem("Erro ao gravar!");
         }
     }
 
@@ -116,7 +116,7 @@ class CidadeController extends Controller
         $cidadeDAO = new CidadeDAO();
 
         if($cidadeDAO->verificaLocaldeTrabalho($cidade->getIdCidade()) and $cidadeDAO->verificaAssociado($cidade->getIdCidade())){
-            Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Posto e Associado!");
+            Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Posto e/ou Associado!");
             $this->redirect('/cidade/consultar');
         }else if($cidadeDAO->verificaLocaldeTrabalho($cidade->getIdCidade())){
             Sessao::gravaMensagem("Não é possível excluir. Cidade tem relação com algum Posto!");
@@ -132,7 +132,7 @@ class CidadeController extends Controller
             $this->redirect('/cidade/consultar');
         }
 
-        Sessao::gravaSucesso("Cidade excluída com sucesso!");
+        Sessao::gravaSucesso("Cidade Excluída com Sucesso!");
         $this->redirect('/cidade/consultar');
     }
 
@@ -179,14 +179,14 @@ class CidadeController extends Controller
         //Verifica Alteração
         if($cidadeDAO->verificaAlteracao($_POST['nome'], $_POST['estado'], $id))
         {
-            Sessao::gravaMensagem("Cidade já cadastrada!");
+            Sessao::gravaMensagem("Cidade já Cadastrada!");
             $this->redirect('/cidade/alterar/'.$id);
         }
 
         $cidadeDAO->atualizar($registro);
 
         Sessao::limpaFormulario();
-        Sessao::gravaSucesso("Cidade alterada com Sucesso!");
+        Sessao::gravaSucesso("Cidade Alterada com Sucesso!");
         $this->redirect('/cidade/consultar');
     }
 }

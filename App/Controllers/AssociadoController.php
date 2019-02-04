@@ -165,7 +165,7 @@ class AssociadoController extends Controller
             for ($i=0; $i < $qtd; $i++) {
               if(isset($convenio[$i])){
 
-                printf("\nSocio: ".$ID_Socio."\nConvenio: ".$convenio[$i]);
+                printf("\nSocio: ".$ID_Socio."\nConvênio: ".$convenio[$i]);
 
 
 
@@ -225,7 +225,7 @@ class AssociadoController extends Controller
             $this->redirect('/associado/consultar');
         }
 
-        Sessao::gravaSucesso("Associado Excluido com Sucesso!");
+        Sessao::gravaSucesso("Associado Excluído com Sucesso!");
         $this->redirect('/associado/consultar');
     }
 
@@ -310,7 +310,7 @@ class AssociadoController extends Controller
       $associadoDAO = new AssociadoDAO();
       if ($associadoDAO->trocarStatus($registro)){
         Sessao::limpaFormulario();
-        Sessao::gravaSucesso("Situação do associado alterado com Sucesso!");
+        Sessao::gravaSucesso("Situação do Associado alterada com Sucesso!");
         $this->redirect('/associado/consultar');
       }
       else
@@ -333,7 +333,7 @@ class AssociadoController extends Controller
       $pessoaConveioDAO = new PessoaConvenioDAO();
       $pessoaConveioDAO->salvar($convenioPessoa);
 
-      Sessao::gravaSucesso("Convenio Aderido com sucesso");
+      Sessao::gravaSucesso("Convênio Aderido com Sucesso");
       $this->redirect('/associado/alterar/'.$idAssociado);
     }
 
@@ -351,7 +351,7 @@ class AssociadoController extends Controller
 
       $pessoaConveioDAO->excluir($convenioPessoa);
 
-      Sessao::gravaSucesso("Convenio desvinculado com sucesso");
+      Sessao::gravaSucesso("Convênio Desvinculado com Sucesso");
       $this->redirect('/associado/alterar/'.$idSocio);
 
     }

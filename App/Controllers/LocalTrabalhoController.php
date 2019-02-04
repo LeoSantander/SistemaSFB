@@ -123,7 +123,7 @@ class LocalTrabalhoController extends Controller
          $localTrabalhoDAO = new LocalTrabalhoDAO();
 
          if($localTrabalhoDAO->verificaLocal($localTrabalho->getId())){
-             Sessao::gravaMensagem("Não é possível excluir! Posto possui associados vinculados");
+             Sessao::gravaMensagem("Não é possível excluir! Posto possui Associados Vinculados");
              $this->redirect('/localTrabalho/consultar');
          }
 
