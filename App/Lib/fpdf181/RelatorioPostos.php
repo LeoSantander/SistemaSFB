@@ -2,6 +2,8 @@
 
 namespace App\Lib\fpdf181;
 
+use App\Lib\fpdf181\fdpf;
+
 class RelatorioPostos extends FPDF
 {
     //função para novo relatorio de postos

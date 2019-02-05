@@ -5,6 +5,7 @@ namespace App\Lib\fpdf181;
 use App\Models\DAO\EstadoDAO;
 use App\Models\DAO\LocalTrabalhoDAO;
 use App\Models\DAO\CidadeDAO;
+use App\Lib\fpdf181\fdpf;
 
 class RelatorioAssociadosDependentes extends FPDF
 {
