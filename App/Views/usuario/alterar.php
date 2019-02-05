@@ -46,8 +46,8 @@ function ocultaSenha(){
                 </div>
                 <div class="form-group">
                     <label for="usuario">Usuário:</label>
-                    <input type="usuario" class="form-control" name="usuario" placeholder="Ex.: Nome.sobrenome" value="<?php echo $viewVar['usuario']->NM_Usuario; ?>" pattern="[A-Za-zÀ-ú ]{0,}"
-                           title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
+                    <input type="usuario" class="form-control" name="usuario" placeholder="Ex.: Nome.sobrenome" value="<?php echo $viewVar['usuario']->NM_Usuario; ?>"
+                           required autofocus>
                 </div>
                 <div class="form-row">
                 <div class="form-group col-md-7">
