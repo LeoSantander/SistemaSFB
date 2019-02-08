@@ -45,7 +45,7 @@
                           <option  name="tpusuario" value="">Selecione um Tipo de Usuário</option>
                           <option  name="tpusuario" value="Administrador">Administrador</option>
                           <option  name="tpusuario" value="Padrao">Padrão</option>
-                          <option  name="tpusuario" value="Financeiro">Financeiro</option>
+                          <!--<option  name="tpusuario" value="Financeiro">Financeiro</option>-->
                       </select>
                   </div>
 

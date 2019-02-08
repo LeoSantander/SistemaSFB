@@ -73,22 +73,22 @@ function ocultaSenha(){
                         <?php if($viewVar['usuario']->TP_Usuario == "Administrador"){?>
                             <option selected="selected" name="tpusuario" value="Administrador">Administrador</option>
                             <option name="tpusuario" value="Padrao">Padrão</option>
-                            <option name="tpusuario" value="Financeiro">Financeiro</option>
+                            <!--<option name="tpusuario" value="Financeiro">Financeiro</option>-->
 
                         <?php } else if($viewVar['usuario']->TP_Usuario == "Padrao"){?>
                             <option selected="selected" name="tpusuario" value="Padrao">Padrão</option>
                             <option name="tpusuario" value="Administrador">Administrador</option>
-                            <option name="tpusuario" value="Financeiro">Financeiro</option>
+                            <!--<option name="tpusuario" value="Financeiro">Financeiro</option>-->
 
-                        <?php } else if($viewVar['usuario']->TP_Usuario == "Financeiro"){?>
-                            <option selected="selected" name="tpusuario" value="Financeiro">Financeiro</option>
+                        <?php //} else if($viewVar['usuario']->TP_Usuario == "Financeiro"){?>
+                            <!--<option selected="selected" name="tpusuario" value="Financeiro">Financeiro</option>
                             <option name="tpusuario" value="Administrador">Administrador</option>
-                            <option name="tpusuario" value="Padrao">Padrão</option>
+                            <option name="tpusuario" value="Padrao">Padrão</option>-->
 
                         <?php } else{?>
                             <option name="tpusuario" value="Administrador">Administrador</option>
                             <option name="tpusuario" value="Padrao">Padrão</option>
-                            <option name="tpusuario" value="Financeiro">Financeiro</option>
+                            <!--<option name="tpusuario" value="Financeiro">Financeiro</option>-->
                         <?php } ?>
                     </select>
                 </div>
