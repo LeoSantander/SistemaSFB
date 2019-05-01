@@ -2,7 +2,7 @@
 
 namespace App\Lib\fpdf181;
 
-use App\Lib\fpdf181\fdpf;
+use App\Lib\fpdf181\fpdf;
 
 class RelatorioPostos extends FPDF
 {

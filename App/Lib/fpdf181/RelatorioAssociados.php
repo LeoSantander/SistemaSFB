@@ -3,7 +3,7 @@
 namespace App\Lib\fpdf181;
 
 use App\Models\DAO\AssociadoDAO;
-use App\Lib\fpdf181\fdpf;
+use App\Lib\fpdf181\fpdf;
 
 class RelatorioAssociados extends FPDF
 {
