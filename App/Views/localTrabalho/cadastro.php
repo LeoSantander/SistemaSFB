@@ -44,7 +44,7 @@
 
               <div class="form-group col-md-8">
 
-                <select name= "escritorio" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('escritorio'); ?>" required>
+                <select name= "escritorio" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('escritorio'); ?>">
                       <option name="escritorio" value="">Selecione um Escritório</option>
                       <?php foreach($viewVar['listarEscritorios'] as $escritorio){?>
                         <option  name="escritorio" value= "<?php echo $escritorio->ID_Escritorio;?>"><?php echo $escritorio->NM_Escritorio;?></option>
@@ -62,24 +62,24 @@
                 <div class="form-group col-md-10">
                     <label for="nome">Rua:</label>
                     <input type="text" class="form-control"  name="rua" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" pattern="[A-Za-zÀ-ú0-9 ]{0,}"
-                        title="Use somente letras ou números. Não use caracteres especiais." required autofocus>
+                        title="Use somente letras ou números. Não use caracteres especiais." autofocus>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="numero">Número:</label>
                     <input type="text" class="form-control" maxlength="5" name="numero" placeholder="000" value="<?php echo $Sessao::retornaValorFormulario('numero'); ?>"
-                        pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" required autofocus>
+                        pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" autofocus>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-9">
                     <label for="nome">Bairro:</label>
                     <input type="text" class="form-control" name="bairro" value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
-                           title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
+                           title="Use somente letras. Não use caracteres especiais ou números." autofocus>
                 </div>
                 <div class="form-group col-md-3">
                         <label for="cep">CEP:</label>
                         <input type="text" class="form-control" name="cep" maxlength="10" placeholder="00.000-000" value="<?php echo $Sessao::retornaValorFormulario('cep'); ?>" pattern= "[0-9]{2}.[0-9]{3}-[0-9]{3}"
-                           title="Preencha de acordo com o que foi solicitado." onkeydown="javascript: fMasc( this, mCEP );" required autofocus>
+                           title="Preencha de acordo com o que foi solicitado." onkeydown="javascript: fMasc( this, mCEP );" autofocus>
                     </div>
             </div>
 
@@ -87,7 +87,7 @@
             <div class="form-row">
                 <div class="form-group col-md-8">
 
-	                    <select name= "cidade" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('cidade'); ?>" required>
+	                    <select name= "cidade" class="form-control" value="<?php echo $Sessao::retornaValorFormulario('cidade'); ?>">
                             <option name="cidade" value="">Selecione uma Cidade</option>
                             <?php foreach($viewVar['listarCidades'] as $cidade){?>
 	                            <option  name="cidade" value= "<?php echo $cidade->ID_Cidade;?>"><?php echo $cidade->NM_Cidade;?> - <?php echo $cidade->CD_Estado;?></option>
@@ -107,13 +107,13 @@
                     <label for="telefone">Telefone:</label>
                     <input type="telefone" maxlength="14" class="form-control"  name="telefone" placeholder="(xx) xxxx-xxxx"
                         value="<?php echo $Sessao::retornaValorFormulario('telefone'); ?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
-                        title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" required autofocus>
+                        title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" autofocus>
               </div>
 
               <div class="form-group col-md-8">
                     <label for="email">Email:</label>
                     <input type="email" class="form-control"  name="email" placeholder="nome@dominio.com" value="<?php echo $Sessao::retornaValorFormulario('email'); ?>"
-                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Este campo deve atender ao formato solicitado: nome@dominio.com" required autofocus>
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Este campo deve atender ao formato solicitado: nome@dominio.com" autofocus>
               </div>
             </div>
             <hr>

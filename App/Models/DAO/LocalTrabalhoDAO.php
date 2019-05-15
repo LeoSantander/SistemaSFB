@@ -6,20 +6,20 @@ use App\Models\Entidades\LocalTrabalho;
 
 class LocalTrabalhoDAO extends BaseDAO
 {
-    public function verificaCNPJ($cnpj)
-    {
-        try {
-
-            $query = $this->select(
-                "SELECT * FROM sfm_local_trabalho WHERE CNPJ = '$cnpj' "
-            );
-
-            return $query->fetch();
-
-        }catch (Exception $e){
-            throw new \Exception("Erro no acesso aos dados.", 500);
-        }
-    }
+    // public function verificaCNPJ($cnpj)
+    // {
+    //     try {
+    //
+    //         $query = $this->select(
+    //             "SELECT * FROM sfm_local_trabalho WHERE CNPJ = '$cnpj' "
+    //         );
+    //
+    //         return $query->fetch();
+    //
+    //     }catch (Exception $e){
+    //         throw new \Exception("Erro no acesso aos dados.", 500);
+    //     }
+    // }
 
     public function verificaNMFantasia($nmFantasia)
     {
@@ -81,11 +81,11 @@ class LocalTrabalhoDAO extends BaseDAO
             $query = $this->select(
                 "SELECT *, l.Telefone as Tel, l.Email as EmailLocal, l.NM_Rua as Rua, l.NO_Endereco as Num, l.NM_Bairro as Bairro, l.CEP as CepLocal, c.NM_Cidade as NM_Cidade, e.CD_Estado as CD_Estado, s.NM_Escritorio as NM_Escritorio
                  FROM sfm_local_trabalho as l
-                      INNER JOIN sfm_cidade as c
+                      LEFT OUTER JOIN sfm_cidade as c
                       ON c.ID_Cidade = l.ID_Cidade
-                      INNER JOIN sfm_estado as e
+                      LEFT OUTER JOIN sfm_estado as e
                       ON e.ID_Estado = c.ID_Estado
-                      INNER JOIN sfm_escritorios as s
+                      LEFT OUTER JOIN sfm_escritorios as s
                       ON s.ID_Escritorio = l.ID_Escritorio_Contabilidade
                  WHERE l.NM_Fantasia LIKE '%".$nm."%' ORDER BY l.NM_Fantasia"
             );
@@ -94,11 +94,11 @@ class LocalTrabalhoDAO extends BaseDAO
             $query = $this->select(
                 "SELECT *, l.Telefone as Tel, l.Email as EmailLocal, l.NM_Rua as Rua, l.NO_Endereco as Num, l.NM_Bairro as Bairro, l.CEP as CepLocal, c.NM_Cidade as NM_Cidade, e.CD_Estado as CD_Estado, s.NM_Escritorio as NM_Escritorio
                  FROM sfm_local_trabalho as l
-                      INNER JOIN sfm_cidade as c
+                      LEFT OUTER JOIN sfm_cidade as c
                       ON c.ID_Cidade = l.ID_Cidade
-                      INNER JOIN sfm_estado as e
+                      LEFT OUTER JOIN sfm_estado as e
                       ON e.ID_Estado = c.ID_Estado
-                      INNER JOIN sfm_escritorios as s
+                      LEFT OUTER JOIN sfm_escritorios as s
                       ON s.ID_Escritorio = l.ID_Escritorio_Contabilidade
                  ORDER BY l.NM_Fantasia"
             );
@@ -178,20 +178,20 @@ class LocalTrabalhoDAO extends BaseDAO
         }
     }
 
-    public function verificaAlteracao($cnpj, $id)
-    {
-        try {
-
-            $query = $this->select(
-                "SELECT * FROM sfm_local_trabalho WHERE ID_Local_Trabalho <> '$id' AND CNPJ = '$cnpj' "
-            );
-
-            return $query->fetch();
-
-        }catch (Exception $e){
-            throw new \Exception("Erro no acesso aos dados.", 500);
-        }
-    }
+    // public function verificaAlteracao($cnpj, $id)
+    // {
+    //     try {
+    //
+    //         $query = $this->select(
+    //             "SELECT * FROM sfm_local_trabalho WHERE ID_Local_Trabalho <> '$id' AND CNPJ = '$cnpj' "
+    //         );
+    //
+    //         return $query->fetch();
+    //
+    //     }catch (Exception $e){
+    //         throw new \Exception("Erro no acesso aos dados.", 500);
+    //     }
+    // }
 
     public function relatorio($colunas, $condicao, $ordem, $amarra=null, $group=null)
     {
