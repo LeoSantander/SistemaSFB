@@ -74,18 +74,25 @@ class AssociadoController extends Controller
     {
         $registro = new Associado();
         $registro->setNome(ucwords($_POST['nome']));
-        $registro->setRg($_POST['rg']);
+        //$registro->setRg($_POST['rg']);
         $registro->setCpf($_POST['cpf']);
-        $registro->setDataNascimento($_POST['dataNasc']);
+        
+        $_POST['dataNasc'] == '' ? $registro->setDataNascimento(null): $registro->setDataNascimento($_POST['dataNasc']);
+
         $registro->setDataAssociacao($_POST['dataAssociacao']);
         $registro->setTelefone($_POST['telefone']);
         $registro->setCelular($_POST['celular']);
         $registro->setEmail($_POST['email']);
         $registro->setNomeRua(ucwords($_POST['rua']));
         $registro->setNomeBairro(ucwords($_POST['bairro']));
-        $registro->setNumeroEndereco($_POST['numero']);
+        //$registro->setNumeroEndereco($_POST['numero']);
+
+        $_POST['rg'] == '' ? $registro->setRg(null): $registro->setRg($_POST['rg']);
+        $_POST['numero'] == '' ? $registro->setNumeroEndereco(null): $registro->setNumeroEndereco($_POST['numero']);
+        $_POST['cidade'] == '' ? $registro->setIdCidade(null): $registro->setIdCidade($_POST['cidade']);
+
         $registro->setComplemento(ucwords($_POST['complemento']));
-        $registro->setIdCidade($_POST['cidade']);
+        //$registro->setIdCidade($_POST['cidade']);
         $registro->setNumeroRegistro($_POST['registro']);
         $registro->setLocaldeTrabalho($_POST['local']);
         $registro->setCargo(ucwords($_POST['cargo']));
@@ -280,9 +287,14 @@ class AssociadoController extends Controller
         $registro->setEmail($_POST['email']);
         $registro->setNomeRua(ucwords($_POST['rua']));
         $registro->setNomeBairro(ucwords($_POST['bairro']));
-        $registro->setNumeroEndereco($_POST['numero']);
+        // $registro->setNumeroEndereco($_POST['numero']);
         $registro->setLocaldeTrabalho($_POST['local']);
-        $registro->setIdCidade($_POST['cidade']);
+
+        //$_POST['rg'] == '' ? $registro->setRg(null): $registro->setRg($_POST['rg']);
+        $_POST['numero'] == '' ? $registro->setNumeroEndereco(null): $registro->setNumeroEndereco($_POST['numero']);
+        $_POST['cidade'] == '' ? $registro->setIdCidade(null): $registro->setIdCidade($_POST['cidade']);
+
+        // $registro->setIdCidade($_POST['cidade']);
         $registro->setCep($_POST['cep']);
         $registro->setCargo(ucwords($_POST['cargo']));
         $registro->setSalario($_POST['salario']);

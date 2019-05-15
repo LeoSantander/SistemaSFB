@@ -58,7 +58,7 @@ class AssociadoDAO extends BaseDAO
             );
         }
         catch(\Exception $e){
-            throw new \Exception("Erro ao gravar os dados",500);
+            throw new \Exception("Erro ao gravar os dados".$e,500);
         }
     }
 
@@ -104,9 +104,9 @@ class AssociadoDAO extends BaseDAO
            $query = $this->select(
                "SELECT a.*,a.Telefone as Tel, b.NM_Cidade as NM_Cidade, c.NM_Fantasia as NM_Fantasia
                 FROM sfm_associados as a
-                    INNER JOIN sfm_cidade as b
+                    LEFT OUTER JOIN sfm_cidade as b
                     ON b.ID_Cidade = a.ID_Cidade
-                    INNER JOIN sfm_local_trabalho as c
+                    LEFT OUTER JOIN sfm_local_trabalho as c
                     ON c.ID_Local_Trabalho = a.ID_Local_Trabalho
                 WHERE a.NM_Associado LIKE '%".$busca."%' ORDER BY a.ST_Situacao, a.NM_Associado"
             );
@@ -117,9 +117,9 @@ class AssociadoDAO extends BaseDAO
            $query = $this->select(
             "SELECT a.*,a.Telefone as Tel, b.NM_Cidade as NM_Cidade, c.NM_Fantasia as NM_Fantasia
                 FROM sfm_associados as a
-                    INNER JOIN sfm_cidade as b
+                    LEFT OUTER JOIN sfm_cidade as b
                     ON b.ID_Cidade = a.ID_Cidade
-                    INNER JOIN sfm_local_trabalho as c
+                    LEFT OUTER JOIN sfm_local_trabalho as c
                     ON c.ID_Local_Trabalho = a.ID_Local_Trabalho
                 ORDER BY a.ST_Situacao, a.NM_Associado"
             );
@@ -142,9 +142,9 @@ class AssociadoDAO extends BaseDAO
        $query = $this->select(
            "SELECT sfm_associados.*,sfm_cidade.NM_Cidade, sfm_local_trabalho.NM_Fantasia, sfm_associados.ST_Situacao AS Situacao, sfm_associados.Complemento as Comp
             FROM sfm_associados
-                 INNER JOIN sfm_cidade
+                 LEFT OUTER JOIN sfm_cidade
                  ON sfm_associados.ID_Cidade = sfm_cidade.ID_Cidade
-                 INNER JOIN sfm_local_trabalho
+                 LEFT OUTER JOIN sfm_local_trabalho
                  ON sfm_local_trabalho.ID_Local_Trabalho = sfm_associados.ID_Local_Trabalho
             WHERE ID_Associado = '$id'"
        );
