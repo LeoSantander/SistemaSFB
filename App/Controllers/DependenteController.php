@@ -41,9 +41,13 @@ class DependenteController extends Controller
     {
         $registro = new Dependente();
         $registro->setNome(ucwords($_POST['nome']));
-        $registro->setRg($_POST['rg']);
+        //$registro->setRg($_POST['rg']);
+
+        $_POST['rg'] == '' ? $registro->setRg(null): $registro->setRg($_POST['rg']);
+        $_POST['dataNasc'] == '' ? $registro->setDataNascimento(null): $registro->setDataNascimento($_POST['dataNasc']);
+
         $registro->setCpf($_POST['cpf']);
-        $registro->setDataNascimento($_POST['dataNasc']);
+        //$registro->setDataNascimento($_POST['dataNasc']);
         $registro->setIdAssociado($_POST['idAssociado']);
         $registro->setGrauDependencia($_POST['grau']);
         $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
@@ -228,13 +232,17 @@ class DependenteController extends Controller
 
         $registro = new Dependente();
         $registro->setCpf($cpf);
-        $registro->setDataNascimento($_POST['dataNasc']);
+        // $registro->setDataNascimento($_POST['dataNasc']);
         $registro->setGrauDependencia($_POST['grau']);
+
+        $_POST['rg'] == '' ? $registro->setRg(null): $registro->setRg($_POST['rg']);
+        $_POST['dataNasc'] == '' ? $registro->setDataNascimento(null): $registro->setDataNascimento($_POST['dataNasc']);
+
         $registro->setIdAssociado($_POST['idAssociado']);
         $registro->setIdDependente($id);
         $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
         $registro->setNome($_POST['nome']);
-        $registro->setRg($_POST['rg']);
+        // $registro->setRg($_POST['rg']);
 
         $dependenteDAO = new DependenteDAO();
 

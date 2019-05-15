@@ -33,7 +33,7 @@
                     <div class="form-group col-md-6">
                         <label for="rg">RG:</label>
                         <input type="rg" class="form-control" name="rg" placeholder="000000000" maxlength="9" pattern="[0-9]{8}[0-9xX]{1}"
-                               title="Digite somente números com 9 digitos" value="<?php echo $viewVar['dependente']->RG?>" required >
+                               title="Digite somente números com 9 digitos" value="<?php echo $viewVar['dependente']->RG?>" >
                     </div>
 
                     <div class="form-group col-md-6">
@@ -45,7 +45,7 @@
 
                 <div class="form-group">
                     <label for="dataNasc">Data de Nascimento:</label>
-                    <input type="date" id="dataNasc" name="dataNasc" class="form-control" value="<?php echo $viewVar['dependente']->DT_Nascimento?>" required>
+                    <input type="date" id="dataNasc" name="dataNasc" class="form-control" value="<?php echo $viewVar['dependente']->DT_Nascimento?>">
                 </div>
 
                 <h5>Convênios:</h5>
