@@ -45,30 +45,30 @@
                       <div class="form-group col-md-10">
                           <label for="nome">Rua:</label>
                           <input type="text" class="form-control"  name="rua" placeholder=" Rua Nove de Julho" value="<?php echo $viewVar['escritorio']->NM_Rua; ?>" pattern="[A-Za-zÀ-ú0-9 ]{0,}"
-                              title="Use somente letras ou números. Não use caracteres especiais." required autofocus>
+                              title="Use somente letras ou números. Não use caracteres especiais." autofocus>
                       </div>
                       <div class="form-group col-md-2">
                           <label for="endereco">Número:</label>
                           <input type="text" class="form-control" maxlength="5" name="endereco" placeholder="000" value="<?php echo $viewVar['escritorio']->NO_Endereco; ?>"
-                              pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" required autofocus>
+                              pattern="[0-9]+$" onkeydown="javascript: fMasc( this, mNum );" autofocus>
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-md-9">
                           <label for="nome">Bairro:</label>
                           <input type="text" class="form-control" name="bairro" placeholder="Bairro Nova Marilia" value="<?php echo $viewVar['escritorio']->NM_Bairro; ?>" pattern="[A-Za-zÀ-ú ]{0,}"
-                                 title="Use somente letras. Não use caracteres especiais ou números." required autofocus>
+                                 title="Use somente letras. Não use caracteres especiais ou números." autofocus>
                       </div>
                       <div class="form-group col-md-3">
                               <label for="cep">CEP:</label>
                               <input type="text" class="form-control" name="cep" maxlength="10" placeholder="00.000-000" value="<?php echo $viewVar['escritorio']->CEP; ?>" pattern= "[0-9]{2}.[0-9]{3}-[0-9]{3}"
-                                 title="Preencha de acordo com o que foi solicitado." onkeydown="javascript: fMasc( this, mCEP );" required autofocus>
+                                 title="Preencha de acordo com o que foi solicitado." onkeydown="javascript: fMasc( this, mCEP );" autofocus>
                           </div>
                   </div>
 
                       <div class="form-group">
                         <label for="cidade">Cidade:</label>
-                          <select class="form-control" name= "cidade" value="" required>
+                          <select class="form-control" name= "cidade" value="">
                               <option name= "cidade" value="">Selecione uma Cidade</option>
                           <?php foreach($viewVar['listarCidades'] as $cidades){
                                   if ($cidades->ID_Cidade == $viewVar['escritorio']->ID_Cidade){?>
@@ -87,13 +87,13 @@
                               <label for="telefone">Telefone:</label>
                               <input type="telefone" maxlength="14" class="form-control"  name="telefone" placeholder="(14) 3300-3000"
                                   value="<?php echo $viewVar['escritorio']->Telefone; ?>" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$"
-                                  title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" required autofocus>
+                                  title="Este campo deve atender ao formato solicitado!"  onkeydown="javascript: fMasc( this, mTel );" autofocus>
                       </div>
 
                       <div class="form-group col-md-8">
                               <label for="email">Email:</label>
                               <input type="email" class="form-control"  name="email" placeholder="nome@dominio.com" value="<?php echo $viewVar['escritorio']->Email; ?>"
-                                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Este campo deve atender ao formato solicitado: nome@dominio.com" required autofocus>
+                                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Este campo deve atender ao formato solicitado: nome@dominio.com" autofocus>
                       </div>
                   </div>
                   <hr>

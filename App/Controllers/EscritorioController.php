@@ -43,8 +43,12 @@ class EscritorioController extends Controller
         $registro->setTelefone      ($_POST['telefone']);
         $registro->setNmRua         (ucwords($_POST['rua']));
         $registro->setNmBairro      (ucwords($_POST['bairro']));
-        $registro->setNumEndereco   ($_POST['endereco']);
-        $registro->setIdCidade      ($_POST['cidade']);
+
+        $_POST['endereco'] == '' ? $registro->setNumEndereco(null): $registro->setNumEndereco($_POST['endereco']);
+        $_POST['cidade'] == '' ? $registro->setIdCidade(null): $registro->setIdCidade($_POST['cidade']);
+
+        // $registro->setNumEndereco   ($_POST['endereco']);
+        // $registro->setIdCidade      ($_POST['cidade']);
         $registro->setEmail         ($_POST['email']);
         $registro->setCep           ($_POST['cep']);
         $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
@@ -53,16 +57,16 @@ class EscritorioController extends Controller
 
         $escritorioDAO = new EscritorioDAO();
 
-        if(($escritorioDAO->verificaCNPJ($_POST['cnpj']))){
-            Sessao::gravaMensagem("Escritório ja Registrado!");
-            $this->redirect('/escritorio/cadastro');
-        }
+        // if(($escritorioDAO->verificaCNPJ($_POST['cnpj']))){
+        //     Sessao::gravaMensagem("Escritório ja Registrado!");
+        //     $this->redirect('/escritorio/cadastro');
+        // }
 
         if($escritorioDAO->salvar($registro))
         {
             if ($lc == 'LC'){
                 Sessao::gravaFormulario($_POST);
-                Sessao::gravaSucesso("Posto cadastrado com Sucesso");
+                Sessao::gravaSucesso("Escritório cadastrado com Sucesso");
 
                 $this->redirect('/localTrabalho/cadastro');
 
@@ -162,24 +166,28 @@ class EscritorioController extends Controller
         $registro->setTelefone      ($_POST['telefone']);
         $registro->setNmRua         (ucwords($_POST['rua']));
         $registro->setNmBairro      (ucwords($_POST['bairro']));
-        $registro->setNumEndereco   ($_POST['endereco']);
-        $registro->setIdCidade      ($_POST['cidade']);
+
+        $_POST['endereco'] == '' ? $registro->setNumEndereco(null): $registro->setNumEndereco($_POST['endereco']);
+        $_POST['cidade'] == '' ? $registro->setIdCidade(null): $registro->setIdCidade($_POST['cidade']);
+
+        // $registro->setNumEndereco   ($_POST['endereco']);
+        // $registro->setIdCidade      ($_POST['cidade']);
         $registro->setEmail         ($_POST['email']);
         $registro->setCep           ($_POST['cep']);
         $registro->setIdUsuarioInclusao(Sessao::retornaidUsuario());
 
         $escritorioDAO = new EscritorioDAO();
 
-        if($escritorioDAO->verificaAlteracao($_POST['cnpj'], $id))
-        {
-            Sessao::gravaMensagem("Escritório já cadastrado!");
-            $this->redirect('/escritorio/consultar/'.$id);
-        }else{
+        // if($escritorioDAO->verificaAlteracao($_POST['cnpj'], $id))
+        // {
+        //     Sessao::gravaMensagem("Escritório já cadastrado!");
+        //     $this->redirect('/escritorio/consultar/'.$id);
+        // }else{
             $escritorioDAO->atualizar($registro);
 
             Sessao::limpaFormulario();
             Sessao::gravaSucesso("Escritório Alterado com Sucesso!");
             $this->redirect('/escritorio/consultar');
-        }
+        // }
     }
 }//fim do programa
