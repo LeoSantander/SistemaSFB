@@ -39,7 +39,7 @@
                     <div class="form-group col-md-6">
                         <label for="cpf">CPF:</label>
                         <input type="cpf" id="cpf" maxlength="14" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"  class="form-control"
-                               placeholder="000.000.000-00" name="cpf" placeholder="" value="<?php echo $viewVar['dependente']->CPF?>" required oninvalid="this.setCustomValidity('Este campo deve estar preenchido e atender ao padrão exigido: 000.000.000-00')" onchange="try{setCustomValidity('')}catch(e){}" onkeydown="javascript: fMasc( this, mCPF );">
+                               placeholder="000.000.000-00" name="cpf" placeholder="" value="<?php echo $viewVar['dependente']->CPF?>" oninvalid="this.setCustomValidity('Este campo deve estar preenchido e atender ao padrão exigido: 000.000.000-00')" onchange="try{setCustomValidity('')}catch(e){}" onkeydown="javascript: fMasc( this, mCPF );">
                     </div>
                 </div>
 
