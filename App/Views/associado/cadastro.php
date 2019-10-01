@@ -122,8 +122,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-10">
                         <label for="rua">Rua:</label>
-                        <input type="text" class="form-control"  name="rua" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" pattern="[A-Za-zÀ-ú0-9 ]{0,}"
-                            title="Use somente letras ou números. Não use caracteres especiais." autofocus>
+                        <input type="text" class="form-control"  name="rua" value="<?php echo $Sessao::retornaValorFormulario('rua'); ?>" autofocus>
                     </div>
 
                     <div class="form-group col-md-2">
@@ -136,8 +135,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-8">
                         <label for="bairro">Bairro:</label>
-                        <input type="text" class="form-control" name="bairro"  value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
-                            title="Use somente letras. Não use caracteres especiais ou números." autofocus>
+                        <input type="text" class="form-control" name="bairro"  value="<?php echo $Sessao::retornaValorFormulario('bairro'); ?>" autofocus>
                     </div>
 
                     <div class="form-group col-4">
@@ -166,8 +164,7 @@
 
                 <div class="form-group">
                         <label for="complemento">Complemento:</label>
-                        <input type="text" class="form-control" name="complemento" value="<?php echo $Sessao::retornaValorFormulario('complemento'); ?>" pattern="[A-Za-zÀ-ú ]{0,}"
-                            title="Use somente letras. Não use caracteres especiais ou números." autofocus>
+                        <input type="text" class="form-control" name="complemento" value="<?php echo $Sessao::retornaValorFormulario('complemento'); ?>" autofocus>
                 </div>
 
                 <br><h5>Contato:</h5>

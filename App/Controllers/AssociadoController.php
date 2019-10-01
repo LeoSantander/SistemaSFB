@@ -289,6 +289,7 @@ class AssociadoController extends Controller
         $registro->setNomeBairro(ucwords($_POST['bairro']));
         // $registro->setNumeroEndereco($_POST['numero']);
         $registro->setLocaldeTrabalho($_POST['local']);
+        $registro->setDataAssociacao($_POST['dataAssociacao']);
 
         //$_POST['rg'] == '' ? $registro->setRg(null): $registro->setRg($_POST['rg']);
         $_POST['numero'] == '' ? $registro->setNumeroEndereco(null): $registro->setNumeroEndereco($_POST['numero']);

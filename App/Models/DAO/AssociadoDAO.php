@@ -192,10 +192,13 @@ class AssociadoDAO extends BaseDAO
            $idAssociado = $associado->getIdAssociado();
            $idUsuarioInclusao= $associado->getIdUsuarioInclusao();
 
+           //Correção 01/10/2019 - Adicionando campo Data Associação
+           $dataAssociacao = $associado->getDataAssociacao();
+
 
            return $this->update(
                'sfm_associados',
-               "NM_Associado = :NM_Associado, VL_Salario = :VL_Salario, Telefone = :Telefone, Celular = :Celular, Email = :Email, NM_Rua = :NM_Rua, NM_Bairro = :NM_Bairro, NO_Endereco = :NO_Endereco, CEP = :CEP, ID_Local_Trabalho = :ID_Local_Trabalho, ID_Cidade = :ID_Cidade, Cargo = :Cargo, ST_Situacao = :ST_Situacao, Complemento = :Complemento, ID_Usuario_Inclusao = :ID_Usuario_Inclusao",
+               "NM_Associado = :NM_Associado, VL_Salario = :VL_Salario, DT_Associacao = :DT_Associacao, Telefone = :Telefone, Celular = :Celular, Email = :Email, NM_Rua = :NM_Rua, NM_Bairro = :NM_Bairro, NO_Endereco = :NO_Endereco, CEP = :CEP, ID_Local_Trabalho = :ID_Local_Trabalho, ID_Cidade = :ID_Cidade, Cargo = :Cargo, ST_Situacao = :ST_Situacao, Complemento = :Complemento, ID_Usuario_Inclusao = :ID_Usuario_Inclusao",
                [
                    ':ID_Associado'=>$idAssociado,
                    ':NM_Associado'=>$nome,
@@ -203,6 +206,7 @@ class AssociadoDAO extends BaseDAO
                    ':VL_Salario'=>$salario,
                    ':Telefone'=>$telefone,
                    ':Celular'=>$celular,
+                   ':DT_Associacao'=>$dataAssociacao,
                    ':Email'=>$email,
                    ':NM_Bairro'=>$bairro,
                    ':NO_Endereco'=>$numeroEndereco,
