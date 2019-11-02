@@ -262,7 +262,7 @@ class AssociadoDAO extends BaseDAO
 
        //var_dump($query);
 
-       return $query->fetchAll(\PDO::FETCH_CLASS, AssociadoDAO::class);
+       return $query->fetchAll(\PDO::FETCH_CLASS);
    }
 
    public function recUltID(){

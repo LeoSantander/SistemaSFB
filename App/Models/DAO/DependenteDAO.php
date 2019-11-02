@@ -203,6 +203,6 @@ class DependenteDAO extends BaseDAO{
 
         //var_dump($query);
 
-        return $query->fetchAll(\PDO::FETCH_CLASS, DependenteDAO::class);
+        return $query->fetchAll(\PDO::FETCH_CLASS);
     }
 }

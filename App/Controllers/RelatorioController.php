@@ -79,7 +79,7 @@ class RelatorioController extends Controller
 
             //string condição
             $condicao = ($situacaoEscolha == "Todos" ? "WHERE a.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim'" .' ' :
-                        "WHERE a.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim' AND ST_Situacao = '$situacaoEscolha'" .' ');
+                        "WHERE a.DH_Inclusao BETWEEN '$dataInicio' AND '$dataFim' AND a.ST_Situacao = '$situacaoEscolha'" .' ');
             //var_dump($condicao);
 
             //fazendo o join para o que for necessário

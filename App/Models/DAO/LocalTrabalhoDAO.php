@@ -89,7 +89,7 @@ class LocalTrabalhoDAO extends BaseDAO
                       ON s.ID_Escritorio = l.ID_Escritorio_Contabilidade
                  WHERE l.NM_Fantasia LIKE '%".$nm."%' ORDER BY l.NM_Fantasia"
             );
-            return $query->fetchAll(\PDO::FETCH_CLASS, LocalTrabalhoDAO::class);
+            return $query->fetchAll(\PDO::FETCH_CLASS);
         }else{
             $query = $this->select(
                 "SELECT *, l.Telefone as Tel, l.Email as EmailLocal, l.NM_Rua as Rua, l.NO_Endereco as Num, l.NM_Bairro as Bairro, l.CEP as CepLocal, c.NM_Cidade as NM_Cidade, e.CD_Estado as CD_Estado, s.NM_Escritorio as NM_Escritorio
@@ -102,7 +102,7 @@ class LocalTrabalhoDAO extends BaseDAO
                       ON s.ID_Escritorio = l.ID_Escritorio_Contabilidade
                  ORDER BY l.NM_Fantasia"
             );
-            return $query->fetchAll(\PDO::FETCH_CLASS, LocalTrabalhoDAO::class);
+            return $query->fetchAll(\PDO::FETCH_CLASS);
         }
         return false;
     }
@@ -206,7 +206,7 @@ class LocalTrabalhoDAO extends BaseDAO
 
         //var_dump($query);
 
-        return $query->fetchAll(\PDO::FETCH_CLASS, LocalTrabalhoDAO::class);
+        return $query->fetchAll(\PDO::FETCH_CLASS);
     }
 }
 ?>
